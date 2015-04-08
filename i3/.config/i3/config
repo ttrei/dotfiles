@@ -32,8 +32,9 @@ bindcode $mod+36 exec --no-startup-id xfce4-terminal
 bindcode $mod+21 exec --no-startup-id source ~/.fehbg
 
 # kill focused window
-# 22 = BackSpace
+# 22 = BackSpace, 70 = F4
 bindcode $mod+Shift+22 kill
+bindcode $mod+70 kill
 
 # start dmenu (a program launcher)
 # 27 = r
