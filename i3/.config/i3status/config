@@ -1,0 +1,32 @@
+general {
+        output_format = i3bar
+        colors = true
+        interval = 2
+}
+
+order += "disk /"
+order += "disk /home"
+order += "ethernet eth0"
+order += "cpu_usage"
+order += "time"
+
+ethernet eth0 {
+        format_up = "E: %ip"
+        format_down = "E: down"
+}
+
+time {
+        format = "%Y-%m-%d %H:%M"
+}
+
+cpu_usage {
+        format = "%usage"
+}
+
+disk "/" {
+        format = "%free"
+}
+
+disk "/home" {
+        format = "%free"
+}
