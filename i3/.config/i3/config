@@ -1,0 +1,189 @@
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Urgency
+client.urgent #2f343a #900000 #ffffff #900000
+
+# Some options
+focus_follows_mouse no
+hide_edge_borders vertical
+
+# Set the wallpaper
+exec --no-startup-id feh --bg-center /home/reinis/.wallpaper
+
+# Modifier (Mod1 == left Alt)
+set $mod Mod1
+
+# NB! Do not use these combinations to avoid stealing useful terminal shortcuts
+#   Alt+f; Alt+b; Alt+backspace; Alt+d
+
+# font for window titles. ISO 10646 = Unicode
+font pango:DejaVu Sans Mono 10
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+# 36 = Return
+bindcode $mod+36 exec --no-startup-id xfce4-terminal
+
+# Reset the wallpaper
+# 21 = +
+bindcode $mod+21 exec --no-startup-id source ~/.fehbg
+
+# kill focused window
+# 22 = BackSpace
+bindcode $mod+Shift+22 kill
+
+# start dmenu (a program launcher)
+# 27 = r
+bindcode $mod+27 exec --no-startup-id dmenu_run
+
+# change focus
+# 43 = h; 44 = j; 45 = k; 46 = l
+bindcode $mod+43 focus left
+bindcode $mod+44 focus down
+bindcode $mod+45 focus up
+bindcode $mod+46 focus right
+
+# move focused window
+bindcode $mod+Shift+43 move left
+bindcode $mod+Shift+44 move down
+bindcode $mod+Shift+45 move up
+bindcode $mod+Shift+46 move right
+
+# split in horizontal orientation
+# 42 = g
+bindcode $mod+42 split h
+
+# split in vertical orientation
+# 55 = v
+bindcode $mod+55 split v
+
+# enter fullscreen mode for the focused container
+# 38 = a
+bindcode $mod+38 fullscreen
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout default
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+#bindsym $mod+a focus parent
+
+# focus the child container
+#bindcode $mod+d focus child
+
+# switch to workspace
+bindcode $mod+16 workspace 1
+bindcode $mod+17 workspace 2
+bindcode $mod+18 workspace 3
+bindcode $mod+19 workspace 4
+bindcode $mod+30 workspace 5
+bindcode $mod+31 workspace 6
+bindcode $mod+32 workspace 7
+bindcode $mod+33 workspace 8
+
+# move focused container to workspace
+bindcode $mod+Shift+16 move container to workspace 1
+bindcode $mod+Shift+17 move container to workspace 2
+bindcode $mod+Shift+18 move container to workspace 3
+bindcode $mod+Shift+19 move container to workspace 4
+bindcode $mod+Shift+30 move container to workspace 5
+bindcode $mod+Shift+31 move container to workspace 6
+bindcode $mod+Shift+32 move container to workspace 7
+bindcode $mod+Shift+33 move container to workspace 8
+
+# reload the configuration file
+# 54 = c
+bindcode $mod+Shift+54 reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# 27 = r
+bindcode $mod+Shift+27 restart
+# exit i3 (logs you out of your X session)
+# 24 = q
+bindcode $mod+Shift+24 exit
+
+# resize window (you can also use the mouse for that)
+#mode "resize" {
+#        set $delta 3
+#
+#        bindcode 43 resize shrink width $delta px or $delta ppt
+#        bindcode 44 resize grow height $delta px or $delta ppt
+#        bindcode 45 resize shrink height $delta px or $delta ppt
+#        bindcode 46 resize grow width $delta px or $delta ppt
+#
+#        # back to normal mode
+#        # 36 = Return
+#        bindcode 36 mode "default"
+#}
+
+# 27 = r
+#bindcode $mod+27 mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    #colors {
+    #    urgent_workspace   #2f343a #900000 #ffffff
+    #}
+    status_command i3status | ~/.config/i3status/wrapper.py
+}
+
+
+# Assignments
+assign [class="^Firefox$"] 1
+assign [class="^Iceweasel$"] 1
+
+assign [class="^Thunderbird$"] 2
+assign [class="^Icedove$"] 2
+
+assign [class="^Evince$"] 4
+
+assign [class="^Pidgin$"] 3
+
+assign [title="^sopcast_terminal$"] 7
+
+
+# Startup
+#exec --no-startup-id thunderbird
+#exec --no-startup-id pidgin
+#exec --no-startup-id firefox
+
+
+# Floating windows
+for_window [class="Meld"] floating enable
+for_window [class="Anki"] floating enable
+for_window [class="MPlayer"] floating enable
+for_window [class="mplayer"] floating enable
+for_window [class="Vlc"] floating enable
+for_window [class="Conky"] floating enable
+
+for_window [class="Workrave"] floating enable
+
+# Float the windows of some programming tutorials
+for_window [class="tut"] floating enable
+# Float some self-written OpenGL programs. If the compiled file ends with .bin
+# it will match.
+for_window [class=".bin$"] floating enable
+
+# Float some matplotlib plots
+for_window [title="matplotlib_float"] floating enable
+
+# Float gitk
+for_window [class="Gitk"] floating enable
+
+# Toggle conky visibility
+# 29 = y
+# -- Scratchpad method
+#for_window [class="Conky"] floating enable; move to scratchpad
+#bindcode $mod+29 [class="Conky"] scratchpad show
+# -- xdotool method
+#bindcode $mod+29 exec --no-startup-id xdotool search --onlyvisible --class 'Conky' windowunmap %@ || xdotool search --class 'Conky' windowmap %@
