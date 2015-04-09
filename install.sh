@@ -9,3 +9,9 @@ stow xfce4terminal -t ~/.config/xfce4/
 echo "i3"
 mkdir -p ~/.config/
 stow i3 -t ~/.config/
+
+echo "vim"
+stow vim
+
+echo "bash"
+stow bash
