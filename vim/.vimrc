@@ -54,6 +54,10 @@ inoremap <F8> <C-o>:set nofoldenable<CR>
 
 " Automatic foldmethod
 au BufWinEnter *.py set foldmethod=indent
+au BufWinEnter *.c set foldmethod=syntax
+au BufWinEnter *.h set foldmethod=syntax
+au BufWinEnter *.cpp set foldmethod=syntax
+au BufWinEnter *.hpp set foldmethod=syntax
 
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1
