@@ -7,6 +7,9 @@ colorscheme zenburn
 " Side effect: disables cursor keys in Insert mode.
 set noesckeys
 
+" Enable backspace in Insert mode (sometimes disabled by default)
+set backspace=indent,eol,start
+
 " Disable modelines
 set nomodeline
 set modelines=0
