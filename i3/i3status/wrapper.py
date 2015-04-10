@@ -40,8 +40,8 @@ def read_line():
     except KeyboardInterrupt:
         sys.exit()
 
-# Color code partitions
-def color_partitions(j):
+# Colorize output of `i3status`
+def colorize(j):
     for d in j:
         if d['name'] == 'disk_info':
             if d['instance'] == '/':
@@ -50,6 +50,13 @@ def color_partitions(j):
                 d[u'color'] = u'#fffdba'
             elif d['instance'] == '/home':
                 d[u'color'] = u'#c7cdff'
+        elif d[u'name'] == 'cpu_usage':
+            load = int(d['full_text'].strip('%'))
+            if load > 89:
+                d[u'color'] = red
+            elif load > 29:
+                d[u'color'] = yellow
+
 
 if __name__ == '__main__':
     # Skip the first line which contains the version header.
@@ -68,8 +75,7 @@ if __name__ == '__main__':
         # Decode the line
         j = json.loads(line)
 
-        # Modify the line
-        color_partitions(j)
+        colorize(j)
 
         # Encode to JSON and print to stdout
         print_line(prefix+json.dumps(j))
