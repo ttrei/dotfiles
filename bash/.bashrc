@@ -1,5 +1,11 @@
 # .bashrc
 
+# Don't do anyting for non-interactive sessions
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
