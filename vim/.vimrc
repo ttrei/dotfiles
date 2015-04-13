@@ -55,6 +55,10 @@ inoremap <F7> <C-o>:set foldenable<CR>
 noremap <F8> <Esc>:set nofoldenable<CR>
 inoremap <F8> <C-o>:set nofoldenable<CR>
 
+" Toggle trailing whitespace highlighting
+noremap <F6> <Esc>:ToggleWhitespace<CR>
+inoremap <F6> <C-o>:ToggleWhitespace<CR>
+
 " Automatic foldmethod
 au BufWinEnter *.py set foldmethod=indent
 au BufWinEnter *.c set foldmethod=syntax
