@@ -3,6 +3,9 @@ set t_Co=256
 "colorscheme desert256
 colorscheme zenburn
 
+" Show filename in terminal title
+set title
+
 " No wait time when inserting text in multiple lines.
 " Side effect: disables cursor keys in Insert mode.
 set noesckeys
