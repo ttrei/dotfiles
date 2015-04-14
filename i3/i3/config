@@ -66,9 +66,10 @@ bindcode $mod+55 split v
 bindcode $mod+38 fullscreen
 
 # change container layout (stacked, tabbed, default)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout default
+# 25 = w, 26 = e, 39 = s
+bindcode $mod+25 layout tabbed
+bindcode $mod+26 layout stacking
+bindcode $mod+39 layout default
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
