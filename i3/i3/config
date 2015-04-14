@@ -78,7 +78,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-#bindsym $mod+a focus parent
+# 24 = q
+bindcode $mod+24 focus parent
 
 # focus the child container
 #bindcode $mod+d focus child
