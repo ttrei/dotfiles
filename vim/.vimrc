@@ -1,3 +1,6 @@
+" Manage plugins with pathogen.vim
+execute pathogen#infect()
+
 set encoding=utf8
 set t_Co=256
 "colorscheme desert256
