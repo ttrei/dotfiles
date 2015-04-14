@@ -81,6 +81,9 @@ bindsym $mod+space focus mode_toggle
 # 24 = q
 bindcode $mod+24 focus parent
 
+# don't break out of child containers when wrapping possible
+force_focus_wrapping yes
+
 # focus the child container
 #bindcode $mod+d focus child
 
