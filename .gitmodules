@@ -10,3 +10,6 @@
 [submodule "vim/.vim/bundle/vim-cpp-enhanced-highlight"]
 	path = vim/.vim/bundle/vim-cpp-enhanced-highlight
 	url = https://github.com/octol/vim-cpp-enhanced-highlight.git
+[submodule "vim/.vim/bundle/FastFold"]
+	path = vim/.vim/bundle/FastFold
+	url = https://github.com/Konfekt/FastFold.git
