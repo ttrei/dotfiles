@@ -56,8 +56,8 @@ let g:vim_markdown_folding_disabled=1
 
 " Disable-enable folding
 set nofoldenable " Disabled by default
-noremap <F7> <Esc>:set foldenable<CR>
-inoremap <F7> <C-o>:set foldenable<CR>
+noremap <F7> <Esc>:set foldenable \| FastFoldUpdate<CR>
+inoremap <F7> <C-o>:set foldenable \| FastFoldUpdate<CR>
 noremap <F8> <Esc>:set nofoldenable<CR>
 inoremap <F8> <C-o>:set nofoldenable<CR>
 
