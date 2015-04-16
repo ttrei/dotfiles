@@ -13,3 +13,6 @@
 [submodule "vim/.vim/bundle/FastFold"]
 	path = vim/.vim/bundle/FastFold
 	url = https://github.com/Konfekt/FastFold.git
+[submodule "vim/.vim/bundle/FoldText"]
+	path = vim/.vim/bundle/FoldText
+	url = https://github.com/Konfekt/FoldText.git
