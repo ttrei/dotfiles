@@ -14,19 +14,24 @@ Gre='\e[32m'  # Green
 Yel='\e[33m'  # Yellow
 Blu='\e[34m'  # Light Blue
 
-# Fetch all upstream branches (so you see their state with gitk --all)
-git fetch --all -q
 
-# Pull upstream `master`
-echo -e "\n${Bld}${Gre}* Update master:${RCol}\n"
+# Fetch upstream
+echo -e "\n${Bld}${Gre}* Fetch upstream:${RCol}\n"
+echo -e "${Gre}git fetch --all:${RCol}"
+git fetch --all
 echo -e "${Gre}git checkout master:${RCol}"
 git checkout master
-echo -e "${Gre}git pull:${RCol}"
-git pull
+echo -e "${Gre}git merge origin/master:${RCol}"
+git merge origin/master
+
+# Update submodules
+echo -e "\n${Bld}${Gre}* Update submodules:${RCol}\n"
+echo -e "${Gre}git submodule init:${RCol}"
+git submodule init
+echo -e "${Gre}git submodule update:${RCol}"
+git submodule update
 
 # Rebase local stuff on updated master
 echo -e "\n${Bld}${Gre}* Rebase local changes on master:${RCol}\n"
 echo -e "${Gre}git rebase master ${branch}:${RCol}"
 git rebase master $branch
-echo -e "${Gre}git push --force origin ${branch}:${RCol}"
-git push --force origin $branch
