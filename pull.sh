@@ -24,14 +24,14 @@ git checkout master
 echo -e "${Gre}git merge origin/master:${RCol}"
 git merge origin/master
 
+# Rebase local stuff on updated master
+echo -e "\n${Bld}${Gre}* Rebase local changes on master:${RCol}\n"
+echo -e "${Gre}git rebase master ${branch}:${RCol}"
+git rebase master $branch
+
 # Update submodules
 echo -e "\n${Bld}${Gre}* Update submodules:${RCol}\n"
 echo -e "${Gre}git submodule init:${RCol}"
 git submodule init
 echo -e "${Gre}git submodule update:${RCol}"
 git submodule update
-
-# Rebase local stuff on updated master
-echo -e "\n${Bld}${Gre}* Rebase local changes on master:${RCol}\n"
-echo -e "${Gre}git rebase master ${branch}:${RCol}"
-git rebase master $branch
