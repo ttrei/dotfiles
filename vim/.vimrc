@@ -101,3 +101,4 @@ endif
 
 "NERDTree
 let NERDTreeChDirMode=2 "Change CWD on root tree change
+noremap \\ :NERDTreeToggle<CR>
