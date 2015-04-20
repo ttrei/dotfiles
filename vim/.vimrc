@@ -75,6 +75,11 @@ au BufWinEnter *.hpp set foldmethod=syntax
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1
 
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+let g:airline_theme="hybridline"
 " Show the status line as the second line from bottom
 set laststatus=2
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#tab_nr_type = 2
+let g:airline#extensions#whitespace#enabled = 0
