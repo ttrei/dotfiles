@@ -28,3 +28,6 @@
 [submodule "vim/.vim/bundle/Zenburn"]
 	path = vim/.vim/bundle/Zenburn
 	url = https://github.com/jnurmine/Zenburn.git
+[submodule "vim/.vim/bundle/ctrlp.vim"]
+	path = vim/.vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim.git
