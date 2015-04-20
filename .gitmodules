@@ -16,3 +16,9 @@
 [submodule "vim/.vim/bundle/FoldText"]
 	path = vim/.vim/bundle/FoldText
 	url = https://github.com/Konfekt/FoldText.git
+[submodule "vim/.vim/bundle/nerdtree"]
+	path = vim/.vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/.vim/bundle/vim-obsession"]
+	path = vim/.vim/bundle/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
