@@ -40,6 +40,7 @@ set guioptions-=r " Remove right scroll-bar
 filetype plugin on
 filetype indent on
 syntax on
+set incsearch
 set hlsearch
 
 "Start syntax parsing from the start of the file
