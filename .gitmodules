@@ -22,3 +22,6 @@
 [submodule "vim/.vim/bundle/vim-obsession"]
 	path = vim/.vim/bundle/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
+[submodule "vim/.vim/bundle/vim-airline"]
+	path = vim/.vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git
