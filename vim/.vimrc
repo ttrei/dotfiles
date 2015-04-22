@@ -104,3 +104,21 @@ endif
 "NERDTree
 let NERDTreeChDirMode=2 "Change CWD on root tree change
 noremap \\ :NERDTreeToggle<CR>
+
+" Search for selection ('*' - forward; '#' - backward)
+vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
+vnoremap <silent># <ESC>:call VisualSearch('?')<CR>?<CR>
+
+    function! VisualSearch(direction)
+        let l:register=@@
+        normal! gvy
+        let l:search=escape(@@, '$.*/\[]')
+        if a:direction=='/'
+            execute 'normal! /'.l:search
+        else
+            execute 'normal! ?'.l:search
+        endif
+        let @/=l:search
+        normal! gV
+        let @@=l:register
+    endfunction
