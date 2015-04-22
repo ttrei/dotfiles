@@ -105,6 +105,10 @@ endif
 let NERDTreeChDirMode=2 "Change CWD on root tree change
 noremap \\ :NERDTreeToggle<CR>
 
+" Move through tags
+noremap <F4> gt
+noremap <F3> gT
+
 " Search for selection ('*' - forward; '#' - backward)
 vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
 vnoremap <silent># <ESC>:call VisualSearch('?')<CR>?<CR>
