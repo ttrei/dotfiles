@@ -90,6 +90,8 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.class,*.jar,*.html,*.xml
 let g:ctrlp_root_markers = ['.acignore', '.gitignore']
 let g:ctrlp_working_path_mode = 'a'
 let g:ctrlp_by_filename = 1
+" Show code tags (classes, functions etc.)
+noremap \t :CtrlPBufTag<CR>
 
 if executable('ag')
   " Use Ag over Grep
