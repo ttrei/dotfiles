@@ -8,7 +8,8 @@ focus_follows_mouse no
 hide_edge_borders vertical
 
 # Set the wallpaper
-exec --no-startup-id feh --bg-center /home/reinis/.wallpaper
+exec --no-startup-id set-wallpaper.sh
+
 
 # Modifier (Mod1 == left Alt)
 set $mod Mod1
