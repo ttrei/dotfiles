@@ -15,3 +15,7 @@ stow vim
 
 echo "bash"
 stow bash
+
+echo "git"
+mkdir -p ~/.config/git/
+stow git -t ~/.config/git/
