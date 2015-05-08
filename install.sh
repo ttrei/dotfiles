@@ -17,5 +17,5 @@ echo "bash"
 stow bash
 
 echo "git"
-mkdir -p ~/.config/git/
-stow git -t ~/.config/git/
+mkdir -p ~/.config/
+stow git -t ~/.config/
