@@ -23,8 +23,9 @@ Bld='\[\e[1m\]'   # Bold
 Red='\[\e[31m\]'  # Red
 Gre='\[\e[32m\]'  # Green
 Yel='\[\e[33m\]'  # Yellow
-Blu='\[\e[34m\]' # Light Blue
+Blu='\[\e[34m\]'  # Light Blue
 LGry='\[\e[97m\]' # Light Grey
+Pur='\[\e[35m\]'  # Purple
 
 # Root user is red, normal user is blue
 if [ $UID -eq "0" ];then
@@ -35,7 +36,10 @@ fi
 # hostname color
 HCol="$Blu"
 # Terminal prompt
-PS1="[$Bld$UCol\u$RCol@$Bld$HCol\h$RCol \W]$ "
+user_host="$Bld$UCol\u$RCol@$Bld$HCol\h$RCol"
+source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
+git_branch="$Bld$Pur\$(__git_ps1)$RCol"
+PS1="[$user_host \W$git_branch]\$ "
 
 EDITOR=/usr/bin/vim
 export EDITOR
