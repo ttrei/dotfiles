@@ -27,7 +27,9 @@ git merge origin/master
 # Rebase local stuff on updated master
 echo -e "\n${Bld}${Gre}* Rebase local changes on master:${RCol}\n"
 echo -e "${Gre}git rebase master ${branch}:${RCol}"
+git stash -q
 git rebase master $branch
+git stash pop -q
 
 # Update submodules
 echo -e "\n${Bld}${Gre}* Update submodules:${RCol}\n"

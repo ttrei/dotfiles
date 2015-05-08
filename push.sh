@@ -18,7 +18,9 @@ Blu='\e[34m'  # Light Blue
 # Rebase local stuff on master
 echo -e "\n${Bld}${Gre}* Rebase local changes on master:${RCol}\n"
 echo -e "${Gre}git rebase master ${branch}:${RCol}"
+git stash -q
 git rebase master $branch
+git stash pop -q
 
 # Push
 echo -e "\n${Bld}${Gre}* Push:${RCol}\n"
