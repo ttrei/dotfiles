@@ -6,6 +6,13 @@ case $- in
       *) return;;
 esac
 
+# Guard the root user against accidents
+if [ $UID -eq "0" ];then
+    alias rm='rm -i'
+    alias cp='cp -i'
+    alias mv='mv -i'
+fi
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
