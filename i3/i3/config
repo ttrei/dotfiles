@@ -177,6 +177,8 @@ for_window [class="mplayer"] floating enable
 for_window [class="Vlc"] floating enable
 for_window [class="Conky"] floating enable
 
+for_window [title="^gettorrent$"] floating enable
+
 for_window [class="Workrave"] floating enable
 
 # Float the windows of some programming tutorials
