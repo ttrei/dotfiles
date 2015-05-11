@@ -1,5 +1,6 @@
 " Manage plugins with pathogen.vim
 execute pathogen#infect()
+Helptags
 
 set encoding=utf8
 set t_Co=256
