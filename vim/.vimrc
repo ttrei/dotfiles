@@ -90,6 +90,9 @@ let g:ctrlp_by_filename = 1
 nnoremap \t :CtrlPBufTag<CR>
 " Show code tags
 nnoremap \a :TagbarToggle<CR>
+" Open and jump to the tagbar
+nnoremap \s :TagbarOpen f<CR>
+
 
 if executable('ag')
   " Use Ag over Grep
