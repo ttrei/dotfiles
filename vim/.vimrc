@@ -46,26 +46,21 @@ set hlsearch
 
 "Start syntax parsing from the start of the file
 "(useful to fix broken syntax highlighting)
-noremap <F9> <Esc>:syntax sync fromstart<CR>
-inoremap <F9> <C-o>:syntax sync fromstart<CR>
+nnoremap <F9> <Esc>:syntax sync fromstart<CR>
 "Revert back to the default `sync` value
 "(`fromstart` is likely to be slow)
-noremap <F10> <Esc>:syntax sync minlines=200<CR>
-inoremap <F10> <C-o>:syntax sync minlines=200<CR>
+nnoremap <F10> <Esc>:syntax sync minlines=200<CR>
 
 " Disable automatic folding of markdown files
 let g:vim_markdown_folding_disabled=1
 
 " Disable-enable folding
 set nofoldenable " Disabled by default
-noremap <F7> <Esc>:set foldenable \| FastFoldUpdate<CR>
-inoremap <F7> <C-o>:set foldenable \| FastFoldUpdate<CR>
-noremap <F8> <Esc>:set nofoldenable<CR>
-inoremap <F8> <C-o>:set nofoldenable<CR>
+nnoremap <F7> <Esc>:set foldenable \| FastFoldUpdate<CR>
+nnoremap <F8> <Esc>:set nofoldenable<CR>
 
 " Toggle trailing whitespace highlighting
-noremap <F6> <Esc>:ToggleWhitespace<CR>
-inoremap <F6> <C-o>:ToggleWhitespace<CR>
+nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 
 " Automatic foldmethod
 au BufWinEnter *.py set foldmethod=indent
@@ -92,9 +87,9 @@ let g:ctrlp_root_markers = ['.acignore', '.gitignore']
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_by_filename = 1
 " Search code tags (classes, functions etc.)
-noremap \t :CtrlPBufTag<CR>
+nnoremap \t :CtrlPBufTag<CR>
 " Show code tags
-noremap \a :TagbarToggle<CR>
+nnoremap \a :TagbarToggle<CR>
 
 if executable('ag')
   " Use Ag over Grep
@@ -105,8 +100,8 @@ if executable('ag')
 endif
 
 " Move through tags
-noremap <F4> gt
-noremap <F3> gT
+nnoremap <F4> gt
+nnoremap <F3> gT
 
 " Search for selection ('*' - forward; '#' - backward)
 vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
