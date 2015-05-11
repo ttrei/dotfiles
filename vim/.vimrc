@@ -101,10 +101,6 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-"NERDTree
-let NERDTreeChDirMode=2 "Change CWD on root tree change
-noremap \\ :NERDTreeToggle<CR>
-
 " Move through tags
 noremap <F4> gt
 noremap <F3> gT
