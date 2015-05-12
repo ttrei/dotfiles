@@ -93,10 +93,12 @@ let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_by_filename = 1
 " Search code tags (classes, functions etc.)
 nnoremap \t :CtrlPBufTag<CR>
-" Show code tags
-nnoremap \a :TagbarToggle<CR>
 " Open and jump to the tagbar
-nnoremap \s :TagbarOpen f<CR>
+nnoremap \a :TagbarOpen fj<CR>
+" Freeze/unfreeze tagbar
+nnoremap \f :TagbarTogglePause<CR>
+" Close tagbar automatically (press 'c' while in tagbar to toggle)
+let g:tagbar_autoclose = 1
 
 
 if executable('ag')
