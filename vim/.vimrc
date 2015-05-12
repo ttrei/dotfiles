@@ -12,6 +12,9 @@ set t_Co=256
 "colorscheme desert256
 colorscheme zenburn
 
+" Enable mouse in terminal
+set mouse=a
+
 " Show filename in terminal title
 set title
 
