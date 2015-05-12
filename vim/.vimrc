@@ -2,6 +2,11 @@
 execute pathogen#infect()
 Helptags
 
+
+" GVim settings
+set guifont=Consolas\ 13
+
+
 set encoding=utf8
 set t_Co=256
 "colorscheme desert256
