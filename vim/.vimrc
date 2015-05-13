@@ -14,6 +14,9 @@ colorscheme zenburn
 
 " Enable mouse in terminal
 set mouse=a
+" Ctrl+C copies visually selected text to X clipboard. Vim must be compiled
+" with +xterm_clipboard option (see :version).
+:vmap <C-C> "+y
 
 " Show filename in terminal title
 set title
