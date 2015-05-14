@@ -1,36 +1,48 @@
 [submodule "vim/.vim/bundle/vim-pathogen"]
 	path = vim/.vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen
+	ignore = dirty
 [submodule "vim/.vim/bundle/vim-markdown"]
 	path = vim/.vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/vim-better-whitespace"]
 	path = vim/.vim/bundle/vim-better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/vim-cpp-enhanced-highlight"]
 	path = vim/.vim/bundle/vim-cpp-enhanced-highlight
 	url = https://github.com/octol/vim-cpp-enhanced-highlight.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/FastFold"]
 	path = vim/.vim/bundle/FastFold
 	url = https://github.com/Konfekt/FastFold.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/FoldText"]
 	path = vim/.vim/bundle/FoldText
 	url = https://github.com/Konfekt/FoldText.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/vim-obsession"]
 	path = vim/.vim/bundle/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/vim-airline"]
 	path = vim/.vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/Zenburn"]
 	path = vim/.vim/bundle/Zenburn
 	url = https://github.com/jnurmine/Zenburn.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/ctrlp.vim"]
 	path = vim/.vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/tagbar"]
 	path = vim/.vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/bufexplorer"]
 	path = vim/.vim/bundle/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer.git
+	ignore = dirty
