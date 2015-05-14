@@ -12,8 +12,8 @@ set t_Co=256
 "colorscheme desert256
 colorscheme zenburn
 
-" Enable mouse in terminal
-set mouse=a
+" Enable mouse in terminal (only in visual mode)
+set mouse=v
 " Ctrl+C copies visually selected text to X clipboard. Vim must be compiled
 " with +xterm_clipboard option (see :version).
 :vmap <C-C> "+y
