@@ -114,7 +114,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" Move through tags
+" Move through tabs
 nnoremap <F4> gt
 nnoremap <F3> gT
 
