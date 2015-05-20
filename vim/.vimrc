@@ -105,6 +105,9 @@ nnoremap \f :TagbarTogglePause<CR>
 " Close tagbar automatically (press 'c' while in tagbar to toggle)
 let g:tagbar_autoclose = 1
 
+"BufExplorer
+let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
+
 
 if executable('ag')
   " Use Ag over Grep
