@@ -19,3 +19,6 @@ stow bash
 echo "git"
 mkdir -p ~/.config/
 stow git -t ~/.config/
+
+echo "tmux"
+stow tmux
