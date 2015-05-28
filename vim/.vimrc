@@ -28,6 +28,10 @@ set noesckeys
 " Enable backspace in Insert mode (sometimes disabled by default)
 set backspace=indent,eol,start
 
+" Better tab-autocomplete
+set wildmode=longest,list,full
+set wildmenu
+
 " Disable modelines
 set nomodeline
 set modelines=0
