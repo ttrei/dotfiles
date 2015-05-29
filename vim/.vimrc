@@ -66,9 +66,6 @@ nnoremap <F9> <Esc>:syntax sync fromstart<CR>
 "(`fromstart` is likely to be slow)
 nnoremap <F10> <Esc>:syntax sync minlines=200<CR>
 
-" Disable automatic folding of markdown files
-let g:vim_markdown_folding_disabled=1
-
 " Disable-enable folding
 set nofoldenable " Disabled by default
 nnoremap <F7> <Esc>:set foldenable \| FastFoldUpdate<CR>
