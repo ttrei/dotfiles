@@ -74,6 +74,9 @@ nnoremap <F8> <Esc>:set nofoldenable<CR>
 " Toggle trailing whitespace highlighting
 nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 
+" xml file fold settings
+au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
+
 " Automatic foldmethod
 au BufWinEnter *.py set foldmethod=indent
 au BufWinEnter *.c set foldmethod=syntax
