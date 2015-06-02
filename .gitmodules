@@ -49,9 +49,12 @@
 [submodule "vim/.vim/bundle/vim-fugitive"]
 	path = vim/.vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/matchit"]
 	path = vim/.vim/bundle/matchit
 	url = https://github.com/tmhedberg/matchit.git
+	ignore = dirty
 [submodule "vim/.vim/bundle/VOoM"]
 	path = vim/.vim/bundle/VOoM
 	url = https://github.com/vim-scripts/VOoM.git
+	ignore = dirty
