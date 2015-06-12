@@ -96,7 +96,6 @@ bindcode $mod+19 workspace 4
 bindcode $mod+30 workspace 5
 bindcode $mod+31 workspace 6
 bindcode $mod+32 workspace 7
-bindcode $mod+33 workspace 8
 
 # move focused container to workspace
 bindcode $mod+Shift+16 move container to workspace 1
@@ -106,7 +105,12 @@ bindcode $mod+Shift+19 move container to workspace 4
 bindcode $mod+Shift+30 move container to workspace 5
 bindcode $mod+Shift+31 move container to workspace 6
 bindcode $mod+Shift+32 move container to workspace 7
-bindcode $mod+Shift+33 move container to workspace 8
+
+# cycle workspaces
+# 57 = n
+# 33 = p
+bindcode $mod+57 workspace next
+bindcode $mod+33 workspace prev
 
 # reload the configuration file
 # 54 = c
