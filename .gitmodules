@@ -58,6 +58,3 @@
 	path = vim/.vim/bundle/VOoM
 	url = https://github.com/vim-scripts/VOoM.git
 	ignore = dirty
-[submodule "vim/.vim/bundle/vim-smooth-scroll"]
-	path = vim/.vim/bundle/vim-smooth-scroll
-	url = https://github.com/terryma/vim-smooth-scroll.git
