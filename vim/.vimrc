@@ -98,7 +98,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#whitespace#enabled = 0
 
 "CtrlP
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.class,*.jar,*.html,*.xml
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.class,*.jar,*.html
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_by_filename = 1
 " Search code tags (classes, functions etc.)
