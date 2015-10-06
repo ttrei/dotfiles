@@ -62,3 +62,7 @@
 	path = vim/.vim/bundle/vim-numbertoggle
 	url = https://github.com/jeffkreeftmeijer/vim-numbertoggle.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/Align"]
+	path = vim/.vim/bundle/Align
+	url = https://github.com/vim-scripts/Align.git
+	ignore = dirty
