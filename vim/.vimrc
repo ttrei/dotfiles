@@ -128,6 +128,9 @@ endif
 nnoremap <F4> gt
 nnoremap <F3> gT
 
+" Exit visual mode and search in the previously selected range
+vnoremap \/ <Esc>/\%V
+
 " Search for selection ('*' - forward; '#' - backward)
 vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
 vnoremap <silent># <ESC>:call VisualSearch('?')<CR>?<CR>
