@@ -12,6 +12,20 @@ alias duuk='du -ks ./* | sort -n'
 alias duuu='du -ms .[!.]* *| sort -n'
 alias duuuk='du -ks .[!.]* *| sort -n'
 
+# git
+alias go='git checkout'
+__git_complete go _git_checkout
+
+alias gm='git merge'
+__git_complete gm _git_merge
+
+alias gr='git rebase'
+__git_complete gr _git_rebase
+
+alias ga='gitk --all'
+alias ghm='gitk HEAD master'
+alias gu='git-up'
+
 # Clean swap
 alias reswap='sudo swapoff -a && sudo swapon -a'
 
