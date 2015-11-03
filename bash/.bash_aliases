@@ -16,6 +16,12 @@ alias duuuk='du -ks .[!.]* *| sort -n'
 alias go='git checkout'
 __git_complete go _git_checkout
 
+alias gd='git diff'
+__git_complete gd _git_diff
+
+alias gdd='git difftool -d'
+__git_complete gdd _git_difftool
+
 alias gm='git merge'
 __git_complete gm _git_merge
 
