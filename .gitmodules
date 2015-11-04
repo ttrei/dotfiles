@@ -66,3 +66,7 @@
 	path = vim/.vim/bundle/Align
 	url = https://github.com/vim-scripts/Align.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/xml.vim"]
+	path = vim/.vim/bundle/xml.vim
+	url = https://github.com/othree/xml.vim.git
+	ignore = dirty
