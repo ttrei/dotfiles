@@ -30,6 +30,7 @@ __git_complete gr _git_rebase
 
 alias ga='gitk --all'
 alias ghm='gitk HEAD master'
+alias gf='git fetch --all --prune'
 alias gu='git-up'
 
 # Clean swap
