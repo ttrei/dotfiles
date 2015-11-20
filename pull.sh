@@ -2,6 +2,8 @@
 
 if [[ $HOSTNAME == "reinis-desktop" ]]; then
     branch="home-debian"
+elif [[ $HOSTNAME == "reinis-eeepc" ]]; then
+    branch="home-eeepc"
 elif [[ $HOSTNAME == "taukurei" ]]; then
     branch="work-centos6"
 fi
