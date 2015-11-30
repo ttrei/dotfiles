@@ -167,7 +167,6 @@ if __name__ == '__main__':
         unison_status(j)
         obnam_status(j)
         bitcoin_price(j)
-        dogecoin_price(j)
 
         colorize(j)
 
