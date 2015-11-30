@@ -5,7 +5,7 @@ general {
 }
 
 order += "disk /"
-order += "disk /home"
+order += "disk /media/Storage"
 order += "ethernet eth0"
 order += "cpu_usage"
 order += "time"
@@ -23,10 +23,10 @@ cpu_usage {
         format = "%usage"
 }
 
-disk "/" {
+disk "/media/Storage" {
         format = "%free"
 }
 
-disk "/home" {
+disk "/" {
         format = "%free"
 }

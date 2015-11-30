@@ -48,7 +48,7 @@ def colorize(j):
                 d[u'color'] = u'#ffc0c0'
             elif d['instance'] == '/var':
                 d[u'color'] = u'#fffdba'
-            elif d['instance'] == '/home':
+            elif d['instance'] == '/media/Storage':
                 d[u'color'] = u'#c7cdff'
         elif d[u'name'] == 'cpu_usage':
             load = int(d['full_text'].strip('%'))
