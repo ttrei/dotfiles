@@ -98,6 +98,16 @@ def bitcoin_price(json_line):
         if btcusd != '':
             json_line.insert(0, {'full_text' : '$%s' % btcusd, 'name' : 'btc'})
 
+def dogecoin_price(json_line):
+    """ Prepend the price of one dogecoin in satoshis """
+    try:
+        with open('/tmp/dogecoin_price.txt') as fp:
+            value = fp.readline().strip()
+    except:
+        value = "???"
+    json_line.insert(0, {'full_text' : '%ss' % value, 'name' : 'doge'})
+    return json_line
+
 def print_line(message):
     """ Non-buffered printing to stdout. """
     sys.stdout.write(message + '\n')
@@ -157,6 +167,7 @@ if __name__ == '__main__':
         unison_status(j)
         obnam_status(j)
         bitcoin_price(j)
+        dogecoin_price(j)
 
         colorize(j)
 
