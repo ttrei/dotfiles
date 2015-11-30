@@ -38,6 +38,40 @@ def upgrade_count(json_line, filename):
                      'name' : 'upgrades'})
     return json_line
 
+def obnam_status(json_line):
+    """ Prepend the status of obnam backups """
+    now = datetime.datetime.now()
+    files = ('/home/reinis/.status/obnam/last_backup_homedir',
+             '/home/reinis/.status/obnam/last_backup_root')
+    maxdiff = 0
+    for f in files:
+        try:
+            with open(f) as fp:
+                timestring = fp.readline().strip()
+                if timestring == "": # Empty file
+                    diff = -1
+                else:
+                    t = datetime.datetime.strptime(timestring, '%Y-%m-%d %H:%M:%S')
+                    diff = (now - t).total_seconds() / 3600.0 # Difference in hours
+        except: # couldn't open the file
+            diff = -1
+
+        if diff == -1 or maxdiff == -1: # An error has occured
+            maxdiff = -1
+        else:
+            maxdiff = max(maxdiff, diff)
+
+    message = str(int(maxdiff)) + 'h'
+    if maxdiff > 72:
+        color = red
+    elif maxdiff > 48:
+        color = yellow
+    else:
+        color = green
+
+    json_line.insert(0, {'full_text' : message, 'color' : color, 'name' : 'obnam'})
+    return json_line
+
 def unison_status(json_line):
     """ Prepend the status of unison synchronized files """
     try:
@@ -108,6 +142,7 @@ if __name__ == '__main__':
         upgrade_count(j, '/var/tmp/upgrade_count_mazais.txt')
         upgrade_count(j, '/var/tmp/upgrade_count.txt')
         unison_status(j)
+        obnam_status(j)
 
         colorize(j)
 
