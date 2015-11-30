@@ -8,6 +8,7 @@ order += "disk /"
 order += "disk /media/Storage"
 order += "ethernet eth0"
 order += "cpu_usage"
+order += "volume master"
 order += "time"
 
 ethernet eth0 {
@@ -29,4 +30,11 @@ disk "/media/Storage" {
 
 disk "/" {
         format = "%free"
+}
+
+volume master {
+        format = "♪: %volume"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
 }
