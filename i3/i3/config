@@ -164,9 +164,9 @@ assign [title="^sopcast_terminal$"] 7
 
 
 # Startup
-#exec --no-startup-id thunderbird
+exec --no-startup-id thunderbird
 #exec --no-startup-id pidgin
-#exec --no-startup-id firefox
+exec --no-startup-id firefox
 
 
 # Floating windows
