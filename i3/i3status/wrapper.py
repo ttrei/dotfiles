@@ -22,6 +22,22 @@ green =  "#00FF00"
 red =    "#FF0000"
 yellow = "#FFFF00"
 
+def upgrade_count(json_line, filename):
+    """ Prepend the number of pending upgrades """
+    try:
+        with open(filename) as fp:
+            count = fp.readline().strip()
+            if int(count) > 0:
+                color = yellow
+            else:
+                color = green
+    except:
+        color = yellow
+        count = "???"
+    json_line.insert(0, {'full_text' : count, 'color' : color,
+                     'name' : 'upgrades'})
+    return json_line
+
 def print_line(message):
     """ Non-buffered printing to stdout. """
     sys.stdout.write(message + '\n')
@@ -74,6 +90,10 @@ if __name__ == '__main__':
 
         # Decode the line
         j = json.loads(line)
+
+        # Add new information
+        upgrade_count(j, '/var/tmp/upgrade_count_mazais.txt')
+        upgrade_count(j, '/var/tmp/upgrade_count.txt')
 
         colorize(j)
 
