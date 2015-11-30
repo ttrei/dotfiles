@@ -18,6 +18,9 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+PATH=$PATH:$HOME/projects/cs-devtools/bin
+export PATH
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
