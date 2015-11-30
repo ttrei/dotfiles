@@ -38,6 +38,19 @@ def upgrade_count(json_line, filename):
                      'name' : 'upgrades'})
     return json_line
 
+def unison_status(json_line):
+    """ Prepend the status of unison synchronized files """
+    try:
+        with open('/var/tmp/unison_changes') as fp:
+            if int(fp.readline()) > 0:
+                color = red # There are changes
+            else:
+                color = green # There are no changes
+    except:
+        color = yellow
+    json_line.insert(0, {'full_text' : 'U', 'color' : color, 'name' : 'unison'})
+    return json_line
+
 def print_line(message):
     """ Non-buffered printing to stdout. """
     sys.stdout.write(message + '\n')
@@ -94,6 +107,7 @@ if __name__ == '__main__':
         # Add new information
         upgrade_count(j, '/var/tmp/upgrade_count_mazais.txt')
         upgrade_count(j, '/var/tmp/upgrade_count.txt')
+        unison_status(j)
 
         colorize(j)
 
