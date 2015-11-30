@@ -85,6 +85,19 @@ def unison_status(json_line):
     json_line.insert(0, {'full_text' : 'U', 'color' : color, 'name' : 'unison'})
     return json_line
 
+def bitcoin_price(json_line):
+    """ Prepend the dollar price of one bitcoin """
+    try:
+        with open('/tmp/bitcoin_price.txt') as fp:
+            btcusd = fp.readline().strip()
+            #usdbit = "%.0f" % (1e6 / float(btcusd))
+    except IOError:
+        json_line.insert(0, {'full_text' : 'getPrice not running', 'color' : red, 'name' : 'btc'})
+    else:
+        #json_line.insert(0, {'full_text' : '%sb' % usdbit, 'name' : 'bit'})
+        if btcusd != '':
+            json_line.insert(0, {'full_text' : '$%s' % btcusd, 'name' : 'btc'})
+
 def print_line(message):
     """ Non-buffered printing to stdout. """
     sys.stdout.write(message + '\n')
@@ -143,6 +156,7 @@ if __name__ == '__main__':
         upgrade_count(j, '/var/tmp/upgrade_count.txt')
         unison_status(j)
         obnam_status(j)
+        bitcoin_price(j)
 
         colorize(j)
 
