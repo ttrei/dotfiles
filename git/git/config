@@ -1,0 +1,18 @@
+# This is Git's per-user configuration file.
+# Please adapt and uncomment the following lines:
+[core]
+    editor = /usr/bin/vim
+    #whitespace = -blank-at-eof
+    #whitespace = -blank-at-eol
+    whitespace = cr-at-eol
+[diff]
+    tool = meld
+[merge]
+    tool = kdiff3
+[push]
+    default = simple
+[alias]
+    # show tags sorted by date
+    tags = !"git for-each-ref --sort=taggerdate --format '%(tag)'"
+    # show a commit in difftool (see http://stackoverflow.com/a/27963038)
+    showtool = "!showci () { rev=${1:-HEAD}; git difftool -d $rev~1 $rev; }; showci $1"
