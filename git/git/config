@@ -9,6 +9,9 @@
     tool = meld
 [merge]
     tool = kdiff3
+[user]
+	email = reinis.taukulis@gmail.com
+	name = Reinis Taukulis
 [push]
     default = simple
 [alias]
