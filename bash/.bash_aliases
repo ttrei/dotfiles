@@ -1,9 +1,10 @@
 # Safe rm
 alias rm='rm --preserve-root'
 
-# Colored ls and grep
+# Colored tools
 alias ls='ls -h --color=auto --group-directories-first'
 alias grep='grep --color=auto'
+alias tree='tree -C'
 
 # Disk usage
 alias duu='du -ms ./* | sort -n'
