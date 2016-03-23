@@ -13,6 +13,9 @@ alias duuk='du -ks ./* | sort -n'
 alias duuu='du -ms .[!.]* *| sort -n'
 alias duuuk='du -ks .[!.]* *| sort -n'
 
+# File counts per sub-directory
+alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
+
 # git
 alias go='git checkout'
 __git_complete go _git_checkout
