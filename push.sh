@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ $HOSTNAME == "reinis-desktop" ]]; then
     branch="home-debian"
