@@ -145,7 +145,8 @@ bar {
     #colors {
     #    urgent_workspace   #2f343a #900000 #ffffff
     #}
-    status_command i3status | ~/.config/i3status/wrapper.py
+    #status_command i3status | ~/.config/i3status/wrapper.py
+    status_command py3status -t 1 -c ~/.config/i3status/config | ~/.config/i3status/wrapper.py
 }
 
 
