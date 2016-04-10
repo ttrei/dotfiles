@@ -32,6 +32,10 @@ bindcode $mod+36 exec --no-startup-id xfce4-terminal
 # 21 = +
 bindcode $mod+21 exec --no-startup-id source ~/.fehbg
 
+# Turn on/off screen blanking timeout
+# 28 = t
+bindcode $mod+28 exec --no-startup-id ~/scripts/toggle_dpms.sh
+
 # kill focused window
 # 22 = BackSpace, 70 = F4
 bindcode $mod+Shift+22 kill

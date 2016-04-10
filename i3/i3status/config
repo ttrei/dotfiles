@@ -9,6 +9,7 @@ order += "disk /media/Storage"
 order += "ethernet eth0"
 order += "cpu_usage"
 order += "volume master"
+order += "dpms"
 order += "time"
 
 ethernet eth0 {
