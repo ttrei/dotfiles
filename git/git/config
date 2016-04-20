@@ -19,3 +19,5 @@
     tags = !"git for-each-ref --sort=taggerdate --format '%(tag)'"
     # show a commit in difftool (see http://stackoverflow.com/a/27963038)
     showtool = "!showci () { rev=${1:-HEAD}; git difftool -d $rev~1 $rev; }; showci $1"
+    # pretty log
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
