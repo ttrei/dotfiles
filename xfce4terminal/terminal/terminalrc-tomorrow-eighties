@@ -1,8 +1,8 @@
 [Configuration]
-ColorForeground=#eaeaeaeaeaea
-ColorBackground=#000000000000
+ColorForeground=#cccccccccccc
+ColorBackground=#2d2d2d2d2d2d
 ColorCursor=
-ColorPalette=#000000000000;#d5d54e4e5353;#b9b9caca4a4a;#e7e7c5c54747;#7a7aa6a6dada;#c3c39797d8d8;#7070c0c0b1b1;#ffffffffffff;#000000000000;#d5d54e4e5353;#b9b9caca4a4a;#e7e7c5c54747;#7a7aa6a6dada;#c3c39797d8d8;#7070c0c0b1b1;#ffffffffffff
+ColorPalette=#000000000000;#f2f277777a7a;#9999cccc9999;#f9f991915757;#66669999cccc;#cccc9999cccc;#6666cccccccc;#515151515151;#666666666666;#ffff33333434;#9e9ec4c40000;#ffffcccc6666;#66669999cccc;#b7b77777e0e0;#5454ceced6d6;#393939393939
 FontName=Consolas 13
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
