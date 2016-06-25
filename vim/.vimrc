@@ -12,7 +12,7 @@ set t_Co=256
 set background=dark
 "colorscheme desert256
 "colorscheme zenburn
-colorscheme Tomorrow-Night-Bright
+colorscheme Tomorrow-Night-Eighties
 
 " Enable mouse in terminal (only in visual mode)
 set mouse=v
