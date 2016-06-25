@@ -9,8 +9,10 @@ set guifont=Consolas\ 13
 
 set encoding=utf8
 set t_Co=256
+set background=dark
 "colorscheme desert256
-colorscheme zenburn
+"colorscheme zenburn
+colorscheme Tomorrow-Night-Bright
 
 " Enable mouse in terminal (only in visual mode)
 set mouse=v
