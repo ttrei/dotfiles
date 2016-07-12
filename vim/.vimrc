@@ -76,6 +76,9 @@ nnoremap <F8> <Esc>:set nofoldenable<CR>
 " Toggle trailing whitespace highlighting
 nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 
+" Wrap/unwrap elements such as function arguments, arrays etc.
+nnoremap <silent> \w :ArgWrap<CR>
+
 " xml file fold settings
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
 
