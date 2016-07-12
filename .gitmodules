@@ -70,3 +70,7 @@
 	path = vim/.vim/bundle/xml.vim
 	url = https://github.com/othree/xml.vim.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/vim-argwrap"]
+	path = vim/.vim/bundle/vim-argwrap
+	url = https://github.com/FooSoft/vim-argwrap
+	ignore = dirty
