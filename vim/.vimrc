@@ -60,6 +60,7 @@ filetype indent on
 syntax on
 set incsearch
 set hlsearch
+set nowrapscan
 
 "Start syntax parsing from the start of the file
 "(useful to fix broken syntax highlighting)
