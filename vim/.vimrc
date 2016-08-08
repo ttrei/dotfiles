@@ -53,6 +53,7 @@ endif
 
 " GVim options
 set guioptions-=T " Remove toolbar
+set guioptions-=m " Remove menubar
 set guioptions-=r " Remove right scroll-bar
 
 filetype plugin on
