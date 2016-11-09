@@ -24,3 +24,4 @@
     # pretty log
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Cblue %an%Creset' --abbrev-commit
     lgt = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %<(70,trunc)%s %Cgreen%cr%Cblue %an%Creset' --abbrev-commit
+    dfw = diff --ignore-space-at-eol
