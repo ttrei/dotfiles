@@ -22,3 +22,6 @@ stow git -t ~/.config/
 
 echo "tmux"
 stow tmux
+
+echo "login"
+stow login
