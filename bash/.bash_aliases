@@ -48,3 +48,7 @@ alias tmux='TERM=xterm-256color tmux'
 
 # Clone the current terminal window
 alias cl='xfce4-terminal --working-directory=`pwd` &'
+
+# update + upgrade
+alias updupgr='sudo apt update && sudo apt upgrade -y && upgrade_count.sh'
+alias upgr='sudo apt upgrade -y && upgrade_count.sh'
