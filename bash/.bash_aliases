@@ -54,3 +54,34 @@ alias cl='xfce4-terminal --working-directory=`pwd` &'
 # update + upgrade
 alias updupgr='sudo apt update && sudo apt upgrade -y && upgrade_count.sh'
 alias upgr='sudo apt upgrade -y && upgrade_count.sh'
+
+# ssh
+alias pi='ssh -p 1046 reinis@reinis-pi'
+alias router='ssh root@router'
+alias work='ssh reinis@work-centos'
+alias mazais='ssh reinis@mazais'
+
+# Unison
+alias unis='unison pi && /home/reinis/bin/unison_changes.sh'
+
+# Personal files
+alias decrypt='encfs ~/.encrypted ~/.decrypted'
+alias encrypt='fusermount -u /home/reinis/.decrypted/'
+
+# MPlayer
+alias mplayer='mplayer -osdlevel 0'
+
+# Power management
+#shutdown
+alias halt="systemctl poweroff"
+#restart
+alias reboot="systemctl reboot"
+#suspend
+alias suspend="systemctl suspend"
+
+# Clean Anki cache
+alias anki-clean="rm ~/Anki/Reinis/collection.media/*.png; echo -e '\nYou must restart Anki for all changes to take effect.'"
+
+# Cryptocurrencies
+alias bitcoin-qt="bitcoin-qt --datadir=/media/Storage/bitcoin-data"
+alias litecoin-qt="/media/Storage/litecoin/bin/64/litecoin-qt --datadir=/media/Storage/litecoin/litecoin-data"
