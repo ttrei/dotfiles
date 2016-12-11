@@ -54,6 +54,7 @@ alias pi='ssh -p 1046 reinis@reinis-pi'
 alias router='ssh root@router'
 alias work='ssh reinis@work-centos'
 alias mazais='ssh reinis@mazais'
+alias kodi='ssh user@kodi'
 
 # Unison
 alias unis='unison pi && /home/reinis/bin/unison_changes.sh'
