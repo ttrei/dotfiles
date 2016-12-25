@@ -149,20 +149,6 @@ bar {
 }
 
 
-# Assignments
-assign [class="^Firefox$"] 1
-assign [class="^Iceweasel$"] 1
-
-assign [class="^Thunderbird$"] 2
-assign [class="^Icedove$"] 2
-
-assign [class="^Evince$"] 4
-
-assign [class="^Pidgin$"] 3
-
-assign [title="^sopcast_terminal$"] 7
-
-
 # Startup
 #exec --no-startup-id thunderbird
 #exec --no-startup-id pidgin
