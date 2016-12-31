@@ -74,3 +74,7 @@
 	path = vim/.vim/bundle/vim-argwrap
 	url = https://github.com/FooSoft/vim-argwrap
 	ignore = dirty
+[submodule "vim/.vim/bundle/vim-nix"]
+	path = vim/.vim/bundle/vim-nix
+	url = https://github.com/LnL7/vim-nix.git
+	ignore = dirty
