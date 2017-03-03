@@ -51,6 +51,8 @@ PS1="[$user_host \W$git_branch]\$ "
 EDITOR=/usr/bin/vim
 export EDITOR
 
+export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
+
 # Colored man
 #export PAGER=most
 
