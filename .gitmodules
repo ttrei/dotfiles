@@ -78,3 +78,7 @@
 	path = vim/.vim/bundle/vim-nix
 	url = https://github.com/LnL7/vim-nix.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/indentLine"]
+	path = vim/.vim/bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
+	ignore = dirty
