@@ -36,6 +36,7 @@ alias ga='gitk --all'
 alias ghm='gitk HEAD master'
 alias gf='git fetch --all --prune'
 alias gu='git-up'
+alias gh='git log -n1 --oneline --decorate'
 
 # Clean swap
 alias reswap='sudo swapoff -a && sudo swapon -a'
