@@ -47,8 +47,6 @@ set smarttab
 set autoindent
 set cindent
 
-let g:indentLine_char = '│'
-
 if exists('+colorcolumn')
     set colorcolumn=80
 endif
