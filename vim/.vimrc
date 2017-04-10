@@ -47,7 +47,7 @@ set cindent
 set nrformats=
 
 if exists('+colorcolumn')
-    set colorcolumn=80
+    set colorcolumn=100
 endif
 
 " GVim options
