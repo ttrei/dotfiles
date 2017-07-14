@@ -104,7 +104,7 @@ au BufWinEnter *.cpp set foldmethod=syntax
 au BufWinEnter *.hpp set foldmethod=syntax
 
 " clang-format
-map <C-K> :pyf /home/reinis/.vim/clang-format.py<cr>
+map <C-K> :py3f /home/reinis/.vim/clang-format.py<cr>
 
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1
