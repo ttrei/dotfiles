@@ -29,3 +29,6 @@ stow tmux
 
 echo "login"
 stow login
+
+echo "clang-format"
+stow clang-format
