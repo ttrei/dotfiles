@@ -13,6 +13,10 @@ stow i3 -t ~/.config/
 echo "vim"
 stow vim
 
+echo "neovim"
+mkdir -p ~/.config/
+stow nvim -t ~/.config/
+
 echo "bash"
 stow bash
 
