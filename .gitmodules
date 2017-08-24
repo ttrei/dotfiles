@@ -78,3 +78,7 @@
 	path = vim/.vim/bundle/vim-nix
 	url = https://github.com/LnL7/vim-nix.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/tabular"]
+	path = vim/.vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+	ignore = dirty
