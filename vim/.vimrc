@@ -50,6 +50,8 @@ if exists('+colorcolumn')
     set colorcolumn=100
 endif
 
+set textwidth=100
+
 " GVim options
 set guioptions-=T " Remove toolbar
 set guioptions-=m " Remove menubar
