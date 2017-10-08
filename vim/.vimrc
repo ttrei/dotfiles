@@ -43,6 +43,9 @@ set smarttab
 set autoindent
 set cindent
 
+" Treat all numbers as decimal
+set nrformats=
+
 if exists('+colorcolumn')
     set colorcolumn=80
 endif
