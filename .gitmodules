@@ -86,3 +86,7 @@
 	path = vim/.vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/vim-repeat"]
+	path = vim/.vim/bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
+	ignore = dirty
