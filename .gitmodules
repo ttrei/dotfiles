@@ -82,3 +82,7 @@
 	path = vim/.vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/vim-surround"]
+	path = vim/.vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+	ignore = dirty
