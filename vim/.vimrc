@@ -80,6 +80,9 @@ nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 " Wrap/unwrap elements such as function arguments, arrays etc.
 nnoremap <silent> \w :ArgWrap<CR>
 
+" Numbertoggle
+:nnoremap <silent> <C-n> :set relativenumber!<cr>
+
 " xml file fold settings
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
 
