@@ -74,9 +74,6 @@ alias reboot="systemctl reboot"
 #suspend
 alias suspend="systemctl suspend"
 
-# Clean Anki cache
-alias anki-clean="rm ~/Anki/Reinis/collection.media/*.png; echo -e '\nYou must restart Anki for all changes to take effect.'"
-
 # Cryptocurrencies
 alias bitcoin-qt="bitcoin-qt --datadir=/media/Storage/bitcoin-data"
 alias litecoin-qt="/media/Storage/litecoin/bin/64/litecoin-qt --datadir=/media/Storage/litecoin/litecoin-data"
