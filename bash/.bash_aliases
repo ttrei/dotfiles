@@ -60,6 +60,7 @@ alias pi='ssh -p 1046 reinis@reinis-pi'
 alias router='ssh root@router'
 alias work='ssh reinis@work-centos'
 alias mazais='ssh reinis@mazais'
+alias kodi='ssh user@kodi'
 
 # Unison
 alias unis='unison pi && /home/reinis/bin/unison_changes.sh'
@@ -78,9 +79,6 @@ alias halt="systemctl poweroff"
 alias reboot="systemctl reboot"
 #suspend
 alias suspend="systemctl suspend"
-
-# Clean Anki cache
-alias anki-clean="rm ~/Anki/Reinis/collection.media/*.png; echo -e '\nYou must restart Anki for all changes to take effect.'"
 
 # Cryptocurrencies
 alias bitcoin-qt="bitcoin-qt --datadir=/media/Storage/bitcoin-data"
