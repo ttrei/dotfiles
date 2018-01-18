@@ -49,3 +49,6 @@ alias tmux='TERM=xterm-256color tmux'
 
 # Clone the current terminal window
 alias cl='xfce4-terminal --working-directory=`pwd` &'
+
+# ssh
+alias mazais='ssh reinis@mazais'
