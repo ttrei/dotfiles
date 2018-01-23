@@ -80,6 +80,9 @@ nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 " Wrap/unwrap elements such as function arguments, arrays etc.
 nnoremap <silent> \w :ArgWrap<CR>
 
+" Disable automatic wrappping while typing
+set formatoptions-=tc
+
 " Numbertoggle
 :nnoremap <silent> <C-n> :set relativenumber!<cr>
 
