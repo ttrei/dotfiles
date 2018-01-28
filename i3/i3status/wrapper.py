@@ -22,92 +22,6 @@ green =  "#00FF00"
 red =    "#FF0000"
 yellow = "#FFFF00"
 
-def upgrade_count(json_line, filename):
-    """ Prepend the number of pending upgrades """
-    try:
-        with open(filename) as fp:
-            count = fp.readline().strip()
-            if int(count) > 0:
-                color = yellow
-            else:
-                color = green
-    except:
-        color = yellow
-        count = "???"
-    json_line.insert(0, {'full_text' : count, 'color' : color,
-                     'name' : 'upgrades'})
-    return json_line
-
-def obnam_status(json_line):
-    """ Prepend the status of obnam backups """
-    now = datetime.datetime.now()
-    files = ('/home/reinis/.status/obnam/last_backup_homedir',
-             '/home/reinis/.status/obnam/last_backup_root')
-    maxdiff = 0
-    for f in files:
-        try:
-            with open(f) as fp:
-                timestring = fp.readline().strip()
-                if timestring == "": # Empty file
-                    diff = -1
-                else:
-                    t = datetime.datetime.strptime(timestring, '%Y-%m-%d %H:%M:%S')
-                    diff = (now - t).total_seconds() / 3600.0 # Difference in hours
-        except: # couldn't open the file
-            diff = -1
-
-        if diff == -1 or maxdiff == -1: # An error has occured
-            maxdiff = -1
-        else:
-            maxdiff = max(maxdiff, diff)
-
-    message = str(int(maxdiff)) + 'h'
-    if maxdiff > 72:
-        color = red
-    elif maxdiff > 48:
-        color = yellow
-    else:
-        color = green
-
-    json_line.insert(0, {'full_text' : message, 'color' : color, 'name' : 'obnam'})
-    return json_line
-
-def unison_status(json_line):
-    """ Prepend the status of unison synchronized files """
-    try:
-        with open('/var/tmp/unison_changes') as fp:
-            if int(fp.readline()) > 0:
-                color = red # There are changes
-            else:
-                color = green # There are no changes
-    except:
-        color = yellow
-    json_line.insert(0, {'full_text' : 'U', 'color' : color, 'name' : 'unison'})
-    return json_line
-
-def bitcoin_price(json_line):
-    """ Prepend the dollar price of one bitcoin """
-    try:
-        with open('/tmp/bitcoin_price.txt') as fp:
-            btcusd = fp.readline().strip()
-            #usdbit = "%.0f" % (1e6 / float(btcusd))
-    except IOError:
-        json_line.insert(0, {'full_text' : 'getPrice not running', 'color' : red, 'name' : 'btc'})
-    else:
-        #json_line.insert(0, {'full_text' : '%sb' % usdbit, 'name' : 'bit'})
-        if btcusd != '':
-            json_line.insert(0, {'full_text' : '$%s' % btcusd, 'name' : 'btc'})
-
-def dogecoin_price(json_line):
-    """ Prepend the price of one dogecoin in satoshis """
-    try:
-        with open('/tmp/dogecoin_price.txt') as fp:
-            value = fp.readline().strip()
-    except:
-        value = "???"
-    json_line.insert(0, {'full_text' : '%ss' % value, 'name' : 'doge'})
-    return json_line
-
 def print_line(message):
     """ Non-buffered printing to stdout. """
     sys.stdout.write(message + '\n')
@@ -134,7 +48,7 @@ def colorize(j):
                 d[u'color'] = u'#ffc0c0'
             elif d['instance'] == '/var':
                 d[u'color'] = u'#fffdba'
-            elif d['instance'] == '/media/Storage':
+            elif d['instance'] == '/home':
                 d[u'color'] = u'#c7cdff'
         elif d[u'name'] == 'cpu_usage':
             load = int(d['full_text'].strip('%'))
@@ -160,13 +74,6 @@ if __name__ == '__main__':
 
         # Decode the line
         j = json.loads(line)
-
-        # Add new information
-        upgrade_count(j, '/var/tmp/upgrade_count_mazais.txt')
-        upgrade_count(j, '/var/tmp/upgrade_count.txt')
-        unison_status(j)
-        obnam_status(j)
-        bitcoin_price(j)
 
         colorize(j)
 

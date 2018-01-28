@@ -5,14 +5,13 @@ general {
 }
 
 order += "disk /"
-order += "disk /media/Storage"
-order += "ethernet eth0"
+order += "ethernet enp5s0"
 order += "cpu_usage"
 order += "volume master"
 order += "dpms"
 order += "time"
 
-ethernet eth0 {
+ethernet enp5s0 {
         format_up = "E: %ip"
         format_down = "E: down"
 }
@@ -25,17 +24,6 @@ cpu_usage {
         format = "%usage"
 }
 
-disk "/media/Storage" {
-        format = "%free"
-}
-
 disk "/" {
         format = "%free"
-}
-
-volume master {
-        format = "♪: %volume"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
 }
