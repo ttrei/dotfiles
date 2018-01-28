@@ -54,7 +54,7 @@ source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-ba
 git_branch="$Bld$Pur\$(__git_ps1)$RCol"
 PS1="[$user_host \W$git_branch]\$ "
 
-EDITOR=/usr/bin/vim
+EDITOR=vim
 export EDITOR
 
 export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'

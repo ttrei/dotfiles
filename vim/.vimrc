@@ -50,6 +50,8 @@ if exists('+colorcolumn')
     set colorcolumn=100
 endif
 
+set textwidth=100
+
 " GVim options
 set guioptions-=T " Remove toolbar
 set guioptions-=m " Remove menubar
@@ -79,6 +81,9 @@ nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 
 " Wrap/unwrap elements such as function arguments, arrays etc.
 nnoremap <silent> \w :ArgWrap<CR>
+
+" Disable automatic wrappping while typing
+set formatoptions-=tc
 
 " Numbertoggle
 :nnoremap <silent> <C-n> :set relativenumber!<cr>
