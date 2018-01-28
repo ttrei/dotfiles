@@ -2,9 +2,6 @@
 
 echo "Installing dotfiles:"
 
-echo "xorg"
-stow xorg
-
 echo "xfce4-terminal"
 mkdir -p ~/.config/xfce4/
 stow xfce4terminal -t ~/.config/xfce4/
