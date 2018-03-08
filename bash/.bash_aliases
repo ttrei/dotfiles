@@ -23,6 +23,9 @@ alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 alias go='git checkout'
 __git_complete go _git_checkout
 
+alias gst='git status'
+__git_complete gst _git_status
+
 alias gd='git diff'
 __git_complete gd _git_diff
 
