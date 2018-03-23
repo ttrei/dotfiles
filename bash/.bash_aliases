@@ -44,6 +44,9 @@ alias gf='git fetch --all --prune'
 alias gu='git-up'
 alias gh='git log -n1 --oneline --decorate'
 
+# Forget cached GPG passwords
+alias forget-pass='echo RELOADAGENT | gpg-connect-agent'
+
 # Clean swap
 alias reswap='sudo swapoff -a && sudo swapon -a'
 
