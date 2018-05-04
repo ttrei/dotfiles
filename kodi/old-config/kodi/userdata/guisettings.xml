@@ -5,7 +5,7 @@
         <subhearing default="true">false</subhearing>
     </accessibility>
     <addons>
-        <unknownsources default="true">false</unknownsources>
+        <unknownsources>true</unknownsources>
     </addons>
     <audiocds>
         <autoaction default="true">0</autoaction>
@@ -19,8 +19,8 @@
         <ac3passthrough default="true">true</ac3passthrough>
         <ac3transcode default="true">false</ac3transcode>
         <atempothreshold default="true">2</atempothreshold>
-        <audiodevice default="true">PULSE:Default</audiodevice>
-        <channels>2</channels>
+        <audiodevice>PULSE:alsa_output.pci-0000_00_14.2.iec958-stereo</audiodevice>
+        <channels default="true">1</channels>
         <config default="true">2</config>
         <dspaddonsenabled default="true">false</dspaddonsenabled>
         <dtshdpassthrough default="true">false</dtshdpassthrough>
@@ -33,7 +33,7 @@
         <processquality default="true">30</processquality>
         <samplerate default="true">48000</samplerate>
         <stereoupmix default="true">false</stereoupmix>
-        <streamnoise default="true">true</streamnoise>
+        <streamnoise>false</streamnoise>
         <streamsilence default="true">1</streamsilence>
         <truehdpassthrough default="true">false</truehdpassthrough>
         <volumesteps default="true">90</volumesteps>
@@ -105,7 +105,7 @@
             <level>0</level>
             <showhigherlevels>true</showhigherlevels>
         </eventlog>
-        <systemtotaluptime>11984</systemtotaluptime>
+        <systemtotaluptime>34909</systemtotaluptime>
     </general>
     <input>
         <asknewcontrollers default="true">true</asknewcontrollers>
@@ -122,7 +122,7 @@
         <longdateformat default="true">regional</longdateformat>
         <shortdateformat default="true">regional</shortdateformat>
         <speedunit default="true">regional</speedunit>
-        <subtitlelanguage default="true">original</subtitlelanguage>
+        <subtitlelanguage>English</subtitlelanguage>
         <temperatureunit default="true">regional</temperatureunit>
         <timeformat default="true">regional</timeformat>
         <timezone default="true">Europe/Riga</timezone>
@@ -178,7 +178,7 @@
         <defaultlibview default="true"></defaultlibview>
         <songthumbinvis default="true">false</songthumbinvis>
         <playlist>
-            <repeat>false</repeat>
+            <repeat>true</repeat>
             <shuffle>false</shuffle>
         </playlist>
         <needsupdate>0</needsupdate>
@@ -315,6 +315,7 @@
         <staytime default="true">5</staytime>
     </slideshow>
     <smb>
+        <maxprotocol default="true">0</maxprotocol>
         <winsserver default="true">0.0.0.0</winsserver>
         <workgroup default="true">WORKGROUP</workgroup>
     </smb>
@@ -327,14 +328,14 @@
         <font default="true">arial.ttf</font>
         <height default="true">28</height>
         <languages default="true">English</languages>
-        <movie default="true"></movie>
+        <movie>service.subtitles.subscene</movie>
         <overrideassfonts default="true">false</overrideassfonts>
         <parsecaptions default="true">false</parsecaptions>
         <pauseonsearch default="true">true</pauseonsearch>
         <stereoscopicdepth default="true">0</stereoscopicdepth>
         <storagemode default="true">0</storagemode>
         <style default="true">1</style>
-        <tv default="true"></tv>
+        <tv>service.subtitles.subscene</tv>
     </subtitles>
     <system>
         <playlistspath>special://profile/playlists/</playlistspath>
@@ -435,9 +436,9 @@
         </musiclastfm>
         <musicnavalbums>
             <viewmode>65536</viewmode>
-            <sortmethod>1</sortmethod>
+            <sortmethod>12</sortmethod>
             <sortorder>1</sortorder>
-            <sortattributes>0</sortattributes>
+            <sortattributes>1</sortattributes>
         </musicnavalbums>
         <musicnavartists>
             <viewmode>65536</viewmode>
@@ -501,13 +502,13 @@
         </videonavseasons>
         <videonavtitles>
             <viewmode>65586</viewmode>
-            <sortmethod>29</sortmethod>
-            <sortorder>1</sortorder>
-            <sortattributes>1</sortattributes>
+            <sortmethod>40</sortmethod>
+            <sortorder>2</sortorder>
+            <sortattributes>0</sortattributes>
         </videonavtitles>
         <videonavtvshows>
-            <viewmode>65536</viewmode>
-            <sortmethod>1</sortmethod>
+            <viewmode>65586</viewmode>
+            <sortmethod>25</sortmethod>
             <sortorder>1</sortorder>
             <sortattributes>0</sortattributes>
         </videonavtvshows>
@@ -520,7 +521,7 @@
     </viewstates>
     <resolutions />
     <defaultvideosettings>
-        <interlacemethod>12</interlacemethod>
+        <interlacemethod>7</interlacemethod>
         <scalingmethod>1</scalingmethod>
         <noisereduction>0.000000</noisereduction>
         <postprocess>false</postprocess>
@@ -529,7 +530,7 @@
         <zoomamount>1.000000</zoomamount>
         <pixelratio>1.000000</pixelratio>
         <verticalshift>0.000000</verticalshift>
-        <volumeamplification>25.000000</volumeamplification>
+        <volumeamplification>24.000000</volumeamplification>
         <outputtoallspeakers>false</outputtoallspeakers>
         <showsubtitles>true</showsubtitles>
         <brightness>50.000000</brightness>
@@ -635,6 +636,6 @@
     </defaultaudiosettings>
     <audio>
         <mute>false</mute>
-        <fvolumelevel>0.300000</fvolumelevel>
+        <fvolumelevel>0.494444</fvolumelevel>
     </audio>
 </settings>
