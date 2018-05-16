@@ -59,8 +59,8 @@ export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" 
 # Commands with leading space will not be saved in ~/.bash_history
 export HISTCONTROL="ignorespace"
 
-if [ -f /home/reinis/.bash_aliases ]; then
-    . /home/reinis/.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
