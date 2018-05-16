@@ -25,6 +25,9 @@ alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 alias go='git checkout'
 __git_complete go _git_checkout
 
+alias gst='git status'
+__git_complete gst _git_status
+
 alias gd='git diff'
 __git_complete gd _git_diff
 
@@ -42,6 +45,9 @@ alias ghm='gitk HEAD master'
 alias gf='git fetch --all --prune'
 alias gu='git-up'
 alias gh='git log -n1 --oneline --decorate'
+
+# Forget cached GPG passwords
+alias forget-pass='echo RELOADAGENT | gpg-connect-agent'
 
 # Clean swap
 alias reswap='sudo swapoff -a && sudo swapon -a'
