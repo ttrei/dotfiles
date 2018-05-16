@@ -105,7 +105,7 @@
             <level>0</level>
             <showhigherlevels>true</showhigherlevels>
         </eventlog>
-        <systemtotaluptime>34909</systemtotaluptime>
+        <systemtotaluptime>37716</systemtotaluptime>
     </general>
     <input>
         <asknewcontrollers default="true">true</asknewcontrollers>
@@ -179,7 +179,7 @@
         <songthumbinvis default="true">false</songthumbinvis>
         <playlist>
             <repeat>true</repeat>
-            <shuffle>false</shuffle>
+            <shuffle>true</shuffle>
         </playlist>
         <needsupdate>0</needsupdate>
     </mymusic>
@@ -636,6 +636,6 @@
     </defaultaudiosettings>
     <audio>
         <mute>false</mute>
-        <fvolumelevel>0.494444</fvolumelevel>
+        <fvolumelevel>0.490000</fvolumelevel>
     </audio>
 </settings>

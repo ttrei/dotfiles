@@ -1,6 +1,6 @@
 <settings>
-    <setting id="kodion.access_token" value="ya29.Gl2xBWdLVGLnkO7ezZRx7Fgbab0uK0Hpp6X-ER2cMk9XqYzYmWg8p8tqAvo8jO3ygiXODuwI3W21K8SF6qOcA17F3f_9-2QIr1J1rKqiXRr0lhp6yNP7GGXv_TxyMaQ|ya29.Gl2xBbfQSQcyJfI51F2c3X08UUh06kCMhx_BNFsqUcTrP1gICvgIOWxytzUgmQbt2XUEhB7ADl0GFLOddANx0Z_NEQk74zwEv-PqPjtTdLPwhKGZzwAYFD01iG83plU" />
-    <setting id="kodion.access_token.expires" value="1525424211" />
+    <setting id="kodion.access_token" value="ya29.Gl26BToBRePniPy6T2-2gODjs8oXl2hV1I68kW9aQBcIKtjE6XCKOZAMZ5lLMaFCkDi-8bfjuXdKFbJ-1_lcrMhEL1FtIVa1W4VFhfwc_GWAyGxCAzxmaN5yFLGWaak|ya29.Gl26BchyG_YGqC6AUHmaLO7nvgMAozdbfKovWCVBnMBumNOoMYnWMauGjFwqOMjcmCBYbcLY9-Wkfq9pZfvmqbJzqKXpVgWuXun1QC3zqPrAlZ86mby6zuEwAkrqJbk" />
+    <setting id="kodion.access_token.expires" value="1526211707" />
     <setting id="kodion.age.gate" value="true" />
     <setting id="kodion.audio_only" value="false" />
     <setting id="kodion.cache.size" value="5" />
@@ -9,19 +9,28 @@
     <setting id="kodion.login.hash" value="d41d8cd98f00b204e9800998ecf8427e" />
     <setting id="kodion.login.password" value="" />
     <setting id="kodion.login.username" value="" />
+    <setting id="kodion.maintain.clear.func" value="" />
+    <setting id="kodion.maintain.clear.search" value="" />
+    <setting id="kodion.maintain.delete.func" value="" />
+    <setting id="kodion.maintain.delete.search" value="" />
+    <setting id="kodion.maintain.delete.settings" value="" />
+    <setting id="kodion.maintain.reset.accessmanager" value="" />
     <setting id="kodion.mpd.proxy" value="false" />
     <setting id="kodion.mpd.proxy.port" value="50152" />
     <setting id="kodion.refresh_token" value="1/Ti5RItAjnw1K2VY92lYriSxFG8DdjmsLiRy6cX0-UPI|1/EnZ2k94xkeJeA7OcWsi2VIwzLO8v-gqjhW8D9GDRAeo" />
     <setting id="kodion.safe.search" value="0" />
     <setting id="kodion.search.size" value="10" />
     <setting id="kodion.setup_wizard" value="false" />
+    <setting id="kodion.subtitle.configure" value="" />
     <setting id="kodion.subtitle.language" value="0" />
     <setting id="kodion.subtitle.languages" value="0" />
+    <setting id="kodion.subtitle.languages.num" value="" />
     <setting id="kodion.support.alternative_player" value="false" />
     <setting id="kodion.thumbnail.size" value="1" />
     <setting id="kodion.video.quality" value="3" />
     <setting id="kodion.video.quality.ask" value="false" />
-    <setting id="kodion.video.quality.mpd" value="false" />
+    <setting id="kodion.video.quality.mpd" value="true" />
+    <setting id="kodion.video.quality.mpd.configure" value="" />
     <setting id="kodion.video.support.mpd.addon" value="true" />
     <setting id="kodion.video.support.mpd.builtin" value="false" />
     <setting id="simple.requests.ssl.verify" value="true" />
@@ -59,6 +68,7 @@
     <setting id="youtube.folder.subscriptions.show" value="true" />
     <setting id="youtube.folder.watch_later.playlist" value="" />
     <setting id="youtube.folder.watch_later.show" value="true" />
+    <setting id="youtube.get.watch_later.playlist.id" value="" />
     <setting id="youtube.language" value="en-US" />
     <setting id="youtube.login.version" value="17" />
     <setting id="youtube.playlist.watchlater.autoremove" value="true" />
