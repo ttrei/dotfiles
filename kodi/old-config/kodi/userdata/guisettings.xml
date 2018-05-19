@@ -105,7 +105,7 @@
             <level>0</level>
             <showhigherlevels>true</showhigherlevels>
         </eventlog>
-        <systemtotaluptime>37716</systemtotaluptime>
+        <systemtotaluptime>37854</systemtotaluptime>
     </general>
     <input>
         <asknewcontrollers default="true">true</asknewcontrollers>
@@ -636,6 +636,6 @@
     </defaultaudiosettings>
     <audio>
         <mute>false</mute>
-        <fvolumelevel>0.490000</fvolumelevel>
+        <fvolumelevel>0.492222</fvolumelevel>
     </audio>
 </settings>
