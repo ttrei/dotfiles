@@ -1,6 +1,6 @@
 <advancedsettings>
-     <videolibrary>
-          <importwatchedstate>true</importwatchedstate>
-	  <importresumepoint>true</importresumepoint>
-     </videolibrary>
+  <videolibrary>
+    <importwatchedstate>true</importwatchedstate>
+    <importresumepoint>true</importresumepoint>
+  </videolibrary>
 </advancedsettings>
