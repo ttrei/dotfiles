@@ -1,6 +1,6 @@
 <settings>
-    <setting id="kodion.access_token" value="ya29.Gl3ABSAY3n9MDyj6cgmY8eHQKnGn3g5S1izcmxXstyqjrm5VrisruyY-X6JB-HaMWcosxmUB4s_hGFzeDXpeL8fK6ud5CW0GRfOc_I29C6OfQGhJv89WDXD4mXqZo0I|ya29.Gl3ABfZXVbfcuTnDmGmF-OZkJD-KQ9A1jNGU0Sbq_ShHJGpHYboLh7lIrU7tUHnGTSeotT28ZnRDlIS_RsH1JNWK8cGtlB29sHs8v7DuYm5z8Ep_fzyhVHHV5n-4X5E" />
-    <setting id="kodion.access_token.expires" value="1526744959" />
+    <setting id="kodion.access_token" value="ya29.Gl3IBZ4Li1Dr4ZQeo3o2bmr-xcETkfY5C3LKWqtNBMcJohEwyN6fi2dcAgug_J17PI4EB2R6eKzgtZ4kHg6skA3dYe5jPNdOz4XJ-dFNY45_RgS-XDNmr2fXiq-9m2U|ya29.Gl3IBcpLxcLHwdFNvfNA6UL-PSptqlc09AY2dmb8hDxVEMXWXUvp3jS49WON7eg8E8wXUHXJDElYbqJh0PaS1nv2eBGJ3SdURctTr8P6s01BG5SXWcXGBP5a4roau18" />
+    <setting id="kodion.access_token.expires" value="1527420513" />
     <setting id="kodion.age.gate" value="true" />
     <setting id="kodion.audio_only" value="false" />
     <setting id="kodion.cache.size" value="5" />
