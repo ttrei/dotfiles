@@ -7,7 +7,8 @@ keycode 66 = Control_L
 clear lock
 add control = Control_L
 
-! Use Menu (135) and ScrLock (78) keys as CapsLock
+! Use Menu (135), PrintScreen (107) and ScrLock (78) keys as CapsLock
 keycode 135 = Caps_Lock
+keycode 107 = Caps_Lock
 keycode 78 = Caps_Lock
 add lock = Caps_Lock
