@@ -3,7 +3,7 @@ keycode 66 = Control_L
 keycode 134 = Control_R
 
 ! Left Control (37) as Meta (for emacs)
-keycode 37 = Meta_L
+!keycode 37 = Meta_L
 
 ! Left Alt (64) as Alt
 keycode 64 = Alt_L
@@ -23,6 +23,6 @@ add control = Control_L Control_R
 clear lock
 add lock = Caps_Lock
 
-! Used as emacs leader key
 clear mod4
-add mod4 = Meta_L
+! Used as emacs leader key
+!add mod4 = Meta_L
