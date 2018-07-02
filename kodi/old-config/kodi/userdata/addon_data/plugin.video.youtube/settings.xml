@@ -1,11 +1,12 @@
 <settings>
-    <setting id="kodion.access_token" value="ya29.Gl3RBbLYrYIP1iHsUP9EggD-Lx94YIvB7aq8tpsJeM3R4hBRkcWYPqXlD7rIkhwean_L92CvvFNZuEhlvLmiRwLmw1bUj-6rp5Ay1komTkOgz3lRdhH7TFpL-yUSWWc|ya29.Gl3RBYsl6U2cUc9_4KlphWj4bnfyXW5yyqe11m3CdFVxem-EYr0RFRVhGfG9b2N5G1g9zenW0bWiZD1yc5xvf3ySgqVqZYC6mXbhqQC9u91nvNSbKP2XuHtGWBGDnmc" />
-    <setting id="kodion.access_token.expires" value="1528215925" />
+    <setting id="kodion.access_token" value="" />
+    <setting id="kodion.access_token.expires" value="-1" />
     <setting id="kodion.age.gate" value="true" />
     <setting id="kodion.audio_only" value="false" />
     <setting id="kodion.cache.size" value="5" />
     <setting id="kodion.content.max_per_page" value="9" />
     <setting id="kodion.fanart.show" value="true" />
+    <setting id="kodion.http.listen" value="0.0.0.0" />
     <setting id="kodion.login.hash" value="d41d8cd98f00b204e9800998ecf8427e" />
     <setting id="kodion.login.password" value="" />
     <setting id="kodion.login.username" value="" />
@@ -17,7 +18,7 @@
     <setting id="kodion.maintain.reset.accessmanager" value="" />
     <setting id="kodion.mpd.proxy" value="false" />
     <setting id="kodion.mpd.proxy.port" value="50152" />
-    <setting id="kodion.refresh_token" value="1/Ti5RItAjnw1K2VY92lYriSxFG8DdjmsLiRy6cX0-UPI|1/EnZ2k94xkeJeA7OcWsi2VIwzLO8v-gqjhW8D9GDRAeo" />
+    <setting id="kodion.refresh_token" value="" />
     <setting id="kodion.safe.search" value="0" />
     <setting id="kodion.search.size" value="10" />
     <setting id="kodion.setup_wizard" value="false" />
@@ -35,12 +36,13 @@
     <setting id="kodion.video.support.mpd.builtin" value="false" />
     <setting id="simple.requests.ssl.verify" value="true" />
     <setting id="youtube.allow.dev.keys" value="true" />
-    <setting id="youtube.api.enable" value="false" />
+    <setting id="youtube.api.config.page" value="false" />
+    <setting id="youtube.api.enable" value="true" />
     <setting id="youtube.api.id" value="" />
     <setting id="youtube.api.key" value="" />
     <setting id="youtube.api.key.switch" value="1" />
     <setting id="youtube.api.key.switch.use" value="1" />
-    <setting id="youtube.api.last.hash" value="c38cb067db772fa556599e5fe850df43" />
+    <setting id="youtube.api.last.hash" value="" />
     <setting id="youtube.api.last.switch" value="1" />
     <setting id="youtube.api.secret" value="" />
     <setting id="youtube.channel.fanart.show" value="true" />
@@ -57,6 +59,7 @@
     <setting id="youtube.folder.my_subscriptions_filtered.show" value="false" />
     <setting id="youtube.folder.playlists.show" value="true" />
     <setting id="youtube.folder.popular_right_now.show" value="true" />
+    <setting id="youtube.folder.purchases.show" value="true" />
     <setting id="youtube.folder.quick_search.show" value="false" />
     <setting id="youtube.folder.quick_search_incognito.show" value="false" />
     <setting id="youtube.folder.recommendations.show" value="true" />
@@ -72,6 +75,7 @@
     <setting id="youtube.language" value="en-US" />
     <setting id="youtube.login.version" value="17" />
     <setting id="youtube.playlist.watchlater.autoremove" value="true" />
+    <setting id="youtube.post.play.rate" value="false" />
     <setting id="youtube.region" value="US" />
     <setting id="youtube.suggested_videos" value="false" />
     <setting id="youtube.view.description.show_channel_name" value="true" />
