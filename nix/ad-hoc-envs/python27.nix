@@ -5,6 +5,8 @@ with import <nixpkgs> {}; {
       stdenv
       python27Packages.ipython
       python27Packages.matplotlib
+      python27Packages.pyqt4
+      python27Packages.sip
     ];
   };
 }
