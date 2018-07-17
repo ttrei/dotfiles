@@ -1,3 +1,6 @@
+# neovim is our vim
+alias vim='nvim'
+
 # Safe rm
 alias rm='rm --preserve-root'
 
@@ -22,6 +25,9 @@ alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 alias go='git checkout'
 __git_complete go _git_checkout
 
+alias gst='git status'
+__git_complete gst _git_status
+
 alias gd='git diff'
 __git_complete gd _git_diff
 
@@ -38,6 +44,10 @@ alias ga='gitk --all'
 alias ghm='gitk HEAD master'
 alias gf='git fetch --all --prune'
 alias gu='git-up'
+alias gh='git log -n1 --oneline --decorate'
+
+# Forget cached GPG passwords
+alias forget-pass='echo RELOADAGENT | gpg-connect-agent'
 
 # Clean swap
 alias reswap='sudo swapoff -a && sudo swapon -a'
@@ -50,6 +60,9 @@ alias tmux='TERM=xterm-256color tmux'
 
 # Clone the current terminal window
 alias cl='xfce4-terminal --working-directory=`pwd` &'
+
+# ssh
+alias mazais='ssh reinis@mazais'
 
 # update + upgrade
 alias updupgr='sudo apt update && sudo apt upgrade -y && upgrade_count.sh'

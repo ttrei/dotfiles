@@ -23,10 +23,6 @@ set mouse=v
 " Show filename in terminal title
 set title
 
-" No wait time when inserting text in multiple lines.
-" Side effect: disables cursor keys in Insert mode.
-set noesckeys
-
 " Enable backspace in Insert mode (sometimes disabled by default)
 set backspace=indent,eol,start
 
@@ -47,9 +43,14 @@ set smarttab
 set autoindent
 set cindent
 
+" Treat all numbers as decimal
+set nrformats=
+
 if exists('+colorcolumn')
-    set colorcolumn=80
+    set colorcolumn=100
 endif
+
+set textwidth=100
 
 " GVim options
 set guioptions-=T " Remove toolbar
@@ -81,6 +82,12 @@ nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 " Wrap/unwrap elements such as function arguments, arrays etc.
 nnoremap <silent> \w :ArgWrap<CR>
 
+" Disable automatic wrappping while typing
+set formatoptions-=tc
+
+" Numbertoggle
+:nnoremap <silent> <C-n> :set relativenumber!<cr>
+
 " xml file fold settings
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
 
@@ -90,6 +97,9 @@ au BufWinEnter *.c set foldmethod=syntax
 au BufWinEnter *.h set foldmethod=syntax
 au BufWinEnter *.cpp set foldmethod=syntax
 au BufWinEnter *.hpp set foldmethod=syntax
+
+" clang-format
+map <C-K> :pyf /home/reinis/.vim/clang-format.py<cr>
 
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1

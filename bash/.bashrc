@@ -48,8 +48,10 @@ source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-ba
 git_branch="$Bld$Pur\$(__git_ps1)$RCol"
 PS1="[$user_host \W$git_branch]\$ "
 
-EDITOR=/usr/bin/vim
+EDITOR=vim
 export EDITOR
+
+export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 
 # Colored man
 #export PAGER=most
@@ -57,8 +59,8 @@ export EDITOR
 # Commands with leading space will not be saved in ~/.bash_history
 export HISTCONTROL="ignorespace"
 
-if [ -f /home/reinis/.bash_aliases ]; then
-    . /home/reinis/.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
