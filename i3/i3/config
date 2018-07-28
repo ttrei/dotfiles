@@ -88,7 +88,12 @@ force_focus_wrapping yes
 # focus the child container
 #bindcode $mod+d focus child
 
-# switch to workspace
+
+# Workspaces
+# 16=7, 17=8, 18=9, 19=0, 30=u, 31=i, 32=o
+# 33=p, 57=n
+
+## switch to workspace
 bindcode $mod+16 workspace 1
 bindcode $mod+17 workspace 2
 bindcode $mod+18 workspace 3
@@ -96,8 +101,10 @@ bindcode $mod+19 workspace 4
 bindcode $mod+30 workspace 5
 bindcode $mod+31 workspace 6
 bindcode $mod+32 workspace 7
+bindcode $mod+57 workspace next
+bindcode $mod+33 workspace prev
 
-# move focused container to workspace
+## move focused container to workspace
 bindcode $mod+Shift+16 move container to workspace 1
 bindcode $mod+Shift+17 move container to workspace 2
 bindcode $mod+Shift+18 move container to workspace 3
@@ -105,12 +112,20 @@ bindcode $mod+Shift+19 move container to workspace 4
 bindcode $mod+Shift+30 move container to workspace 5
 bindcode $mod+Shift+31 move container to workspace 6
 bindcode $mod+Shift+32 move container to workspace 7
+bindcode $mod+Shift+57 move container to workspace next
+bindcode $mod+Shift+33 move container to workspace prev
 
-# cycle workspaces
-# 57 = n
-# 33 = p
-bindcode $mod+57 workspace next
-bindcode $mod+33 workspace prev
+## move focused container to workspace and switch to that workspace
+bindcode $mod+Shift+Ctrl+16 move container to workspace 1; workspace 1
+bindcode $mod+Shift+Ctrl+17 move container to workspace 2; workspace 2
+bindcode $mod+Shift+Ctrl+18 move container to workspace 3; workspace 3
+bindcode $mod+Shift+Ctrl+19 move container to workspace 4; workspace 4
+bindcode $mod+Shift+Ctrl+30 move container to workspace 5; workspace 5
+bindcode $mod+Shift+Ctrl+31 move container to workspace 6; workspace 6
+bindcode $mod+Shift+Ctrl+32 move container to workspace 7; workspace 7
+bindcode $mod+Shift+Ctrl+57 move container to workspace next; workspace next
+bindcode $mod+Shift+Ctrl+33 move container to workspace prev; workspace prev
+
 
 # reload the configuration file
 # 54 = c
