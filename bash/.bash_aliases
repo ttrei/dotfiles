@@ -1,6 +1,3 @@
-# neovim is our vim
-alias vim='nvim'
-
 # Safe rm
 alias rm='rm --preserve-root'
 
