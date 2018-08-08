@@ -179,7 +179,7 @@
         <songthumbinvis default="true">false</songthumbinvis>
         <playlist>
             <repeat>true</repeat>
-            <shuffle>true</shuffle>
+            <shuffle>false</shuffle>
         </playlist>
         <needsupdate>0</needsupdate>
     </mymusic>
