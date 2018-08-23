@@ -32,3 +32,6 @@ stow login
 
 echo "clang-format"
 stow clang-format
+
+echo "xorg"
+stow xorg
