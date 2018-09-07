@@ -105,7 +105,7 @@
             <level>0</level>
             <showhigherlevels>true</showhigherlevels>
         </eventlog>
-        <systemtotaluptime>46525</systemtotaluptime>
+        <systemtotaluptime>48240</systemtotaluptime>
     </general>
     <input>
         <asknewcontrollers default="true">true</asknewcontrollers>
@@ -191,7 +191,7 @@
         <replacelabels default="true">true</replacelabels>
         <selectaction default="true">1</selectaction>
         <stackvideos default="true">false</stackvideos>
-        <watchmodemovies>1</watchmodemovies>
+        <watchmodemovies>0</watchmodemovies>
         <watchmodetvshows>1</watchmodetvshows>
         <watchmodemusicvideos>0</watchmodemusicvideos>
         <playlist>
@@ -502,7 +502,7 @@
         </videonavseasons>
         <videonavtitles>
             <viewmode>65586</viewmode>
-            <sortmethod>16</sortmethod>
+            <sortmethod>40</sortmethod>
             <sortorder>1</sortorder>
             <sortattributes>0</sortattributes>
         </videonavtitles>
@@ -636,6 +636,6 @@
     </defaultaudiosettings>
     <audio>
         <mute>false</mute>
-        <fvolumelevel>0.520000</fvolumelevel>
+        <fvolumelevel>0.505556</fvolumelevel>
     </audio>
 </settings>
