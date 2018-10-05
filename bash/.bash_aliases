@@ -35,6 +35,7 @@ __git_complete gm _git_merge
 alias gr='git rebase'
 __git_complete gr _git_rebase
 
+alias gcm='git commit -am'
 alias ga='gitk --all'
 alias ghm='gitk HEAD master'
 alias gf='git fetch --all --prune'
