@@ -94,3 +94,7 @@
 	path = vim/.vim/bundle/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
 	ignore = dirty
+[submodule "vim/.vim/bundle/vim-vue"]
+	path = vim/.vim/bundle/vim-vue
+	url = https://github.com/posva/vim-vue.git
+	ignore = dirty
