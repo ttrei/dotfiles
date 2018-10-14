@@ -88,8 +88,9 @@ set formatoptions-=tc
 " Numbertoggle
 :nnoremap <silent> <C-n> :set relativenumber!<cr>
 
-" xml file fold settings
+" FileType-specific settings
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
+au FileType vue setlocal shiftwidth=2 tabstop=2
 
 " Automatic foldmethod
 au BufWinEnter *.py set foldmethod=indent
