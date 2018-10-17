@@ -89,6 +89,7 @@ set formatoptions-=tc
 :nnoremap <silent> <C-n> :set relativenumber!<cr>
 
 " FileType-specific settings
+au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
 au FileType vue setlocal shiftwidth=2 tabstop=2
 
