@@ -23,7 +23,7 @@ __git_complete go _git_checkout
 alias gst='git status'
 __git_complete gst _git_status
 
-alias gd='git diff'
+alias gd="git diff -- ':(exclude,top)vimsession*'"
 __git_complete gd _git_diff
 
 alias gdd='git difftool -d'
