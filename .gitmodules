@@ -98,3 +98,7 @@
 	path = vim/.vim/bundle/vim-vue
 	url = https://github.com/posva/vim-vue.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/vim-table-mode"]
+	path = vim/.vim/bundle/vim-table-mode
+	url = https://github.com/dhruvasagar/vim-table-mode.git
+	ignore = dirty
