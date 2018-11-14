@@ -7,15 +7,12 @@ client.urgent #2f343a #900000 #ffffff #900000
 focus_follows_mouse no
 hide_edge_borders vertical
 
-# Set the wallpaper
-exec --no-startup-id set-wallpaper.sh
-
 
 # Modifier (Mod1 == left Alt)
 set $mod Mod1
 
 # NB! Do not use these combinations to avoid stealing useful terminal shortcuts
-#   Alt+f; Alt+b; Alt+backspace; Alt+d
+#   Alt+f; Alt+b; Alt+backspace; Alt+d; Alt+.
 
 # font for window titles. ISO 10646 = Unicode
 font pango:DejaVu Sans Mono 10
@@ -27,10 +24,6 @@ floating_modifier $mod
 # start a terminal
 # 36 = Return
 bindcode $mod+36 exec --no-startup-id xfce4-terminal
-
-# Reset the wallpaper
-# 21 = +
-bindcode $mod+21 exec --no-startup-id source ~/.fehbg
 
 # kill focused window
 # 22 = BackSpace, 70 = F4
@@ -90,41 +83,44 @@ force_focus_wrapping yes
 
 
 # Workspaces
-# 16=7, 17=8, 18=9, 19=0, 30=u, 31=i, 32=o
+# 30=u, 31=i, 32=o
 # 33=p, 57=n
+# 58=m
 
 ## switch to workspace
-bindcode $mod+16 workspace 1
-bindcode $mod+17 workspace 2
-bindcode $mod+18 workspace 3
-bindcode $mod+19 workspace 4
-bindcode $mod+30 workspace 5
-bindcode $mod+31 workspace 6
-bindcode $mod+32 workspace 7
-bindcode $mod+57 workspace next
-bindcode $mod+33 workspace prev
+bindcode $mod+30 workspace 1
+bindcode $mod+31 workspace 2
+bindcode $mod+32 workspace 3
+bindcode $mod+57 workspace next_on_output
+bindcode $mod+33 workspace prev_on_output
+bindcode $mod+58 workspace back_and_forth
 
 ## move focused container to workspace
-bindcode $mod+Shift+16 move container to workspace 1
-bindcode $mod+Shift+17 move container to workspace 2
-bindcode $mod+Shift+18 move container to workspace 3
-bindcode $mod+Shift+19 move container to workspace 4
-bindcode $mod+Shift+30 move container to workspace 5
-bindcode $mod+Shift+31 move container to workspace 6
-bindcode $mod+Shift+32 move container to workspace 7
-bindcode $mod+Shift+57 move container to workspace next
-bindcode $mod+Shift+33 move container to workspace prev
+bindcode $mod+Shift+30 move container to workspace 1
+bindcode $mod+Shift+31 move container to workspace 2
+bindcode $mod+Shift+32 move container to workspace 3
+bindcode $mod+Shift+57 move container to workspace next_on_output
+bindcode $mod+Shift+33 move container to workspace prev_on_output
+bindcode $mod+Shift+58 move container to workspace back_and_forth
 
 ## move focused container to workspace and switch to that workspace
-bindcode $mod+Shift+Ctrl+16 move container to workspace 1; workspace 1
-bindcode $mod+Shift+Ctrl+17 move container to workspace 2; workspace 2
-bindcode $mod+Shift+Ctrl+18 move container to workspace 3; workspace 3
-bindcode $mod+Shift+Ctrl+19 move container to workspace 4; workspace 4
-bindcode $mod+Shift+Ctrl+30 move container to workspace 5; workspace 5
-bindcode $mod+Shift+Ctrl+31 move container to workspace 6; workspace 6
-bindcode $mod+Shift+Ctrl+32 move container to workspace 7; workspace 7
-bindcode $mod+Shift+Ctrl+57 move container to workspace next; workspace next
-bindcode $mod+Shift+Ctrl+33 move container to workspace prev; workspace prev
+bindcode $mod+Shift+Ctrl+30 move container to workspace 1; workspace 1
+bindcode $mod+Shift+Ctrl+31 move container to workspace 2; workspace 2
+bindcode $mod+Shift+Ctrl+32 move container to workspace 3; workspace 3
+bindcode $mod+Shift+Ctrl+57 move container to workspace next; workspace next_on_output
+bindcode $mod+Shift+Ctrl+33 move container to workspace prev; workspace prev_on_output
+bindcode $mod+Shift+Ctrl+58 move container to workspace back_and_forth; workspace back_and_forth
+
+# Outputs (screens)
+# 34=[, 35=]
+
+## switch to output
+bindcode $mod+34 focus output left
+bindcode $mod+35 focus output right
+
+## move workspace to output
+bindcode $mod+Shift+34 move workspace to output left
+bindcode $mod+Shift+35 move workspace to output right
 
 
 # reload the configuration file
