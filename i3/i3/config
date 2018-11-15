@@ -83,11 +83,15 @@ force_focus_wrapping yes
 
 
 # Workspaces
+
+## Rename current workspace
+# 52=z
+bindcode $mod+52 exec --no-startup-id i3-rename-current-workspace
+
+## switch to workspace
 # 30=u, 31=i, 32=o
 # 33=p, 57=n
 # 58=m
-
-## switch to workspace
 bindcode $mod+30 workspace 1
 bindcode $mod+31 workspace 2
 bindcode $mod+32 workspace 3
