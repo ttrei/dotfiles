@@ -90,14 +90,11 @@ ntf() {
     "$@"
     rc=$?
     duration=$(($(date +%s) - start))
-    if [ $duration -ge 10 ]
+    if [ $rc -eq 0 ]
     then
-        if [ $rc -eq 0 ]
-        then
-            echo "$@ ($(pwd)) successful on $(hostname)" | nc 127.0.0.1 4000
-        else
-            echo "$@ ($(pwd)) failed on $(hostname)" | nc 127.0.0.1 4001
-        fi
+        echo "$@ ($(pwd)) successful on $(hostname)" | nc 127.0.0.1 4000
+    else
+        echo "$@ ($(pwd)) failed on $(hostname)" | nc 127.0.0.1 4001
     fi
 }
 
