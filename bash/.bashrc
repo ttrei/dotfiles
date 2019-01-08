@@ -87,7 +87,7 @@ fi
 #   $ ntf <your command>
 ntf() {
     start=$(date +%s)
-    "$@"
+    eval $(printf "%q " "$@")
     rc=$?
     duration=$(($(date +%s) - start))
     if [ $rc -eq 0 ]
