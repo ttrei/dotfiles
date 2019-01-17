@@ -16,6 +16,9 @@ alias duuuk='du -ks .[!.]* *| sort -n'
 # File counts per sub-directory
 alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 
+# find a file and open in vim
+alias fvim='vim $(fzf)'
+
 # git
 . /usr/share/bash-completion/completions/git
 
