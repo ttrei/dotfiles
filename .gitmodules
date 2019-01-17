@@ -102,3 +102,11 @@
 	path = vim/.vim/bundle/vim-table-mode
 	url = https://github.com/dhruvasagar/vim-table-mode.git
 	ignore = dirty
+[submodule "vim/.vim/bundle/fzf"]
+	path = vim/.vim/bundle/fzf
+	url = https://github.com/junegunn/fzf.git
+	ignore = dirty
+[submodule "vim/.vim/bundle/fzf.vim"]
+	path = vim/.vim/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+	ignore = dirty
