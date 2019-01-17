@@ -59,6 +59,9 @@ export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" 
 # Commands with leading space will not be saved in ~/.bash_history
 export HISTCONTROL="ignorespace"
 
+# Use ag as fzf driver + list hidden files + list and follow symlinks
+export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .git -g ""'
+
 if [ -f $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases
 fi
