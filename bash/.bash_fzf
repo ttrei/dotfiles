@@ -1,7 +1,7 @@
 # A lot of this was copied from https://github.com/junegunn/fzf/wiki/examples
 
 # Use ag as fzf driver + list hidden files + list and follow symlinks
-export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='ag --path-to-ignore ~/.ignore --follow --hidden -g ""'
 
 # find a file and open in vim
 alias fvim='vim $(fzf)'
