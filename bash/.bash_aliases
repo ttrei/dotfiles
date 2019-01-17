@@ -42,6 +42,9 @@ alias gf='git fetch --all --prune'
 alias gu='git-up'
 alias gh='git log -n1 --oneline --decorate'
 
+# Ag will take ignore rules from a global file
+alias ag='ag --path-to-ignore ~/.ignore'
+
 # Forget cached GPG passwords
 alias forget-pass='echo RELOADAGENT | gpg-connect-agent'
 
