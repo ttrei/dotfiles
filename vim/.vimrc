@@ -23,10 +23,6 @@ set mouse=v
 " Show filename in terminal title
 set title
 
-" No wait time when inserting text in multiple lines.
-" Side effect: disables cursor keys in Insert mode.
-set noesckeys
-
 " Enable backspace in Insert mode (sometimes disabled by default)
 set backspace=indent,eol,start
 
@@ -47,9 +43,14 @@ set smarttab
 set autoindent
 set cindent
 
+" Treat all numbers as decimal
+set nrformats=
+
 if exists('+colorcolumn')
-    set colorcolumn=80
+    set colorcolumn=100
 endif
+
+set textwidth=100
 
 " GVim options
 set guioptions-=T " Remove toolbar
@@ -81,8 +82,19 @@ nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 " Wrap/unwrap elements such as function arguments, arrays etc.
 nnoremap <silent> \w :ArgWrap<CR>
 
-" xml file fold settings
+" Disable automatic wrappping while typing
+set formatoptions-=tc
+
+" Numbertoggle
+:nnoremap <silent> <C-n> :set relativenumber!<cr>
+
+" fzf
+:nnoremap <silent> <C-p> :Files<CR>
+
+" FileType-specific settings
+au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
+au FileType vue setlocal shiftwidth=2 tabstop=2
 
 " Automatic foldmethod
 au BufWinEnter *.py set foldmethod=indent
@@ -90,6 +102,9 @@ au BufWinEnter *.c set foldmethod=syntax
 au BufWinEnter *.h set foldmethod=syntax
 au BufWinEnter *.cpp set foldmethod=syntax
 au BufWinEnter *.hpp set foldmethod=syntax
+
+" clang-format
+map <C-K> :pyf /home/reinis/.vim/clang-format.py<cr>
 
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1
@@ -106,12 +121,6 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 
-"CtrlP
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.class,*.jar,*.html
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_by_filename = 1
-" Search code tags (classes, functions etc.)
-nnoremap \t :CtrlPBufTag<CR>
 " Open and jump to the tagbar
 nnoremap \a :TagbarOpen fj<CR>
 " Freeze/unfreeze tagbar
@@ -121,15 +130,6 @@ let g:tagbar_autoclose = 1
 
 "BufExplorer
 let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
-
-
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
 
 " Move through tabs
 nnoremap <F4> gt

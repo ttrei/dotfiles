@@ -11,6 +11,8 @@
     tool = kdiff3
 [mergetool "kdiff3NoAuto"]
 	cmd = kdiff3 --L1 \"$MERGED (Base)\" --L2 \"$MERGED (Local)\" --L3 \"$MERGED (Remote)\" -o \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+[rerere]
+	enabled = true
 [user]
 	email = reinis.taukulis@gmail.com
 	name = Reinis Taukulis
@@ -21,7 +23,10 @@
     tags = !"git for-each-ref --sort=taggerdate --format '%(tag)'"
     # show a commit in difftool (see http://stackoverflow.com/a/27963038)
     showtool = "!showci () { rev=${1:-HEAD}; git difftool -d $rev~1 $rev; }; showci $1"
+    # update branch by rebasing local changes on remote
+    up = pull --rebase --autostash
     # pretty log
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Cblue %an%Creset' --abbrev-commit
-    lgt = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %<(70,trunc)%s %Cgreen%cr%Cblue %an%Creset' --abbrev-commit
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Cblue %an%Creset' --abbrev-commit
+    lgt = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %<(70,trunc)%s %Cgreen%cr%Cblue %an%Creset' --abbrev-commit
     dfw = diff --ignore-space-at-eol
+    shw = show --ignore-space-at-eol

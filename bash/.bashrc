@@ -54,8 +54,10 @@ source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-ba
 git_branch="$Bld$Pur\$(__git_ps1)$RCol"
 PS1="[$user_host \W$git_branch]\$ "
 
-EDITOR=/usr/bin/vim
+EDITOR=vim
 export EDITOR
+
+export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 
 # Colored man
 #export PAGER=most
@@ -63,9 +65,44 @@ export EDITOR
 # Commands with leading space will not be saved in ~/.bash_history
 export HISTCONTROL="ignorespace"
 
-if [ -f /home/reinis/.bash_aliases ]; then
-    . /home/reinis/.bash_aliases
+if [ -f $HOME/.bash_aliases ]; then
+    . $HOME/.bash_aliases
 fi
+
+# Wrapper to get notifications over ssh after a long running command
+#
+# You have to connect by specifying some communication ports:
+#   ssh -R 4000:127.0.0.1:5000 user@remote
+#   ssh -R 4001:127.0.0.1:5001 user@remote
+# Local machine should listen for the notifications:
+#   #!/usr/bin/env bash
+#   while :
+#   do
+#       message=$(nc -l -p 5000)
+#       notify-send -u normal -t -1 "${message}"
+#   done
+#
+#   #!/usr/bin/env bash
+#   while :
+#   do
+#       message=$(nc -l -p 5001)
+#       notify-send -u critical -t -1 "${message}"
+#   done
+#
+# Usage:
+#   $ ntf <your command>
+ntf() {
+    start=$(date +%s)
+    eval $(printf "%q " "$@")
+    rc=$?
+    duration=$(($(date +%s) - start))
+    if [ $rc -eq 0 ]
+    then
+        echo "$@ ($(pwd)) successful on $(hostname)" | nc 127.0.0.1 4000
+    else
+        echo "$@ ($(pwd)) failed on $(hostname)" | nc 127.0.0.1 4001
+    fi
+}
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

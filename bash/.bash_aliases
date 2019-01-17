@@ -20,7 +20,10 @@ alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 alias go='git checkout'
 __git_complete go _git_checkout
 
-alias gd='git diff'
+alias gst='git status'
+__git_complete gst _git_status
+
+alias gd="git diff -- ':(exclude,top)vimsession*'"
 __git_complete gd _git_diff
 
 alias gdd='git difftool -d'
@@ -32,10 +35,18 @@ __git_complete gm _git_merge
 alias gr='git rebase'
 __git_complete gr _git_rebase
 
+alias gcm='git commit -am'
 alias ga='gitk --all'
 alias ghm='gitk HEAD master'
 alias gf='git fetch --all --prune'
 alias gu='git-up'
+alias gh='git log -n1 --oneline --decorate'
+
+# Forget cached GPG passwords
+alias forget-pass='echo RELOADAGENT | gpg-connect-agent'
+
+# Format all *.cpp and *.hpp files
+alias clang-format-all="find ./ -regex '.*[ch]pp$' | xargs clang-format-3.9 -i"
 
 # Clean swap
 alias reswap='sudo swapoff -a && sudo swapon -a'
