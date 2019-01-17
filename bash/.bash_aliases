@@ -26,6 +26,9 @@ __git_complete gst _git_status
 alias gd="git diff -- ':(exclude,top)vimsession*'"
 __git_complete gd _git_diff
 
+alias gdc="git diff --cached -- ':(exclude,top)vimsession*'"
+__git_complete gdc _git_diff
+
 alias gdd='git difftool -d'
 __git_complete gdd _git_difftool
 
