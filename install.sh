@@ -35,3 +35,7 @@ stow clang-format
 
 echo "xorg"
 stow xorg
+
+echo "dunst"
+mkdir -p ~/.config/
+stow dunst -t ~/.config/
