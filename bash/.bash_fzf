@@ -1,0 +1,29 @@
+# A lot of this was copied from https://github.com/junegunn/fzf/wiki/examples
+
+# Use ag as fzf driver + list hidden files + list and follow symlinks
+export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .git -g ""'
+
+# find a file and open in vim
+alias fvim='vim $(fzf)'
+
+# search file contents
+alias ff='ag --hidden --nobreak --nonumbers --noheading --ignore .git . | fzf'
+
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# fda - including hidden directories
+fda() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# fh - repeat history
+fh() {
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
