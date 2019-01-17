@@ -88,6 +88,9 @@ set formatoptions-=tc
 " Numbertoggle
 :nnoremap <silent> <C-n> :set relativenumber!<cr>
 
+" fzf
+:nnoremap <silent> <C-p> :Files<CR>
+
 " FileType-specific settings
 au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
@@ -118,12 +121,6 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 
-"CtrlP
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.class,*.jar,*.html
-let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_by_filename = 1
-" Search code tags (classes, functions etc.)
-nnoremap \t :CtrlPBufTag<CR>
 " Open and jump to the tagbar
 nnoremap \a :TagbarOpen fj<CR>
 " Freeze/unfreeze tagbar
@@ -133,15 +130,6 @@ let g:tagbar_autoclose = 1
 
 "BufExplorer
 let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
-
-
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
 
 " Move through tabs
 nnoremap <F4> gt
