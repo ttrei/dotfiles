@@ -28,6 +28,9 @@ __git_complete gst _git_status
 alias gd="git diff -- ':(exclude,top)vimsession*'"
 __git_complete gd _git_diff
 
+alias gdc="git diff --cached -- ':(exclude,top)vimsession*'"
+__git_complete gdc _git_diff
+
 alias gdd='git difftool -d'
 __git_complete gdd _git_difftool
 
@@ -43,6 +46,9 @@ alias ghm='gitk HEAD master'
 alias gf='git fetch --all --prune'
 alias gu='git-up'
 alias gh='git log -n1 --oneline --decorate'
+
+# Ag will take ignore rules from a global file
+alias ag='ag --path-to-ignore ~/.ignore'
 
 # Forget cached GPG passwords
 alias forget-pass='echo RELOADAGENT | gpg-connect-agent'
