@@ -36,11 +36,6 @@ def read_line():
     except KeyboardInterrupt:
         sys.exit()
 
-def remote_file(login, path):
-    ssh = subprocess.Popen(['ssh', login, 'cat', path], stdout=subprocess.PIPE)
-    for line in ssh.stdout:
-        yield line
-
 def get_upgrade_counts():
     try:
         f = open('/var/tmp/upgrades.json', 'r')
