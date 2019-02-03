@@ -18,55 +18,73 @@ import sys
 import json
 import datetime
 
-green =  "#00FF00"
-red =    "#FF0000"
-yellow = "#FFFF00"
+GREEN =  "#00FF00"
+RED =    "#FF0000"
+YELLOW = "#FFFF00"
 
 def print_line(message):
-    """ Non-buffered printing to stdout. """
     sys.stdout.write(message + '\n')
     sys.stdout.flush()
 
 def read_line():
-    """ Interrupted respecting reader for stdin. """
-    # try reading a line, removing any extra whitespace
     try:
         line = sys.stdin.readline().strip()
         # i3status sends EOF, or an empty line
         if not line:
             sys.exit(3)
         return line
-    # exit on ctrl-c
     except KeyboardInterrupt:
         sys.exit()
+
+def remote_file(login, path):
+    ssh = subprocess.Popen(['ssh', login, 'cat', path], stdout=subprocess.PIPE)
+    for line in ssh.stdout:
+        yield line
+
+def get_upgrade_counts():
+    try:
+        f = open('/var/tmp/upgrades.json', 'r')
+        data = json.load(f)
+        f.close()
+    except IOError:
+        return None
+    res = []
+    for entry in data:
+        res.append({
+            u'name': u'upgrade_count',
+            u'markup': u'none',
+            u'host': entry['host'],
+            u'full_text': u'%s: %s' % (entry['host'], entry['upgrades']),
+            u'color': GREEN if int(entry['upgrades']) == 0 else YELLOW,
+        })
+    return res
 
 # Colorize output of `i3status`
 def colorize(j):
     for d in j:
-        if d['name'] == 'disk_info':
-            if d['instance'] == '/':
+        name = d.get('name', None)
+        instance = d.get('name', None)
+        if name == 'disk_info':
+            if instance == '/':
                 d[u'color'] = u'#ffc0c0'
-            elif d['instance'] == '/var':
+            elif instance == '/var':
                 d[u'color'] = u'#fffdba'
-            elif d['instance'] == '/home':
+            elif instance == '/home':
                 d[u'color'] = u'#c7cdff'
-        elif d[u'name'] == 'cpu_usage':
+        elif name == 'cpu_usage':
             load = int(d['full_text'].strip('%'))
             if load > 89:
-                d[u'color'] = red
+                d[u'color'] = RED
             elif load > 29:
-                d[u'color'] = yellow
-
+                d[u'color'] = YELLOW
 
 if __name__ == '__main__':
-    # Skip the first line which contains the version header.
+    # First line contains the version header
     print_line(read_line())
-
-    # The second line contains the start of the infinite array.
+    # Second line contains starts the infinite array
     print_line(read_line())
 
     while True:
-        # Wait for i3status to produce a line, then read it
         line, prefix = read_line(), ''
         # i3status prepends a comma to subsequent lines
         if line.startswith(','):
@@ -74,6 +92,10 @@ if __name__ == '__main__':
 
         # Decode the line
         j = json.loads(line)
+
+        upgrade_counts = get_upgrade_counts()
+        if upgrade_counts:
+            j = upgrade_counts + j
 
         colorize(j)
 
