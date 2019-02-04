@@ -58,7 +58,7 @@ def get_upgrade_counts():
 def colorize(j):
     for d in j:
         name = d.get('name', None)
-        instance = d.get('name', None)
+        instance = d.get('instance', None)
         if name == 'disk_info':
             if instance == '/':
                 d[u'color'] = u'#ffc0c0'
