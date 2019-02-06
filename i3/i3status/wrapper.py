@@ -18,9 +18,10 @@ import sys
 import json
 import datetime
 
-GREEN =  "#00FF00"
-RED =    "#FF0000"
-YELLOW = "#FFFF00"
+DARKGRAY = "#444444"
+GREEN    = "#00FF00"
+RED      = "#FF0000"
+YELLOW   = "#FFFF00"
 
 def print_line(message):
     sys.stdout.write(message + '\n')
@@ -38,19 +39,26 @@ def read_line():
 
 def get_upgrade_counts():
     try:
-        f = open('/var/tmp/upgrades.json', 'r')
+        f = open('/var/tmp/upgrade_counts.json', 'r')
         data = json.load(f)
         f.close()
     except IOError:
         return None
     res = []
     for entry in data:
+        count = int(entry.get('count', -1))
+        if count == 0:
+            color = GREEN
+        elif count > 0:
+            color = YELLOW
+        else:
+            color = DARKGRAY
         res.append({
             u'name': u'upgrade_count',
             u'markup': u'none',
             u'host': entry['host'],
-            u'full_text': u'%s: %s' % (entry['host'], entry['upgrades']),
-            u'color': GREEN if int(entry['upgrades']) == 0 else YELLOW,
+            u'full_text': "%s: %d" % (entry['host'], count),
+            u'color': color,
         })
     return res
 
