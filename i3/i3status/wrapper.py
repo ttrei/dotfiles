@@ -37,13 +37,27 @@ def read_line():
     except KeyboardInterrupt:
         sys.exit()
 
+def error(message):
+    return [{
+        u'name': u'error',
+        u'markup': u'none',
+        u'full_text': message,
+        u'color': RED,
+    }]
+
 def get_upgrade_counts():
     try:
         f = open('/var/tmp/upgrade_counts.json', 'r')
-        data = json.load(f)
+        strdata = f.read()
         f.close()
     except IOError:
-        return None
+        return error('Could not read /var/tmp/upgrade_counts.json')
+
+    try:
+        data = json.loads(strdata)
+    except ValueError:
+        return error('/var/tmp/upgrade_counts.json contains invalid JSON')
+
     res = []
     for entry in data:
         count = int(entry.get('count', -1))
