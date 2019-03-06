@@ -4,7 +4,7 @@
 export FZF_DEFAULT_COMMAND='ag --path-to-ignore ~/.ignore --follow --hidden -g ""'
 
 # find a file and open in vim
-alias fvim='vim $(fzf)'
+alias fvim='vim $(fzf -m)'
 
 # search file contents
 alias ff='ag --hidden --nobreak --nonumbers --noheading --ignore .git . | fzf'
