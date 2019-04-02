@@ -52,7 +52,7 @@ alias ag='ag --path-to-ignore ~/.ignore'
 alias forget-pass='echo RELOADAGENT | gpg-connect-agent'
 
 # Format all *.cpp and *.hpp files
-alias clang-format-all="find ./ -regex '.*[ch]pp$' | xargs clang-format-3.9 -i"
+alias clang-format-all="find ./ -regex '.*[ch]pp$' | xargs clang-format -i"
 
 # Clean swap
 alias reswap='sudo swapoff -a && sudo swapon -a'
