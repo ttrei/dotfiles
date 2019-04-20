@@ -65,6 +65,10 @@ export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" 
 # Commands with leading space will not be saved in ~/.bash_history
 export HISTCONTROL="ignorespace"
 
+if [ -f $HOME/.bash_fzf ]; then
+    . $HOME/.bash_fzf
+fi
+
 if [ -f $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases
 fi
