@@ -165,9 +165,7 @@ bar {
 
 
 # Startup
-#exec --no-startup-id thunderbird
-#exec --no-startup-id pidgin
-#exec --no-startup-id firefox
+exec --no-startup-id i3-msg 'workspace 1:web; exec firefox'
 
 
 # Floating windows
