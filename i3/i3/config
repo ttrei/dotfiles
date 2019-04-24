@@ -24,10 +24,13 @@ floating_modifier $mod
 # 36 = Return
 bindcode $mod+36 exec --no-startup-id xfce4-terminal
 
-
 # Turn on/off screen blanking timeout
 # 28 = t
 bindcode $mod+28 exec --no-startup-id ~/scripts/toggle_dpms.sh
+
+# Toggle sound
+# 121 = media key 'mute'
+bindcode 121 exec pactl set-sink-mute 0 toggle
 
 # kill focused window
 # 22 = BackSpace, 70 = F4
