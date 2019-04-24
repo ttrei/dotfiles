@@ -25,6 +25,10 @@ floating_modifier $mod
 # 36 = Return
 bindcode $mod+36 exec --no-startup-id xfce4-terminal
 
+# Toggle sound
+# 121 = media key 'mute'
+bindcode 121 exec pactl set-sink-mute 0 toggle
+
 # kill focused window
 # 22 = BackSpace, 70 = F4
 bindcode $mod+Shift+22 kill
