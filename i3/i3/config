@@ -125,9 +125,11 @@ bindcode $mod+Shift+35 move workspace to output right
 
 # Startup
 exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
+exec --no-startup-id i3-msg 'workspace 90:steam; exec steam'
 
 # Assign programs to specific workspaces
 assign [class="Firefox"] 10:web
+assign [class="Steam"] 90:steam
 
 # Floating windows
 for_window [class="Anki"] floating enable
