@@ -1,89 +1,82 @@
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+focus_follows_mouse no
+hide_edge_borders vertical
 
 # Urgency
 client.urgent #2f343a #900000 #ffffff #900000
 
-# Some options
-focus_follows_mouse no
-hide_edge_borders vertical
+# font for window titles
+font pango:DejaVu Sans Mono 10
+
+# don't break out of child containers when wrapping possible
+force_focus_wrapping yes
+
+bar {
+    status_command i3status | ~/.config/i3status/wrapper.py
+}
 
 
-# Modifier (Mod1 == left Alt)
-set $mod Mod1
+
+# Keybindings
 
 # NB! Do not use these combinations to avoid stealing useful terminal shortcuts
 #   Alt+f; Alt+b; Alt+backspace; Alt+d; Alt+.
 
-# font for window titles. ISO 10646 = Unicode
-font pango:DejaVu Sans Mono 10
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# Modifier (Mod1 == left Alt)
+set $mod Mod1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+# reload the configuration file
+# 54 = c
+bindcode $mod+Shift+54 reload
+# restart i3
+# 27 = r
+bindcode $mod+Shift+27 restart
+# exit i3 (logs you out of your X session)
+# 24 = q
+bindcode $mod+Shift+24 exit
 # 36 = Return
 bindcode $mod+36 exec --no-startup-id xfce4-terminal
-
 # Toggle sound
 # 121 = media key 'mute'
 bindcode 121 exec pactl set-sink-mute 0 toggle
-
-# kill focused window
 # 22 = BackSpace, 70 = F4
 bindcode $mod+Shift+22 kill
 bindcode $mod+70 kill
-
-# start dmenu (a program launcher)
 # 27 = r
 bindcode $mod+27 exec --no-startup-id dmenu_run
-
 # change focus
 # 43 = h; 44 = j; 45 = k; 46 = l
 bindcode $mod+43 focus left
 bindcode $mod+44 focus down
 bindcode $mod+45 focus up
 bindcode $mod+46 focus right
-
 # move focused window
 bindcode $mod+Shift+43 move left
 bindcode $mod+Shift+44 move down
 bindcode $mod+Shift+45 move up
 bindcode $mod+Shift+46 move right
-
-# split in horizontal orientation
-# 42 = g
+# split in horizontal/vertical orientation
+# 42 = g, 55 = v
 bindcode $mod+42 split h
-
-# split in vertical orientation
-# 55 = v
 bindcode $mod+55 split v
-
-# enter fullscreen mode for the focused container
 # 38 = a
 bindcode $mod+38 fullscreen
-
-# change container layout (stacked, tabbed, default)
+# change container layout
 # 25 = w, 26 = e, 39 = s
 bindcode $mod+25 layout tabbed
 bindcode $mod+26 layout default
 bindcode $mod+39 layout stacking
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
+# focus the parent/child container
 # 24 = q
 bindcode $mod+24 focus parent
-
-# don't break out of child containers when wrapping possible
-force_focus_wrapping yes
-
-# focus the child container
 #bindcode $mod+d focus child
+
 
 
 # Workspaces
@@ -121,85 +114,25 @@ bindcode $mod+Shift+Ctrl+58 move container to workspace back_and_forth; workspac
 
 # Outputs (screens)
 # 34=[, 35=]
-
 ## switch to output
 bindcode $mod+34 focus output left
 bindcode $mod+35 focus output right
-
 ## move workspace to output
 bindcode $mod+Shift+34 move workspace to output left
 bindcode $mod+Shift+35 move workspace to output right
 
 
-# reload the configuration file
-# 54 = c
-bindcode $mod+Shift+54 reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-# 27 = r
-bindcode $mod+Shift+27 restart
-# exit i3 (logs you out of your X session)
-# 24 = q
-bindcode $mod+Shift+24 exit
-
-# resize window (you can also use the mouse for that)
-#mode "resize" {
-#        set $delta 3
-#
-#        bindcode 43 resize shrink width $delta px or $delta ppt
-#        bindcode 44 resize grow height $delta px or $delta ppt
-#        bindcode 45 resize shrink height $delta px or $delta ppt
-#        bindcode 46 resize grow width $delta px or $delta ppt
-#
-#        # back to normal mode
-#        # 36 = Return
-#        bindcode 36 mode "default"
-#}
-
-# 27 = r
-#bindcode $mod+27 mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    #colors {
-    #    urgent_workspace   #2f343a #900000 #ffffff
-    #}
-    status_command i3status | ~/.config/i3status/wrapper.py
-}
-
 
 # Startup
-#exec --no-startup-id thunderbird
-#exec --no-startup-id pidgin
-#exec --no-startup-id firefox
 
+# Assign programs to specific workspaces
 
 # Floating windows
-for_window [class="Meld"] floating enable
 for_window [class="Anki"] floating enable
-for_window [class="MPlayer"] floating enable
-for_window [class="mplayer"] floating enable
-for_window [class="Vlc"] floating enable
 for_window [class="Conky"] floating enable
-
-for_window [class="Workrave"] floating enable
-
-# Float the windows of some programming tutorials
-for_window [class="tut"] floating enable
-# Float some self-written OpenGL programs. If the compiled file ends with .bin
-# it will match.
-for_window [class=".bin$"] floating enable
-
-# Float some matplotlib plots
-for_window [title="matplotlib_float"] floating enable
-
-# Float gitk
 for_window [class="Gitk"] floating enable
-
-# Toggle conky visibility
-# 29 = y
-# -- Scratchpad method
-#for_window [class="Conky"] floating enable; move to scratchpad
-#bindcode $mod+29 [class="Conky"] scratchpad show
-# -- xdotool method
-#bindcode $mod+29 exec --no-startup-id xdotool search --onlyvisible --class 'Conky' windowunmap %@ || xdotool search --class 'Conky' windowmap %@
+for_window [class="Meld"] floating enable
+for_window [class="mplayer"] floating enable
+for_window [class="MPlayer"] floating enable
+for_window [class="Vlc"] floating enable
+for_window [title="matplotlib_float"] floating enable
