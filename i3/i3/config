@@ -130,6 +130,7 @@ exec --no-startup-id i3-msg 'workspace 90:steam; exec steam'
 # Assign programs to specific workspaces
 assign [class="Firefox"] 10:web
 assign [class="Steam"] 90:steam
+assign [class="factorio"] 91:factorio
 
 # Floating windows
 for_window [class="Anki"] floating enable
