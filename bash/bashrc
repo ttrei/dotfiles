@@ -67,6 +67,10 @@ if [ -f $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases
 fi
 
+if [ -f $HOME/.z.sh ]; then
+    . $HOME/.z.sh
+fi
+
 # Wrapper to get notifications over ssh after a long running command
 #
 # You have to connect by specifying some communication ports:
