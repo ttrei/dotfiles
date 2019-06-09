@@ -11,7 +11,7 @@ font pango:DejaVu Sans Mono 10
 force_focus_wrapping yes
 
 bar {
-    status_command i3status | ~/.config/i3status/wrapper.py
+    status_command i3blocks
 }
 
 
