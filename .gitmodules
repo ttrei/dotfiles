@@ -102,3 +102,7 @@
 	path = vim/vim/bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
 	ignore = dirty
+[submodule "vim/vim/bundle/vim-easy-align"]
+	path = vim/vim/bundle/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
+	ignore = dirty
