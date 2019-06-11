@@ -135,6 +135,11 @@ let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
 nnoremap <F4> gt
 nnoremap <F3> gT
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Exit visual mode and search in the previously selected range
 vnoremap \/ <Esc>/\%V
 
