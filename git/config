@@ -20,3 +20,13 @@
     # pretty log
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Cblue %an%Creset' --abbrev-commit
     lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %<(50,trunc)%s' --abbrev-commit
+
+    # (From https://blog.jez.io/cli-code-review/)
+    # list changes since REVIEW_BASE (defaults to 'master' in my bashrc)
+    files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
+    stat = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
+    # Open files changed since REVIEW_BASE in Vim tabs
+    review = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" $(git files | fzf -m)
+    reviewall = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" $(git files)
+    reviewdiff = !REVIEW_BASE=HEAD git review
+    reviewdiffall = !REVIEW_BASE=HEAD git reviewall
