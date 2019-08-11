@@ -2,17 +2,15 @@
 execute pathogen#infect()
 Helptags
 
-
-" GVim settings
 set guifont=Consolas\ 13
 
-
 set encoding=utf8
-set t_Co=256
+set termguicolors
 set background=dark
-"colorscheme desert256
-"colorscheme zenburn
-colorscheme Tomorrow-Night-Eighties
+"https://github.com/vim/vim/issues/993#issuecomment-255651605
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+colorscheme gruvbox
 
 " Enable mouse in terminal (only in visual mode)
 set mouse=v
