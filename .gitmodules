@@ -30,10 +30,6 @@
 	path = vim/vim/bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
 	ignore = dirty
-[submodule "vim/.vim/bundle/Zenburn"]
-	path = vim/vim/bundle/Zenburn
-	url = https://github.com/jnurmine/Zenburn.git
-	ignore = dirty
 [submodule "vim/.vim/bundle/tagbar"]
 	path = vim/vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
