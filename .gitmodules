@@ -106,3 +106,6 @@
 	path = vim/vim/bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
 	ignore = dirty
+[submodule "vim/vim/bundle/gruvbox"]
+	path = vim/vim/bundle/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
