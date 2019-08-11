@@ -1,32 +1,22 @@
-# This is Git's per-user configuration file.
-# Please adapt and uncomment the following lines:
+[user]
+    email = reinis.taukulis@gmail.com
+    name = Reinis Taukulis
 [core]
     editor = /usr/bin/vim
-    #whitespace = -blank-at-eof
-    #whitespace = -blank-at-eol
     whitespace = cr-at-eol
 [diff]
     tool = meld
 [merge]
     tool = kdiff3
-[mergetool "kdiff3NoAuto"]
-	cmd = kdiff3 --L1 \"$MERGED (Base)\" --L2 \"$MERGED (Local)\" --L3 \"$MERGED (Remote)\" -o \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
 [rerere]
-	enabled = true
-[user]
-	email = reinis.taukulis@gmail.com
-	name = Reinis Taukulis
+    enabled = true
 [push]
     default = simple
+
 [alias]
-    # show tags sorted by date
-    tags = !"git for-each-ref --sort=taggerdate --format '%(tag)'"
     # show a commit in difftool (see http://stackoverflow.com/a/27963038)
     showtool = "!showci () { rev=${1:-HEAD}; git difftool -d $rev~1 $rev; }; showci $1"
-    # update branch by rebasing local changes on remote
-    up = pull --rebase --autostash
+
     # pretty log
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %<(50,trunc)%s' --abbrev-commit
     lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr%Cblue %an%Creset' --abbrev-commit
-    dfw = diff --ignore-space-at-eol
-    shw = show --ignore-space-at-eol
