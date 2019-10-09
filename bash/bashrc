@@ -121,6 +121,7 @@ ntf() {
     else
         echo "$@ ($(pwd)) failed on $(hostname)" | nc 127.0.0.1 4001
     fi
+    (exit $rc);
 }
 
 # enable programmable completion features (you don't need to enable
