@@ -12,6 +12,8 @@
     enabled = true
 [push]
     default = simple
+[pager]
+    log = less -+F
 
 [alias]
     # show a commit in difftool (see http://stackoverflow.com/a/27963038)
