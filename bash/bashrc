@@ -84,7 +84,14 @@ if [ -f $HOME/.bash_aliases ]; then
     . $HOME/.bash_aliases
 fi
 
-if [ -f $HOME/.z.sh ]; then
+# Jump-around script
+if [ -f $HOME/.z.lua ] && [ -x "$(command -v lua)" ]; then
+    eval "$(lua $HOME/.z.lua --init bash enhanced)"
+    # Use the same datafile as z.sh
+    export _ZL_DATA=$HOME/.z
+elif [ -f $HOME/.z.sh ]; then
+    echo "Cannot use z.lua because lua not available, falling back to z.sh"
+    # Fallback to z.sh which is not as flexible, but better than nothing
     . $HOME/.z.sh
 fi
 
