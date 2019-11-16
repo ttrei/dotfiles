@@ -9,9 +9,6 @@ alias fvim='vim -p $(fzf -m)'
 # search file contents
 alias ff='ag --hidden --nobreak --nonumbers --noheading --ignore .git . | fzf'
 
-# fzf enhancement for z.lua jump-around script
-alias zf='z -I'
-
 # fd - cd to selected directory
 fd() {
   local dir
@@ -29,4 +26,10 @@ fda() {
 # fh - repeat history
 fh() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+# fzf enhancement for z.lua jump-around script
+function zf() {
+    local dir="$(z -l "$@"|fzf --nth 2.. --reverse --inline-info --tac +s -e --height 35%)"
+    [ -n "$dir" ] && cd "$(echo $dir | tr -s ' ' | cut -d ' ' -f 2)"
 }
