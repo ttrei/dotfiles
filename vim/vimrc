@@ -101,6 +101,9 @@ au BufWinEnter *.h set foldmethod=syntax
 au BufWinEnter *.cpp set foldmethod=syntax
 au BufWinEnter *.hpp set foldmethod=syntax
 
+" Try to fix vim-markdown plugin folding behavior
+let g:vim_markdown_folding_style_pythonic = 1
+
 " clang-format
 map <C-K> :pyf /home/reinis/.vim/clang-format.py<cr>
 
