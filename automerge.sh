@@ -11,10 +11,8 @@ function update_branch() {
     local branch="$1"
     local remote_branch="origin/$1"
     git checkout -q $branch
-    if $(git merge-base --is-ancestor $remote_branch $branch); then
-        return
-    else
-        echo "Pulling remote changes into '$branch' using 'git pull --rebase'"
+    if ! $(git merge-base --is-ancestor $remote_branch $branch); then
+        echo "${GREEN}Pulling remote changes into '$branch' using 'git pull --rebase'${NC}"
         git pull --rebase || exit 1
     fi
 }
@@ -35,13 +33,21 @@ function merge_dependencies() {
         if ! $(git merge-base --is-ancestor $dep $branch); then
             echo -e "${GREEN}  merging '$dep' into '$branch'${NC}"
             git checkout -q $branch
-            git merge --no-edit --rerere-autoupdate $dep || exit 1
+            git merge --no-edit --rerere-autoupdate $dep
+            if [ $? -ne 0 ]; then
+                local output=$(git rerere diff) || exit 1
+                if output=$(git rerere diff) && [ -z "$output" ]; then
+                    git commit --no-edit
+                else
+                    exit 1
+                fi
+            fi
         fi
     done
 }
 
 if output=$(git status --porcelain) && [ -n "$output" ]; then
-    echo -e "${RED}Working directory is not clean. Aborting.${NC}"
+    echo -e "${RED}Working directory is not clean. Abort.${NC}"
     exit 1
 fi
 current_branch=$(git rev-parse --abbrev-ref HEAD)
