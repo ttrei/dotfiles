@@ -35,8 +35,7 @@ function merge_dependencies() {
             git checkout -q $branch
             git merge --no-edit --rerere-autoupdate $dep
             if [ $? -ne 0 ]; then
-                local output=$(git rerere diff) || exit 1
-                if output=$(git rerere diff) && [ -z "$output" ]; then
+                if local output=$(git rerere remaining) && [ -z "$output" ]; then
                     git commit --no-edit
                 else
                     exit 1
