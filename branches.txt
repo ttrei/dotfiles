@@ -1,3 +1,0 @@
-List of branches that should be merged here:
-
-master
