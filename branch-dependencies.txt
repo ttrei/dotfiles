@@ -1,0 +1,17 @@
+home:master
+work:master
+debian:master
+nixos:master
+
+home-desktop-debian:home,debian
+home-desktop-nixos:home,nixos
+home-desktop-nixos-vbox:home,nixos
+home-eeepc-nixos:home,nixos
+
+work-laptop-debian:work,debian
+work-centos5:work
+work-centos6:work
+work-laptop-nixos:work,nixos
+
+# kodi:home,debian
+# home-pi:home,debian
