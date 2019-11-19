@@ -12,7 +12,7 @@ function update_branch() {
     local remote_branch="origin/$1"
     git checkout -q $branch
     if ! $(git merge-base --is-ancestor $remote_branch $branch); then
-        echo "${GREEN}Pulling remote changes into '$branch' using 'git pull --rebase'${NC}"
+        echo -e "${GREEN}Pulling remote changes into '$branch' using 'git pull --rebase'${NC}"
         git pull --rebase || exit 1
     fi
 }
