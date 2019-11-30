@@ -23,7 +23,7 @@ function merge_dependencies() {
     local branch=$1
     IFS=','; local deps=($2); unset IFS;
 
-    echo -e "${BGREEN}'$branch' depends on '$deps'${NC}"
+    echo -e "${BGREEN}'$branch' depends on '$2'${NC}"
 
     update_branch $branch
 
