@@ -81,17 +81,26 @@ bindcode $mod+24 focus parent
 
 # Workspaces
 
-## Rename current workspace
+## rename current workspace
 # 52=z
 bindcode $mod+52 exec --no-startup-id i3-rename-current-workspace
+## create new workspace and switch to it
+# 16=7
+bindcode $mod+16 exec --no-startup-id i3-new-workspace
+## move container to a new workspace
+bindcode $mod+Shift+16 exec --no-startup-id i3-move-to-new-workspace
+
+## switch to a predefined workspace / create new workspace
+# 32=o
+bindcode $mod+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.json
+bindcode $mod+Shift+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.json move
 
 ## switch to workspace
-# 30=u, 31=i, 32=o
+# 30=u, 31=i
 # 33=p, 57=n
 # 58=m
 bindcode $mod+30 workspace 1
 bindcode $mod+31 workspace 2
-bindcode $mod+32 workspace 3
 bindcode $mod+57 workspace next_on_output
 bindcode $mod+33 workspace prev_on_output
 bindcode $mod+58 workspace back_and_forth
@@ -99,7 +108,6 @@ bindcode $mod+58 workspace back_and_forth
 ## move focused container to workspace
 bindcode $mod+Shift+30 move container to workspace 1
 bindcode $mod+Shift+31 move container to workspace 2
-bindcode $mod+Shift+32 move container to workspace 3
 bindcode $mod+Shift+57 move container to workspace next_on_output
 bindcode $mod+Shift+33 move container to workspace prev_on_output
 bindcode $mod+Shift+58 move container to workspace back_and_forth
@@ -107,7 +115,6 @@ bindcode $mod+Shift+58 move container to workspace back_and_forth
 ## move focused container to workspace and switch to that workspace
 bindcode $mod+Shift+Ctrl+30 move container to workspace 1; workspace 1
 bindcode $mod+Shift+Ctrl+31 move container to workspace 2; workspace 2
-bindcode $mod+Shift+Ctrl+32 move container to workspace 3; workspace 3
 bindcode $mod+Shift+Ctrl+57 move container to workspace next; workspace next_on_output
 bindcode $mod+Shift+Ctrl+33 move container to workspace prev; workspace prev_on_output
 bindcode $mod+Shift+Ctrl+58 move container to workspace back_and_forth; workspace back_and_forth
