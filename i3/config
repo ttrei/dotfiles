@@ -92,8 +92,8 @@ bindcode $mod+Shift+16 exec --no-startup-id i3-move-to-new-workspace
 
 ## switch to a predefined workspace / create new workspace
 # 32=o
-bindcode $mod+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.json
-bindcode $mod+Shift+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.json move
+bindcode $mod+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.txt
+bindcode $mod+Shift+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.txt move
 
 ## switch to workspace
 # 30=u, 31=i
