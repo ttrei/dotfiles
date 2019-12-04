@@ -136,6 +136,9 @@ exec --no-startup-id i3-msg 'workspace 20:dev; exec st'
 
 # Assign programs to specific workspaces
 assign [class="Firefox"] 10:web
+assign [class="Bitcoin"] 80:bitcoin
+assign [class="Steam"] 90:steam
+assign [class="factorio"] 91:factorio
 
 # Floating windows
 for_window [class="Anki"] floating enable
