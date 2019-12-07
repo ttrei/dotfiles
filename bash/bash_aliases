@@ -59,10 +59,6 @@ alias clang-format-all="find ./ -regex '.*[ch]pp$' | xargs clang-format -i"
 # Get keycodes
 alias kc="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
 
-# update + upgrade
-alias updupgr='sudo apt update && sudo apt upgrade -y && upgrade_count.sh'
-alias upgr='sudo apt upgrade -y && upgrade_count.sh'
-
 # ssh
 alias pi='ssh -p 1046 reinis@reinis-pi'
 alias router='ssh root@router'
