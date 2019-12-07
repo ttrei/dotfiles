@@ -1,0 +1,6 @@
+xmodmap $HOME/.xmodmaprc &
+redshift &
+
+if [ -f "$HOME/.profile" ] ; then
+    . $HOME/.profile
+fi
