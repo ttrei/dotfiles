@@ -64,24 +64,6 @@ alias work='ssh reinis@work-centos'
 alias mazais='ssh reinis@mazais'
 alias kodi='ssh user@kodi'
 
-# Unison
-alias unis='unison pi && /home/reinis/bin/unison_changes.sh'
-
 # Personal files
 alias decrypt='encfs ~/.encrypted ~/.decrypted'
 alias encrypt='fusermount -u /home/reinis/.decrypted/'
-
-# MPlayer
-alias mplayer='mplayer -osdlevel 0'
-
-# Power management
-#shutdown
-alias halt="systemctl poweroff"
-#restart
-alias reboot="systemctl reboot"
-#suspend
-alias suspend="systemctl suspend"
-
-# Cryptocurrencies
-alias bitcoin-qt="bitcoin-qt --datadir=/media/Storage/bitcoin-data"
-alias litecoin-qt="/media/Storage/litecoin/bin/64/litecoin-qt --datadir=/media/Storage/litecoin/litecoin-data"
