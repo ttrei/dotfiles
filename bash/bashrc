@@ -22,6 +22,7 @@ alias_files=(
     common
     home
     work
+    nixos
 )
 for a in "${alias_files[@]}"; do
 	if [ -f $HOME/$a ]; then
