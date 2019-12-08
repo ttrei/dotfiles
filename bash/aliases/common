@@ -56,6 +56,3 @@ alias clang-format-all="find ./ -regex '.*[ch]pp$' | xargs clang-format -i"
 
 # Get keycodes
 alias kc="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
-
-# ssh
-alias mazais='ssh reinis@mazais'

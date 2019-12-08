@@ -18,6 +18,17 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+alias_files=(
+    common
+    home
+    work
+)
+for a in "${alias_files[@]}"; do
+	if [ -f $HOME/$a ]; then
+		source $HOME/$a
+	fi
+done
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -78,10 +89,6 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 if [ -f $HOME/.bash_fzf ]; then
     . $HOME/.bash_fzf
-fi
-
-if [ -f $HOME/.bash_aliases ]; then
-    . $HOME/.bash_aliases
 fi
 
 # Jump-around script
