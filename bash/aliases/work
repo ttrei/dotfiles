@@ -1,0 +1,23 @@
+# ssh
+alias mazais='ssh reinis@mazais'
+alias builder='ssh build@builder'
+alias imsdemo='ssh csapp@imsdemo'
+alias facevalue='ssh root@facevalue'
+
+# taskman
+alias bld='taskman --build'
+alias res='taskman --restore-workspace'
+
+# Clean CS logs
+alias clog='logs_move.sh'
+
+# Installer
+alias csi='ntf cs-install -f ~/deploy.xml'
+alias csil='ntf cs-install -f ~/deploy.xml $(ls -tr *tgz | tail -n1)'
+alias csin='ntf cs-install -f ~/deploy.xml --no-interact'
+alias csinl='ntf cs-install -f ~/deploy.xml --no-interact $(ls -tr *tgz | tail -n1)'
+
+# CS install prints
+alias genprints-wllv="get-install-print.sh bocsapp@wllv /home/bocsapp/CS4/setvar boprint; get-install-print.sh focsapp@wllv /home/focsapp/CS4/setvar foprint"
+alias genprints-facevalue="get-install-print.sh csbo@facevalue /home/csbo/setvar boprint; get-install-print.sh csfo@facevalue /home/csfo/setvar foprint"
+alias genprints-imsdemo="get-install-print.sh csapp@imsdemo /app/bo/setvar boprint; get-install-print.sh csapp@imsdemo /app/fo/setvar foprint"
