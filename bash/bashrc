@@ -18,6 +18,9 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# git completion
+. /usr/share/bash-completion/completions/git
+
 alias_files=(
     common
     home
