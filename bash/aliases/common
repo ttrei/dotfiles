@@ -58,14 +58,3 @@ alias clang-format-all="find ./ -regex '.*[ch]pp$' | xargs clang-format -i"
 
 # Get keycodes
 alias kc="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
-
-# ssh
-alias pi='ssh -p 1046 reinis@reinis-pi'
-alias router='ssh root@router'
-alias work='ssh reinis@work-centos'
-alias mazais='ssh reinis@mazais'
-alias kodi='ssh user@kodi'
-
-# Personal files
-alias decrypt='encfs ~/.encrypted ~/.decrypted'
-alias encrypt='fusermount -u /home/reinis/.decrypted/'
