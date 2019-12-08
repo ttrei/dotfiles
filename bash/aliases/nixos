@@ -1,0 +1,9 @@
+LOCAL_NIXPKGS="${HOME}/nixpkgs"
+SSH_CONFIG_FILE="${HOME}/nix-ssh-config/config"
+OVERLAYS="${HOME}/nixos/overlays"
+NIXOS_CONFIG="${HOME}/nixos/configuration.nix"
+
+alias nix-build-local="nix-build ${LOCAL_NIXPKGS} -I ssh-config-file=${SSH_CONFIG_FILE}"
+alias nix-shell-local="nix-shell -I nixpkgs=${LOCAL_NIXPKGS} -I ssh-config-file=${SSH_CONFIG_FILE}"
+alias nix-env="nix-env -I nixpkgs-overlays=${OVERLAYS}"
+alias nixos-rebuild="nixos-rebuild -I nixos-config=${NIXOS_CONFIG}"
