@@ -18,7 +18,7 @@ bar {
 
 # Keybindings
 
-# NB! Do not use these combinations to avoid stealing useful terminal shortcuts
+# NB! Avoid following combinations that steal useful terminal shortcuts:
 #   Alt+f; Alt+b; Alt+backspace; Alt+d; Alt+.
 
 # Modifier (Mod1 == left Alt)
