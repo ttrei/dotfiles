@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Power off",
+    "confirm": true,
+    "command": "systemctl poweroff"
+  },
+  {
+    "name": "Reboot",
+    "confirm": true,
+    "command": "systemctl reboot"
+  },
+  {
+    "name": "Suspend",
+    "confirm": true,
+    "command": "systemctl suspend"
+  }
+]
