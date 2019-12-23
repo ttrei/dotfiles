@@ -23,6 +23,7 @@ alias_files=(
     home
     work
     nixos
+    debian
 )
 for a in "${alias_files[@]}"; do
 	if [ -f $HOME/.bash_aliases/$a ]; then
