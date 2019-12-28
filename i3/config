@@ -132,6 +132,7 @@ bindcode $mod+Shift+35 move workspace to output right
 # Execute predefined tasks
 # 9=ESC
 bindcode ctrl+9 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
+bindcode $mod+9 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
 
 
 # Startup
