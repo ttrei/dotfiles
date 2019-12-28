@@ -1,17 +1,22 @@
 [
   {
-    "name": "Power off",
+    "name": "Shutdown",
     "confirm": true,
     "command": "systemctl poweroff"
   },
   {
-    "name": "Reboot",
+    "name": "Restart",
     "confirm": true,
     "command": "systemctl reboot"
   },
   {
-    "name": "Suspend",
+    "name": "Sleep",
     "confirm": true,
     "command": "systemctl suspend"
+  },
+  {
+    "name": "Log out",
+    "confirm": true,
+    "command": "i3-msg exit"
   }
 ]
