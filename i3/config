@@ -59,8 +59,8 @@ bindcode $mod+Shift+45 move up
 bindcode $mod+Shift+46 move right
 # split in horizontal/vertical orientation
 # 42 = g, 55 = v
-bindcode $mod+42 split h
-bindcode $mod+55 split v
+bindcode $mod+Shift+42 split h
+bindcode $mod+Shift+55 split v
 # 38 = a
 bindcode $mod+38 fullscreen
 # change container layout
