@@ -88,6 +88,7 @@ export HISTFILE=~/.bash_eternal_history
 # http://superuser.com/questions/20900/bash-history-loss
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 if [ -f $HOME/.bash_fzf ]; then
     . $HOME/.bash_fzf
