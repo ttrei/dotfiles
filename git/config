@@ -13,7 +13,7 @@
 [push]
     default = simple
 [pager]
-    log = less -+F
+    log = less -+F -S
 
 [alias]
     # show a commit in difftool (see http://stackoverflow.com/a/27963038)
