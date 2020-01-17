@@ -1,0 +1,4 @@
+# Complete unambiguously on first tab, then show completions
+set show-all-if-unmodified on
+# Replace common prefix with ellipsis
+set completion-prefix-display-length 2
