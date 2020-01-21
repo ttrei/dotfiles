@@ -1,4 +1,5 @@
 10:web
 20:dev
 70:virt
+95:upgrade
 99:tmp
