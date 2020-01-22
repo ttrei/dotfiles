@@ -11,10 +11,12 @@ function update_branch() {
     local branch="$1"
     local remote_branch="origin/$1"
     git checkout -q $branch
-    if ! $(git merge-base --is-ancestor $remote_branch $branch); then
-        echo -e "${GREEN}Pulling remote changes into '$branch' using 'git pull --rebase'${NC}"
-        git pull --rebase || exit 1
+    if $(git merge-base --is-ancestor $remote_branch $branch); then
+        # `remote_branch` already merged
+        return
     fi
+    echo -e "${GREEN}Pulling remote changes into '$branch' using 'git pull --rebase'${NC}"
+    git pull --rebase || exit 1
 }
 
 function merge_dependencies() {
@@ -30,16 +32,18 @@ function merge_dependencies() {
     for dep in "${deps[@]}"
     do
         update_branch $dep
-        if ! $(git merge-base --is-ancestor $dep $branch); then
-            echo -e "${GREEN}  merging '$dep' into '$branch'${NC}"
-            git checkout -q $branch
-            git merge --no-edit --rerere-autoupdate $dep
-            if [ $? -ne 0 ]; then
-                if local output=$(git rerere remaining) && [ -z "$output" ]; then
-                    git commit --no-edit
-                else
-                    exit 1
-                fi
+        if $(git merge-base --is-ancestor $dep $branch); then
+            # `dep` branch already merged
+            continue
+        fi
+        echo -e "${GREEN}  merging '$dep' into '$branch'${NC}"
+        git checkout -q $branch
+        git merge --no-edit --rerere-autoupdate $dep
+        if [ $? -ne 0 ]; then
+            if local output=$(git rerere remaining) && [ -z "$output" ]; then
+                git commit --no-edit
+            else
+                exit 1
             fi
         fi
     done
