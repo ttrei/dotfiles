@@ -1,1 +1,1 @@
-../bash/z/z.sh
+../terminal/z/z.sh
