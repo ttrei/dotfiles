@@ -1,4 +1,5 @@
 .deploy
+vim/bundle
 vim/pack
 bash/z
 bash/z.lua
