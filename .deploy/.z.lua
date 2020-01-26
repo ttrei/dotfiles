@@ -1,1 +1,1 @@
-../bash/z.lua/z.lua
+../terminal/z.lua/z.lua
