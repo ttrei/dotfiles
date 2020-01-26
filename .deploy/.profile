@@ -1,1 +1,1 @@
-../bash/profile
+../terminal/profile
