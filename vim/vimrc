@@ -16,6 +16,7 @@ set mouse=v
 " Ctrl+C copies visually selected text to X clipboard. Vim must be compiled
 " with +xterm_clipboard option (see :version).
 :vmap <C-C> "+y
+set clipboard+=unnamedplus
 
 " Show filename in terminal title
 set title
