@@ -1,1 +1,1 @@
-../bash/bashrc
+../terminal/bashrc
