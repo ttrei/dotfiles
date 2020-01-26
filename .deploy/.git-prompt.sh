@@ -1,1 +1,1 @@
-../bash/git-prompt.sh
+../terminal/git-prompt.sh
