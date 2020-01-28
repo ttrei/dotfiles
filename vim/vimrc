@@ -105,6 +105,10 @@ au BufWinEnter *.hpp set foldmethod=syntax
 " Try to fix vim-markdown plugin folding behavior
 let g:vim_markdown_folding_style_pythonic = 1
 
+" vim-table-mode
+let g:table_mode_corner_corner = '+'
+let g:table_mode_header_fillchar = '='
+
 " clang-format
 map <C-K> :pyf /home/reinis/.vim/clang-format.py<cr>
 
