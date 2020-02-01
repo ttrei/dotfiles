@@ -15,8 +15,8 @@ function update_branch() {
         # `remote_branch` already merged
         return
     fi
-    echo -e "${GREEN}Pulling remote changes into '$branch' using 'git pull --rebase'${NC}"
-    git pull --rebase || exit 1
+    echo -e "${GREEN}Pulling remote changes into '$branch' using 'git rebase'${NC}"
+    git rebase || exit 1
 }
 
 function merge_dependencies() {
@@ -54,6 +54,9 @@ if output=$(git status --porcelain) && [ -n "$output" ]; then
     exit 1
 fi
 current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+echo -e "${GREEN}Fetching remote changes${NC}"
+git fetch --all
 
 while read line; do
     [ -z "$line" ] && continue # skip empty lines
