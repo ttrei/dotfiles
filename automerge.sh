@@ -10,8 +10,8 @@ function update_branch() {
     [ -z "$1" ] && echo "update_branch() called with empty argument" && return
     local branch="$1"
     local remote_branch="origin/$1"
-    git checkout -q $branch
-    if $(git merge-base --is-ancestor $remote_branch $branch); then
+    git checkout -q "$branch"
+    if git merge-base --is-ancestor "$remote_branch" "$branch"; then
         # `remote_branch` already merged
         return
     fi
@@ -27,20 +27,21 @@ function merge_dependencies() {
 
     echo -e "${BGREEN}'$branch' depends on '$2'${NC}"
 
-    update_branch $branch
+    update_branch "$branch"
 
     for dep in "${deps[@]}"
     do
-        update_branch $dep
-        if $(git merge-base --is-ancestor $dep $branch); then
+        update_branch "$dep"
+        if git merge-base --is-ancestor "$dep" "$branch"; then
             # `dep` branch already merged
             continue
         fi
         echo -e "${GREEN}  merging '$dep' into '$branch'${NC}"
-        git checkout -q $branch
-        git merge --no-edit --rerere-autoupdate $dep
-        if [ $? -ne 0 ]; then
-            if local output=$(git rerere remaining) && [ -z "$output" ]; then
+        git checkout -q "$branch"
+        if ! git merge --no-edit --rerere-autoupdate "$dep"; then
+            local remaining
+            remaining=$(git rerere remaining)
+            if [ -z "$remaining" ]; then
                 git commit --no-edit
             else
                 exit 1
@@ -49,7 +50,8 @@ function merge_dependencies() {
     done
 }
 
-if output=$(git status --porcelain) && [ -n "$output" ]; then
+gitstatus=$(git status --porcelain)
+if [ -n "$gitstatus" ]; then
     echo -e "${RED}Working directory is not clean. Abort.${NC}"
     exit 1
 fi
@@ -58,13 +60,13 @@ current_branch=$(git rev-parse --abbrev-ref HEAD)
 echo -e "${GREEN}Fetching remote changes${NC}"
 git fetch --all
 
-while read line; do
+while read -r line; do
     [ -z "$line" ] && continue # skip empty lines
     [[ "$line" == \#* ]] && continue # skip comment lines
-    branch=$(echo $line | cut -d ':' -f1)
-    depstr=$(echo $line | cut -d ':' -f2)
-    merge_dependencies $branch $depstr
+    branch=$(echo "$line" | cut -d ':' -f1)
+    depstr=$(echo "$line" | cut -d ':' -f2)
+    merge_dependencies "$branch" "$depstr"
 done <branch-dependencies.txt
 
 echo -e "${GREEN}Returning to '$current_branch'${NC}"
-git checkout -q $current_branch
+git checkout -q "$current_branch"
