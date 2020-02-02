@@ -38,9 +38,10 @@ bindcode $mod+Shift+27 restart
 bindcode $mod+Shift+24 exit
 # 36 = Return
 bindcode $mod+36 exec --no-startup-id st
-# Toggle sound
-# 121 = media key 'mute'
-bindcode 121 exec pactl set-sink-mute 0 toggle
+# sound
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 # 22 = BackSpace, 70 = F4
 bindcode $mod+Shift+22 kill
 bindcode $mod+70 kill
