@@ -87,7 +87,7 @@ nnoremap <silent> \w :ArgWrap<CR>
 set formatoptions-=tc
 
 " fzf
-:nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-p> :Files<CR>
 
 " FileType-specific settings
 au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
