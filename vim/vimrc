@@ -86,11 +86,8 @@ nnoremap <silent> \w :ArgWrap<CR>
 " Disable automatic wrappping while typing
 set formatoptions-=tc
 
-" Numbertoggle
-:nnoremap <silent> <C-n> :set relativenumber!<cr>
-
 " fzf
-:nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-p> :Files<CR>
 
 " FileType-specific settings
 au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
@@ -172,3 +169,17 @@ vnoremap <silent># <ESC>:call VisualSearch('?')<CR>?<CR>
         normal! gV
         let @@=l:register
     endfunction
+
+" no numbers --> absolute line numbers --> relative line numbers + absolute for current line
+nnoremap <silent> <C-n> :call NumberToggle()<cr>
+
+    function! NumberToggle()
+      if(&number == 1 && &relativenumber == 1)
+        set norelativenumber
+        set nonumber
+      elseif(&number == 1 && &relativenumber == 0)
+        set relativenumber
+      elseif(&number == 0 && &relativenumber == 0)
+        set number
+      endif
+    endfunc
