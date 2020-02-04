@@ -2,7 +2,6 @@
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-BRED='\033[1;91m'
 BGREEN='\033[1;92m'
 NC='\033[0m' # No Color
 
@@ -23,7 +22,7 @@ function merge_dependencies() {
     [ -z "$1" ] && return
     [ -z "$2" ] && return
     local branch=$1
-    IFS=','; local deps=($2); unset IFS;
+    IFS=','; read -r -a deps <<< "$2"; unset IFS;
 
     echo -e "${BGREEN}'$branch' depends on '$2'${NC}"
 
