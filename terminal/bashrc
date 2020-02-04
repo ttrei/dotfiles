@@ -61,6 +61,10 @@ source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-ba
 git_branch="$Bld$Pur\$(__git_ps1)$RCol"
 PS1="[$user_host \W$git_branch]\$ "
 
+if [ -n "$START_CWD" ]; then
+    cd "$START_CWD"
+fi
+
 export REVIEW_BASE=master
 
 EDITOR=vim
