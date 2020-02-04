@@ -37,7 +37,7 @@ bindcode $mod+Shift+27 restart
 # 24 = q
 bindcode $mod+Shift+24 exit
 # 36 = Return
-bindcode $mod+36 exec --no-startup-id st
+bindcode $mod+36 exec --no-startup-id samecwd-terminal.sh
 # sound
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
