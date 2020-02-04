@@ -45,10 +45,22 @@ set cindent
 set nrformats=
 
 if exists('+colorcolumn')
-    set colorcolumn=100
+    set colorcolumn=80,100
 endif
 
-set textwidth=100
+set textwidth=80
+" Toggle textwidth between 80 and 100 and report the new value.
+" Useful when handling files with different conventions of where to break lines.
+nnoremap <silent> \tw :call ToggleTextWidth()<cr>:set textwidth<cr>
+    function! ToggleTextWidth()
+      if(&textwidth == 80)
+        set textwidth=100
+      elseif(&textwidth == 100)
+        set textwidth=80
+      else
+        set textwidth=80
+      endif
+    endfunc
 
 " GVim options
 set guioptions-=T " Remove toolbar
