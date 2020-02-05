@@ -62,7 +62,8 @@ git_branch="$Bld$Pur\$(__git_ps1)$RCol"
 PS1="[$user_host \W$git_branch]\$ "
 
 if [ -n "$START_CWD" ]; then
-    cd "$START_CWD"
+    cd "$START_CWD" || echo "Failed to cd to $START_CWD"
+    unset START_CWD
 fi
 
 export REVIEW_BASE=master
