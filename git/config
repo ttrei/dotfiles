@@ -16,6 +16,9 @@
     log = less -+F -S
 
 [alias]
+    # list aliases
+    alias = "!git config --get-regexp ^alias\\. | sort | sed -e 's/^alias\\.//' -e 's/\\ /\\ =\\ /' | grep -v ^'alias '"
+
     # show a commit in difftool (see http://stackoverflow.com/a/27963038)
     showtool = "!showci () { rev=${1:-HEAD}; git difftool -d $rev~1 $rev; }; showci $1"
 
