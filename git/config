@@ -4,6 +4,7 @@
 [core]
     editor = /usr/bin/vim
     whitespace = cr-at-eol
+    excludesfile = ~/.gitignore
 [diff]
     tool = meld
 [merge]
