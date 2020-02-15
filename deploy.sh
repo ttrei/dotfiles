@@ -5,3 +5,10 @@ SOURCEDIR="$SCRIPTDIR/.deploy"
 TARGETDIR="$HOME"
 
 cp -rL "$SOURCEDIR/." "$TARGETDIR"
+
+if [ -d "$TARGETDIR/.ssh" ]; then
+    chmod 700 "$TARGETDIR/.ssh"
+fi
+if [ -f "$TARGETDIR/.ssh/config" ]; then
+    chmod 600 "$TARGETDIR/.ssh/config"
+fi
