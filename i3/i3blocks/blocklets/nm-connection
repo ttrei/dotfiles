@@ -1,0 +1,12 @@
+#!/bin/sh
+CONN=$(nmcli -t connection show --active | awk -F ':' '{print $1}')
+
+if [ -n "$CONN" ]; then
+    echo "$CONN" # full_text
+    echo "$CONN" # short_text
+    echo "#00FF00"
+else
+    echo "Not connected"
+    echo "Not connected"
+    echo "#FF0000"
+fi
