@@ -1,5 +1,6 @@
 tags
 tags.lock
+tags.temp
 .git
 
 *.swp
