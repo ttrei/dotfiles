@@ -2,7 +2,7 @@
     email = reinis.taukulis@gmail.com
     name = Reinis Taukulis
 [core]
-    editor = /usr/bin/vim
+    editor = /usr/bin/env vim
     whitespace = cr-at-eol
     excludesfile = ~/.gitignore
 [diff]
