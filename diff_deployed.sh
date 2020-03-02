@@ -10,7 +10,7 @@ TARGETDIR="$HOME"
 find "$SOURCEDIR" -type l -print0 | while IFS= read -r -d '' link; do
     src=$(readlink -f "$link")
     target="$TARGETDIR/${link#$SOURCEDIR/}"
-    diff_cmd="diff -r $src $target"
+    diff_cmd="diff -x __pycache__ -r $src $target"
     diff_output="$($diff_cmd 2>&1)"
     if [ -n "$diff_output" ]; then
         echo -e "${BGREEN}$ $diff_cmd${NC}"
