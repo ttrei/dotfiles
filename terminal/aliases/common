@@ -17,6 +17,8 @@ alias duuuk='du -ks .[!.]* *| sort -n'
 alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 
 # git
+alias gof='git-checkout-fzf.sh'
+
 alias go='git checkout'
 __git_complete go _git_checkout
 
