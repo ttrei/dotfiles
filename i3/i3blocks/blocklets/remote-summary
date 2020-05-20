@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import json
+import socket
+import time
+from datetime import datetime, timezone
+
+DARKGRAY = "#444444"
+GREEN    = "#00FF00"
+RED      = "#FF0000"
+YELLOW   = "#FFFF00"
+
+def error(message):
+    return [{
+        u'markup': u'none',
+        u'full_text': message,
+        u'color': RED,
+    }]
+
+def get_summary(data, key):
+    if key not in data:
+        return error(f'{key} not found in for {hostname}')
+    return data[key]
+
+def summarize(hostname):
+    # Examine the data structure:
+    # jql . /var/tmp/remote-summary.json
+    path = '/var/tmp/remote-summary.json'
+    try:
+        f = open(path, 'r')
+        strdata = f.read()
+        f.close()
+    except IOError:
+        return error(f'Could not read {path}')
+
+    try:
+        data = json.loads(strdata)
+    except ValueError:
+        return error(f'{path} contains invalid JSON')
+
+    if hostname not in data:
+        return error(f'{hostname} not found in {path}')
+    data = data[hostname]
+    try:
+        upgrades = data['upgrades']
+        space = data['space']
+        memory = data['memory']
+    except KeyError as e:
+        return error(f'{hostname}: {e} not found in {path}')
+
+    output = {
+        'full_text': hostname,
+        'short_text': hostname[:1],
+        'color': GREEN,
+    }
+
+    upgrade_count = upgrades['count']
+    if upgrade_count > 0:
+        output['full_text'] += f' upgrades({upgrade_count})'
+        output['short_text'] += f' u({upgrade_count})'
+        output['color'] = YELLOW
+
+    low_space = []
+    for mountpoint in space:
+        size = space[mountpoint]['size']
+        available = space[mountpoint]['available']
+        if size == 0:
+            continue
+        percent = available / size * 100
+        if available < 1024 and percent < 5:
+            low_space.append(mountpoint)
+    if low_space:
+        low_space = ' '.join(low_space)
+        output['full_text'] += f' space({low_space})'
+        output['short_text'] += f' space'
+        output['color'] = YELLOW
+
+    memtotal = memory['total']
+    memavail = memory['available']
+    swaptotal = memory['swap_total']
+    swapfree = memory['swap_free']
+    percent = memavail / memtotal * 100
+    if percent < 5:
+        output['full_text'] += f' memory({memavail}M/{memtotal}M)'
+        output['short_text'] += f' mem'
+        output['color'] = YELLOW
+    if swaptotal > 0 and swapfree < swaptotal:
+        output['full_text'] += f' swapping({swaptotal - swapfree}M)'
+        output['short_text'] += f' swap'
+        output['color'] = YELLOW
+
+    mtime = datetime.fromisoformat(data['mtime'])
+    now = datetime.fromtimestamp(time.time(), tz=timezone.utc)
+    if (now - mtime).total_seconds() > 300:
+        output['color'] = DARKGRAY
+
+    return output
+
+class Args(object):
+    def add_argument(self, name, default='', arg_type=str):
+        val = default
+        if name in os.environ:
+            val = os.environ[name]
+            if arg_type == list:
+                val = val.split()
+        val = arg_type(val)
+        setattr(self, name.lower(), val)
+        return val
+
+args = Args()
+args.add_argument('HOSTNAME')
+
+output = summarize(args.hostname)
+print(json.dumps(output))

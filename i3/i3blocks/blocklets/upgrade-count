@@ -45,24 +45,10 @@ def get_upgrade_count(hostname):
         color = DARKGRAY
 
     return {
-        u'full_text': "%s: %d" % (data['host'], count),
-        u'short_text': "%s: %d" % (data['host'][:1], count),
+        u'full_text': "upgrades: %d" % count,
+        u'short_text': "upgr: %d" % count,
         u'color': color,
     }
 
-class Args(object):
-    def add_argument(self, name, default='', arg_type=str):
-        val = default
-        if name in os.environ:
-            val = os.environ[name]
-            if arg_type == list:
-                val = val.split()
-        val = arg_type(val)
-        setattr(self, name.lower(), val)
-        return val
-
-args = Args()
-args.add_argument('HOSTNAME', socket.gethostname())
-
-output = get_upgrade_count(args.hostname)
+output = get_upgrade_count(socket.gethostname())
 print(json.dumps(output))
