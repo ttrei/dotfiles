@@ -43,6 +43,10 @@ def summarize(hostname):
     if hostname not in data:
         return error(f'{hostname} not found in {path}')
     data = data[hostname]
+
+    if 'error' in data:
+        return error(f"{hostname}: {data['error']}")
+
     try:
         upgrades = data['upgrades']
         space = data['space']
