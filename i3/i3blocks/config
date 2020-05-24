@@ -32,17 +32,17 @@ markup=none
 interval=5
 format=json
 
-[upgrade-count]
+[remote-summary]
 HOSTNAME=mazais
 interval=5
 format=json
 
-[upgrade-count]
-HOSTNAME=reinis-pi
-interval=5
-format=json
+#[upgrade-count]
+#HOSTNAME=reinis-pi
+#interval=5
+#format=json
 
-[upgrade-count]
+[remote-summary]
 HOSTNAME=KODI
 interval=5
 format=json
