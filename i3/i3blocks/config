@@ -28,12 +28,13 @@ command=~/.config/i3blocks/blocklets/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-[upgrade-count]
+[remote-summary]
+HOSTNAME=mazais
 interval=5
 format=json
 
 [remote-summary]
-HOSTNAME=mazais
+HOSTNAME=KODI
 interval=5
 format=json
 
@@ -42,8 +43,7 @@ format=json
 #interval=5
 #format=json
 
-[remote-summary]
-HOSTNAME=KODI
+[upgrade-count]
 interval=5
 format=json
 
