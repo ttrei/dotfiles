@@ -1,6 +1,15 @@
-#!/bin/sh
-CONN=$(nmcli -t connection show --active | awk -F ':' '{print $1}')
+#!/usr/bin/env bash
 
+if [ -n "$BLOCK_BUTTON" ]; then
+    CONN=$(nmcli -t connection show --active | awk -F ':' '{print $1}')
+    if [ -n "$CONN" ]; then
+        sudo systemctl stop wg-quick.target
+    else
+        sudo systemctl start wg-quick.target
+    fi
+fi
+
+CONN=$(nmcli -t connection show --active | awk -F ':' '{print $1}')
 if [ -n "$CONN" ]; then
     echo "$CONN" # full_text
     echo "$CONN" # short_text
