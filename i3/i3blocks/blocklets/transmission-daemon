@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [ -n "$BLOCK_BUTTON" ]; then
+    # toggle the service
+    if systemctl status transmission-daemon-user.service > /dev/null; then
+        sudo systemctl stop transmission-daemon-user.service
+    else
+        sudo systemctl start transmission-daemon-user.service
+    fi
+fi
+
+echo "TORRENT" # full_text
+echo "T" # short_text
+
+if systemctl status transmission-daemon-user.service > /dev/null; then
+    echo "#00FF00"
+else
+    echo "#FF0000"
+fi
