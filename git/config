@@ -5,6 +5,8 @@
     editor = /usr/bin/env vim
     whitespace = cr-at-eol
     excludesfile = ~/.gitignore
+[pull]
+	rebase = true
 [diff]
     tool = meld
 [merge]
