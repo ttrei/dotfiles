@@ -2,8 +2,10 @@ home:master
 work:master
 debian:master
 nixos:master
+lenovo:master
 
 home-desktop-debian:home,debian
+home-lenovo-debian:home,lenovo,debian
 home-desktop-nixos:home,nixos
 home-desktop-nixos-vbox:home,nixos
 home-eeepc-nixos:home,nixos
