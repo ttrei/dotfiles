@@ -2,11 +2,13 @@ set guifont=Consolas\ 13
 
 set encoding=utf8
 set termguicolors
-set background=dark
+set background=light
 "https://github.com/vim/vim/issues/993#issuecomment-255651605
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let g:gruvbox_contrast_light="hard"
 colorscheme gruvbox
+
 
 " Do not create .netrwhist
 let g:netrw_dirhistmax = 0
