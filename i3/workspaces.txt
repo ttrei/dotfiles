@@ -1,5 +1,6 @@
 10:web
 20:dev
+23:debug
 70:virt
 71:ubuntu
 80:bitcoin
