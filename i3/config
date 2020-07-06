@@ -1,4 +1,5 @@
 focus_follows_mouse no
+mouse_warping none
 hide_edge_borders vertical
 
 # Urgency
