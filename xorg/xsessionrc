@@ -5,6 +5,8 @@ xset dpms 0 0 600 & # monitor power saving timeouts:
 xmodmap $HOME/.xmodmaprc &
 redshift &
 
+xrandr --output HDMI-1 --primary
+
 if [ -f "$HOME/.profile" ] ; then
     . $HOME/.profile
 fi
