@@ -1,6 +1,7 @@
 ! CapsLock (66) and RightWin (134) as Ctrl
 keycode 66 = Control_L
 keycode 134 = Control_R
+!keycode 108 = Control_R
 
 ! Left Control (37) as Meta (for emacs)
 !keycode 37 = Meta_L
