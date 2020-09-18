@@ -7,6 +7,9 @@ redshift &
 
 xrandr --output HDMI-1 --primary
 
+# Ensure that initial workspaces will be created on the display that we want
+xdotool mousemove --screen HDMI-1 960 540 &
+
 if [ -f "$HOME/.profile" ] ; then
     . $HOME/.profile
 fi
