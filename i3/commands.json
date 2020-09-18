@@ -15,6 +15,11 @@
     "command": "systemctl suspend"
   },
   {
+    "name": "Hibernate",
+    "confirm": true,
+    "command": "systemctl hibernate"
+  },
+  {
     "name": "Log out",
     "confirm": true,
     "command": "i3-msg exit"
