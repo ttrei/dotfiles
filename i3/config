@@ -141,7 +141,6 @@ bindcode $mod+67 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
 
 # Startup
 exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
-exec --no-startup-id i3-msg 'workspace 20:dev; exec st'
 
 # Assign programs to specific workspaces
 assign [class="Firefox"] 10:web
