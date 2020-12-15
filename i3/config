@@ -153,3 +153,4 @@ for_window [class="MPlayer"] floating enable
 for_window [class="Vlc"] floating enable
 for_window [instance="Godot_Engine"] floating enable
 for_window [title="matplotlib_float"] floating enable
+for_window [title="Investments"] floating enable
