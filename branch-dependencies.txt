@@ -3,6 +3,7 @@ work:master
 debian:master
 nixos:master
 lenovo:master
+tieto2:master
 
 home-desktop-debian:home,debian
 home-lenovo-debian:home,lenovo,debian
@@ -14,5 +15,7 @@ kodi:home-desktop-debian
 work-laptop-debian:work,debian
 work-centos5:work
 work-centos6:work
+
+tieto2-laptop-debian:tieto2,debian
 
 # home-pi:home,debian
