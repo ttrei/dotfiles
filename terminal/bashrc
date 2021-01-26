@@ -21,6 +21,8 @@ fi
 # git completion
 . /usr/share/bash-completion/completions/git
 
+eval "$(dircolors ~/.dircolors)"
+
 alias_files=(
     common
     home
