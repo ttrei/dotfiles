@@ -1,0 +1,7 @@
+# https://unix.stackexchange.com/a/94508
+#
+# Generate a file with all possible options
+# $ dircolors -p > ~/all.dircolors
+# In vim use the command `:set ft=dircolors` to preview the colors
+
+OTHER_WRITABLE 37;42 # dir that is other-writable (o+w) and not sticky
