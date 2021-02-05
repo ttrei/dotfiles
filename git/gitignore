@@ -2,4 +2,6 @@ tags
 tags.lock
 tags.temp
 
+.idea
+
 *.swp
