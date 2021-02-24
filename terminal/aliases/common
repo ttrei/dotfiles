@@ -18,6 +18,8 @@ alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 
 # git
 alias gof='git-checkout-fzf.sh'
+alias gofl='git-checkout-fzf.sh --local'
+alias gofr='git-checkout-fzf.sh --remote'
 
 alias go='git checkout'
 __git_complete go _git_checkout
