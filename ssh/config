@@ -1,2 +1,2 @@
-Host *
-    RemoteForward 127.0.0.1:3333 127.0.0.1:3333
+#Host *
+#    RemoteForward 127.0.0.1:3333 127.0.0.1:3333
