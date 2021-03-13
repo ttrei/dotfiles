@@ -3,4 +3,5 @@
 23:debug
 70:virt
 95:upgrade
+98:lorri
 99:tmp
