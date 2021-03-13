@@ -7,4 +7,5 @@
 90:steam
 91:factorio
 95:upgrade
+98:lorri
 99:tmp
