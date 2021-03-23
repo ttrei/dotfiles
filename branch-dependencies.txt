@@ -17,5 +17,6 @@ work-centos5:work
 work-centos6:work
 
 tieto2-laptop-debian:tieto2,debian
+tieto2-desktop-debian:tieto2,debian
 
 # home-pi:home,debian
