@@ -39,3 +39,16 @@ Xcursor.size: 16
 ! LightGrey + White
 *color7:  #7c6f64
 *color15: #3c3836
+
+
+Zutty.title:                   zutty
+Zutty.autoCopy:                true
+Zutty.font:                    sourcecodepro
+!Zutty.font:                    consola
+Zutty.fontsize:                15
+Zutty.fontpath:                /home/reinis/fonts:/usr/local/share/fonts:/usr/share/fonts
+Zutty.fg:                      #3c3836
+Zutty.bg:                      #f9f5d7
+Zutty.cr:                      #16a085
+Zutty.boldColors:              false
+!Zutty.altScroll:               true
