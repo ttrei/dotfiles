@@ -1,0 +1,29 @@
+! CapsLock (66) as Ctrl
+!keycode 66 = Control_L
+! RightWin (134) as Ctrl
+!keycode 134 = Control_R
+
+! Left Control (37) as Meta (for emacs)
+!keycode 37 = Meta_L
+
+! Left Alt (64) as Alt
+keycode 64 = Alt_L
+
+! Menu (135), PrintScreen (107) and ScrLock (78) as CapsLock
+!keycode 135 = Caps_Lock
+!keycode 107 = Caps_Lock
+!keycode 78 = Caps_Lock
+
+! Used as i3 Window Manager leader key
+clear mod1
+add mod1 = Alt_L
+
+!clear control
+!add control = Control_L Control_R
+
+!clear lock
+!add lock = Caps_Lock
+
+!clear mod4
+! Used as emacs leader key
+!add mod4 = Meta_L
