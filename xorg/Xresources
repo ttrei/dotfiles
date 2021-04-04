@@ -42,21 +42,20 @@ Xcursor.size: 16
 
 !!! Fonts
 !
-! Looks great but capital letters with diacritics ar vertiaclly shifted
+! Dejavu and Cascadia looks great but capital letters with diacritics are
+! vertiaclly shifted. `tree` output also is slightly messed up.
 !Zutty.font:                    DejavuSansMono
 !Zutty.fontsize:                14
-!
-! Looks great but capital letters with diacritics ar vertiaclly shifted
 !Zutty.font:                    CascadiaCode
 !Zutty.fontsize:                14
 !
-! Looks OK but vertical height is one pixel bigger
+! Looks OK but vertical height is one pixel bigger compared to the above
 !Zutty.font:                    sourcecodepro
 !Zutty.fontsize:                15
 
-! TODO: Investigate why Cascadia and Dejavu capital letters with diacritics get
-! shifted vertically in zutty. Probably will have to compare source code of
-! zutty and st. st doesn't shift those letters.
+! TODO: Investigate why Cascadia and Dejavu vertical positioning is wrong.
+! Probably will have to compare source code of zutty and st. st doesn't shift
+! those letters.
 
 Zutty.font:                    DejavuSansMono
 Zutty.fontsize:                14
