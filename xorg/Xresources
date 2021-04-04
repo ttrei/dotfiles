@@ -54,7 +54,7 @@ Xcursor.size: 16
 !Zutty.fontsize:                15
 
 ! TODO: Investigate why Cascadia and Dejavu vertical positioning is wrong.
-! Probably will have to compare source code of zutty and st. st doesn't shift
+! Probably will have to compare source code of zutty and st. st does not shift
 ! those letters.
 
 Zutty.font:                    DejavuSansMono
