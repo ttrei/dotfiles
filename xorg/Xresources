@@ -40,15 +40,29 @@ Xcursor.size: 16
 *color7:  #7c6f64
 *color15: #3c3836
 
+!!! Fonts
+!
+! Looks great but capital letters with diacritics ar vertiaclly shifted
+!Zutty.font:                    DejavuSansMono
+!Zutty.fontsize:                14
+!
+! Looks great but capital letters with diacritics ar vertiaclly shifted
+!Zutty.font:                    CascadiaCode
+!Zutty.fontsize:                14
+!
+! Looks OK but vertical height is one pixel bigger
+!Zutty.font:                    sourcecodepro
+!Zutty.fontsize:                15
 
-Zutty.title:                   zutty
-Zutty.autoCopy:                true
-Zutty.font:                    sourcecodepro
-!Zutty.font:                    consola
-Zutty.fontsize:                15
+! TODO: Investigate why Cascadia and Dejavu capital letters with diacritics get
+! shifted vertically in zutty. Probably will have to compare source code of
+! zutty and st. st doesn't shift those letters.
+
+Zutty.font:                    DejavuSansMono
+Zutty.fontsize:                14
+Zutty.autoCopy:                false
 Zutty.fontpath:                /home/reinis/fonts:/usr/local/share/fonts:/usr/share/fonts
 Zutty.fg:                      #3c3836
 Zutty.bg:                      #f9f5d7
 Zutty.cr:                      #16a085
-Zutty.boldColors:              false
 !Zutty.altScroll:               true
