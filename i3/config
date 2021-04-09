@@ -48,6 +48,8 @@ bindcode $mod+Shift+22 kill
 bindcode $mod+70 kill
 # 27 = r
 bindcode $mod+27 exec --no-startup-id dmenu_run
+# 16 = 7
+bindcode $mod+16 exec --no-startup-id rofi -show run
 # change focus
 # 43 = h; 44 = j; 45 = k; 46 = l
 bindcode $mod+43 focus left
@@ -86,11 +88,6 @@ bindcode $mod+24 focus parent
 ## rename current workspace
 # 52=z
 bindcode $mod+52 exec --no-startup-id i3-rename-current-workspace
-## create new workspace and switch to it
-# 16=7
-bindcode $mod+16 exec --no-startup-id i3-new-workspace
-## move container to a new workspace
-bindcode $mod+Shift+16 exec --no-startup-id i3-move-to-new-workspace
 
 ## switch to a predefined workspace / create new workspace
 # 32=o
