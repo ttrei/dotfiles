@@ -60,7 +60,7 @@ Xcursor.size: 16
 Zutty.font:                    DejavuSansMono
 Zutty.fontsize:                14
 Zutty.autoCopy:                false
-Zutty.fontpath:                /home/reinis/fonts:/usr/local/share/fonts:/usr/share/fonts
+Zutty.fontpath:                /usr/local/share/fonts:/usr/share/fonts
 Zutty.fg:                      #3c3836
 Zutty.bg:                      #f9f5d7
 Zutty.cr:                      #16a085
