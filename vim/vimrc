@@ -71,6 +71,11 @@ nnoremap <silent> \tw :call ToggleTextWidth()<cr>:set textwidth<cr>
       endif
     endfunc
 
+" Textwidth of specific file formats
+au BufWinEnter *.adoc set textwidth=100
+au BufWinEnter *.md set textwidth=100
+au BufWinEnter *.txt set textwidth=100
+
 " GVim options
 set guioptions-=T " Remove toolbar
 set guioptions-=m " Remove menubar
