@@ -1,0 +1,16 @@
+00:teams
+05:mail
+25:browser
+26:docs
+30:notes
+31:development
+35:idea
+36:pycharm
+37:vscode
+40:postman
+50:database
+70:windows
+80:daemons
+95:upgrade
+96:home
+99:temporary
