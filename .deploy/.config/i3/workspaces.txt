@@ -1,1 +1,1 @@
-../../../i3/workspaces.txt
+../../../i3/workspaces-home.txt
