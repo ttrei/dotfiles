@@ -1,0 +1,9 @@
+# 148 = calculator media key
+bindcode 148 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
+
+exec --no-startup-id i3-start kodi
+
+assign [class="Firefox"] firefox
+assign [class="Chromium"] chromium
+assign [class="Kodi"] kodi
+for_window [class="Spotify"] move to workspace spotify
