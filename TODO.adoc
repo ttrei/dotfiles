@@ -10,3 +10,8 @@ Start reducing diffs between branches.
 
 E.g., i3 configs can be included based on hostname:
 https://github.com/9ary/dotfiles/blob/master/i3/config#L167
+
+== Sway
+
+* Load Xresources on startup
+* IntelliJ needs `export _JAVA_AWT_WM_NONREPARENTING=1`
