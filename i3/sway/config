@@ -157,3 +157,6 @@ input type:pointer {
     accel_profile "flat"
     pointer_accel "1.0"
 }
+
+
+include config-home
