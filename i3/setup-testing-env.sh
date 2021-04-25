@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SETUP_TIME=3 # seconds
+SETUP_TIME=2 # seconds
 SETUP_TIMESTAMP_FILE=/tmp/doubleblind-testcase-setup-starttime.txt
 
 starttime=$(cat $SETUP_TIMESTAMP_FILE)
