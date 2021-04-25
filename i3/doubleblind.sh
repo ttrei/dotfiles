@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-N=1
+N=3
 
 # https://freesound.org/people/thisusernameis/sounds/426888/
 beep1="$HOME/Downloads/beep1.wav"

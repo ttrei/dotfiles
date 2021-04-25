@@ -8,9 +8,7 @@ targettime=$(echo "$starttime + $SETUP_TIME*1000" | bc)
 currenttime=$(date +%s%3N)
 timediff=$(echo "$targettime - $currenttime" | bc) # milliseconds
 if [[ "$timediff" -gt 0 ]]; then
-    echo "$timediff"
     sleeptime=$(echo "scale=3; $timediff/1000" | bc -l) # seconds
-    echo "$sleeptime"
     sleep "$sleeptime"
 fi
 
