@@ -55,7 +55,6 @@ while read -r line; do
     timediff=$(echo "$teardown_finish_target_time - $currenttime" | bc) # milliseconds
     if [[ "$timediff" -gt 0 ]]; then
         sleeptime=$(echo "scale=3; $timediff/1000" | bc -l) # seconds
-        echo "sleep $sleeptime"
         sleep "$sleeptime"
     fi
 
