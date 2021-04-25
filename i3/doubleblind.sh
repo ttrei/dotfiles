@@ -15,7 +15,7 @@ SEQUENCE_FILE=/var/tmp/doubleblind-sequence.txt
 rm -f "$SEQUENCE_FILE.tmp"
 for i in $(seq 1 $N)
 do
-    echo "startx" >> "$SEQUENCE_FILE.tmp"
+    echo "startx -- vt1" >> "$SEQUENCE_FILE.tmp"
     echo "sway" >> "$SEQUENCE_FILE.tmp"
 done
 
@@ -27,9 +27,11 @@ aplay -q "$beep1"
 
 while read -r line; do
     aplay -q "$beep3" &
-    echo "$line"
     sleep 1
-    #$line
+    echo "Executing $line at $(date +%FT%H-%M-%S)"
+    $line 2>/dev/null
+    echo "Returned from $line at $(date +%FT%H-%M-%S)"
+    sleep 1
     aplay -q "$beep2" &
     sleep 1
 done <"$SEQUENCE_FILE"
