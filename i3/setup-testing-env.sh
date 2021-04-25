@@ -1,14 +1,24 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-SETUP_TIME=5 # seconds
+SETUP_TIME=3 # seconds
 SETUP_TIMESTAMP_FILE=/tmp/doubleblind-testcase-setup-starttime.txt
 
-beep3="$HOME/Downloads/beep3.wav"
+starttime=$(cat $SETUP_TIMESTAMP_FILE)
+targettime=$(echo "$starttime + $SETUP_TIME*1000" | bc)
+currenttime=$(date +%s%3N)
+timediff=$(echo "$targettime - $currenttime" | bc) # milliseconds
+if [[ "$timediff" -gt 0 ]]; then
+    echo "$timediff"
+    sleeptime=$(echo "scale=3; $timediff/1000" | bc -l) # seconds
+    echo "$sleeptime"
+    sleep "$sleeptime"
+fi
 
-sleep 1
 windowid=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
-winid="$(printf "%u\n" $windowid 2>/dev/null)"
-i3-msg -q [id=\"$winid\"] "focus; fullscreen"
+winid="$(printf "%u\n" "$windowid" 2>/dev/null)"
+i3-msg -q [id="$winid"] "focus; fullscreen"
 
-aplay -q "$beep3" &
+# https://freesound.org/people/florianreichelt/sounds/459992/
+aplay -q "$HOME/Downloads/beep3.wav" &
+
 bash
