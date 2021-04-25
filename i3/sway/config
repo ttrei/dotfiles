@@ -158,5 +158,6 @@ input type:pointer {
     pointer_accel "1.0"
 }
 
+exec --no-startup-id i3-msg 'workspace 99:doubleblind; exec zutty -e /home/reinis/dotfiles/i3/setup-testing-env.sh'
 
 include config-home

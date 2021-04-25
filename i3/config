@@ -137,7 +137,9 @@ bindcode $mod+67 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
 
 
 # Startup
-exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
+#exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
+
+exec --no-startup-id i3-msg 'workspace 99:doubleblind; exec zutty -e /home/reinis/dotfiles/i3/setup-testing-env.sh'
 
 # Assign programs to specific workspaces
 assign [class="Bitcoin"] 80:bitcoin

@@ -23,15 +23,11 @@ cat "$SEQUENCE_FILE.tmp" | shuf > "$SEQUENCE_FILE"
 
 setup_start_time=$(date +%s%3N) # milliseconds since epoch
 
-aplay -q "$beep1"
-
 while read -r line; do
-    aplay -q "$beep3" &
-    sleep 1
+    aplay -q "$beep1" &
     echo "Executing $line at $(date +%FT%H-%M-%S)"
     $line 2>/dev/null
     echo "Returned from $line at $(date +%FT%H-%M-%S)"
-    sleep 1
     aplay -q "$beep2" &
     sleep 1
 done <"$SEQUENCE_FILE"
