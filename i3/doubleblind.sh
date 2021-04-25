@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-N=3
+N=8
 
 # https://freesound.org/people/thisusernameis/sounds/426888/
 beep1="$HOME/Downloads/beep1.wav"
@@ -13,11 +13,18 @@ SETUP_TIMESTAMP_FILE=/tmp/doubleblind-testcase-setup-starttime.txt
 
 # Generate the testing sequence
 rm -f "$SEQUENCE_FILE.tmp"
+# at least one of each type
+echo "i3" >> "$SEQUENCE_FILE.tmp"
+echo "sway" >> "$SEQUENCE_FILE.tmp"
+# for a total of N+2 entries
 for i in $(seq 1 $N)
 do
     echo "$i" > /dev/null # Shut up shellcheck
-    echo "i3" >> "$SEQUENCE_FILE.tmp"
-    echo "sway" >> "$SEQUENCE_FILE.tmp"
+    if [[ $((RANDOM % 2)) -eq 0 ]]; then
+        echo "i3" >> "$SEQUENCE_FILE.tmp"
+    else
+        echo "sway" >> "$SEQUENCE_FILE.tmp"
+    fi
 done
 shuf "$SEQUENCE_FILE.tmp" > "$SEQUENCE_FILE"
 
