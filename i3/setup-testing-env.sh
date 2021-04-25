@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+SETUP_TIME=5 # seconds
+SETUP_TIMESTAMP_FILE=/tmp/doubleblind-testcase-setup-starttime.txt
+
 beep3="$HOME/Downloads/beep3.wav"
 
 sleep 1
