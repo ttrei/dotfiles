@@ -18,12 +18,12 @@ function show_diff() {
 
     for dep in "${deps[@]}"
     do
-        command="git diff --stat $dep $branch -- $PATHSPEC"
+        command="git diff --stat --color $dep $branch -- $PATHSPEC"
         color_command="git diff --stat ${BBLUE}$dep${NC} ${BRED}$branch${NC} -- $PATHSPEC"
         diff_output="$($command 2>&1)"
         if [ -n "$diff_output" ]; then
             echo -e "$color_command"
-            $command
+            $command | grep -v "files changed" | grep -v "file changed"
         fi
     done
 }
