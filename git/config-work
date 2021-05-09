@@ -1,2 +1,4 @@
 [user]
     email = reinis.taukulis@tietoevry.com
+[core]
+    trustctime = false ; necessary on Windows to avoid false diffs when using IntelliJ IDEA
