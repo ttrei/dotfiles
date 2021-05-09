@@ -1,0 +1,2 @@
+EDITOR="/usr/bin/env vim"
+export EDITOR
