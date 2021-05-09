@@ -1,5 +1,4 @@
 [user]
-    email = reinis.taukulis@gmail.com
     name = Reinis Taukulis
 [core]
     editor = /usr/bin/env vim
@@ -48,3 +47,7 @@
     reviewall = !vim -p +\"tabdo Gdiff $REVIEW_BASE\" $(git files)
     reviewdiff = !REVIEW_BASE=HEAD git review
     reviewdiffall = !REVIEW_BASE=HEAD git reviewall
+
+[include]
+    path = ~/.config/git/config-home
+    path = ~/.config/git/config-work
