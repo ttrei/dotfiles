@@ -1,0 +1,38 @@
+[
+  {
+    "name": "KODI",
+    "command": "i3-start kodi"
+  },
+  {
+    "name": "Firefox",
+    "command": "i3-start firefox"
+  },
+  {
+    "name": "Chrome",
+    "command": "i3-start chromium"
+  },
+  {
+    "name": "Spotify",
+    "command": "i3-start spotify"
+  },
+  {
+    "name": "Log out",
+    "confirm": true,
+    "command": "i3-msg exit"
+  },
+  {
+    "name": "Shutdown",
+    "confirm": true,
+    "command": "systemctl poweroff"
+  },
+  {
+    "name": "Restart",
+    "confirm": true,
+    "command": "systemctl reboot"
+  },
+  {
+    "name": "Sleep",
+    "confirm": true,
+    "command": "systemctl suspend"
+  }
+]
