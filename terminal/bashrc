@@ -104,6 +104,10 @@ if [ -f $HOME/.bash_fzf ]; then
     . $HOME/.bash_fzf
 fi
 
+if [ -f $HOME/.bash_nixos ]; then
+    . $HOME/.bash_nixos
+fi
+
 # Jump-around script
 if [ -f $HOME/.z.lua ] && [ -x "$(command -v lua)" ]; then
     eval "$(lua $HOME/.z.lua --init bash enhanced)"
