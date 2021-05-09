@@ -1,4 +1,7 @@
 [user]
     email = reinis.taukulis@tietoevry.com
 [core]
-    trustctime = false ; necessary on Windows to avoid false diffs when using IntelliJ IDEA
+    ; Necessary on Windows to avoid rebase failures.
+    ; Probably caused by IntelliJ IDEA messing with file timestamps.
+    ; https://stackoverflow.com/a/5255710
+    trustctime = false
