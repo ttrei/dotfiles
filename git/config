@@ -33,8 +33,6 @@
 
     # pretty log
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cd%Cblue %an%Creset' --abbrev-commit --date=format:%Y-%m-%d
-    lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %<(50,trunc)%s' --abbrev-commit
-
     # don't show merges
     lgm = lg --first-parent -i --grep=merge --invert-grep
 
