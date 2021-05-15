@@ -7,8 +7,11 @@ BGREEN='\033[1;92m'
 BBLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
-[ -z "$1" ] && echo "Please specify the path that you want to diff" && exit 1
-PATHSPEC="$1"
+if [ -n "$1" ]; then
+    PATHSPEC="$@"
+else
+    PATHSPEC=". :!.deploy"
+fi
 
 function show_diff() {
     [ -z "$1" ] && return
