@@ -11,6 +11,7 @@
 50:database
 70:windows
 80:daemons
+90:audio
 95:upgrade
 96:home
 99:temporary
