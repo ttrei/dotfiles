@@ -15,7 +15,7 @@
 [rerere]
     enabled = true
 [push]
-    default = simple
+    default = upstream
 [pager]
     log = less -+F -S
 
