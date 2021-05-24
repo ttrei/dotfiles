@@ -5,9 +5,9 @@
     whitespace = cr-at-eol
     excludesfile = ~/.gitignore
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [pull]
-	rebase = true
+    rebase = true
 [diff]
     tool = meld
 [merge]
