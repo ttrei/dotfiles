@@ -123,10 +123,10 @@ set formatoptions-=tc
 nnoremap <silent> <C-p> :Files<CR>
 
 " FileType-specific settings
-" hmm, looks like thest are not picked up..
 au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
 au FileType vue setlocal shiftwidth=2 tabstop=2
+au FileType gitcommit setlocal foldmethod=syntax
 
 " Automatic foldmethod
 au BufWinEnter *.py set foldmethod=indent
