@@ -22,8 +22,11 @@ alias gof='git-checkout-fzf.sh'
 alias gofl='git-checkout-fzf.sh --local'
 alias gofr='git-checkout-fzf.sh --remote'
 
+alias gc='git commit'
+alias gca='git commit -a'
+alias gcm='git commit -m'
+alias gcam='git commit -am'
 alias gcj='git-commit-jira.sh'
-alias gcm='git commit -am'
 
 alias gd="git diff"
 alias gdc="git diff --cached"
@@ -35,12 +38,17 @@ alias gf='git fetch --all --prune'
 alias gst='git status'
 
 __git_complete go _git_checkout
-__git_complete gst _git_status
-__git_complete gm _git_merge
-__git_complete gr _git_rebase
+__git_complete gc _git_commit
+__git_complete gca _git_commit
+__git_complete gcm _git_commit
+__git_complete gcam _git_commit
+__git_complete gcj _git_commit
 __git_complete gd _git_diff
 __git_complete gdc _git_diff
 __git_complete gdd _git_difftool
+__git_complete gm _git_merge
+__git_complete gr _git_rebase
+__git_complete gst _git_status
 
 # Ag will take ignore rules from a global file
 alias ag='ag --path-to-ignore ~/.ignore'
