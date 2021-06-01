@@ -27,6 +27,7 @@ alias gca='git commit -a'
 alias gcm='git commit -m'
 alias gcam='git commit -am'
 alias gcj='git-commit-jira.sh'
+alias gcaj='git-commit-jira.sh -a'
 
 alias gd="git diff"
 alias gdc="git diff --cached"
@@ -43,6 +44,7 @@ __git_complete gca _git_commit
 __git_complete gcm _git_commit
 __git_complete gcam _git_commit
 __git_complete gcj _git_commit
+__git_complete gcaj _git_commit
 __git_complete gd _git_diff
 __git_complete gdc _git_diff
 __git_complete gdd _git_difftool
