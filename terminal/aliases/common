@@ -17,37 +17,30 @@ alias duuuk='du -ks .[!.]* *| sort -n'
 alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 
 # git
+alias go='git checkout'
 alias gof='git-checkout-fzf.sh'
 alias gofl='git-checkout-fzf.sh --local'
 alias gofr='git-checkout-fzf.sh --remote'
+
 alias gcj='git-commit-jira.sh'
 alias gcm='git commit -am'
-alias ga='gitk --all'
-alias ghm='gitk HEAD master'
-alias gf='git fetch --all --prune'
-alias gu='git-up'
-alias gh='git log -n1 --oneline --decorate'
-
-alias go='git checkout'
-__git_complete go _git_checkout
-
-alias gst='git status'
-__git_complete gst _git_status
 
 alias gd="git diff"
-__git_complete gd _git_diff
-
 alias gdc="git diff --cached"
-__git_complete gdc _git_diff
-
 alias gdd='git difftool -d'
-__git_complete gdd _git_difftool
 
 alias gm='git merge'
-__git_complete gm _git_merge
-
 alias gr='git rebase'
+alias gf='git fetch --all --prune'
+alias gst='git status'
+
+__git_complete go _git_checkout
+__git_complete gst _git_status
+__git_complete gm _git_merge
 __git_complete gr _git_rebase
+__git_complete gd _git_diff
+__git_complete gdc _git_diff
+__git_complete gdd _git_difftool
 
 # Ag will take ignore rules from a global file
 alias ag='ag --path-to-ignore ~/.ignore'
