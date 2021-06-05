@@ -1,0 +1,153 @@
+focus_follows_mouse no
+mouse_warping none
+hide_edge_borders vertical
+
+# Urgency
+client.urgent #2f343a #900000 #ffffff #900000
+
+# font for window titles
+font pango:DejaVu Sans Mono 10
+
+# don't break out of child containers when wrapping possible
+force_focus_wrapping yes
+
+bar {
+    status_command i3blocks
+}
+
+
+
+# Keybindings
+
+# NB! Avoid following combinations that steal useful terminal shortcuts:
+#   Alt+f; Alt+b; Alt+backspace; Alt+d; Alt+.
+
+# Modifier (Mod1 == left Alt)
+set $mod Mod1
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# reload the configuration file
+# 54 = c
+bindcode $mod+Shift+54 reload
+# restart i3
+# 27 = r
+bindcode $mod+Shift+27 restart
+# exit i3 (logs you out of your X session)
+# 24 = q
+bindcode $mod+Shift+24 exit
+# 36 = Return
+bindcode $mod+36 exec --no-startup-id samecwd-terminal.sh
+# sound
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+# 22 = BackSpace, 70 = F4
+bindcode $mod+Shift+22 kill
+bindcode $mod+70 kill
+# 27 = r
+bindcode $mod+27 exec --no-startup-id dmenu_run
+# 16 = 7
+bindcode $mod+16 exec --no-startup-id rofi -show run
+# change focus
+# 43 = h; 44 = j; 45 = k; 46 = l
+bindcode $mod+43 focus left
+bindcode $mod+44 focus down
+bindcode $mod+45 focus up
+bindcode $mod+46 focus right
+# move focused window
+bindcode $mod+Shift+43 move left
+bindcode $mod+Shift+44 move down
+bindcode $mod+Shift+45 move up
+bindcode $mod+Shift+46 move right
+# split in horizontal/vertical orientation
+# 42 = g, 55 = v
+bindcode $mod+Shift+42 split h
+bindcode $mod+Shift+55 split v
+# 38 = a
+bindcode $mod+38 fullscreen
+# change container layout
+# 25 = w, 26 = e, 39 = s
+bindcode $mod+25 layout tabbed
+bindcode $mod+26 layout default
+bindcode $mod+39 layout stacking
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# focus the parent/child container
+# 24 = q
+bindcode $mod+24 focus parent
+#bindcode $mod+d focus child
+
+
+
+# Workspaces
+
+## rename current workspace
+# 52=z
+bindcode $mod+52 exec --no-startup-id i3-rename-current-workspace
+
+## switch to a predefined workspace / create new workspace
+# 32=o
+bindcode $mod+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.txt
+bindcode $mod+Shift+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.txt move
+
+## switch to workspace
+# 30=u, 31=i
+# 33=p, 57=n
+# 58=m
+bindcode $mod+30 workspace 1
+bindcode $mod+31 workspace 2
+bindcode $mod+57 workspace next_on_output
+bindcode $mod+33 workspace prev_on_output
+bindcode $mod+58 workspace back_and_forth
+
+## move focused container to workspace
+bindcode $mod+Shift+30 move container to workspace 1
+bindcode $mod+Shift+31 move container to workspace 2
+bindcode $mod+Shift+57 move container to workspace next_on_output
+bindcode $mod+Shift+33 move container to workspace prev_on_output
+bindcode $mod+Shift+58 move container to workspace back_and_forth
+
+## move focused container to workspace and switch to that workspace
+bindcode $mod+Shift+Ctrl+30 move container to workspace 1; workspace 1
+bindcode $mod+Shift+Ctrl+31 move container to workspace 2; workspace 2
+bindcode $mod+Shift+Ctrl+57 move container to workspace next; workspace next_on_output
+bindcode $mod+Shift+Ctrl+33 move container to workspace prev; workspace prev_on_output
+bindcode $mod+Shift+Ctrl+58 move container to workspace back_and_forth; workspace back_and_forth
+
+# Outputs (screens)
+# 34=[, 35=]
+## switch to output
+bindcode $mod+34 focus output left
+bindcode $mod+35 focus output right
+## move workspace to output
+bindcode $mod+Shift+34 move workspace to output left
+bindcode $mod+Shift+35 move workspace to output right
+
+
+# Execute predefined tasks
+# 9=ESC
+# 67=F1
+bindcode ctrl+9 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
+bindcode $mod+9 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
+bindcode $mod+67 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
+
+
+# Startup
+
+# Assign programs to specific workspaces
+
+# Floating windows
+for_window [class="Anki"] floating enable
+for_window [class="Conky"] floating enable
+for_window [class="Gitk"] floating enable
+for_window [class="Meld"] floating enable
+for_window [class="mplayer"] floating enable
+for_window [class="MPlayer"] floating enable
+for_window [class="Vlc"] floating enable
+for_window [instance="Godot_Engine"] floating enable
+for_window [title="matplotlib_float"] floating enable
+for_window [title="Investments"] floating enable

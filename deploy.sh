@@ -17,3 +17,15 @@ fi
 if [ -f "$TARGETDIR/.ssh/config" ]; then
     chmod 600 "$TARGETDIR/.ssh/config"
 fi
+
+if [ -d "$TARGETDIR/.config/i3/config.d" ]; then
+    i3dir="$TARGETDIR/.config/i3"
+    cp "$i3dir/config.d/config" "$i3dir/config"
+
+    if test -n "$(find "$i3dir/config.d" -maxdepth 1 -name 'config-*' -print -quit)"
+    # https://stackoverflow.com/a/4264351/9124671
+    then
+        cat "$i3dir"/config.d/config-* >> "$i3dir/config"
+    fi
+
+fi
