@@ -1,0 +1,52 @@
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=~/.config/i3blocks/blocklets/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[disk]
+DIR=/
+interval=30
+
+[iface]
+color=#00FF00
+interval=10
+
+[nm-connection]
+label=VPN:
+interval=2
+
+[transmission-daemon]
+interval=2
+
+[volume-pulseaudio]
+interval=once
+signal=10
+
+[time]
+command=date '+%Y-%m-%d %H:%M'
+interval=5
