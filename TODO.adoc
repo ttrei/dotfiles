@@ -15,5 +15,4 @@ together in master.
 
 == Sway
 
-* Load Xresources on startup
 * IntelliJ needs `export _JAVA_AWT_WM_NONREPARENTING=1`
