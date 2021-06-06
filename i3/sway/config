@@ -162,3 +162,6 @@ input type:keyboard {
     xkb_layout "lv-reinis"
     xkb_variant "apostrophe"
 }
+
+include config-home
+include config-kodi
