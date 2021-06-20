@@ -1,5 +1,15 @@
 [
   {
+    "name": "One display",
+    "confirm": false,
+    "command": "manage-desktop-displays.sh one"
+  },
+  {
+    "name": "Two displays",
+    "confirm": false,
+    "command": "manage-desktop-displays.sh two"
+  },
+  {
     "name": "Shutdown",
     "confirm": true,
     "command": "systemctl poweroff"
