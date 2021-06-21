@@ -15,7 +15,7 @@ fi
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+	source /etc/bashrc
 fi
 
 # git completion
@@ -100,14 +100,6 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
-if [ -f $HOME/.bash_fzf ]; then
-    . $HOME/.bash_fzf
-fi
-
-if [ -f $HOME/.bash_nixos ]; then
-    . $HOME/.bash_nixos
-fi
-
 # Jump-around script
 if [ -f $HOME/.z.lua ] && [ -x "$(command -v lua)" ]; then
     eval "$(lua $HOME/.z.lua --init bash enhanced)"
@@ -116,7 +108,7 @@ if [ -f $HOME/.z.lua ] && [ -x "$(command -v lua)" ]; then
 elif [ -f $HOME/.z.sh ]; then
     echo "Cannot use z.lua because lua not available, falling back to z.sh"
     # Fallback to z.sh which is not as flexible, but better than nothing
-    . $HOME/.z.sh
+    source $HOME/.z.sh
 fi
 
 # Wrapper to get notifications over ssh after a long running command
@@ -160,10 +152,18 @@ ntf() {
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
+    source /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+    source /etc/bash_completion
   fi
+fi
+
+if [ -f $HOME/.bash_fzf ]; then
+    source $HOME/.bash_fzf
+fi
+
+if [ -f $HOME/.bash_nixos ]; then
+    source $HOME/.bash_nixos
 fi
 
 eval "$(direnv hook bash)"
