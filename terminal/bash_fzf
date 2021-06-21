@@ -1,6 +1,8 @@
-if [ "$(lsb_release -is)" == "Debian" ]; then
-    source /usr/share/doc/fzf/examples/key-bindings.bash
-    source /usr/share/doc/fzf/examples/completion.bash
+if [ -x "$(command -v fzf-share)" ]; then
+    # shellcheck source=/dev/null
+    source "$(fzf-share)/completion.bash"
+    # shellcheck source=/dev/null
+    source "$(fzf-share)/key-bindings.bash"
 fi
 
 # A lot of this was copied from https://github.com/junegunn/fzf/wiki/examples
@@ -13,25 +15,6 @@ alias fvim='vim -p $(fzf -m)'
 
 # search file contents
 alias ff='ag --hidden --nobreak --nonumbers --noheading --ignore .git . | fzf'
-
-# fcd - cd to selected directory
-fcd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-# fcda - including hidden directories
-fcda() {
-  local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
-}
-
-# fh - repeat history
-fh() {
-  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
-}
 
 # fzf enhancement for z.lua jump-around script
 function zf() {
