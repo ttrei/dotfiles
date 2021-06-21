@@ -1,3 +1,8 @@
+if [ "$(lsb_release -is)" == "Debian" ]; then
+    source /usr/share/doc/fzf/examples/key-bindings.bash
+    source /usr/share/doc/fzf/examples/completion.bash
+fi
+
 # A lot of this was copied from https://github.com/junegunn/fzf/wiki/examples
 
 # Use rg as fzf driver + list and follow symlinks + list hidden files
