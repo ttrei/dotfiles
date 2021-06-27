@@ -90,7 +90,7 @@ def summarize(hostname):
         output['full_text'] += f' memory({memavail}M/{memtotal}M)'
         output['short_text'] += f' mem'
         output['color'] = YELLOW
-    if swaptotal > 0 and swaptotal - swapfree > 200:
+    if swaptotal > 0 and swaptotal - swapfree > 1024:
         output['full_text'] += f' swapping({swaptotal - swapfree}M)'
         output['short_text'] += f' swap'
         output['color'] = YELLOW
