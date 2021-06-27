@@ -10,6 +10,10 @@ xrandr --output HDMI-1 --auto --output HDMI-2 --auto --primary --left-of HDMI-1
 # Ensure that initial workspaces will be created on the display that we want
 xdotool mousemove --screen HDMI-2 960 540 &
 
+if [ -f "/etc/profile" ] ; then
+    . /etc/profile
+fi
+
 if [ -f "$HOME/.profile" ] ; then
     . $HOME/.profile
 fi
