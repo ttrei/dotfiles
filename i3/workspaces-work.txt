@@ -9,6 +9,7 @@
 37:vscode
 40:postman
 50:database
+51:kafka
 70:windows
 80:daemons
 90:audio
