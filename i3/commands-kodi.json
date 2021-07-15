@@ -4,6 +4,16 @@
     "command": "i3-start kodi"
   },
   {
+    "name": "VPN stop",
+    "confirm": false,
+    "command": "vpn-stop.sh"
+  },
+  {
+    "name": "VPN start",
+    "confirm": false,
+    "command": "vpn-start.sh"
+  },
+  {
     "name": "Firefox",
     "command": "i3-start firefox"
   },
