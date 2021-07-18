@@ -36,8 +36,7 @@ interval=30
 color=#00FF00
 interval=10
 
-[nm-connection]
-label=VPN:
+[mullvad-vpn]
 interval=2
 
 [transmission-daemon]

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Not needed anymore - we start/stop vpn by calling a script
+#if [ -n "$BLOCK_BUTTON" ]; then
+#    CONN=$(nmcli -t connection show --active | grep wireguard | awk -F ':' '{print $1}')
+#    if [ -n "$CONN" ]; then
+#        sudo systemctl stop wg-quick.target
+#    else
+#        sudo systemctl start wg-quick.target
+#    fi
+#fi
+
+CONN=$(nmcli -t connection show --active | grep wireguard | awk -F ':' '{print $1}')
+if [ -n "$CONN" ]; then
+    echo "VPN: $CONN" # full_text
+    echo "VPN" # short_text
+    echo "#00FF00"
+else
+    echo "VPN: Not connected"
+    echo "VPN"
+    echo "#FF0000"
+fi
