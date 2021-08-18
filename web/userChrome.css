@@ -1,0 +1,16 @@
+/* Setup
+ *
+ * Create a 'chrome' directory in your profile and link to this file
+ * cd ~/.mozilla/firefox/<profile>
+ * mkdir chrome
+ * cd chrome
+ * ln -s ~/.config/userChrome.css
+ *
+ * about:config -> toolkit.legacyUserProfileCustomizations.stylesheets = true
+ * */
+
+
+/*  Remove top tabbar
+ *  https://support.mozilla.org/en-US/questions/1184674#answer-1028260
+ *  */
+#tabbrowser-tabs { visibility: collapse !important; }
