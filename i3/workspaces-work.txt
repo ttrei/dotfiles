@@ -3,10 +3,11 @@
 25:browser
 26:docs
 30:notes
-31:development
-35:idea
+31:dev
+32:idea
+33:vscode
+35:test
 36:pycharm
-37:vscode
 40:postman
 50:database
 51:kafka
