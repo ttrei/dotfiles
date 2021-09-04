@@ -1,5 +1,7 @@
 set guifont=Consolas\ 13
 
+let mapleader="\\"
+
 set encoding=utf8
 set termguicolors
 set background=light
@@ -64,7 +66,7 @@ endif
 set textwidth=80
 " Toggle textwidth between 80 and 100 and report the new value.
 " Useful when handling files with different conventions of where to break lines.
-nnoremap <silent> \tw :call ToggleTextWidth()<cr>:set textwidth<cr>
+nnoremap <silent> <Leader>tw :call ToggleTextWidth()<cr>:set textwidth<cr>
     function! ToggleTextWidth()
       if(&textwidth == 80)
         set textwidth=100
@@ -114,7 +116,7 @@ nnoremap <F8> <Esc>:set nofoldenable<CR>
 nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 
 " Wrap/unwrap elements such as function arguments, arrays etc.
-nnoremap <silent> \w :ArgWrap<CR>
+nnoremap <silent> <Leader>w :ArgWrap<CR>
 
 " Disable automatic wrappping while typing
 set formatoptions-=tc
@@ -170,9 +172,9 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 
 " Open and jump to the tagbar
-nnoremap \a :TagbarOpen fj<CR>
+nnoremap <Leader>a :TagbarOpen fj<CR>
 " Freeze/unfreeze tagbar
-nnoremap \f :TagbarTogglePause<CR>
+nnoremap <Leader>f :TagbarTogglePause<CR>
 " Close tagbar automatically (press 'c' while in tagbar to toggle)
 let g:tagbar_autoclose = 1
 
@@ -192,7 +194,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Exit visual mode and search in the previously selected range
-vnoremap \/ <Esc>/\%V
+vnoremap <Leader>/ <Esc>/\%V
 
 " Search for selection ('*' - forward; '#' - backward)
 vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
