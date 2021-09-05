@@ -17,7 +17,7 @@ export FZF_DEFAULT_COMMAND='rg --ignore-file ~/.ignore --files --follow --hidden
 alias fvim='vim -p $(fzf -m)'
 
 # search file contents
-alias ff='ag --hidden --nobreak --nonumbers --noheading --ignore .git . | fzf'
+alias ff='rg --hidden . | fzf'
 
 # fzf enhancement for z.lua jump-around script
 function zf() {
