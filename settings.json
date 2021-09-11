@@ -1,0 +1,4 @@
+{
+    "workbench.colorTheme": "Gruvbox Light Hard",
+    "zigLanguageClient.path": "zls",  // make sure zls is on your PATH
+}
