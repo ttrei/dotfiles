@@ -1,6 +1,6 @@
 {
     "workbench.colorTheme": "Gruvbox Light Hard",
-    "zigLanguageClient.path": "zls",
     "workbench.tree.indent": 12,
     "workbench.tree.renderIndentGuides": "always",
+    "zigLanguageClient.path": "zls"
 }
