@@ -63,7 +63,8 @@ HCol="$Blu"
 # Terminal prompt
 user_host="$Bld$UCol\W$RCol"
 source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
-git_branch="$Bld$Pur\$(__git_ps1)$RCol"
+git_branch='$(__git_ps1 " %s ")'
+git_branch="$Bld$Pur$git_branch$RCol"
 PS1="[$user_host$git_branch]\$ "
 
 if [ -n "$START_CWD" ]; then
