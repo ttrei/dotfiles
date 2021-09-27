@@ -61,11 +61,14 @@ fi
 # hostname color
 HCol="$Blu"
 # Terminal prompt
-user_host="$Bld$UCol\W$RCol"
+pwd='$PWD'
+user_host="$Bld$UCol$pwd$RCol"
+jobs="[\j jobs]"
 source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
-git_branch='$(__git_ps1 " %s ")'
+git_branch='$(__git_ps1 "%s")'
 git_branch="$Bld$Pur$git_branch$RCol"
-PS1="[$user_host$git_branch]\$ "
+prompt="$Bld$Yel\$$RCol"
+PS1="$user_host $jobs $git_branch\n$prompt "
 
 if [ -n "$START_CWD" ]; then
     cd "$START_CWD" || echo "Failed to cd to $START_CWD"
