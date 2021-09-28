@@ -67,7 +67,7 @@ jobs="[\j jobs]"
 source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
 git_branch='$(__git_ps1 "%s")'
 git_branch="$Bld$Pur$git_branch$RCol"
-prompt="$Bld$Yel\$$RCol"
+prompt="$Bld$Gre--> \$$RCol"
 PS1="$user_host $jobs $git_branch\n$prompt "
 
 if [ -n "$START_CWD" ]; then
