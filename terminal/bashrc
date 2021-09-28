@@ -69,7 +69,7 @@ source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-ba
 git_branch='$(__git_ps1 "%s")'
 git_branch="$Bld$Pur$git_branch$RCol"
 prompt="$Bld$Blu$Inv>>>\$$RCol"
-PS1="$user_host $jobs $git_branch\n$prompt "
+PS1="$user_host $git_branch $jobs\n$prompt "
 
 if [ -n "$START_CWD" ]; then
     cd "$START_CWD" || echo "Failed to cd to $START_CWD"
