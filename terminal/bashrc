@@ -57,18 +57,18 @@ Pur='\[\e[35m\]'  # Purple
 if [ $UID -eq "0" ];then
     UCol="$Red"
 else
-    UCol="$Gre$Inv"
+    UCol="$Blu"
 fi
 # hostname color
 HCol="$Blu"
 # Terminal prompt
 pwd='$PWD'
-user_host="$Bld$UCol$pwd$RCol"
+user_host="$Bld$UCol$Inv$pwd$RCol"
 jobs="[\j jobs]"
 source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
 git_branch='$(__git_ps1 "%s")'
 git_branch="$Bld$Pur$git_branch$RCol"
-prompt="$Bld$Gre$Inv>>>\$$RCol"
+prompt="$Bld$Blu$Inv>>>\$$RCol"
 PS1="$user_host $jobs $git_branch\n$prompt "
 
 if [ -n "$START_CWD" ]; then
