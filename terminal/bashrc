@@ -62,12 +62,19 @@ fi
 # hostname color
 HCol="$Blu"
 # Terminal prompt
+
 user_host="$Bld$UCol[\W]$RCol"
-jobs=" [\j]"
+
 source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
-git_branch='$(__git_ps1 " %s")'
+git_branch='$(__git_ps1 " %s ")'
 git_branch="$Bld$Pur$git_branch$RCol"
+
+# https://unix.stackexchange.com/a/446149/260131
+anyjobs() { [[ "$1" != 0 ]] && echo "[$1]"; }
+jobs='$(anyjobs \j)'
+
 prompt="$Bld$Blu\$$RCol"
+
 PS1="$user_host$git_branch$jobs$prompt "
 
 if [ -n "$START_CWD" ]; then
