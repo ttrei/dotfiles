@@ -49,6 +49,7 @@ Red='\[\e[31m\]'  # Red
 Gre='\[\e[32m\]'  # Green
 Yel='\[\e[33m\]'  # Yellow
 Blu='\[\e[34m\]'  # Light Blue
+Inv='\[\e[7m\]'  # Invert
 LGry='\[\e[97m\]' # Light Grey
 Pur='\[\e[35m\]'  # Purple
 
@@ -56,7 +57,7 @@ Pur='\[\e[35m\]'  # Purple
 if [ $UID -eq "0" ];then
     UCol="$Red"
 else
-    UCol="$Blu"
+    UCol="$Gre$Inv"
 fi
 # hostname color
 HCol="$Blu"
@@ -67,7 +68,7 @@ jobs="[\j jobs]"
 source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
 git_branch='$(__git_ps1 "%s")'
 git_branch="$Bld$Pur$git_branch$RCol"
-prompt="$Bld$Gre--> \$$RCol"
+prompt="$Bld$Gre$Inv>>>\$$RCol"
 PS1="$user_host $jobs $git_branch\n$prompt "
 
 if [ -n "$START_CWD" ]; then
