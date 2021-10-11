@@ -151,6 +151,7 @@ for_window [class="Vlc"] floating enable
 for_window [instance="Godot_Engine"] floating enable
 for_window [title="matplotlib_float"] floating enable
 for_window [title="Investments"] floating enable
+for_window [class="[pP]avucontrol"] floating enable
 
 # Disable mouse acceleration
 input type:pointer {
