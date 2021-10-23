@@ -22,6 +22,7 @@ syntax/start/vim-javascript https://github.com/pangloss/vim-javascript
 syntax/start/vim-markdown https://github.com/plasticboy/vim-markdown.git
 syntax/start/vim-nix https://github.com/LnL7/vim-nix.git
 syntax/start/xml.vim https://github.com/othree/xml.vim.git
+syntax/start/zig.vim https://github.com/ziglang/zig.vim.git
 
 themes/start/gruvbox https://github.com/morhetz/gruvbox.git
 themes/start/vim-airline-themes https://github.com/vim-airline/vim-airline-themes
