@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Inspiration: https://github.com/moustacheful/myrmidon
+
+[ -z "$1" ] && echo "Usage: i3-workspaces <workspaces.txt> [<mode>]" && exit 1
+
+workspaces=$(cat "$1")
+workspace=$(echo "$workspaces" | rofi -dmenu -matching fuzzy -i -p "Select workspace")
+[ -z "$workspace" ] && exit 1
+
+mode="$2"
+if [ "$mode" == "move" ]; then
+    i3-msg move container to workspace $workspace
+fi
+i3-msg workspace $workspace
