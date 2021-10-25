@@ -9,7 +9,7 @@ TARGETDIR="$HOME"
 # Ensure that after deployment we have only those directories that we need.
 rm -rf "$TARGETDIR/.vim"
 
-cp -rL "$SOURCEDIR/." "$TARGETDIR"
+cp -rL --remove-destination "$SOURCEDIR/." "$TARGETDIR"
 
 if [ -d "$TARGETDIR/.ssh" ]; then
     chmod 700 "$TARGETDIR/.ssh"
