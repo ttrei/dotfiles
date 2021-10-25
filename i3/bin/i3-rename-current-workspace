@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+WS_NAME=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['name'])"`
+
+if [ -x "$(command -v zenity)" ]
+then
+    newname=$(zenity --entry --text "New name:" --entry-text="${WS_NAME}" --title="Rename workspace")
+    if [ -n "$newname" ]
+    then
+        i3-msg rename workspace ${WS_NAME} to $newname
+    fi
+else
+    i3-input -F "rename workspace ${WS_NAME} to %s" -P "Rename workspace \"${WS_NAME}\" to: "
+fi

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+[ -z "$1" ] && echo "Usage: i3-start <command>" && exit 1
+
+cmd=$1
+pidfile="/var/tmp/${cmd}.pid"
+
+i3-msg workspace $cmd
+
+if [ -f $pidfile ]; then
+    pid=$(cat $pidfile)
+    pidcmd=$(ps -p $pid -o comm=)
+    if [ "$pidcmd" == "$cmd" ]; then
+        echo "$cmd already running with pid=$pid"
+        exit 0
+    fi
+fi
+
+$cmd &
+echo $! > $pidfile
