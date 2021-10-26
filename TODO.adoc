@@ -1,5 +1,9 @@
 = TODO
 
+== Migrate to home-manager
+
+Migration should be gradual.
+
 == One branch to rule them all
 
 Ideally there would be only one branch.
