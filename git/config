@@ -19,7 +19,6 @@
 
 [pager]
     diff = delta
-#    log = less -+F -S
     log = delta
     reflog = delta
     show = delta
@@ -30,18 +29,18 @@
 [delta]
     features = decorations
     syntax-theme = gruvbox-light
+    line-numbers = true
+    max-line-length = 500
 
 [delta "interactive"]
     keep-plus-minus-markers = true
 
 [delta "decorations"]
-    commit-decoration-style = blue ol
     commit-style = raw
-    file-style = omit
-    hunk-header-decoration-style = blue box
-    hunk-header-file-style = red
-    hunk-header-line-number-style = "#067a00"
-    hunk-header-style = file line-number syntax
+    file-style = blue auto bold
+    file-decoration-style = none
+    hunk-header-style = raw
+    hunk-header-decoration-style = none
 
 
 [alias]
