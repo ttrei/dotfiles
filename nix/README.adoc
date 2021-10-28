@@ -1,0 +1,4 @@
+= Nixos
+
+Configuration was imported from `ssh://reinis@taukulis.lv:/home/reinis/gitrepos/nixos.git`.
+State of all branches of that repository is recorded in `nixos-git-branches` directory.
