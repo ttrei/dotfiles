@@ -1,3 +1,5 @@
+vim="nvim"
+
 LOCAL_NIXPKGS="${HOME}/nixpkgs"
 SSH_CONFIG_FILE="${HOME}/nix-ssh-config/config"
 OVERLAYS="${HOME}/nixos/overlays"

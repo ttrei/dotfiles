@@ -1,2 +1,2 @@
-EDITOR="/usr/bin/env vim"
+EDITOR="/usr/bin/env nvim"
 export EDITOR
