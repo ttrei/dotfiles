@@ -55,15 +55,15 @@
     EndSection
   '';
 
-  services.redshift = {
-      enable = true;
-      latitude = "56.948889";
-      longitude = "24.106389";
-      temperature = {
-          day = 5500;
-          night = 3700;
-      };
-  };
+  # services.redshift = {
+  #     enable = true;
+  #     latitude = "56.948889";
+  #     longitude = "24.106389";
+  #     temperature = {
+  #         day = 5500;
+  #         night = 3700;
+  #     };
+  # };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
