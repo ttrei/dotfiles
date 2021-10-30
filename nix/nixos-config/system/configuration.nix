@@ -54,6 +54,8 @@
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhpo7VxrrMzX3b8QZJpyApti/0ujjZZP7GdIF+uMc+ymr783Yry4eOgCJTe17PUgz5yCgxFsWUIA7ZASU8Efau2Th/OqbN0w/kj4x2vEPv6Fp8qAv+BEbeKHtBtrRw8CbZe247No+HA6V5W/hJkdy9XWOTQDP8WUUCTtNoX9XVd/+b7AhGf/FP2RuhA52CqsSh9wGVXmIrWONWRaYSyRZgsE/RKjJxm4DogBjIB8tJSAvSfC9c7s/4Zi5JQPQYIk1V48sEyA0LX77wWpe7MLJ4NbYFQSgX525cCkZJb8v2EnDHJmFj9ZS+HxfucmOijVNNuNVKeBjS8GMtQtIr8pK3 reinis@home-desktop-debian"
     ];
+    # mkpasswd -m sha-512
+    hashedPassword = "$6$Cg9okSaCqojkhWfc$/EOP6PeEaL5DPnjjNtG7k7.80O5X8Sc4Q2qiTQzS1n6vn.DTp3fI5dafofJzbU/MwFTnroSMg3CT8towxuUwG.";
   };
 
   # List packages installed in system profile. To search, run:
