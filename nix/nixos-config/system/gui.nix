@@ -33,10 +33,10 @@
     layout = "lv";
     xkbVariant = "apostrophe";
 
-    displayManager.lightdm = {
-      enable = true;
+    displayManager = {
       autoLogin.enable = true;
       autoLogin.user = "reinis";
+      lightdm.enable = true;
     };
 
     windowManager.i3.enable = true;
@@ -70,17 +70,11 @@
 
   # Extra fonts
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     fonts = with pkgs; [
       vistafonts
       source-code-pro
     ];
   };
 
-  nixpkgs.config = {
-      firefox = {
-          enableAdobeFlash = false;
-          icedtea = true;
-      };
-  };
 }
