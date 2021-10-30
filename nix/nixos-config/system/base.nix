@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     ag
     clang-tools
+    delta
     encfs
     file
     fzf
