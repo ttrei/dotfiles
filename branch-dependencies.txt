@@ -8,7 +8,6 @@ tieto2:master
 home-desktop-debian:home,debian
 home-lenovo-debian:home,lenovo,debian
 home-desktop-nixos:home,nixos
-home-desktop-nixos-vbox:home,nixos
 home-eeepc-nixos:home,nixos
 kodi:home-desktop-debian
 
