@@ -1,5 +1,5 @@
 self: super:
 {
-  st = super.callPackage pkgs/st-lukesmith { };
+  # st = super.callPackage pkgs/st-lukesmith { };
   zutty = super.callPackage pkgs/zutty { };
 }

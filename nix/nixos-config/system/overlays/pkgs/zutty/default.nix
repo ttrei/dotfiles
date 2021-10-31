@@ -1,5 +1,7 @@
 {
+  lib,
   stdenv,
+  fetchgit,
   wafHook,
   pkg-config,
   freetype,
@@ -8,16 +10,14 @@
   xorg
 }:
 
-with stdenv.lib;
-
 stdenv.mkDerivation rec {
   pname = "zutty";
   version = "0.8.0";
 
   src = fetchgit {
     url = "https://github.com/tomszilagyi/zutty.git";
-    rev = "e2a59d5521775042eda2fa64bfc847fc388df6c2";
-    sha256 = "16kn6rbpd327bl3d4m3k4pc8qzndb1c07sndsprr25mhp3lcmxcn";
+    rev = "0e88a1072616fb214bc442dd238c3119e61c7e0b";
+    sha256 = "17qh8ll70pl7i2wzajdap2f3y8srqpshdxy2x4bni2cgyvbqwk39";
     fetchSubmodules = false;
   };
 
