@@ -35,6 +35,7 @@
     unzip
     wget
     zip
+    zutty
   ];
 
   programs.bash.enableCompletion = true;
