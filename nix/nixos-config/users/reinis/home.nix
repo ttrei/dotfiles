@@ -28,9 +28,11 @@
 
   programs.bash = {
     enable = true;
-    initExtra = ''
-      . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-    '';
+    # initExtra = ''
+    #   # This is probably needed if we want to add extra env variables
+    #   # https://discourse.nixos.org/t/home-manager-doesnt-seem-to-recognize-sessionvariables/8488/7
+    #   . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    # '';
     profileExtra = ''
       source ~/.profile.legacy
     '';
