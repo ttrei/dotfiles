@@ -6,6 +6,13 @@ directory.
 
 == todo
 
+=== Make sure that on login .bashrc is sourced only once
+
+== done
+
 === NixOS doesn't load bash profile
 
 `.profile` adjusts PATH to include `~/bin` which is important for us.
+
+My solution is to source the "legacy" config files using `profileExtra` and `bashrcExtra`.
+Also needed to add `~/.xprofile` that loads `~/.profile` explicitly on i3 login.
