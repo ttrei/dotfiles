@@ -1,0 +1,7 @@
+if [ -f "$HOME/.xmodmaprc" ] ; then
+    . $HOME/.xmodmaprc
+fi
+
+if [ -f "$HOME/.xsessionrc" ] ; then
+    . $HOME/.xsessionrc
+fi

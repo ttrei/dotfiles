@@ -1,1 +1,3 @@
-xmodmap $HOME/.xmodmaprc
+if [ -f "$HOME/.xmodmaprc" ] ; then
+    . $HOME/.xmodmaprc
+fi
