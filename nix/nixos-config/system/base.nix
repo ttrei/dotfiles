@@ -6,6 +6,7 @@
     clang-tools
     delta
     encfs
+    fd
     file
     fzf
     gitAndTools.gitFull
