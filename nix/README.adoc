@@ -6,9 +6,9 @@ directory.
 
 == todo
 
-=== Make sure that on login .bashrc is sourced only once
-
 == done
+
+=== Make sure that on login .bashrc is sourced only once
 
 === NixOS doesn't load bash profile
 
