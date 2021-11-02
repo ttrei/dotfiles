@@ -1,3 +1,10 @@
+# Get built-in functions such as __git_complete
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    source /usr/share/bash-completion/completions/git
+elif [ -f $HOME/.nix-profile/share/bash-completion/completions/git ]; then
+    source $HOME/.nix-profile/share/bash-completion/completions/git
+fi
+
 # Safe rm
 alias rm='rm --preserve-root'
 
