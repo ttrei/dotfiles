@@ -1,7 +1,7 @@
 [user]
     name = Reinis Taukulis
 [core]
-    editor = /usr/bin/env vim
+    editor = /usr/bin/env nvim
     whitespace = cr-at-eol
     excludesfile = ~/.gitignore
 [init]
