@@ -20,6 +20,7 @@
   home.stateVersion = "21.03";
 
   home.packages = with pkgs; [
+    git
     git-crypt
   ];
 
