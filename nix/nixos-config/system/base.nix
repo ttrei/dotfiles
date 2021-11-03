@@ -5,6 +5,7 @@
     ag
     clang-tools
     delta
+    direnv
     encfs
     fd
     file
