@@ -1,5 +1,12 @@
 = TODO
 
+== Always deploy the branch intended for given host
+
+Read the intended branch name from a file under `/var/tmp`.
+This way we can always stay on master.
+
+`diff_deployed.sh` should also diff against the intended branch.
+
 == Migrate to home-manager
 
 Migration should be gradual.
