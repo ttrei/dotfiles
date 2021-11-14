@@ -1,11 +1,13 @@
+05:notes
 10:web
+15:doc
 20:dev
-23:debug
+21:vscode
 70:virt
 71:ubuntu
-80:bitcoin
+72:nixos
 90:steam
 91:factorio
 95:upgrade
-98:lorri
+98:daemons
 99:tmp
