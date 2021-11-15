@@ -1,0 +1,7 @@
+= README
+
+I use https://github.com/altdesktop/i3ipc-python to create workspaces.
+
+Here are some resources about i3 workspace management:
+* https://github.com/swaywm/sway/pull/3022
+* https://github.com/swaywm/sway/issues/1005
