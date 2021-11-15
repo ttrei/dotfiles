@@ -18,6 +18,7 @@
     mnemosyne
     neovim
     picard
+    python3Packages.i3ipc
     st
     thunderbird
     transmission_gtk
