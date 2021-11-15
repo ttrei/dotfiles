@@ -1,0 +1,1 @@
+../../i3/workspace-scripts/workspace-notes.py
