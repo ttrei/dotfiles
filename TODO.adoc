@@ -1,5 +1,7 @@
 = TODO
 
+== script for rebasing onto remote tracking branch
+
 == Always deploy the branch intended for given host
 
 Read the intended branch name from a file under `/var/tmp`.
