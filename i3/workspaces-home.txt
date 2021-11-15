@@ -2,7 +2,8 @@
 10:web
 15:doc
 20:dev
-21:vscode
+21:zig
+25:vscode
 70:virt
 71:ubuntu
 72:nixos
