@@ -1,5 +1,7 @@
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
+    PATH="$HOME/bin/i3:$PATH"
+    PATH="$HOME/bin/i3/workspace-scripts:$PATH"
 fi
 
 if [ -d "$HOME/.local/bin" ]; then
