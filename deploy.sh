@@ -9,6 +9,8 @@ TARGETDIR="$HOME"
 # Ensure that after deployment we have only those directories that we need.
 rm -rf "$TARGETDIR/.vim"
 
+rm -rf "$TARGETDIR/bin/i3/workspace-scripts"
+
 cp -rL --remove-destination "$SOURCEDIR/." "$TARGETDIR"
 
 if [ -d "$TARGETDIR/.ssh" ]; then
