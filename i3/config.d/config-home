@@ -1,5 +1,5 @@
-exec --no-startup-id i3-msg 'exec workspace-home-notes.py'
-exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
+# exec --no-startup-id i3-msg 'exec workspace-home-notes.py'
+# exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
 
 assign [class="Bitcoin"] 80:bitcoin
 assign [class="Steam"] 90:steam
