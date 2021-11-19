@@ -4,10 +4,10 @@
 26:docs
 30:notes
 31:dev
-32:idea
-33:vscode
-35:test
-36:pycharm
+35:idea
+36:vscode
+37:pycharm
+38:log
 40:postman
 50:database
 51:kafka

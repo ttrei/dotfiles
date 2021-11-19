@@ -77,11 +77,11 @@ i3.command("move container to workspace 31:dev")
 
 Popen(["idea"])
 time.sleep(3)
-i3.command("move container to workspace 32:idea")
+i3.command("move container to workspace 35:idea")
 
 Popen(["pycharm"])
 time.sleep(3)
-i3.command("move container to workspace 36:pycharm")
+i3.command("move container to workspace 37:pycharm")
 
 
 # All done
