@@ -23,6 +23,7 @@
     thunderbird
     transmission_gtk
     vlc
+    xbindkeys
     xfce.terminal
     xorg.xev
     xorg.xmodmap
