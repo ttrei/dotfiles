@@ -1,5 +1,5 @@
 05:notes
-10:web
+10:browser
 15:doc
 20:dev
 21:zig
