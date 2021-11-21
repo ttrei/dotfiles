@@ -4,8 +4,6 @@ xset dpms 0 0 600 & # monitor power saving timeouts:
 
 xmodmap $HOME/.xmodmaprc &
 
-xbindkeys &
-
 redshift &
 
 xrandr --output HDMI-1 --auto --output HDMI-2 --auto --primary --left-of HDMI-1
@@ -20,3 +18,5 @@ fi
 if [ -f "$HOME/.profile" ] ; then
     . $HOME/.profile
 fi
+
+xbindkeys &
