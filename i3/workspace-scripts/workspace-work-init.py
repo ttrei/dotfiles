@@ -84,5 +84,11 @@ time.sleep(3)
 i3.command("move container to workspace 37:pycharm")
 
 
+# Browser
+Popen(["firefox"])
+time.sleep(3)
+i3.command("move container to workspace 25:browser")
+
+
 # All done
 i3.command("workspace 80:daemons")
