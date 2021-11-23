@@ -15,7 +15,7 @@ path = os.path.join(os.environ.get("HOME"), "dev", "exploration", "zig")
 os.chdir(path)
 
 Popen(["zutty"])
-time.sleep(0.1)
+time.sleep(0.2)
 i3.command("move container to workspace 21:zig")
 
 book = "/media/storage-new/Skiena-The_Algorithm_Design_Manual-2020.pdf"
