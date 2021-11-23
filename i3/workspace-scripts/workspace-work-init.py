@@ -26,7 +26,7 @@ Popen([
     "--config",
     "/etc/openvpn/client/work.conf",
 ])
-time.sleep(0.1)
+time.sleep(0.2)
 i3.command("move container to workspace 80:daemons")
 
 
@@ -37,7 +37,7 @@ Popen([
     "lorri",
     "daemon",
 ])
-time.sleep(0.1)
+time.sleep(0.2)
 i3.command("move container to workspace 80:daemons")
 
 
@@ -46,7 +46,7 @@ path = os.path.join(os.environ.get("HOME"), "dev", "doc")
 os.chdir(path)
 
 Popen(["zutty"])
-time.sleep(0.1)
+time.sleep(0.2)
 i3.command("move container to workspace 30:notes")
 
 path = os.path.join(os.environ.get("HOME"), "dev", "doc", "modules", "ROOT")
@@ -60,7 +60,7 @@ Popen([
     "pages/done.adoc",
     "pages/log.adoc"
 ])
-time.sleep(0.1)
+time.sleep(0.2)
 i3.command("move container to workspace 30:notes")
 
 
@@ -69,10 +69,10 @@ path = os.path.join(os.environ.get("HOME"), "ips", "core")
 os.chdir(path)
 
 Popen(["zutty"])
-time.sleep(0.1)
+time.sleep(0.2)
 i3.command("move container to workspace 31:dev")
 Popen(["zutty"])
-time.sleep(0.1)
+time.sleep(0.2)
 i3.command("move container to workspace 31:dev")
 
 Popen(["idea"])
