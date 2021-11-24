@@ -13,7 +13,7 @@ i3 = Connection()
 #i3.command("workspace 000:spawn")
 
 Popen(["firefox"])
-time.sleep(1.0)
+time.sleep(3.0)
 i3.command("move --no-auto-back-and-forth container to workspace 10:browser")
 
 #i3.command("workspace back_and_forth")
