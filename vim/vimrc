@@ -136,6 +136,7 @@ au BufWinEnter *.c set foldmethod=syntax
 au BufWinEnter *.h set foldmethod=syntax
 au BufWinEnter *.cpp set foldmethod=syntax
 au BufWinEnter *.hpp set foldmethod=syntax
+au BufWinEnter *.zig set foldmethod=syntax
 au BufWinEnter *.js set  shiftwidth=2 foldmethod=indent tabstop=2
 au BufWinEnter *.json set shiftwidth=2 foldmethod=indent tabstop=2
 
