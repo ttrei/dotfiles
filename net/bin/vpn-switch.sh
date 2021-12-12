@@ -11,8 +11,8 @@ die() {
     exit 1
 }
 
-OLD_SERVER=$(systemctl list-units --type=service --state=active \
-             | grep wg-quick | awk -F '@' '{print $2}' | awk -F '.' '{print $1}')
+OLD_SERVER=$(systemctl list-units --type=service | grep wg-quick |\
+                awk -F '@' '{print $2}' | awk -F '.' '{print $1}')
 if [ -z "$OLD_SERVER" ]; then
     echo "Could not find current active Mullvad server"
     exit 1
@@ -33,6 +33,7 @@ else
     NEW_SERVER=$(printf '%s\n' "${servers[@]}" |\
         rofi -dmenu -matching fuzzy -i -p "Choose VPN server" | cut -f1 -d" ")
 fi
+NEW_SERVER="mullvad-$NEW_SERVER"
 
 TORRENT_SERVICE="transmission-daemon-user.service"
 WIREGUARD_TARGET="wg-quick.target"
