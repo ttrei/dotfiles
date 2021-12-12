@@ -40,6 +40,9 @@ WIREGUARD_TARGET="wg-quick.target"
 sudo systemctl stop "$TORRENT_SERVICE"
 sudo systemctl stop "$WIREGUARD_TARGET"
 
+# NOTE: Not sure the sleep is necessary.
+#       I'm trying ensure the old service is stopped.
+#       Need to perform some experiments.
 sleep 5
 for s in /etc/systemd/system/wg-quick.target.wants/*
 do
