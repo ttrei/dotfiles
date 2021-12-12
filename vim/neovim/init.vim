@@ -2,6 +2,7 @@ set runtimepath+=~/.vim,~/.vim/after
 set packpath+=~/.vim
 source ~/.vimrc
 
+" https://github.com/neovim/nvim-lspconfig#keybindings-and-completion
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
