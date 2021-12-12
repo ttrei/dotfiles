@@ -11,12 +11,12 @@ die() {
     exit 1
 }
 
-OLD_SERVER=$(systemctl list-units --type=service | grep wg-quick |\
-                awk -F '@' '{print $2}' | awk -F '.' '{print $1}')
-if [ -z "$OLD_SERVER" ]; then
-    echo "Could not find current active Mullvad server"
-    exit 1
-fi
+# OLD_SERVER=$(systemctl list-units --type=service | grep wg-quick |\
+#                 awk -F '@' '{print $2}' | awk -F '.' '{print $1}')
+# if [ -z "$OLD_SERVER" ]; then
+#     echo "Could not find current active Mullvad server"
+#     exit 1
+# fi
 
 # Inspired by https://mullvad.net/media/files/mullvad-wg.sh
 RESPONSE="$(curl -LsS https://api.mullvad.net/public/relays/wireguard/v1/)" || die "Unable to connect to Mullvad API."
@@ -33,7 +33,6 @@ else
     NEW_SERVER=$(printf '%s\n' "${servers[@]}" |\
         rofi -dmenu -matching fuzzy -i -p "Choose VPN server" | cut -f1 -d" ")
 fi
-NEW_SERVER="mullvad-$NEW_SERVER"
 
 TORRENT_SERVICE="transmission-daemon-user.service"
 WIREGUARD_TARGET="wg-quick.target"
@@ -41,8 +40,13 @@ WIREGUARD_TARGET="wg-quick.target"
 sudo systemctl stop "$TORRENT_SERVICE"
 sudo systemctl stop "$WIREGUARD_TARGET"
 
-sudo systemctl disable "wg-quick@${OLD_SERVER}.service"
-sudo systemctl enable "wg-quick@${NEW_SERVER}.service"
+sleep 5
+for s in /etc/systemd/system/wg-quick.target.wants/*
+do
+    service=$(basename $s)
+    sudo systemctl disable "$service"
+done
+sudo systemctl enable "wg-quick@mullvad-${NEW_SERVER}.service"
 
 sudo systemctl start "$WIREGUARD_TARGET"
 sudo systemctl start "$TORRENT_SERVICE"
