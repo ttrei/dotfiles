@@ -13,7 +13,7 @@ i3.command("workspace 000:spawn")
 
 # Teams
 Popen(["teams"])
-time.sleep(6)
+time.sleep(8)
 i3.command("move container to workspace 00:teams")
 
 
