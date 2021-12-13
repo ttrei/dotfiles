@@ -1,5 +1,5 @@
 if [ -f "$HOME/.xmodmaprc" ] ; then
-    . $HOME/.xmodmaprc
+    xmodmap $HOME/.xmodmaprc &
 fi
 
 if [ -f "$HOME/.xsessionrc" ] ; then
