@@ -6,7 +6,8 @@ if [ -x "$(command -v fzf-share)" ]; then
 fi
 
 # Workaround for https://unix.stackexchange.com/q/187402
-export LC_ALL=C
+# Update: This leads to unreadable utf8 filenames in terminal output
+#export LC_ALL=C
 
 # A lot of this was copied from https://github.com/junegunn/fzf/wiki/examples
 
