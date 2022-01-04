@@ -2,7 +2,7 @@
 # https://raw.githubusercontent.com/hashhar/picard-beets-config/master/beets/config.yaml
 
 library: ~/beets-library.db
-directory: /media/Storage/music-beets
+directory: /media/Storage/music
 
 ui:
   color: yes
