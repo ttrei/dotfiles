@@ -43,6 +43,7 @@ paths:
 
 plugins:
   - inline
+  - replaygain
 #  - acousticbrainz
 #  # lastimport command to import play counts from last.fm
 #  - lastimport
@@ -65,6 +66,11 @@ plugins:
 #  - random
 #  # allows treating fields with a different datatype
 #  - types
+
+replaygain:
+  auto: yes
+  backend: ffmpeg
+  overwrite: no
 
 #acousticbrainz:
 #  auto: yes
