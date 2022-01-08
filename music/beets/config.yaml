@@ -44,6 +44,7 @@ paths:
 plugins:
   - inline
   - replaygain
+  - scrub
 #  - acousticbrainz
 #  # lastimport command to import play counts from last.fm
 #  - lastimport
@@ -71,6 +72,9 @@ replaygain:
   auto: yes
   backend: ffmpeg
   overwrite: no
+
+scrub:
+  auto: yes
 
 #acousticbrainz:
 #  auto: yes
