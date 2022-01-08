@@ -1,14 +1,14 @@
 # Copied and adapted from
 # https://raw.githubusercontent.com/hashhar/picard-beets-config/master/beets/config.yaml
 
-library: ~/beets-library.db
+library: /media/Storage/music/beets/beets-library.db
 directory: /media/Storage/music
 
 ui:
   color: yes
 
 import:
-  log: ~/beets-importer.log
+  log: /media/Storage/music/beets/beets-importer.log
   write: yes
   copy: yes
   move: no
@@ -81,13 +81,13 @@ replaygain:
 
 #playlist:
 #  auto: yes
-#  playlist_dir: /media/Storage/music-beets/Playlists
-#  relative_to: /media/Storage/music-beets/Playlists
+#  playlist_dir: /media/Storage/music/Playlists
+#  relative_to: /media/Storage/music/Playlists
 
 #smartplaylist:
 #  auto: yes
-#  playlist_dir: /media/Storage/music-beets/Playlists
-#  relative_to: /media/Storage/music-beets/Playlists
+#  playlist_dir: /media/Storage/music/Playlists
+#  relative_to: /media/Storage/music/Playlists
 #  playlists:
 #    - name: all.m3u
 #      query: ''
@@ -113,7 +113,7 @@ replaygain:
 #convert:
 #  auto: no
 #  copy_album_art: yes
-#  dest: /media/Storage/music-beets/RIPs
+#  dest: /media/Storage/music/RIPs
 #  embed: no
 #  never_convert_lossy_files: yes
 #  format: mp3
