@@ -19,11 +19,8 @@ bar {
 
 # Keybindings
 
-# NB! Avoid following combinations that steal useful terminal shortcuts:
-#   Alt+f; Alt+b; Alt+backspace; Alt+d; Alt+.
-
-# Modifier (Mod1 == left Alt)
-set $mod Mod1
+# Modifier, Mod4 == Super (Windows) key
+set $mod Mod4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
