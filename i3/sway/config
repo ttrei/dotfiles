@@ -22,6 +22,8 @@ bar {
 # Modifier, Mod4 == Super (Windows) key
 set $mod Mod4
 
+set $alt Mod1
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -40,9 +42,8 @@ bindcode $mod+36 exec --no-startup-id samecwd-terminal.sh
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-# 22 = BackSpace, 70 = F4
-bindcode $mod+Shift+22 kill
-bindcode $mod+70 kill
+# 70 = F4
+bindcode $alt+70 kill
 # 27 = r
 bindcode $mod+27 exec --no-startup-id dmenu_run
 # 16 = 7
