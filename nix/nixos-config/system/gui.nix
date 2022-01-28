@@ -19,6 +19,7 @@
     neovim
     picard
     python3Packages.i3ipc
+    rofi
     st
     thunderbird
     transmission_gtk
