@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 [ -z "$1" ] && echo "Usage: i3-start <command>" && exit 1
 
