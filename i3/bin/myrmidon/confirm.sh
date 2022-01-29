@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 message="${1:-"Confirm?"}"
 response=$(echo -e "No\nYes" | rofi -dmenu -i -p "$message ")
 
