@@ -14,6 +14,7 @@
     gnupg
     gnupg1compat
     gnutar
+    jq
     lua
     lynx
     moreutils
