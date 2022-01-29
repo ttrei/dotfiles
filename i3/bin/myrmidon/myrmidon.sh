@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 cwd=$(echo $(dirname $0))
 
 # Use ~/.myrmidon-tasks.json as default, otherwise use incoming path
