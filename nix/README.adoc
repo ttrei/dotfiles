@@ -1,16 +1,32 @@
-= NixOS
+= Nix
+
+Configuration for both NixOS and standalone installations of Nix.
+
+I will try to use home-manager on both.
+
+How to decide whether a package should be installed by home-manager or NixOS system?
+I think a promising answer is:
+
+* home-manager installs packages that I will use in non-NixOS distros
+* All other packages go into NixOS configuration.nix
+
+== Standalone Nix
+
+=== Install on Debian
+
+== NixOS
 
 Configuration was imported from `ssh://reinis@taukulis.lv:/home/reinis/gitrepos/nixos.git`.
 State of all branches of that repository is recorded in `nixos-config/attic/dev-nixos-git-branches`
 directory.
 
-== todo
+=== todo
 
-== done
+=== done
 
-=== Make sure that on login .bashrc is sourced only once
+==== Make sure that on login .bashrc is sourced only once
 
-=== NixOS doesn't load bash profile
+==== NixOS doesn't load bash profile
 
 `.profile` adjusts PATH to include `~/bin` which is important for us.
 
