@@ -15,6 +15,10 @@ Popen(["zutty"])
 time.sleep(0.2)
 i3.command("move container to workspace 05:notes")
 
-Popen(["zutty", "-e", "vim", "-p", "org/todo.org", "algorithms.adoc"])
-time.sleep(0.2)
+Popen(["emacs"])
+time.sleep(0.5)
 i3.command("move container to workspace 05:notes")
+
+# Popen(["zutty", "-e", "vim", "-p", "org/todo.org", "algorithms.adoc"])
+# time.sleep(0.2)
+# i3.command("move container to workspace 05:notes")
