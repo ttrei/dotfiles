@@ -47,6 +47,9 @@ Jan 05 13:03:42 exponential systemd[1]: Nix Daemon was skipped because of a
 failed condition check (ConditionPathIsReadWrite=/nix/var/nix/daemon-socket).
 ....
 
+This has been reported:
+https://github.com/NixOS/nix/issues/5909
+
 Uninstalled the multi-user nix with these commands:
 ....
 rm -rf ~/.nix-*
