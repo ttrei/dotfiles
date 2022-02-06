@@ -1,3 +1,5 @@
+# shellcheck shell=sh
+
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
     PATH="$HOME/bin/i3:$PATH"
@@ -13,5 +15,15 @@ if [ -d "$HOME/.cargo/bin" ]; then
 fi
 
 # Nix enviroment, if nix has been installed
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]
+then
+    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+
+    # Necessary according to
+    # https://nix-community.github.io/home-manager/index.html#sec-install-standalone
+    # Until https://github.com/NixOS/nix/issues/2033 is fixed
+    # More info: https://discourse.nixos.org/t/where-is-nix-path-supposed-to-be-set/16434/8
+    NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
+    export NIX_PATH
+fi
 
