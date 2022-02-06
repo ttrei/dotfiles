@@ -14,6 +14,55 @@ I think a promising answer is:
 
 === Install on Debian
 
+https://nixos.org/download.html#download-nix
+
+I chose the single-user installation method after bad experience with the recommended multi-user
+installation (see below).
+
+....
+$ sh <(curl -L https://nixos.org/nix/install) --no-daemon
+# Log out, log in
+$ nix-env -iA nixpkgs.direnv
+$ nix-env -iA nixpkgs.lorri
+....
+
+=== Uninstall a multi-user installation
+
+I installed nix on 2022-02-06 using the recommended multi-user installation method.
+The nix-daemon failed to start with the same symptoms as here:
+https://www.extrema.is/blog/2022/01/05/uninstalling-multi-user-nix
+
+....
+$ nix-shell -p nix-info --run "nix-info -m"
+error: could not set permissions on '/nix/var/nix/profiles/per-user' to 755: Operation not permitted
+$ sudo systemctl status nix-daemon.service
+○ nix-daemon.service - Nix Daemon
+     Loaded: loaded (/etc/systemd/system/nix-daemon.service; linked; vendor preset: disabled)
+     Active: inactive (dead)
+TriggeredBy: ○ nix-daemon.socket
+  Condition: start condition failed at Wed 2022-01-05 13:03:42 JST; 37min ago
+             └─ ConditionPathIsReadWrite=/nix/var/nix/daemon-socket was not met
+
+Jan 05 13:03:42 exponential systemd[1]: Nix Daemon was skipped because of a
+failed condition check (ConditionPathIsReadWrite=/nix/var/nix/daemon-socket).
+....
+
+Uninstalled the multi-user nix with these commands:
+....
+rm -rf ~/.nix-*
+sudo su -l
+systemctl disable nix-daemon.socket
+systemctl disable nix-daemon.service
+systemctl daemon-reload
+mv /etc/bash.bashrc.backup-before-nix /etc/bash.bashrc
+rm -rf /etc/zshrc /etc/bashrc
+rm -rf /etc/profile.d/nix.sh
+rm -rf /root/.nix-*
+rm -rf /nix /etc/nix
+grep nixbld /etc/shadow | cut -d':' -f1 | xargs -I{} userdel {}
+groupdel nixbld
+....
+
 == NixOS
 
 Configuration was imported from `ssh://reinis@taukulis.lv:/home/reinis/gitrepos/nixos.git`.

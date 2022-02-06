@@ -17,7 +17,5 @@ if [ -d "$HOME/.emacs.d/bin" ]; then
 fi
 
 # Nix enviroment, if nix has been installed
-# NOTE (2021-06-24)
-# This no longer necessary, at least for multi-user nix installation on Ubuntu 21.04
-# if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then . "$HOME/.nix-profile/etc/profile.d/nix.sh"; fi
 
