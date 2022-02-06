@@ -26,6 +26,18 @@ $ nix-env -iA nixpkgs.direnv
 $ nix-env -iA nixpkgs.lorri
 ....
 
+=== Install home-manager
+
+https://nix-community.github.io/home-manager/index.html#sec-install-standalone
+
+....
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
+
+home-manager switch
+....
+
 === Uninstall a multi-user installation
 
 I installed nix on 2022-02-06 using the recommended multi-user installation method.
