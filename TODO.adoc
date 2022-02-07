@@ -9,10 +9,6 @@ This way we can always stay on master.
 
 `diff_deployed.sh` should also diff against the intended branch.
 
-== Migrate to home-manager
-
-Migration should be gradual.
-
 == One branch to rule them all
 
 Ideally there would be only one branch.
