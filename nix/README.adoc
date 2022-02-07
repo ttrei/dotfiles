@@ -12,32 +12,6 @@ I think a promising answer is:
 
 == Standalone Nix
 
-=== Install on Debian
-
-https://nixos.org/download.html#download-nix
-
-I chose the single-user installation method after bad experience with the recommended multi-user
-installation (see below).
-
-....
-$ sh <(curl -L https://nixos.org/nix/install) --no-daemon
-# Log out, log in
-$ nix-env -iA nixpkgs.direnv
-$ nix-env -iA nixpkgs.lorri
-....
-
-=== Install home-manager
-
-https://nix-community.github.io/home-manager/index.html#sec-install-standalone
-
-....
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-nix-shell '<home-manager>' -A install
-
-home-manager switch
-....
-
 === Uninstall a multi-user installation
 
 I installed nix on 2022-02-06 using the recommended multi-user installation method.
@@ -74,8 +48,34 @@ rm -rf /etc/zshrc /etc/bashrc
 rm -rf /etc/profile.d/nix.sh
 rm -rf /root/.nix-*
 rm -rf /nix /etc/nix
-grep nixbld /etc/shadow | cut -d':' -f1 | xargs -I{} userdel {}
+grep ^nixbld /etc/shadow | cut -d':' -f1 | xargs -I{} userdel {}
 groupdel nixbld
+....
+
+=== Install on Debian
+
+https://nixos.org/download.html#download-nix
+
+I chose the single-user installation method after bad experience with the recommended multi-user
+installation (see above).
+
+....
+$ sh <(curl -L https://nixos.org/nix/install) --no-daemon
+# Log out, log in
+$ nix-env -iA nixpkgs.direnv
+$ nix-env -iA nixpkgs.lorri
+....
+
+=== Install home-manager
+
+https://nix-community.github.io/home-manager/index.html#sec-install-standalone
+
+....
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
+
+home-manager switch
 ....
 
 == NixOS
