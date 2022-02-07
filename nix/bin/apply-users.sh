@@ -1,5 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-pushd ~/dotfiles/nix/nixos-config
-home-manager switch -f ./users/reinis/home.nix
+pushd ~/dotfiles/nix/home-manager
+home-manager switch -f ./reinis/home.nix
 popd
