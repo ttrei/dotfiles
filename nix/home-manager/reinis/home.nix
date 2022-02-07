@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     emacs
     fd
+    fzf
     ripgrep
   ];
 
