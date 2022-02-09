@@ -1,12 +1,18 @@
-{ config, pkgs, ... }:
-
+{ pkgs, nixpkgs, config, lib, ... }:
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "reinis";
-  home.homeDirectory = "/home/reinis";
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    xow = pkgs.xow.overrideAttrs (orig: {
+      version = "pre-1.0.25";
+      buildInputs = [ inputs.libusb.packages.x86_64-linux.libusb ];
+    });
+  };
 
   home.packages = with pkgs; [
+    # https://dee.underscore.world/blog/home-manager-flakes/
+    (pkgs.writeScriptBin "nixFlakes" ''
+      exec ${pkgs.nixUnstable}/bin/nix --experimental-features "nix-command flakes" "$@"
+    '')
     direnv
     emacs
     fd
@@ -15,6 +21,7 @@
     git
     git-crypt
     ripgrep
+    xow
   ];
 
   programs.bash = {
@@ -31,16 +38,6 @@
       source ~/.bashrc.legacy
     '';
   };
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
