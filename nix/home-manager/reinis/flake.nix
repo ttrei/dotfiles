@@ -12,8 +12,9 @@ rec {
   };
 
   outputs = { self, nixpkgs, homeManager, libusb }: {
+
     homeConfigurations = {
-      "reinis@localhost" = homeManager.lib.homeManagerConfiguration {
+      "reinis" = homeManager.lib.homeManagerConfiguration {
         configuration = import ./home.nix;
 
         system = "x86_64-linux";
@@ -31,13 +32,6 @@ rec {
         # changes in each release.
         stateVersion = "22.05";
       };
-    };
-
-    nixpkgs.config.packageOverrides = pkgs: {
-      xow = pkgs.xow.overrideAttrs (orig: {
-        version = "pre-1.0.25";
-        buildInputs = [ inputs.libusb.packages.x86_64-linux.libusb ];
-      });
     };
   };
 }

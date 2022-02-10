@@ -1,10 +1,10 @@
-{ pkgs, nixpkgs, config, lib, ... }:
+{ pkgs, config, libusb, lib, ... }:
 {
 
   nixpkgs.config.packageOverrides = pkgs: {
     xow = pkgs.xow.overrideAttrs (orig: {
       version = "pre-1.0.25";
-      buildInputs = [ inputs.libusb.packages.x86_64-linux.libusb ];
+      buildInputs = [ pkgs.libusb.packages.x86_64-linux.libusb ];
     });
   };
 
