@@ -6,6 +6,10 @@
   home.username = "reinis";
   home.homeDirectory = "/home/reinis";
 
+  nixpkgs.overlays = [
+    (import overlays/mypackages.nix)
+  ];
+
   home.packages = with pkgs; [
     direnv
     emacs
@@ -15,6 +19,7 @@
     git
     git-crypt
     ripgrep
+    myxow
   ];
 
   programs.bash = {
