@@ -1,5 +1,10 @@
 { lib, stdenv, cabextract, fetchurl, fetchFromGitHub, mylibusb1 }:
 
+# Files created in $UDEVDIR, $MODLDIR, etc. must be installed.
+# For now I do it manually with install-xow-system-files.sh - didn't have time to think of a proper
+# solution.
+# TODO: Install the files automatically using home-manager.
+
 stdenv.mkDerivation rec {
   pname = "myxow";
   version = "0.5";
