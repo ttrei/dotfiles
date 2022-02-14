@@ -1,0 +1,7 @@
+= Vim
+
+== Edit tables
+
+I use https://github.com/dhruvasagar/vim-table-mode.
+
+Enter the table mode with `<Leader>tm`.
