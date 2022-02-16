@@ -1,0 +1,10 @@
+[Unit]
+Description=Reset Xbox wireless dongle
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/xow-reset-xbox-wireless-dongle.sh
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
