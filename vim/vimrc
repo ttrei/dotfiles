@@ -115,9 +115,6 @@ nnoremap <F8> <Esc>:set nofoldenable<CR>
 " Toggle trailing whitespace highlighting
 nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 
-" Wrap/unwrap elements such as function arguments, arrays etc.
-nnoremap <silent> <Leader>w :ArgWrap<CR>
-
 " Disable automatic wrappping while typing
 set formatoptions-=tc
 
@@ -160,26 +157,8 @@ endif
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1
 
-let g:airline_theme="hybridline"
-" Show the status line as the second line from bottom
-set laststatus=2
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#tab_nr_type = 0
-let g:airline#extensions#tabline#fnamemod = ':t:r'
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-
+" Remove trailing whitespace
 nnoremap <Leader>s :%s/\s\+$//<CR>
-
-" Open and jump to the tagbar
-nnoremap <Leader>a :TagbarOpen fj<CR>
-" Freeze/unfreeze tagbar
-nnoremap <Leader>f :TagbarTogglePause<CR>
-" Close tagbar automatically (press 'c' while in tagbar to toggle)
-let g:tagbar_autoclose = 1
 
 "BufExplorer
 let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
@@ -190,11 +169,6 @@ nnoremap <F3> gT
 
 " Execute linter
 nnoremap <F5> :Neomake<CR>
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
 " Exit visual mode and search in the previously selected range
 vnoremap <Leader>/ <Esc>/\%V
