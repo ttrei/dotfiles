@@ -1,7 +1,3 @@
 #Host *
 #    RemoteForward 127.0.0.1:3333 127.0.0.1:3333
 #
-
-Host cvs.konts.lv
-    HostkeyAlgorithms +ssh-rsa
-    PubkeyAcceptedAlgorithms +ssh-rsa
