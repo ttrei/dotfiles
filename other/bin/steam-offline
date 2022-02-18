@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+# Start steam in offline mode without prompting to go online.
+# https://gaming.stackexchange.com/a/184717
+# NOTE: You may need to log into steam in online mode first.
+
+# Steam resets the SkipOfflineModeWarning option on every startup.
+# So we have to enable it every time before starting steam.
+
+LOGINUSERS=~/.steam/debian-installation/config/loginusers.vdf
+
+if [ ! -f "$LOGINUSERS" ]; then
+    echo "Steam user config file not found: $LOGINUSERS"
+    echo "The config must be modified to start Steam in offline mode withuot warning."
+    echo "Abort"
+    exit 1
+fi
+
+# Search for a disabled option (option value 0).
+# Replicate the option string by using backreference (\1).
+# Set the option value to 1.
+sed -i "s/\(WantsOfflineMode.*\)0/\11/" "$LOGINUSERS"
+sed -i "s/\(SkipOfflineModeWarning.*\)0/\11/" "$LOGINUSERS"
+
+steam "$@"
