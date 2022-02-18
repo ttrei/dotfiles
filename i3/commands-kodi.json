@@ -16,6 +16,10 @@
     "command": "i3-start spotify"
   },
   {
+    "name": "RetroArch",
+    "command": "steam-offline -applaunch 1118310"
+  },
+  {
     "name": "VPN stop",
     "confirm": false,
     "command": "vpn-stop.sh"
