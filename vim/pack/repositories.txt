@@ -6,6 +6,7 @@ other/start/vim-table-mode https://github.com/dhruvasagar/vim-table-mode.git
 
 syntax/start/neomake https://github.com/neomake/neomake.git
 syntax/start/vim-asciidoc-folding https://github.com/matcatc/vim-asciidoc-folding
+syntax/start/vim-javascript https://github.com/pangloss/vim-javascript
 syntax/start/vim-markdown https://github.com/plasticboy/vim-markdown.git
 syntax/start/vim-nix https://github.com/LnL7/vim-nix.git
 syntax/start/xml.vim https://github.com/othree/xml.vim.git
@@ -28,5 +29,4 @@ other/start/ultisnips https://github.com/SirVer/ultisnips.git
 other/start/vim-snippets https://github.com/honza/vim-snippets.git
 syntax/start/vim-better-whitespace https://github.com/ntpeters/vim-better-whitespace.git
 syntax/start/vim-cpp-enhanced-highlight https://github.com/octol/vim-cpp-enhanced-highlight.git
-syntax/start/vim-javascript https://github.com/pangloss/vim-javascript
 themes/start/vim-airline-themes https://github.com/vim-airline/vim-airline-themes
