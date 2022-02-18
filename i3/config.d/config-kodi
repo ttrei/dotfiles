@@ -7,4 +7,5 @@ assign [class="Firefox"] firefox
 assign [class="Chromium"] chromium
 assign [class="Kodi"] kodi
 assign [class="[rR]etro[aA]rch"] retroarch
+assign [class="Steam"] 90:steam
 for_window [class="Spotify"] move to workspace spotify
