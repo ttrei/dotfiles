@@ -20,6 +20,10 @@
     "command": "i3-msg workspace retroarch; steam-offline -applaunch 1118310"
   },
   {
+    "name": "Steam",
+    "command": "i3-msg workspace steam; steam-offline"
+  },
+  {
     "name": "VPN stop",
     "confirm": false,
     "command": "vpn-stop.sh"
