@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# NOTE: Update https://gist.github.com/ttrei/e4d42c393268622c0bf873e30fcc80f4 if making significant
+#       changes in this script.
+
 # Start steam in offline mode without prompting to go online.
 # https://gaming.stackexchange.com/a/184717
 # NOTE: You may need to log into steam in online mode first.
