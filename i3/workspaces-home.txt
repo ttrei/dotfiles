@@ -4,6 +4,7 @@
 20:dev
 21:zig
 25:vscode
+26:pycharm
 70:virt
 71:ubuntu
 72:nixos
