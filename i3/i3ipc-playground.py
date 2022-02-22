@@ -21,6 +21,7 @@ async def on_new_window(i3: Connection, e: WindowEvent):
 
     pprint.pprint(idea_containers)
 
+
 # There are multiple ways to launch an application:
 # a) with an i3 command
 #    https://i3wm.org/docs/userguide.html#exec
