@@ -164,8 +164,8 @@ nnoremap <Leader>s :%s/\s\+$//<CR>
 let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
 
 " Move through tabs
-nnoremap <F4> gt
-nnoremap <F3> gT
+noremap <c-l> :tabnext<cr>
+noremap <c-h> :tabprevious<cr>
 
 " Execute linter
 nnoremap <F5> :Neomake<CR>
