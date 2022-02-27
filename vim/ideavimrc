@@ -1,0 +1,9 @@
+" https://github.com/JetBrains/ideavim#Files
+"
+" Get the id of an action (https://stackoverflow.com/a/69023435/9124671):
+" * Navigate -> Search Everywhere -> Actions
+" * Search for "track action ids", enable the option
+" * Search for the action you want, execute it - popup balloon will show the action id
+
+nmap <c-l> <Action>(NextTab)
+nmap <c-h> <Action>(PreviousTab)
