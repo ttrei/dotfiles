@@ -6,11 +6,10 @@ from i3ipc.aio import Connection
 from i3ipc.events import WindowEvent
 
 WORKSPACES = {
-    "05:notes",
-    "10:browser",
-    "20:dev",
+    "05:notes": 1,
+    "10:browser": 1,
+    "20:dev": 2,
 }
-QUEUE = asyncio.queues.Queue()
 
 
 async def on_new_window(i3: Connection, e: WindowEvent):
@@ -18,46 +17,44 @@ async def on_new_window(i3: Connection, e: WindowEvent):
     name = e.container.name
     window_class = e.container.window_class
 
-    print(f"{name=}, {window_class=}")
+    print(f"on_new_window: {name=}, {window_class=}")
 
-    global QUEUE
     if name == "emacs-notes":
-        await e.container.command(f"move to workspace 05:notes")
-        await QUEUE.get()
+        workspace = "05:notes"
     elif window_class == "Firefox":
-        await e.container.command(f"move to workspace 10:browser")
-        await QUEUE.get()
+        workspace = "10:browser"
     elif name == "zutty-dev":
-        await e.container.command(f"move to workspace 20:dev")
-        await QUEUE.get()
+        workspace = "20:dev"
+    else:
+        return
 
-    if QUEUE.empty():
+    await e.container.command(f"move to workspace {workspace}")
+    global WORKSPACES
+    WORKSPACES[workspace] -= 1
+    if WORKSPACES[workspace] == 0:
+        WORKSPACES.pop(workspace)
+
+    if len(WORKSPACES) == 0:
+        # await asyncio.sleep(1)
         i3.main_quit()
 
 
 async def main():
     i3 = await Connection(auto_reconnect=True).connect()
     global WORKSPACES
-    existing_workspaces = await i3.get_workspaces()
-    WORKSPACES -= {
-        w.name for w in existing_workspaces
-    }  # We will not touch already existing workspaces
-
+    # We will not touch already existing workspaces
+    existing_workspaces = {w.name for w in await i3.get_workspaces()}
+    WORKSPACES = {k: v for k, v in WORKSPACES.items() if k not in existing_workspaces}
     if len(WORKSPACES) == 0:
         return
 
-    global QUEUE
     if "05:notes" in WORKSPACES:
         await asyncio.create_subprocess_exec("emacs", "--title=emacs-notes")
-        QUEUE.put_nowait(1)
     if "10:browser" in WORKSPACES:
         await asyncio.create_subprocess_exec("firefox")
-        QUEUE.put_nowait(1)
     if "20:dev" in WORKSPACES:
         await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev")
-        QUEUE.put_nowait(1)
         await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev")
-        QUEUE.put_nowait(1)
 
     i3.on(Event.WINDOW_NEW, on_new_window)
     await i3.main()
