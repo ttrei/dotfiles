@@ -97,9 +97,6 @@ set ignorecase
 set smartcase
 set nowrapscan
 
-" Ctrl+c exits insert mode with same side-effects as <ESC>
-:inoremap <C-c> <ESC>
-
 "Start syntax parsing from the start of the file
 "(useful to fix broken syntax highlighting)
 nnoremap <F9> <Esc>:syntax sync fromstart<CR>
