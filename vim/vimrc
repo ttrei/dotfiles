@@ -97,6 +97,10 @@ set ignorecase
 set smartcase
 set nowrapscan
 
+" Disable C-c in Insert mode. Learn to use Esc - it will help in Doom Emacs
+" where C-c doesn't work.
+inoremap <C-c> <Nop>
+
 "Start syntax parsing from the start of the file
 "(useful to fix broken syntax highlighting)
 nnoremap <F9> <Esc>:syntax sync fromstart<CR>
