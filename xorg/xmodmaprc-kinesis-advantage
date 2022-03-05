@@ -1,12 +1,10 @@
-! CapsLock (66) as Ctrl
-!keycode 66 = Control_L
-! RightWin (134) as Ctrl
-!keycode 134 = Control_R
-
 ! Menu (135), PrintScreen (107) and ScrLock (78) as CapsLock
 !keycode 135 = Caps_Lock
 !keycode 107 = Caps_Lock
 !keycode 78 = Caps_Lock
+
+! CapsLock (66) as Escape
+keycode 66 = Escape
 
 ! Left Alt (64) as Alt, used for Emacs Meta key
 keycode 64 = Alt_L
