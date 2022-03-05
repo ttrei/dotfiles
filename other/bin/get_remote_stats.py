@@ -4,22 +4,12 @@ import json
 import logging
 import os
 import pipes
-import socket
 import subprocess
 from datetime import datetime, timezone
-from pathlib import Path
-
-# Remote crontab (root user)
-#
-# */20 * * * * apt-get update
-# * * * * * apt list --upgradable > /tmp/upgr.txt && mv /tmp/upgr.txt /var/tmp/system_status/upgrades.txt
-# * * * * * df -x tmpfs -x devtmpfs -x squashfs -B M --output=target,size,used,avail,pcent > /tmp/space.txt && mv /tmp/space.txt /var/tmp/system_status/free_space.txt
-# * * * * * free -m > /tmp/mem.txt && mv /tmp/mem.txt /var/tmp/system_status/memory.txt
 
 HOSTS = {
     "mazais": {"user": "reinis", "port": 22},
     "KODI": {"user": "user", "port": 22},
-    #'reinis-pi': {'user': 'reinis', 'port': 1046},
 }
 
 logging.basicConfig(
