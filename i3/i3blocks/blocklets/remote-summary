@@ -23,12 +23,6 @@ def error(message):
     ]
 
 
-def get_summary(data, key):
-    if key not in data:
-        return error(f"{key} not found in for {hostname}")
-    return data[key]
-
-
 def summarize(hostname):
     # Examine the data structure:
     # jql . /var/tmp/remote-summary.json
