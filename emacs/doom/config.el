@@ -54,3 +54,4 @@
 ;; they are implemented.
 
 (use-package! org-pandoc-import :after org)
+(use-package! org-drill :after org)
