@@ -45,6 +45,7 @@ plugins:
   - inline
   - replaygain
   - scrub
+  - convert
 #  - acousticbrainz
 #  # lastimport command to import play counts from last.fm
 #  - lastimport
@@ -52,7 +53,6 @@ plugins:
 #  - mbsync
 #  - playlist
 #  - smartplaylist
-#  - convert
 #  # duplicates command to list duplicates
 #  - duplicates
 #  # allows prefixing searches with ~ to use fuzzy search
@@ -75,6 +75,13 @@ replaygain:
 
 scrub:
   auto: yes
+
+convert:
+  auto: yes
+  copy_album_art: no
+  embed: no
+  never_convert_lossy_files: yes
+  format: mp3
 
 #acousticbrainz:
 #  auto: yes
@@ -113,14 +120,6 @@ scrub:
 #      query: 'year:2010..2019'
 #    - name: 2020s.m3u
 #      query: 'year:2020..2029'
-
-#convert:
-#  auto: no
-#  copy_album_art: yes
-#  dest: /media/Storage/music/RIPs
-#  embed: no
-#  never_convert_lossy_files: yes
-#  format: mp3
 
 #mbcollection:
 #  auto: yes
