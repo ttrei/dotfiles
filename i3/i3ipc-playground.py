@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import asyncio
-import pprint
 
 from i3ipc import Event
 from i3ipc.events import WindowEvent
@@ -54,13 +53,15 @@ async def on_new_window(i3: Connection, e: WindowEvent):
 async def main():
     i3 = await Connection(auto_reconnect=True).connect()
     workspaces = await i3.get_workspaces()
+    breakpoint()
     for w in workspaces:
         print(w.ipc_data)
 
+
     # await asyncio.create_subprocess_exec("idea")
     await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev1")
-    await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev2")
-    await asyncio.create_subprocess_exec("emacs", "--title=emacs-dev")
+    # await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev2")
+    # await asyncio.create_subprocess_exec("emacs", "--title=emacs-dev")
     # await i3.command("exec zutty")
 
     i3.on(Event.WINDOW_NEW, on_new_window)
