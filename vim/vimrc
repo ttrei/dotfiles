@@ -56,6 +56,9 @@ set smarttab
 set autoindent
 set cindent
 
+" Reload file automatically if it has been modified externally
+set autoread
+
 " Treat all numbers as decimal
 set nrformats=
 
