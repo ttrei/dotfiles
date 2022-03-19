@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    brave
     chromium
     djview
     dmenu
