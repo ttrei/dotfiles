@@ -20,3 +20,7 @@ if [ -f "$HOME/.profile" ] ; then
 fi
 
 xbindkeys &
+
+## Execute a window manager explicitly.
+## Useful if you want to test a bleeding edge version.
+# exec path/to/i3
