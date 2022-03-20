@@ -1,0 +1,1 @@
+../../../nix/nixpkgs/config.nix
