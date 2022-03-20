@@ -18,4 +18,6 @@ kodi:home-desktop-debian
 tieto2-laptop-debian:tieto2,debian
 tieto2-desktop-debian:tieto2,debian
 
+taukulis.lv:debian
+
 # home-pi:home,debian
