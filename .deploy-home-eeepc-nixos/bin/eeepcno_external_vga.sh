@@ -1,0 +1,1 @@
+../../xorg/bin/eeepcno_external_vga.sh

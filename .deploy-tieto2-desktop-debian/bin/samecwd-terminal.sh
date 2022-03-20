@@ -1,0 +1,1 @@
+../../terminal/bin/samecwd-terminal.sh
