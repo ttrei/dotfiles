@@ -1,3 +1,9 @@
+# kubernetes
+alias kube='kubectl --kubeconfig ~/dev/config/k8s/config'
+complete -F __start_kubectl kube
+alias kube-mma='kubectl --kubeconfig ~/dev/config/k8s/config-mma'
+complete -F __start_kubectl kube-mma
+
 # ssh
 alias mazais='ssh reinis@mazais'
 alias builder='ssh build@builder'
