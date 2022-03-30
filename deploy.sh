@@ -13,6 +13,13 @@ rm -rf "$TARGETDIR/bin/i3/workspace-scripts"
 
 cp -rL --remove-destination "$SOURCEDIR/." "$TARGETDIR"
 
+# git does not allow .gitignore symlinks anymore:
+# https://github.com/git/git/blob/master/Documentation/RelNotes/2.32.0.txt
+# And it was ambiguous anyway - git thought that I'm using it to ignore stuff in
+# the .deploy directory.
+# Copy .gitignore explicitly.
+cp "$SCRIPTDIR/git/gitignore" "$TARGETDIR/.gitignore"
+
 if [ -d "$TARGETDIR/.ssh" ]; then
     chmod 700 "$TARGETDIR/.ssh"
 fi
