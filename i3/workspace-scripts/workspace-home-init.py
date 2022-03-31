@@ -6,7 +6,7 @@ from i3ipc.aio import Connection
 from i3ipc.events import WindowEvent
 
 WORKSPACES = {
-    "05:notes": 1,
+    "05:notes": 2,
     "10:browser": 1,
     "20:dev": 2,
 }
@@ -19,7 +19,7 @@ async def on_new_window(i3: Connection, e: WindowEvent):
 
     print(f"on_new_window: {name=}, {window_class=}")
 
-    if name == "emacs-notes":
+    if name in {"emacs-notes", "zutty-notes"}:
         workspace = "05:notes"
     elif window_class.lower() == "firefox":
         workspace = "10:browser"
@@ -29,6 +29,10 @@ async def on_new_window(i3: Connection, e: WindowEvent):
         return
 
     await e.container.command(f"move to workspace {workspace}")
+
+    if name == "emacs-notes":
+        await e.container.command("move right")
+
     global WORKSPACES
     WORKSPACES[workspace] -= 1
     if WORKSPACES[workspace] == 0:
@@ -50,6 +54,7 @@ async def main():
 
     if "05:notes" in WORKSPACES:
         await asyncio.create_subprocess_exec("emacs", "--title=emacs-notes")
+        await asyncio.create_subprocess_exec("zutty", "-t", "zutty-notes")
     if "10:browser" in WORKSPACES:
         await asyncio.create_subprocess_exec("firefox")
     if "20:dev" in WORKSPACES:
