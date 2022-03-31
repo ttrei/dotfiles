@@ -1,7 +1,7 @@
 # kubernetes
-alias kube='kubectl --kubeconfig ~/dev/config/k8s/config'
+alias kube='kubectl --kubeconfig ~/.kube/config'
 complete -F __start_kubectl kube
-alias kube-mma='kubectl --kubeconfig ~/dev/config/k8s/config-mma'
+alias kube-mma='kubectl --kubeconfig ~/.kube/config-mma'
 complete -F __start_kubectl kube-mma
 
 # Old CS aliases
