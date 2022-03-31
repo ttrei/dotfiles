@@ -21,7 +21,7 @@ async def on_new_window(i3: Connection, e: WindowEvent):
 
     if name == "emacs-notes":
         workspace = "05:notes"
-    elif window_class == "Firefox":
+    elif window_class.lower() == "firefox":
         workspace = "10:browser"
     elif name == "zutty-dev":
         workspace = "20:dev"
