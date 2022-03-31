@@ -57,7 +57,6 @@ async def main():
     for w in workspaces:
         print(w.ipc_data)
 
-
     # await asyncio.create_subprocess_exec("idea")
     await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev1")
     # await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev2")
