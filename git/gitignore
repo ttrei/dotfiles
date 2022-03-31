@@ -3,5 +3,6 @@ tags.lock
 tags.temp
 
 .idea
+.direnv
 
 *.swp
