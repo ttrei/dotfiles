@@ -1,9 +1,17 @@
 #!/bin/sh
 
 SCRIPTDIR="$( cd "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
+
+if [ -x "$(command -v lsb_release)" ]
+then
+    DISTRO=$(lsb_release --id --short)
+else
+    echo "ABORT (lsb_release not found)"
+    exit 1
+fi
+
 SOURCEDIR=${SOURCEDIR:-"$SCRIPTDIR/.deploy"}
 TARGETDIR=${TARGETDIR:-"$HOME"}
-
 echo "Deploying from $SOURCEDIR to $TARGETDIR"
 
 # Different branches of this repo use different vim plugin mechanisms.
