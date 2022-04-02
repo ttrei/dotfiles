@@ -6,18 +6,6 @@ TARGETDIR=${TARGETDIR:-"$HOME"}
 
 echo "Deploying from $SOURCEDIR to $TARGETDIR"
 
-# TODO Improve the deployment mechanism.
-# Vision:
-# 1. Detect where we are deploying (which OS, which machine, home or work).
-#    Store this info in env variables.
-# 2. Select the correct old-style symlink tree directory based on the above.
-# 3. Copy the symlink tree to a temporary directory.
-# 4. Add additional stuff to the temporary directory. Intention is to gradually migrate configs from
-#    the old-style symlink tree.
-# 5a. Deploy the temp directory to $HOME.
-# or
-# 5b. Show a diff between current $HOME state and the temp directory.
-
 # Different branches of this repo use different vim plugin mechanisms.
 # Those different mechanisms expect plugins in different directories.
 # Ensure that after deployment we have only those directories that we need.

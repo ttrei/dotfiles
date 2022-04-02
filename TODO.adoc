@@ -1,5 +1,17 @@
 = TODO
 
+== Improve the deployment mechanism.
+
+Vision:
+1. Detect where we are deploying (which OS, which machine, home or work).
+   Store this info in env variables.
+2. Select the correct old-style symlink tree directory based on the above.
+3. Copy the symlink tree to a temporary directory.
+4. Add additional stuff to the temporary directory. Intention is to gradually migrate configs from
+   the old-style symlink tree.
+5. Deploy the temp directory to $HOME.
+6. Or show a diff between current $HOME state and the temp directory.
+
 == Sway
 
 * IntelliJ needs `export _JAVA_AWT_WM_NONREPARENTING=1`
