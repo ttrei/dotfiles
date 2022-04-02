@@ -1,8 +1,8 @@
 #!/bin/sh
 
 SCRIPTDIR="$( cd "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
-SOURCEDIR="$SCRIPTDIR/.deploy"
-TARGETDIR="$HOME"
+SOURCEDIR=${SOURCEDIR:-"$SCRIPTDIR/.deploy"}
+TARGETDIR=${TARGETDIR:-"$HOME"}
 
 # Different branches of this repo use different vim plugin mechanisms.
 # Those different mechanisms expect plugins in different directories.

@@ -4,8 +4,8 @@ BGREEN='\033[1;92m'
 NC='\033[0m' # No Color
 
 SCRIPTDIR="$( cd "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
-SOURCEDIR="$SCRIPTDIR/.deploy"
-TARGETDIR="$HOME"
+SOURCEDIR=${SOURCEDIR:-"$SCRIPTDIR/.deploy"}
+TARGETDIR=${TARGETDIR:-"$HOME"}
 
 find "$SOURCEDIR" -type l -print0 | while IFS= read -r -d '' link; do
     src=$(readlink -f "$link")
