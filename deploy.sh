@@ -13,7 +13,10 @@ rm -rf "$TARGETDIR/.vim"
 
 rm -rf "$TARGETDIR/bin/i3/workspace-scripts"
 
-cp -rL --remove-destination "$SOURCEDIR/." "$TARGETDIR"
+cp --recursive \
+    --dereference \
+    --remove-destination \
+    "$SOURCEDIR/." "$TARGETDIR"
 
 # git does not allow .gitignore symlinks anymore:
 # https://github.com/git/git/blob/master/Documentation/RelNotes/2.32.0.txt
