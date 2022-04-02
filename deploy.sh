@@ -4,6 +4,8 @@ SCRIPTDIR="$( cd "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
 SOURCEDIR=${SOURCEDIR:-"$SCRIPTDIR/.deploy"}
 TARGETDIR=${TARGETDIR:-"$HOME"}
 
+echo "Deploying from $SOURCEDIR to $TARGETDIR"
+
 # Different branches of this repo use different vim plugin mechanisms.
 # Those different mechanisms expect plugins in different directories.
 # Ensure that after deployment we have only those directories that we need.
