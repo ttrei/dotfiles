@@ -17,10 +17,16 @@ if [ -z "$DISTRO" ] || [ -z "$CONTEXT" ] || [ -z "$MACHINE" ] || [ -z "$EXECUTIO
     exit 1
 fi
 
-if [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "personal" ] && [ "$MACHINE" = "home-desktop" ]; then
+if [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "home-desktop" ]; then
     OLD_DEPLOYMENT_NAME="home-desktop-debian"
 elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "work" ] && [ "$MACHINE" = "home-desktop" ]; then
     OLD_DEPLOYMENT_NAME="tieto2-desktop-debian"
+elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "work" ] && [ "$MACHINE" = "work-laptop" ]; then
+    OLD_DEPLOYMENT_NAME="tieto2-laptop-debian"
+elif [ "$DISTRO" = "ubuntu" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "htpc" ]; then
+    OLD_DEPLOYMENT_NAME="kodi"
+elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "taukulis.lv" ]; then
+    OLD_DEPLOYMENT_NAME="debian"
 else
     echo "ABORT! Couldn't select the old deployment directory."
     echo ""

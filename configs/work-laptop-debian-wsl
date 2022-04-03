@@ -1,0 +1,4 @@
+export DISTRO=debian
+export CONTEXT=work
+export MACHINE=work-laptop
+export EXECUTION_ENV=wsl

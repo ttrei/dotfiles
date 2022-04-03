@@ -1,4 +1,4 @@
 export DISTRO=debian
-export CONTEXT=home
+export CONTEXT=work
 export MACHINE=home-desktop
 export EXECUTION_ENV=baremetal

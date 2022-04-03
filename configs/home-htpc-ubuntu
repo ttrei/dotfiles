@@ -1,4 +1,4 @@
-export DISTRO=debian
+export DISTRO=ubuntu
 export CONTEXT=home
-export MACHINE=home-desktop
+export MACHINE=htpc
 export EXECUTION_ENV=baremetal
