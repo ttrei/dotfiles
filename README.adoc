@@ -1,0 +1,7 @@
+= dotfiles
+
+== How to deploy
+
+. Choose an appropriate environment config from `dotfiles/configs` and copy it to
+`$HOME/.dotfiles-env`.
+. Execute `dotfiles/bin/deploy.sh`
