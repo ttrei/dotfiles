@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOTFILES="$( cd "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
+DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
 STAGINGDIR="$DOTFILES/.staging"
 
 print_env() {
@@ -22,7 +22,7 @@ rm -rf "$STAGINGDIR"
 echo "Staging to $STAGINGDIR"
 
 ################################################################################
-# PREPARE DEPLOYMENT (old style, to be gradually migrated to new style)
+# OLD STYLE (to be gradually migrated to new style)
 ################################################################################
 
 if [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "home-desktop" ]; then
@@ -53,7 +53,7 @@ cp --recursive \
     "$OLD_DEPLOYMENT_DIR/." "$STAGINGDIR"
 
 ################################################################################
-# PREPARE DEPLOYMENT (new style)
+# NEW STYLE
 ################################################################################
 
 # GIT ######################
@@ -80,5 +80,4 @@ if [ -d "$STAGINGDIR/.config/i3/config.d" ]; then
     then
         cat "$i3dir"/config.d/config-* >> "$i3dir/config"
     fi
-
 fi
