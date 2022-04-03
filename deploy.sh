@@ -2,19 +2,35 @@
 
 SCRIPTDIR="$( cd "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
 
-if [ -z "$DISTRO" ] || [ -z "$CONTEXT" ] || [ -z "$MACHINE" ] || [ -z "$EXECUTION_ENV" ] \
-    || [ -z "$USER" ]; then
-    echo "ABORT! Following env variables must be non-empty"
-    echo ""
+print_env() {
     echo "DISTRO=$DISTRO"
     echo "CONTEXT=$CONTEXT"
     echo "MACHINE=$MACHINE"
     echo "EXECUTION_ENV=$EXECUTION_ENV"
     echo "USER=$USER"
+}
+
+if [ -z "$DISTRO" ] || [ -z "$CONTEXT" ] || [ -z "$MACHINE" ] || [ -z "$EXECUTION_ENV" ] || [ -z "$USER" ]; then
+    echo "ABORT! Environment incomplete."
+    echo ""
+    print_env
     exit 1
 fi
 
-SOURCEDIR=${SOURCEDIR:-"$SCRIPTDIR/.deploy"}
+if [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "personal" ] && [ "$MACHINE" = "home-desktop" ]; then
+    OLD_DEPLOYMENT_NAME="home-desktop-debian"
+elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "work" ] && [ "$MACHINE" = "home-desktop" ]; then
+    OLD_DEPLOYMENT_NAME="tieto2-desktop-debian"
+fi
+
+if [ -z "$OLD_DEPLOYMENT_NAME" ]; then
+    echo "ABORT! Couldn't select the old deployment."
+    echo ""
+    print_env
+    exit 1
+fi
+
+SOURCEDIR=${SOURCEDIR:-"$SCRIPTDIR/.deploy-$OLD_DEPLOYMENT_NAME"}
 TARGETDIR=${TARGETDIR:-"$HOME"}
 echo "Deploying from $SOURCEDIR to $TARGETDIR"
 
