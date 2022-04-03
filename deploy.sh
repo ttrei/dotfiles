@@ -21,10 +21,8 @@ if [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "personal" ] && [ "$MACHINE" = "ho
     OLD_DEPLOYMENT_NAME="home-desktop-debian"
 elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "work" ] && [ "$MACHINE" = "home-desktop" ]; then
     OLD_DEPLOYMENT_NAME="tieto2-desktop-debian"
-fi
-
-if [ -z "$OLD_DEPLOYMENT_NAME" ]; then
-    echo "ABORT! Couldn't select the old deployment."
+else
+    echo "ABORT! Couldn't select the old deployment directory."
     echo ""
     print_env
     exit 1
@@ -33,6 +31,11 @@ fi
 SOURCEDIR=${SOURCEDIR:-"$SCRIPTDIR/.deploy-$OLD_DEPLOYMENT_NAME"}
 TARGETDIR=${TARGETDIR:-"$HOME"}
 echo "Deploying from $SOURCEDIR to $TARGETDIR"
+
+if ! [ -d "$SOURCEDIR" ]; then
+    echo "ABORT! Source directory $SOURCEDIR not found."
+    exit 1
+fi
 
 # Different branches of this repo use different vim plugin mechanisms.
 # Those different mechanisms expect plugins in different directories.
