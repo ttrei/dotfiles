@@ -2,19 +2,17 @@
 
 SCRIPTDIR="$( cd "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
 
-echo "DOTFILES_DISTRO=$DOTFILES_DISTRO"
-echo "DOTFILES_CONTEXT=$DOTFILES_CONTEXT"
-echo "DOTFILES_MACHINE=$DOTFILES_MACHINE"
-echo "USER=$USER"
-echo ""
-
-# if [ -x "$(command -v lsb_release)" ]
-# then
-#     DOTFILES_DISTRO=$(lsb_release --id --short)
-# else
-#     echo "ABORT (lsb_release not found)"
-#     exit 1
-# fi
+if [ -z "$DISTRO" ] || [ -z "$CONTEXT" ] || [ -z "$MACHINE" ] || [ -z "$EXECUTION_ENV" ] \
+    || [ -z "$USER" ]; then
+    echo "ABORT! Following env variables must be non-empty"
+    echo ""
+    echo "DISTRO=$DISTRO"
+    echo "CONTEXT=$CONTEXT"
+    echo "MACHINE=$MACHINE"
+    echo "EXECUTION_ENV=$EXECUTION_ENV"
+    echo "USER=$USER"
+    exit 1
+fi
 
 SOURCEDIR=${SOURCEDIR:-"$SCRIPTDIR/.deploy"}
 TARGETDIR=${TARGETDIR:-"$HOME"}
