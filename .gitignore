@@ -3,3 +3,4 @@ xfce4terminal/terminal/accels.scm
 *.swp
 
 .direnv/
+.staging/
