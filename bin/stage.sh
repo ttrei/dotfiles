@@ -5,6 +5,7 @@ set -o nounset
 
 DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
 STAGINGDIR="$DOTFILES/.staging"
+ENVFILE="$HOME/.dotfiles-env"
 
 print_env() {
     echo "DISTRO=$DISTRO"
@@ -13,6 +14,12 @@ print_env() {
     echo "EXECUTION_ENV=$EXECUTION_ENV"
     echo "USER=$USER"
 }
+
+if ! [ -f "$ENVFILE" ]; then
+    echo "ABORT! dotfiles env file $ENVFILE not found."
+    exit 1
+fi
+. "$ENVFILE"
 
 if [ -z "$DISTRO" ] || [ -z "$CONTEXT" ] || [ -z "$MACHINE" ] || [ -z "$EXECUTION_ENV" ] || [ -z "$USER" ]; then
     echo "ABORT! Environment incomplete."
