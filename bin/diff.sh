@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -o errexit
+set -o nounset
+set -o pipefail
+
 BGREEN='\033[1;92m'
 NC='\033[0m' # No Color
 
