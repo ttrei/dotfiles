@@ -1,3 +1,4 @@
-export DOTFILES_DISTRO=debian
-export DOTFILES_CONTEXT=personal
-export DOTFILES_MACHINE=home-desktop
+export DISTRO=debian
+export CONTEXT=personal
+export MACHINE=home-desktop
+export EXECUTION_ENV=baremetal
