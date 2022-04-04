@@ -18,7 +18,7 @@ echo "DIFF $STAGINGDIR <--> $TARGETDIR"
 find "$STAGINGDIR" -type f -print0 | while IFS= read -r -d '' dotfile; do
     target="$TARGETDIR/${dotfile#"$STAGINGDIR/"}"
     diff_cmd="diff $dotfile $target"
-    diff_output="$($diff_cmd 2>&1)"
+    diff_output="$($diff_cmd 2>&1 || true)"
     if [ -n "$diff_output" ]; then
         echo -e "${BGREEN}$ $diff_cmd${NC}"
         echo -e "$diff_output"
