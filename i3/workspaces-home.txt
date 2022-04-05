@@ -8,6 +8,7 @@
 70:virt
 71:ubuntu
 72:nixos
+85:dotfiles
 90:steam
 91:factorio
 95:upgrade
