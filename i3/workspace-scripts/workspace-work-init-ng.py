@@ -45,9 +45,7 @@ async def main():
     i3 = await Connection(auto_reconnect=True).connect()
     global WORKSPACES
     existing_workspaces = await i3.get_workspaces()
-    WORKSPACES -= {
-        w.name for w in existing_workspaces
-    }  # We will not touch already existing workspaces
+    WORKSPACES -= {w.name for w in existing_workspaces}  # We will not touch already existing workspaces
 
     if len(WORKSPACES) == 0:
         return
