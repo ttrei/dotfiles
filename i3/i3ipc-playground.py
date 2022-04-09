@@ -25,9 +25,7 @@ async def on_new_window(i3: Connection, e: WindowEvent):
     if name in WINDOWNAME_WORKSPACE_MAP:
         await e.container.command(f"move to workspace {WINDOWNAME_WORKSPACE_MAP[name]}")
     if window_class in WINDOWCLASS_WORKSPACE_MAP:
-        await e.container.command(
-            f"move to workspace {WINDOWCLASS_WORKSPACE_MAP[window_class]}"
-        )
+        await e.container.command(f"move to workspace {WINDOWCLASS_WORKSPACE_MAP[window_class]}")
 
     if name == "emacs-dev":
         await e.container.command("move left")

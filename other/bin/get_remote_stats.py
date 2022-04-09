@@ -40,13 +40,9 @@ def read_remote_file(path, hostname):
         raise Exception(f"Unexpected return code {rc}")
 
     command = f"stat --format '%Y' {quoted_path} && cat {quoted_path}"
-    ssh = subprocess.Popen(
-        ["ssh", "-p", str(port), login, command], stdout=subprocess.PIPE
-    )
+    ssh = subprocess.Popen(["ssh", "-p", str(port), login, command], stdout=subprocess.PIPE)
     data = [line.decode().rstrip("\n") for line in ssh.stdout]
-    mtime = datetime.fromtimestamp(int(data[0]), tz=timezone.utc).isoformat(
-        timespec="seconds"
-    )
+    mtime = datetime.fromtimestamp(int(data[0]), tz=timezone.utc).isoformat(timespec="seconds")
     lines = data[1:]
     return (mtime, lines)
 

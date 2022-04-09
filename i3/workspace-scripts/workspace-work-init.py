@@ -56,7 +56,15 @@ i3.command("move container to workspace 30:notes")
 path = os.path.join(os.environ.get("HOME"), "dev", "doc", "modules", "ROOT")
 os.chdir(path)
 Popen(
-    ["zutty", "-e", "nvim", "-p", "pages/todo.adoc", "pages/done.adoc", "pages/log.adoc"]
+    [
+        "zutty",
+        "-e",
+        "nvim",
+        "-p",
+        "pages/todo.adoc",
+        "pages/done.adoc",
+        "pages/log.adoc",
+    ]
 )
 time.sleep(0.3)
 i3.command("move container to workspace 30:notes")
