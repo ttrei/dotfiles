@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -o errexit
 set -o nounset
@@ -6,6 +6,8 @@ set -o nounset
 DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
 STAGINGDIR="$DOTFILES/.staging"
 ENVFILE="$HOME/.dotfiles-env"
+
+ARG=${1:-}
 
 print_env() {
     echo "DISTRO=$DISTRO"
@@ -29,7 +31,9 @@ if [ -z "$DISTRO" ] || [ -z "$CONTEXT" ] || [ -z "$MACHINE" ] || [ -z "$EXECUTIO
 fi
 
 rm -rf "$STAGINGDIR"
-echo "Staging to $STAGINGDIR"
+if [ "$ARG" == "-v" ]; then
+    echo "Staging to $STAGINGDIR"
+fi
 
 ################################################################################
 # OLD STYLE (to be gradually migrated to new style)
@@ -52,7 +56,9 @@ else
     exit 1
 fi
 OLD_DEPLOYMENT_DIR="$DOTFILES/.deploy-$OLD_DEPLOYMENT_NAME"
-echo "Selected old-style deployment directory: $OLD_DEPLOYMENT_DIR"
+if [ "$ARG" == "-v" ]; then
+    echo "Selected old-style deployment directory: $OLD_DEPLOYMENT_DIR"
+fi
 if ! [ -d "$OLD_DEPLOYMENT_DIR" ]; then
     echo "ABORT! Old-style deployment directory $OLD_DEPLOYMENT_DIR not found."
     exit 1

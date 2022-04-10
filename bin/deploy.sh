@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -o errexit
 set -o nounset
@@ -7,7 +7,9 @@ DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
 STAGINGDIR="$DOTFILES/.staging"
 TARGETDIR=${TARGETDIR:-"$HOME"}
 
-"$DOTFILES/bin/stage.sh"
+ARG=${1:-}
+
+"$DOTFILES"/bin/stage.sh "$ARG"
 
 echo "DEPLOYING $STAGINGDIR --> $TARGETDIR"
 
