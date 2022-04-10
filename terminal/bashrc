@@ -93,6 +93,10 @@ export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" 
 # Colored man
 #export PAGER=most
 
+if ! [ -x "$(command -v delta)" ]; then
+    export GIT_PAGER=less
+fi
+
 # Commands with leading space will not be saved in ~/.bash_history
 export HISTCONTROL="ignorespace"
 
