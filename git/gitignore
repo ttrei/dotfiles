@@ -4,5 +4,6 @@ tags.temp
 
 .idea
 .direnv
+__pycache__
 
 *.swp
