@@ -3,12 +3,6 @@
 !keycode 107 = Caps_Lock
 !keycode 78 = Caps_Lock
 
-! CapsLock (66) as Escape
-keycode 66 = Escape
-
-clear lock
-!add lock = Caps_Lock
-
 ! Left Alt (64) as Alt, used for Emacs Meta key
 keycode 64 = Alt_L
 clear mod1
