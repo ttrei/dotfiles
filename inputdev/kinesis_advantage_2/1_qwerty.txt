@@ -3,6 +3,8 @@
 [enter]>[delete]
 [space]>[enter]
 
+[caps]>[escape]
+
 [T]>[B]
 [R]>[P]
 [E]>[F]

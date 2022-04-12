@@ -2,3 +2,5 @@
 [bspace]>[space]
 [enter]>[delete]
 [space]>[enter]
+
+[caps]>[escape]
