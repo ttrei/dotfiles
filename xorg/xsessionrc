@@ -6,7 +6,7 @@ xmodmap $HOME/.xmodmaprc &
 
 redshift &
 
-xrandr --output HDMI-1 --auto --output HDMI-2 --auto --primary --left-of HDMI-1
+xrandr --output HDMI-2 --auto --primary --output HDMI-1 --off
 
 # Ensure that initial workspaces will be created on the display that we want
 xdotool mousemove --screen HDMI-2 960 540 &
