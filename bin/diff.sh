@@ -8,7 +8,7 @@ BGREEN='\033[1;92m'
 NC='\033[0m' # No Color
 
 DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
-STAGINGDIR="$DOTFILES/.staging"
+STAGINGDIR=${STAGINGDIR:-"$DOTFILES/.staging"}
 TARGETDIR=${TARGETDIR:-"$HOME"}
 
 ARG=${1:-}
