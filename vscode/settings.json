@@ -1,5 +1,6 @@
 {
     "window.restoreWindows": "none",
+    "window.title": "${rootName}${separator}${appName}",
     "workbench.colorTheme": "Gruvbox Light Hard",
     "workbench.startupEditor": "none",
     "workbench.tree.indent": 12,
