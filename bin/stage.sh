@@ -21,6 +21,7 @@ if ! [ -f "$ENVFILE" ]; then
     echo "ABORT! dotfiles env file $ENVFILE not found."
     exit 1
 fi
+# shellcheck source=/dev/null
 . "$ENVFILE"
 
 if [ -z "$DISTRO" ] || [ -z "$CONTEXT" ] || [ -z "$MACHINE" ] || [ -z "$EXECUTION_ENV" ] || [ -z "$USER" ]; then
