@@ -20,6 +20,7 @@
     git
     git-crypt
     ripgrep
+    vscode-with-extensions
     myxow
   ];
 
