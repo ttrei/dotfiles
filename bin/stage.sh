@@ -73,11 +73,9 @@ cp --recursive \
 ################################################################################
 
 # GIT ######################
-
 cp "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
 # SSH ######################
-
 if [ -d "$STAGINGDIR/.ssh" ]; then
     chmod 700 "$STAGINGDIR/.ssh"
 fi
@@ -86,7 +84,6 @@ if [ -f "$STAGINGDIR/.ssh/config" ]; then
 fi
 
 # I3/SWAY ##################
-
 if [ -d "$STAGINGDIR/.config/i3/config.d" ]; then
     i3dir="$STAGINGDIR/.config/i3"
     cp "$i3dir/config.d/config" "$i3dir/config"
@@ -97,3 +94,9 @@ if [ -d "$STAGINGDIR/.config/i3/config.d" ]; then
         cat "$i3dir"/config.d/config-* >> "$i3dir/config"
     fi
 fi
+
+# VSCODE
+mkdir -p "$STAGINGDIR/.config/Code/User"
+mkdir -p "$STAGINGDIR/.config/vscode-workspaces"
+cp -r "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/"
+cp -r "$DOTFILES"/vscode/workspaces/* "$STAGINGDIR/.config/vscode-workspaces/"
