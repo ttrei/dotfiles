@@ -17,18 +17,20 @@ ARG=${1:-}
 
 if [ "$ARG" == "-v" ]; then
     echo "DIFF $STAGINGDIR <--> $TARGETDIR"
+    echo
 fi
 
-find "$STAGINGDIR" -type f -print0 | while IFS= read -r -d '' dotfile; do
-    target="$TARGETDIR/${dotfile#"$STAGINGDIR/"}"
-    diff_cmd="diff $dotfile $target"
+find "$STAGINGDIR" -type l,f -print0 | while IFS= read -r -d '' dotfile; do
+    src=$(readlink -f "$dotfile")
+    dst="$TARGETDIR/${dotfile#"$STAGINGDIR/"}"
+    diff_cmd="diff -r $src $dst"
     diff_output="$($diff_cmd 2>&1 || true)"
     if [ -n "$diff_output" ]; then
         if [ "$ARG" == "-v" ]; then
             echo -e "${BGREEN}$ $diff_cmd${NC}"
             echo -e "$diff_output\n"
         else
-            echo -e "$target"
+            echo -e "$dst"
         fi
     fi
 done

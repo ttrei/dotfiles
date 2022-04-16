@@ -16,4 +16,4 @@ echo "DEPLOYING $STAGINGDIR --> $TARGETDIR"
 rm -rf "$TARGETDIR/.vim"
 rm -rf "$TARGETDIR/bin/i3/workspace-scripts"
 
-cp --recursive --remove-destination "$STAGINGDIR/." "$TARGETDIR"
+cp --recursive --dereference --remove-destination "$STAGINGDIR/." "$TARGETDIR"
