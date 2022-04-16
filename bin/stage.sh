@@ -66,7 +66,7 @@ if ! [ -d "$OLD_DEPLOYMENT_DIR" ]; then
 fi
 
 cp --recursive \
-    --dereference \
+    --no-dereference \
     "$OLD_DEPLOYMENT_DIR/." "$STAGINGDIR"
 
 ################################################################################
@@ -74,7 +74,7 @@ cp --recursive \
 ################################################################################
 
 # GIT ######################
-cp "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
+ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
 # SSH ######################
 if [ -d "$STAGINGDIR/.ssh" ]; then
@@ -98,6 +98,5 @@ fi
 
 # VSCODE
 mkdir -p "$STAGINGDIR/.config/Code/User"
-mkdir -p "$STAGINGDIR/.config/vscode-workspaces"
-cp -r "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/"
-cp -r "$DOTFILES"/vscode/workspaces/* "$STAGINGDIR/.config/vscode-workspaces/"
+ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/"
+ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
