@@ -1,1 +1,0 @@
-../../i3/bin/myrmidon/myrmidon.sh
