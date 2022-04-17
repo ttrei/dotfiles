@@ -73,10 +73,10 @@ cp --recursive \
 # NEW STYLE
 ################################################################################
 
-# GIT ######################
+# GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
-# I3/SWAY ##################
+# I3/SWAY
 if [ -d "$STAGINGDIR/.config/i3/config.d" ]; then
     i3dir="$STAGINGDIR/.config/i3"
     cp "$i3dir/config.d/config" "$i3dir/config"
