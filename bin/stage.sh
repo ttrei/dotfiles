@@ -76,14 +76,6 @@ cp --recursive \
 # GIT ######################
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
-# SSH ######################
-if [ -d "$STAGINGDIR/.ssh" ]; then
-    chmod 700 "$STAGINGDIR/.ssh"
-fi
-if [ -f "$STAGINGDIR/.ssh/config" ]; then
-    chmod 600 "$STAGINGDIR/.ssh/config"
-fi
-
 # I3/SWAY ##################
 if [ -d "$STAGINGDIR/.config/i3/config.d" ]; then
     i3dir="$STAGINGDIR/.config/i3"
