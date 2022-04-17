@@ -17,3 +17,10 @@ rm -rf "$TARGETDIR/.vim"
 rm -rf "$TARGETDIR/bin/i3/workspace-scripts"
 
 cp --recursive --dereference --remove-destination "$STAGINGDIR/." "$TARGETDIR"
+
+if [ -d "$TARGETDIR/.ssh" ]; then
+    chmod 700 "$TARGETDIR/.ssh"
+fi
+if [ -f "$TARGETDIR/.ssh/config" ]; then
+    chmod 600 "$TARGETDIR/.ssh/config"
+fi
