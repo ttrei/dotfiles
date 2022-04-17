@@ -73,22 +73,48 @@ cp --recursive \
 # NEW STYLE
 ################################################################################
 
+mkdir -p "$STAGINGDIR/.config"
+mkdir -p "$STAGINGDIR/bin"
+
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
 # I3/SWAY
-if [ -d "$STAGINGDIR/.config/i3/config.d" ]; then
-    i3dir="$STAGINGDIR/.config/i3"
-    cp "$i3dir/config.d/config" "$i3dir/config"
-
-    if test -n "$(find "$i3dir/config.d" -maxdepth 1 -name 'config-*' -print -quit)"
-    # https://stackoverflow.com/a/4264351/9124671
-    then
-        cat "$i3dir"/config.d/config-* >> "$i3dir/config"
+mkdir -p "$STAGINGDIR/.config/i3"
+mkdir -p "$STAGINGDIR/.config/i3blocks"
+mkdir -p "$STAGINGDIR/.config/sway"
+mkdir -p "$STAGINGDIR/bin/i3"
+cp "$DOTFILES/i3/config/config" "$STAGINGDIR/.config/i3/config"
+ln -s "$DOTFILES/i3/sway/config" "$STAGINGDIR/.config/sway/config"
+ln -s "$DOTFILES/i3/i3blocks/config" "$STAGINGDIR/.config/i3blocks/config"
+ln -s "$DOTFILES/i3/i3blocks/blocklets" "$STAGINGDIR/.config/i3blocks/blocklets"
+ln -s "$DOTFILES/i3/commands.json" "$STAGINGDIR/.config/i3/commands.json"
+ln -s "$DOTFILES/i3/bin/myrmidon/confirm.sh" "$STAGINGDIR/bin/confirm.sh"
+ln -s "$DOTFILES/i3/bin/myrmidon/myrmidon.sh" "$STAGINGDIR/bin/myrmidon.sh"
+ln -s "$DOTFILES/i3/workspace-scripts" "$STAGINGDIR/bin/i3/workspace-scripts"
+ln -s "$DOTFILES/i3/bin/i3-rename-current-workspace" "$STAGINGDIR/bin/i3/i3-rename-current-workspace"
+ln -s "$DOTFILES/i3/bin/i3-start" "$STAGINGDIR/bin/i3/i3-start"
+ln -s "$DOTFILES/i3/bin/i3-workspaces" "$STAGINGDIR/bin/i3/i3-workspaces"
+if [ "$MACHINE" = "home-desktop" ]; then
+    if [ "$CONTEXT" = "home" ]; then
+        ln -s "$DOTFILES/i3/workspaces-home.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+        ln -s "$DOTFILES/i3/sway/config-home" "$STAGINGDIR/.config/sway/config-home"
+        cat "$DOTFILES/i3/config/config-home" >> "$STAGINGDIR/.config/i3/config"
+    elif [ "$CONTEXT" = "work" ]; then
+        ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+        ln -sf "$DOTFILES/i3/i3blocks/config-tieto2" "$STAGINGDIR/.config/i3blocks/config"
     fi
+elif [ "$MACHINE" = "htpc" ]; then
+    ln -s "$DOTFILES/i3/sway/config-kodi" "$STAGINGDIR/.config/sway/config-kodi"
+    cat "$DOTFILES/i3/config/config-kodi" >> "$STAGINGDIR/.config/i3/config"
+    ln -sf "$DOTFILES/i3/i3blocks/config-kodi" "$STAGINGDIR/.config/i3blocks/config"
+    ln -sf "$DOTFILES/i3/commands-kodi.json" "$STAGINGDIR/.config/i3/commands.json"
+fi
+if [ "$EXECUTION_ENV" = "qemu" ]; then
+    ln -sf "$DOTFILES/i3/i3blocks/config-qemu" "$STAGINGDIR/.config/i3blocks/config"
 fi
 
 # VSCODE
 mkdir -p "$STAGINGDIR/.config/Code/User"
-ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/"
+ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/settings.json"
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
