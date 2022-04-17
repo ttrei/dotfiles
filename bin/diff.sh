@@ -23,7 +23,7 @@ fi
 find "$STAGINGDIR" -type l,f -print0 | while IFS= read -r -d '' dotfile; do
     src=$(readlink -f "$dotfile")
     dst="$TARGETDIR/${dotfile#"$STAGINGDIR/"}"
-    diff_cmd="diff -r $src $dst"
+    diff_cmd="diff -r -x __pycache__ $src $dst"
     diff_output="$($diff_cmd 2>&1 || true)"
     if [ -n "$diff_output" ]; then
         if [ "$ARG" == "-v" ]; then
