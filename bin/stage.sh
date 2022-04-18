@@ -118,3 +118,6 @@ fi
 mkdir -p "$STAGINGDIR/.config/Code/User"
 ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/settings.json"
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
+
+# TERMINAL
+ln -s "$DOTFILES/terminal/bin/terminal-at-dir" "$STAGINGDIR/bin/terminal-at-dir"
