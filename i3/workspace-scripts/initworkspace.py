@@ -28,6 +28,8 @@ class Program:
             if len(args) == 0:
                 raise ValueError("terminal-at-dir must have at least one argument")
             return binary, args[0], "-t", window_name, *args[1:]
+        elif binary == "zutty":
+            return binary, "-t", window_name, *args
         elif binary == "emacs":
             return binary, f"--title={window_name}", *args
         else:
