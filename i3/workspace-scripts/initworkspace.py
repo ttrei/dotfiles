@@ -13,21 +13,25 @@ TIMEOUT = 5.0
 
 class Program:
     def __init__(self, execstr: str, window_name, window_class, window_handling_commands):
-        self.binary = execstr.split()[0]
-        self.argstr: str = execstr.lstrip(self.binary).strip()
+        self.exec_tuple = self._parse_exec_string(execstr, window_name)
         self.window_name = window_name
         self.window_class = window_class
         self.window_handling_commands = window_handling_commands or []
         self.workspace = None
 
-    def get_exec_tuple(self):
-        args = self.argstr.split()
-        if self.binary == "zutty":
-            return self.binary, "-t", self.window_name, *args
-        elif self.binary == "emacs":
-            return self.binary, f"--title={self.window_name}", *args
+    @staticmethod
+    def _parse_exec_string(execstr: str, window_name: str):
+        binary = execstr.split()[0]
+        argstr: str = execstr.lstrip(binary).strip()
+        args = argstr.split()
+        if binary == "terminal-at-dir":
+            if len(args) == 0:
+                raise ValueError("terminal-at-dir must have at least one argument")
+            return binary, args[0], "-t", window_name, *args[1:]
+        elif binary == "emacs":
+            return binary, f"--title={window_name}", *args
         else:
-            return self.binary, *args
+            return binary, *args
 
     def match(self, window_name: str, window_class: str):
         if self.window_name == window_name.lower() and self.window_class == window_class.lower():
@@ -86,7 +90,7 @@ async def main(workspace_program_config, timeout):
         if workspace in existing_workspaces:
             continue
         for program in programs:
-            await asyncio.create_subprocess_exec(*program.get_exec_tuple())
+            await asyncio.create_subprocess_exec(*program.exec_tuple)
             STARTING_PROGRAMS.add(program)
 
     if len(STARTING_PROGRAMS) == 0:
