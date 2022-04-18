@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+TERMINAL_CMD="zutty"
+
+if [ -z "$1" ] ; then
+    echo "Usage: $0 <starting directory> [arguments passed to zutty]"
+    exit 1
+fi
+
+directory="$1"
+
+shift
+
+cd "$directory" || exit 1
+$TERMINAL_CMD "$@" &
