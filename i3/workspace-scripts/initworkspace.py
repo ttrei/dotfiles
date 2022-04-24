@@ -3,7 +3,7 @@ import asyncio
 from typing import Set
 
 from i3ipc import Event
-from i3ipc.aio import Connection
+from i3ipc.aio import Connection, Con
 from i3ipc.events import WindowEvent
 
 from typing import Dict, List
@@ -85,11 +85,11 @@ STARTING_PROGRAMS: Set["Program"] = set()
 async def main(workspace_program_config, timeout):
     i3 = await Connection(auto_reconnect=True).connect()
 
-    # We will not touch already existing workspaces
-    existing_workspaces = {w.name for w in await i3.get_workspaces()}
+    # We will not touch already existing workspaces containing something
+    nonempty_workspaces = get_nonempty_workspaces(await i3.get_tree())
 
     for workspace, programs in construct_workspace_programs(workspace_program_config).items():
-        if workspace in existing_workspaces:
+        if workspace in nonempty_workspaces:
             continue
         for program in programs:
             await asyncio.create_subprocess_exec(*program.exec_tuple)
@@ -105,3 +105,28 @@ async def main(workspace_program_config, timeout):
 
 def run(workspace_program_config, timeout):
     asyncio.run(main(workspace_program_config, timeout))
+
+
+def get_nonempty_workspaces(tree: Con):
+    nonempty_workspaces = set()
+    outputs = [n for n in tree.nodes if n.name != "__i3"]
+    for output in outputs:
+        content = None
+        for node in output.nodes:
+            if node.type == "con" and node.name == "content":
+                content = node
+                break
+        if content is None:
+            raise RuntimeError(f"Couldn't find content node in {output.name} output")
+        for node in content.nodes:
+            if node.type != "workspace":
+                raise RuntimeError(f"Unexpected node {node.name} of type {node.type}")
+            if len(node.nodes) > 0:
+                nonempty_workspaces.add(node.name)
+    return nonempty_workspaces
+
+
+def print_i3_nodes(node: Con, depth=0):
+    print(f"{'  ' * depth}[{node.type}] {node.name}")
+    for child_node in node.nodes:
+        print_i3_nodes(child_node, depth + 1)
