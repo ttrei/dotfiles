@@ -12,7 +12,7 @@ BOOK = "/media/storage-new/books/LinuxProgrammingInterface.pdf"
 
 WORKSPACE_PROGRAMS = {
     "15:doc": [
-        [f"evince {BOOK}", "document viewer", "evince", None],
+        [f"zathura {BOOK}", "org.pwmt.zathura", "zathura", None],
     ],
     "20:dev": [
         [f"terminal-at-dir {DIR_TLPI}", "zutty-tlpi", "zutty", None],
