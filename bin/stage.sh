@@ -117,6 +117,7 @@ fi
 # VSCODE
 mkdir -p "$STAGINGDIR/.config/Code/User"
 ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/settings.json"
+ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybindings.json"
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
 # TERMINAL
