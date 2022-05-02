@@ -13,10 +13,6 @@ WORKSPACE_PROGRAMS = {
     "10:browser": [
         ["firefox", "mozilla firefox", "firefox", None],
     ],
-    "20:dev": [
-        ["zutty", "zutty-dev", "zutty", None],
-        ["zutty", "zutty-dev", "zutty", None],
-    ],
 }
 
 initworkspace.run(WORKSPACE_PROGRAMS, TIMEOUT)

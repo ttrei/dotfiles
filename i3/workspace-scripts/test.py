@@ -15,6 +15,10 @@ WORKSPACE_PROGRAMS = {
         # [f"code {HOME}/.config/vscode-workspaces/ziglings.code-workspace", "visual studio code", "code", None],
         # [f"code {HOME}/.config/vscode-workspaces/algorithms.code-workspace", "visual studio code", "code", None],
     ],
+    "200:dev": [
+        ["zutty", "zutty-dev", "zutty", None],
+        ["zutty", "zutty-dev", "zutty", None],
+    ],
 }
 
 initworkspace.run(WORKSPACE_PROGRAMS, TIMEOUT)
