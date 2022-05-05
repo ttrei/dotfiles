@@ -1,5 +1,5 @@
 other/start/FastFold https://github.com/Konfekt/FastFold.git
-other/start/fzf ttps://github.com/junegunn/fzf.git
+other/start/fzf https://github.com/junegunn/fzf.git
 other/start/fzf.vim https://github.com/junegunn/fzf.vim.git
 other/start/vim-fugitive https://github.com/tpope/vim-fugitive.git
 other/start/vim-table-mode https://github.com/dhruvasagar/vim-table-mode.git
