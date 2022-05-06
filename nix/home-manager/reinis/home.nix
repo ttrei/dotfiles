@@ -17,6 +17,7 @@
     fd
     fzf
     lorri
+    neovim
     git
     git-crypt
     ripgrep
