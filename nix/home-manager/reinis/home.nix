@@ -22,7 +22,7 @@
     git-crypt
     ripgrep
     vscode-with-extensions
-    myxow
+    # myxow
   ];
 
   programs.bash = {
