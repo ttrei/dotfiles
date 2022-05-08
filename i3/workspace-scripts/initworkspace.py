@@ -24,10 +24,14 @@ class Program:
         binary = execstr.split()[0]
         argstr: str = execstr.lstrip(binary).strip()
         args = argstr.split()
-        if binary == "terminal-at-dir":
-            if len(args) == 0:
-                raise ValueError("terminal-at-dir must have at least one argument")
-            return binary, args[0], "-t", window_name, *args[1:]
+        if binary == "exec-in-dir":
+            if len(args) < 2:
+                raise ValueError("exec-in-dir must have at least two arguments")
+            directory, executable = args[0], args[1]
+            args = args[2:]
+            if executable == "zutty":
+                args = ["-t", window_name] + args
+            return binary, directory, executable, *args
         elif binary == "zutty":
             return binary, "-t", window_name, *args
         elif binary == "emacs":

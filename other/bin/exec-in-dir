@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+[ -z "$2" ] && echo "Usage: $0 <starting directory> <binary> [arguments]" && exit 1
+
+directory="$1"
+shift
+
+cd "$directory" || exit 1
+"$@" &
