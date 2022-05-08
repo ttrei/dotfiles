@@ -15,8 +15,8 @@ WORKSPACE_PROGRAMS = {
         [f"zathura {BOOK}", "org.pwmt.zathura", "zathura", None],
     ],
     "20:dev": [
-        [f"terminal-at-dir {DIR_TLPI}", "zutty-tlpi", "zutty", None],
-        [f"terminal-at-dir {DIR_TLPI}", "zutty-tlpi", "zutty", None],
+        [f"exec-in-dir {DIR_TLPI} zutty", "zutty-tlpi", "zutty", None],
+        [f"exec-in-dir {DIR_TLPI} zutty", "zutty-tlpi", "zutty", None],
     ],
     "25:vscode": [
         [f"code {VSCODE_WORKSPACE_TLPI}", "visual studio code", "code", None],

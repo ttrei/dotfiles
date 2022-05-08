@@ -120,5 +120,5 @@ ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/settings.j
 ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybindings.json"
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
-# TERMINAL
-ln -s "$DOTFILES/terminal/bin/terminal-at-dir" "$STAGINGDIR/bin/terminal-at-dir"
+# OTHER
+ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"

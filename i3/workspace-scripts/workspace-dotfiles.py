@@ -9,8 +9,8 @@ WORKSPACE_PROGRAMS = {
     # workspace
     "85:dotfiles": [
         # execstr, window_name, window_class, window_handling_commands
-        [f"terminal-at-dir {HOME}/dotfiles", "zutty-dotfiles", "zutty", None],
-        [f"terminal-at-dir {HOME}/dotfiles", "zutty-dotfiles", "zutty", None],
+        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", None],
+        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", None],
     ],
 }
 
