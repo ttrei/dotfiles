@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "../../dev/learn/zig/handmade_rts"
+		}
+	],
+	"settings": {
+        "cmake.configureOnOpen": false
+    }
+}
