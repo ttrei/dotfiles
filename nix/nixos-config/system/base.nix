@@ -5,6 +5,7 @@
     ag
     clang-tools
     delta
+    diffstat
     direnv
     encfs
     fd
