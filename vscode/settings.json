@@ -5,5 +5,9 @@
     "workbench.startupEditor": "none",
     "workbench.tree.indent": 12,
     "workbench.tree.renderIndentGuides": "always",
-    "zigLanguageClient.path": "zls"
+    "zigLanguageClient.path": "zls",
+    "[zig]": {
+        "editor.defaultFormatter": "tiehuis.zig"
+    },
+    "zig.buildOnSave": true,
 }
