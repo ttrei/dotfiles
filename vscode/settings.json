@@ -10,4 +10,14 @@
         "editor.defaultFormatter": "tiehuis.zig"
     },
     "zig.buildOnSave": true,
+    // Force the onSave actions even if file unchanged
+    // https://github.com/VSCodeVim/Vim/issues/1282#issuecomment-475832132
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [":", "w"],
+            "commands": [
+                "workbench.action.files.save",
+            ]
+        }
+    ],
 }
