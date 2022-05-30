@@ -10,4 +10,5 @@
         "editor.defaultFormatter": "tiehuis.zig"
     },
     "zig.buildOnSave": true,
+    "editor.formatOnSave": true,
 }
