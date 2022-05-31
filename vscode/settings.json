@@ -7,8 +7,8 @@
     "workbench.tree.renderIndentGuides": "always",
     "zigLanguageClient.path": "zls",
     "[zig]": {
-        "editor.defaultFormatter": "tiehuis.zig"
+        "editor.defaultFormatter": "tiehuis.zig",
+        "editor.formatOnSave": true,
     },
     "zig.buildOnSave": true,
-    "editor.formatOnSave": true,
 }
