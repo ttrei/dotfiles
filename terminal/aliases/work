@@ -3,6 +3,8 @@ alias kube='kubectl --kubeconfig ~/.kube/config'
 complete -F __start_kubectl kube
 alias kube-mma='kubectl --kubeconfig ~/.kube/config-mma'
 complete -F __start_kubectl kube-mma
+alias kube-mma-preprod='kubectl --kubeconfig ~/.kube/config-mma-preprod'
+complete -F __start_kubectl kube-mma-preprod
 
 # Old CS aliases
 #
