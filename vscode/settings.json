@@ -11,4 +11,5 @@
         "editor.formatOnSave": true,
     },
     "zig.buildOnSave": true,
+    "files.insertFinalNewline": true,
 }
