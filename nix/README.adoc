@@ -62,8 +62,6 @@ installation (see above).
 ....
 $ sh <(curl -L https://nixos.org/nix/install) --no-daemon
 # Log out, log in
-$ nix-env -iA nixpkgs.direnv
-$ nix-env -iA nixpkgs.lorri
 ....
 
 === Install home-manager
@@ -76,6 +74,9 @@ nix-channel --update
 nix-shell '<home-manager>' -A install
 
 home-manager switch
+
+bin/update-user.sh
+bin/apply-users.sh
 ....
 
 == NixOS
