@@ -104,6 +104,9 @@ if [ "$MACHINE" = "home-desktop" ]; then
         ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
         ln -sf "$DOTFILES/i3/i3blocks/config-tieto2" "$STAGINGDIR/.config/i3blocks/config"
     fi
+elif [ "$MACHINE" = "work-laptop" ]; then
+    ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+    ln -sf "$DOTFILES/i3/i3blocks/config-tieto2" "$STAGINGDIR/.config/i3blocks/config"
 elif [ "$MACHINE" = "htpc" ]; then
     ln -s "$DOTFILES/i3/sway/config-kodi" "$STAGINGDIR/.config/sway/config-kodi"
     cat "$DOTFILES/i3/config/config-kodi" >> "$STAGINGDIR/.config/i3/config"
