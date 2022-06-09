@@ -7,8 +7,8 @@ from i3ipc.aio import Connection
 
 
 WINDOWNAME_WORKSPACE_MAP = {
-    "zutty-dev1": "200:dev",
-    "zutty-dev2": "200:dev",
+    "st-dev1": "200:dev",
+    "st-dev2": "200:dev",
     "emacs-dev": "200:dev",
 }
 
@@ -56,10 +56,10 @@ async def main():
         print(w.ipc_data)
 
     # await asyncio.create_subprocess_exec("idea")
-    await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev1")
-    # await asyncio.create_subprocess_exec("zutty", "-t", "zutty-dev2")
+    await asyncio.create_subprocess_exec("st", "-t", "st-dev1")
+    # await asyncio.create_subprocess_exec("st", "-t", "st-dev2")
     # await asyncio.create_subprocess_exec("emacs", "--title=emacs-dev")
-    # await i3.command("exec zutty")
+    # await i3.command("exec st")
 
     i3.on(Event.WINDOW_NEW, on_new_window)
     await i3.main()

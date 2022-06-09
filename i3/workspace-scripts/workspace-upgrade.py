@@ -7,7 +7,7 @@ WORKSPACE_PROGRAMS = {
     # workspace
     "95:upgrade": [
         # execstr, window_name, window_class, window_handling_commands
-        ["zutty", "zutty-upgrade", "zutty", None],
+        ["st", "st-upgrade", "st", None],
     ],
 }
 

@@ -20,7 +20,7 @@ i3.command("move container to workspace 00:teams")
 # OpenVPN
 Popen(
     [
-        "zutty",
+        "st",
         "-e",
         "sudo",
         "openvpn",
@@ -36,7 +36,7 @@ i3.command("move container to workspace 80:daemons")
 path = os.path.join(os.environ.get("HOME"), "dev", "doc")
 os.chdir(path)
 
-Popen(["zutty"])
+Popen(["st"])
 time.sleep(0.3)
 i3.command("move container to workspace 30:notes")
 
@@ -44,7 +44,7 @@ path = os.path.join(os.environ.get("HOME"), "dev", "doc", "modules", "ROOT")
 os.chdir(path)
 Popen(
     [
-        "zutty",
+        "st",
         "-e",
         "nvim",
         "-p",
@@ -60,10 +60,10 @@ i3.command("move container to workspace 30:notes")
 path = os.path.join(os.environ.get("HOME"), "ips", "core")
 os.chdir(path)
 
-Popen(["zutty"])
+Popen(["st"])
 time.sleep(0.3)
 i3.command("move container to workspace 31:dev")
-Popen(["zutty"])
+Popen(["st"])
 time.sleep(0.3)
 i3.command("move container to workspace 31:dev")
 

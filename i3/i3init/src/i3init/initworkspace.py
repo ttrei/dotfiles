@@ -35,10 +35,10 @@ class Program:
                 raise ValueError("exec-in-dir must have at least two arguments")
             directory, executable = args[0], args[1]
             args = args[2:]
-            if executable == "zutty":
+            if executable == "st":
                 args = ["-t", window_name] + args
             return binary, directory, executable, *args
-        elif binary == "zutty":
+        elif binary == "st":
             return binary, "-t", window_name, *args
         elif binary == "emacs":
             return binary, f"--title={window_name}", *args

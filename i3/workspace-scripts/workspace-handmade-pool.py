@@ -11,8 +11,8 @@ VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/handmade-pool.code-workspa
 
 WORKSPACE_PROGRAMS = {
     "20:dev": [
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
+        [f"exec-in-dir {DIR} st", "st-pool", "st", None],
+        [f"exec-in-dir {DIR} st", "st-pool", "st", None],
     ],
     "25:vscode": [
         [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],

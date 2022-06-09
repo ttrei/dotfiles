@@ -9,7 +9,7 @@ WORKSPACE_PROGRAMS = {
     "05:notes": [
         # execstr, window_name, window_class, window_handling_commands
         ["emacs", "emacs-notes", "emacs", ["move right"]],
-        ["zutty", "zutty-notes", "zutty", None],
+        ["st", "st-notes", "st", None],
     ],
     "10:browser": [
         ["firefox", "mozilla firefox", "firefox", None],

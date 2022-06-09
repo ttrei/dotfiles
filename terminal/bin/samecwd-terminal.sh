@@ -7,7 +7,7 @@
 # https://blog.freesources.org//posts/2019/12/switch_to_sway/
 # i3-msg -t get_tree doesn't report PIDs, so we used xprop instead.
 
-TERMINAL_CMD="zutty"
+TERMINAL_CMD="st"
 export START_CWD="$HOME"
 
 function get_child_pid() {

@@ -17,8 +17,8 @@ WORKSPACE_PROGRAMS = {
         [f"zathura {BOOK2}", "org.pwmt.zathura", "zathura", None],
     ],
     "20:dev": [
-        [f"exec-in-dir {DEVDIR} zutty", "zutty-algorithms", "zutty", None],
-        [f"exec-in-dir {DEVDIR} zutty", "zutty-algorithms", "zutty", None],
+        [f"exec-in-dir {DEVDIR} st", "st-algorithms", "st", None],
+        [f"exec-in-dir {DEVDIR} st", "st-algorithms", "st", None],
     ],
     "25:vscode": [
         [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],
