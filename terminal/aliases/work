@@ -1,8 +1,8 @@
 # kubernetes
 alias kube='kubectl --kubeconfig ~/.kube/config'
 complete -F __start_kubectl kube
-alias kube-mma='kubectl --kubeconfig ~/.kube/config-mma'
-complete -F __start_kubectl kube-mma
+alias kube-mma-drtest='kubectl --kubeconfig ~/.kube/config-mma-drtest'
+complete -F __start_kubectl kube-mma-drtest
 alias kube-mma-preprod='kubectl --kubeconfig ~/.kube/config-mma-preprod'
 complete -F __start_kubectl kube-mma-preprod
 
