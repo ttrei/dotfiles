@@ -6,7 +6,7 @@ import i3init
 TIMEOUT = 5.0
 
 HOME = os.path.expanduser("~")
-DIR = f"{HOME}/dev/learn/zig/handmade_pool"
+DIR = f"{HOME}/home-dev/learn/zig/handmade_pool"
 VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/handmade-pool.code-workspace"
 
 WORKSPACE_PROGRAMS = {
