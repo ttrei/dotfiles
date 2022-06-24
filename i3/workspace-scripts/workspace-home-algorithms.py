@@ -1,24 +1,26 @@
 #!/usr/bin/env python3
-
-# https://github.com/swaywm/sway/issues/1005
-# https://github.com/altdesktop/i3ipc-python
-
 import os
-import time
 
-from i3ipc import Connection
-from subprocess import Popen
+import initworkspace
 
-i3 = Connection()
+TIMEOUT = 5.0
 
-path = os.path.join(os.environ.get("HOME"), "dev", "exploration", "zig")
-os.chdir(path)
+HOME = os.path.expanduser("~")
+DEVDIR = f"{HOME}/dev/learn/zig/algorithms"
+VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/algorithms.code-workspace"
+BOOK = "/media/storage-new/Skiena-The_Algorithm_Design_Manual-2020.pdf"
 
-Popen(["zutty"])
-time.sleep(0.2)
-i3.command("move container to workspace 21:zig")
+WORKSPACE_PROGRAMS = {
+    "15:doc": [
+        [f"zathura {BOOK}", "org.pwmt.zathura", "zathura", None],
+    ],
+    "20:dev": [
+        [f"exec-in-dir {DEVDIR} zutty", "zutty-algorithms", "zutty", None],
+        [f"exec-in-dir {DEVDIR} zutty", "zutty-algorithms", "zutty", None],
+    ],
+    "25:vscode": [
+        [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],
+    ],
+}
 
-book = "/media/storage-new/Skiena-The_Algorithm_Design_Manual-2020.pdf"
-Popen(["evince", book])
-time.sleep(0.5)
-i3.command("move container to workspace 15:doc")
+initworkspace.run(WORKSPACE_PROGRAMS, TIMEOUT)
