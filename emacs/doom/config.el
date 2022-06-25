@@ -57,6 +57,12 @@
 (evil-define-key 'normal org-mode-map
   "zg" 'org-show-current-heading-tidily)
 
+; "zo" was mapped to (+org/open-fold) but it didn't work for some reason.
+; Unmap it - a lower-precedence keymap of (+fold/open) will be used instead.
+(eval-after-load 'evil-org
+  '(evil-define-key 'normal evil-org-mode-map
+      "zo" nil))
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
