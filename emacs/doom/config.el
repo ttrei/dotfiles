@@ -39,6 +39,24 @@
 (setq display-line-numbers-type t)
 
 
+;; Convenient navigation of large deeply-nested org documents
+(defun org-show-current-heading-tidily ()
+  (interactive)
+  "Show next entry, keeping other entries closed."
+  (if (save-excursion (end-of-line) (outline-invisible-p))
+      (progn (org-show-entry) (show-children))
+    (outline-back-to-heading)
+    (unless (and (bolp) (org-on-heading-p))
+      (org-up-heading-safe)
+      (hide-subtree)
+      (error "Boundary reached"))
+    (org-overview)
+    (org-reveal t)
+    (org-show-entry)
+    (show-children)))
+(evil-define-key 'normal org-mode-map
+  "zg" 'org-show-current-heading-tidily)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
