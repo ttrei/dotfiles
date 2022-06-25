@@ -63,6 +63,10 @@
   '(evil-define-key 'normal evil-org-mode-map
       "zo" nil))
 
+; Seach strings that are invisible due to folds.
+; Does not unfold automatically, though.
+(setq search-invisible t)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
