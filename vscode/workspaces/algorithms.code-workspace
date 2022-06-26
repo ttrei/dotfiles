@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "../../dev/learn/zig/algorithms"
+		},
+		{
+			"path": "../../dev/learn/zig/sdl_platform"
+		},
+		{
+			"path": "../../dev/learn/zig/handmade_gl"
 		}
 	],
 	"settings": {}
