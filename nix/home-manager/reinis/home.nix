@@ -21,6 +21,7 @@
     git
     git-crypt
     ripgrep
+    signal-desktop
     vscode-with-extensions
     # myxow
   ];
