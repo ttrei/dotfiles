@@ -16,6 +16,7 @@
     emacs
     fd
     fzf
+    gron
     lorri
     neovim
     git
