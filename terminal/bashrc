@@ -182,4 +182,10 @@ if [ -f $HOME/.bash_nixos ]; then
     source $HOME/.bash_nixos
 fi
 
-eval "$(direnv hook bash)"
+if [ -x "$(command -v direnv)" ]; then
+    eval "$(direnv hook bash)"
+fi
+
+if [ -x "$(command -v starship)" ]; then
+    eval "$(starship init bash)"
+fi

@@ -76,6 +76,9 @@ cp --recursive \
 mkdir -p "$STAGINGDIR/.config"
 mkdir -p "$STAGINGDIR/bin"
 
+# TERMINAL
+cp "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config"
+
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 

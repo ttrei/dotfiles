@@ -23,6 +23,7 @@
     git-crypt
     ripgrep
     signal-desktop
+    starship
     vscode-with-extensions
     # myxow
   ];

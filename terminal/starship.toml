@@ -1,0 +1,88 @@
+# https://starship.rs/config/
+
+format = """
+$username\
+$hostname\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$container\
+$java\
+$python\
+$zig\
+$nix_shell\
+$memory_usage\
+$sudo\
+$line_break\
+$jobs\
+$status\
+$character"""
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[line_break]
+disabled = false
+
+[character]
+success_symbol = '[>](bold green)'
+error_symbol = '[>](bold red)'
+
+[directory]
+read_only = " ro"
+# truncation_symbol = ".../"
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+
+[git_commit]
+tag_symbol = " tag "
+style = "bold purple"
+
+[git_branch]
+symbol = ""
+format = "[$branch(:$remote_branch)]($style) "
+only_attached = true
+
+[python]
+symbol = "py"
+format = "[${symbol}(${version} )]($style)"
+version_format = "${major}.${minor}"
+
+[docker_context]
+symbol = "docker "
+
+[java]
+symbol = "java "
+
+[nix_shell]
+symbol = "nix "
+
+[zig]
+symbol = "zig "
+
+[kubernetes]
+disabled = false
+
+[memory_usage]
+disabled = false
+threshold = 95
+# symbol = ""
+style = "bold dimmed red"
+format = "[${ram}( | ${swap})]($style) "
+
+[sudo]
+style = "bold blue"
+disabled = false
+format = "[sudo]($style)"
+
+[jobs]
+number_threshold = 1
+format = '[\[+$number\]]($style) '
+
+[status]
+format = '[\[$common_meaning$signal_name$maybe_int\]]($style) '
+disabled = false
