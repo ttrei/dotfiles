@@ -78,6 +78,8 @@ mkdir -p "$STAGINGDIR/bin"
 
 # TERMINAL
 cp "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config"
+mkdir -p "$STAGINGDIR/.config/htop"
+cp "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop"
 
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
