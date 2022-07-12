@@ -1,5 +1,5 @@
 # kubernetes
-alias kube='kubectl --kubeconfig ~/.kube/config'
+alias kube='kubectl --kubeconfig ~/.kube/config --context oidc@k8s.konts.lv'
 complete -F __start_kubectl kube
 alias kube-mma-drtest='kubectl --kubeconfig ~/.kube/config-mma-drtest'
 complete -F __start_kubectl kube-mma-drtest
