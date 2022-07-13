@@ -14,7 +14,6 @@ $memory_usage\
 $sudo\
 $line_break\
 $jobs\
-$status\
 $character"""
 
 # Inserts a blank line between shell prompts
