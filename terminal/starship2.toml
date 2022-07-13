@@ -1,0 +1,24 @@
+# https://starship.rs/config/
+
+[git_commit]
+tag_symbol = " tag "
+format = "[git: \\($hash$tag\\)]($style) "
+style = "bold purple"
+
+[git_branch]
+symbol = ""
+format = "[git: $branch(:$remote_branch)]($style) "
+only_attached = true
+
+[sudo]
+style = "bold blue"
+disabled = false
+format = "[sudo]($style)"
+
+[jobs]
+number_threshold = 1
+format = '[\[+$number\]]($style) '
+
+[python]
+# version_format = "${major}.${minor}.${micro}"
+format = '[python: ${pyenv_prefix}(${version} )(\(venv: $virtualenv\) )]($style)'
