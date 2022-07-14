@@ -31,3 +31,6 @@ print_if "$st_python"
 
 st_java=$(starship module java)
 print_if "$st_java"
+
+st_k8s=$(starship module kubernetes)
+print_if "$st_k8s"

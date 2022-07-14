@@ -22,3 +22,11 @@ format = '[\[+$number\]]($style) '
 [python]
 # version_format = "${major}.${minor}.${micro}"
 format = '[python: ${pyenv_prefix}(${version} )(\(venv: $virtualenv\) )]($style)'
+
+[kubernetes]
+format = '[k8s: (user\[$user\] )(cluster\[$cluster\] )context\[$context\] namespace\[$namespace\]](dimmed green) '
+disabled = false
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "dev"
+".*/openshift-cluster/.*" = "openshift"
+"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
