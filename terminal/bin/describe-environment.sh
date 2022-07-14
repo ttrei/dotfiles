@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 if ! [ -x "$(command -v starship)" ]; then
     echo "starship not found"
@@ -20,6 +20,8 @@ echo "pwd: $(pwd)"
 # Moving it to the beginning of the script doesn't help either.
 # st_status=$(starship module status)
 # echo "$st_status"
+rc=$1
+echo "exit status: $rc"
 
 st_git_branch=$(starship module git_branch)
 st_git_commit=$(starship module git_commit)
