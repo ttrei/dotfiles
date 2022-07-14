@@ -15,13 +15,7 @@ print_if() {
 
 echo "pwd: $(pwd)"
 
-# status module doesn't work.
-# Apparently it doesn't receive the previous exit code.
-# Moving it to the beginning of the script doesn't help either.
-# st_status=$(starship module status)
-# echo "$st_status"
-rc=$1
-echo "exit status: $rc"
+[ -n "$1" ] && [ "$1" != "0" ] && echo "exit status: $1"
 
 st_git_branch=$(starship module git_branch)
 st_git_commit=$(starship module git_commit)
