@@ -5,7 +5,7 @@ elif [ -f $HOME/.nix-profile/share/bash-completion/completions/git ]; then
     source $HOME/.nix-profile/share/bash-completion/completions/git
 fi
 
-alias e='describe-environment.sh'
+alias e='describe-environment.sh $?'
 
 # Safe rm
 alias rm='rm --preserve-root'
