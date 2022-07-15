@@ -4,8 +4,6 @@ format = """
 $username\
 $hostname\
 $directory\
-$git_branch\
-$git_commit\
 $container\
 $memory_usage\
 $sudo\
@@ -28,15 +26,6 @@ read_only = " ro"
 # truncation_symbol = ".../"
 truncate_to_repo = false
 fish_style_pwd_dir_length = 1
-
-[git_commit]
-tag_symbol = " tag "
-style = "bold purple"
-
-[git_branch]
-symbol = ""
-format = "[$branch(:$remote_branch)]($style) "
-only_attached = true
 
 [memory_usage]
 disabled = false
