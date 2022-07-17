@@ -33,3 +33,6 @@ disabled = false
 
 [java]
 format = "[java: ${version} ]($style)"
+
+[zig]
+format = "[zig: ${version} ]($style)"

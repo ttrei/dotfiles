@@ -30,3 +30,6 @@ print_if "$st_java"
 
 st_k8s=$(starship module kubernetes)
 print_if "$st_k8s"
+
+st_zig=$(starship module zig)
+print_if "$st_zig"
