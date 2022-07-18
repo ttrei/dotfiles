@@ -39,6 +39,8 @@ alias gcj='git-commit-jira.sh'
 alias gcaj='git-commit-jira.sh -a'
 alias gam='git commit --amend'
 
+alias glg="git lg"
+
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gdd='git difftool -d'
@@ -56,6 +58,7 @@ __git_complete gcam _git_commit
 __git_complete gcj _git_commit
 __git_complete gcaj _git_commit
 __git_complete gam _git_commit
+__git_complete glg _git_log
 __git_complete gd _git_diff
 __git_complete gdc _git_diff
 __git_complete gdd _git_difftool
