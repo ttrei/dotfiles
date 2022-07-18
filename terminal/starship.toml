@@ -4,6 +4,8 @@ format = """
 $username\
 $hostname\
 $directory\
+$git_branch\
+$git_commit\
 $container\
 $memory_usage\
 $sudo\
@@ -46,3 +48,13 @@ format = '[\[+$number\]]($style) '
 [status]
 format = '[\[$common_meaning$signal_name$maybe_int\]]($style) '
 disabled = false
+
+[git_commit]
+tag_symbol = " tag "
+format = "[\\($hash$tag\\)]($style) "
+style = "bold purple"
+
+[git_branch]
+format = "[$branch]($style) "
+truncation_length = 25
+only_attached = true
