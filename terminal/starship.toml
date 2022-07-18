@@ -20,8 +20,8 @@ add_newline = false
 disabled = true
 
 [character]
-success_symbol = '[>](bold green)'
-error_symbol = '[>](bold red)'
+success_symbol = '[\$](bold green)'
+error_symbol = '[X](bold red)'
 
 [directory]
 read_only = " ro"
