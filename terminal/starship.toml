@@ -1,6 +1,7 @@
 # https://starship.rs/config/
 
 format = """
+[-->](bold blue) \
 $username\
 $hostname\
 $directory\
@@ -20,14 +21,13 @@ add_newline = false
 disabled = true
 
 [character]
-success_symbol = '[\$](bold green)'
+success_symbol = '[\$](bold blue)'
 error_symbol = '[X](bold red)'
 
 [directory]
 read_only = " ro"
-# truncation_symbol = ".../"
-truncate_to_repo = false
-fish_style_pwd_dir_length = 1
+truncation_length = 1
+style = "bold blue"
 
 [memory_usage]
 disabled = false
