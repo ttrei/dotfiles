@@ -15,6 +15,7 @@
     direnv
     emacs
     fd
+    feh
     fzf
     gron
     lorri

@@ -6,6 +6,8 @@ xmodmap $HOME/.xmodmaprc &
 
 redshift &
 
+feh --bg-scale /media/storage-new/wallpaper-zig.png &
+
 xrandr --output HDMI-2 --auto --primary --output HDMI-1 --off
 
 # Ensure that initial workspaces will be created on the display that we want
