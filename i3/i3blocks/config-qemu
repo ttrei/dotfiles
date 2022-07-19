@@ -32,6 +32,16 @@ markup=none
 # interval=5
 # format=json
 
+[cpu_usage]
+interval=5
+DECIMALS=0
+#min_width=100%
+#T_WARN=50
+#T_CRIT=80
+#COLOR_NORMAL=#EBDBB2
+#COLOR_WARN=#FFFC00
+#COLOR_CRIT=#FF0000
+
 [disk]
 DIR=/
 interval=30

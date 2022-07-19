@@ -1,3 +1,3 @@
 = Blocklets
 
-https://github.com/vivien/i3blocks-contrib/tree/master/volume-pulseaudio
+https://github.com/vivien/i3blocks-contrib/tree/master/
