@@ -77,11 +77,11 @@ mkdir -p "$STAGINGDIR/.config"
 mkdir -p "$STAGINGDIR/bin"
 
 # TERMINAL
-cp "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config"
-cp "$DOTFILES/terminal/starship2.toml" "$STAGINGDIR/.config"
+ln -s "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config"
+ln -s "$DOTFILES/terminal/starship2.toml" "$STAGINGDIR/.config"
 mkdir -p "$STAGINGDIR/.config/htop"
-cp "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop"
-cp "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin"
+ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop"
+ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin"
 
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
