@@ -130,5 +130,9 @@ ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/settings.j
 ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybindings.json"
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
+# PYTHON
+mkdir -p "$STAGINGDIR/.config/pip"
+ln -s "$DOTFILES/python/pip.conf" "$STAGINGDIR/.config/pip/pip.conf"
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
