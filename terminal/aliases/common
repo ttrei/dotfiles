@@ -15,6 +15,9 @@ alias ls='ls -h --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias tree='tree -C'
 
+# Python
+alias pip='echo -e "Use \"python -m pip\" instead (see https://snarky.ca/why-you-should-use-python-m-pip/)"'
+
 # Disk usage
 alias duu='du -ms ./* | sort -n'
 alias dua='du -ma --max-depth=1 | sort -n'
