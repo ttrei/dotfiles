@@ -1,0 +1,3 @@
+export VIRTUAL_ENV=~/.venv
+PATH_add ~/.venv/bin
+
