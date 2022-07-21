@@ -82,6 +82,7 @@ ln -s "$DOTFILES/terminal/starship2.toml" "$STAGINGDIR/.config"
 mkdir -p "$STAGINGDIR/.config/htop"
 ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop"
 ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin"
+ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
 
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
