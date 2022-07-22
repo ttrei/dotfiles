@@ -32,19 +32,6 @@ time.sleep(0.3)
 i3.command("move container to workspace 80:daemons")
 
 
-# Lorri
-Popen(
-    [
-        "zutty",
-        "-e",
-        "lorri",
-        "daemon",
-    ]
-)
-time.sleep(0.3)
-i3.command("move container to workspace 80:daemons")
-
-
 # Notes
 path = os.path.join(os.environ.get("HOME"), "dev", "doc")
 os.chdir(path)

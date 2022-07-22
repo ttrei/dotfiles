@@ -18,7 +18,6 @@
     feh
     fzf
     gron
-    lorri
     neovim
     git
     git-crypt
