@@ -83,6 +83,8 @@ mkdir -p "$STAGINGDIR/.config/htop"
 ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop"
 ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin"
 ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
+mkdir -p "$STAGINGDIR/.config/direnv"
+ln -s "$DOTFILES/terminal/direnvrc" "$STAGINGDIR/.config/direnv/direnvrc"
 
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
