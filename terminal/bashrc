@@ -163,6 +163,34 @@ ntf() {
     (exit $rc);
 }
 
+# https://github.com/nix-community/nix-direnv/wiki/Shell-integration
+nixify() {
+  if [ ! -e ./.envrc ]; then
+    echo "use nix" > .envrc
+    direnv allow
+  fi
+  if [[ ! -e shell.nix ]] && [[ ! -e default.nix ]]; then
+    cat > default.nix <<'EOF'
+with import <nixpkgs> {};
+mkShell {
+  nativeBuildInputs = [
+    bashInteractive
+  ];
+}
+EOF
+    ${EDITOR:-vim} default.nix
+  fi
+}
+flakify() {
+  if [ ! -e flake.nix ]; then
+    nix flake new -t github:nix-community/nix-direnv .
+  elif [ ! -e .envrc ]; then
+    echo "use flake" > .envrc
+    direnv allow
+  fi
+  ${EDITOR:-vim} flake.nix
+}
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
