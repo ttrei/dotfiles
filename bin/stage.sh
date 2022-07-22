@@ -136,6 +136,8 @@ mkdir -p "$STAGINGDIR/.config/pip"
 ln -s "$DOTFILES/python/pip.conf" "$STAGINGDIR/.config/pip/pip.conf"
 
 # NIX
+mkdir -p "$STAGINGDIR/.config/nix"
+ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
 mkdir -p "$STAGINGDIR/.config/nixpkgs"
 ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix"
 
