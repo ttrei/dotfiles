@@ -16,7 +16,9 @@
     default = upstream
 
 [blame]
-    ignoreRevsFile = .git-blame-ignore-revs
+    ## Sadly, git blame fails if the revs file is not present
+    ## https://stackoverflow.com/questions/70435937/git-blame-with-optional-ignorerevsfile
+    # ignoreRevsFile = .git-blame-ignore-revs
 
 [pager]
     diff = delta
