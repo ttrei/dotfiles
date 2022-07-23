@@ -7,9 +7,8 @@
   freetype,
   python3,
   glew-egl,
-  xorg
+  xorg,
 }:
-
 stdenv.mkDerivation rec {
   pname = "zutty";
   version = "0.8.0";
@@ -33,5 +32,4 @@ stdenv.mkDerivation rec {
   ];
   buildInputs = [
   ];
-
 }

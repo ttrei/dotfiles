@@ -1,6 +1,9 @@
-{config, lib, pkgs, ...}:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     brave
     chromium
@@ -80,5 +83,4 @@
       source-code-pro
     ];
   };
-
 }

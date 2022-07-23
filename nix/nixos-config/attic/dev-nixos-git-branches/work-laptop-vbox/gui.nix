@@ -1,6 +1,9 @@
-{config, lib, pkgs, ...}:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     chromium
     djview
@@ -54,9 +57,9 @@
   };
 
   nixpkgs.config = {
-      firefox = {
-          enableAdobeFlash = false;
-          icedtea = true;
-      };
+    firefox = {
+      enableAdobeFlash = false;
+      icedtea = true;
+    };
   };
 }

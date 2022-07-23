@@ -1,10 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./base.nix
@@ -26,16 +27,15 @@
   boot.loader.grub.device = "nodev";
 
   networking.hostName = "reinis-nixos";
-  networking.extraHosts =
-    ''
-      178.62.54.226  mazais
-      192.168.1.205  reinis-pi
-    '';
+  networking.extraHosts = ''
+    178.62.54.226  mazais
+    192.168.1.205  reinis-pi
+  '';
 
   time.timeZone = "Europe/Riga";
 
   nixpkgs.config = {
-      allowUnfree = true;
+    allowUnfree = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -46,5 +46,4 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "18.09";
-
 }

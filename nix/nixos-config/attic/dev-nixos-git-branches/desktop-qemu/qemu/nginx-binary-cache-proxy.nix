@@ -1,31 +1,27 @@
 # https://github.com/nh2/nix-binary-cache-proxy
-
 # Use nixops to deploy this config to an existing NixOS system
 #
 # nixops delete --all --force # remove previous deployments form the state file
 # nixops create nginx-binary-cache-proxy.nix -d cache-proxy
 # nixops deploy -d cache-proxy
-
 # not sure what we should should put in `domain'
-
 let
   domain = "http://qemu-nixos-cache.lan/";
-in
-{
+in {
   network.enableRollback = true;
 
-  machine1 = { pkgs, ... }: {
+  machine1 = {pkgs, ...}: {
     deployment.targetEnv = "none";
     deployment.targetHost = "192.168.122.35";
 
-    imports =
-      [ <nixpkgs/nixos/modules/profiles/qemu-guest.nix>
-      ];
+    imports = [
+      <nixpkgs/nixos/modules/profiles/qemu-guest.nix>
+    ];
 
-    fileSystems."/" =
-      { device = "/dev/disk/by-uuid/94d1e0ff-9cf5-444f-9773-5d6582ba2dd6";
-        fsType = "ext4";
-      };
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/94d1e0ff-9cf5-444f-9773-5d6582ba2dd6";
+      fsType = "ext4";
+    };
 
     boot.loader.grub.enable = true;
     boot.loader.grub.version = 2;
@@ -40,7 +36,7 @@ in
       443 # nginx
     ];
 
-    boot.kernelModules = [ "tcp_bbr" ];
+    boot.kernelModules = ["tcp_bbr"];
 
     # Enable BBR congestion control
     boot.kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr";
@@ -53,7 +49,7 @@ in
       pkgs.vim
     ];
 
-    nix.binaryCaches = [ "http://cache.nixos.org/" ];
+    nix.binaryCaches = ["http://cache.nixos.org/"];
 
     services.nginx = {
       enable = true;
@@ -124,6 +120,5 @@ in
         };
       };
     };
-
   };
 }
