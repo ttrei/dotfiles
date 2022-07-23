@@ -1,14 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -34,10 +35,9 @@
 
   networking.hostName = "eeepc-nixos";
   networking.wireless.enable = true;
-  networking.extraHosts =
-    ''
-      178.62.54.226  mazais
-    '';
+  networking.extraHosts = ''
+    178.62.54.226  mazais
+  '';
 
   # Select internationalisation properties.
   # i18n = {
@@ -49,57 +49,56 @@
   time.timeZone = "Europe/Riga";
 
   nixpkgs.config = {
-      allowUnfree = true;
+    allowUnfree = true;
 
-      firefox = {
-          enableAdobeFlash = true;
-          icedtea = true;
-      };
+    firefox = {
+      enableAdobeFlash = true;
+      icedtea = true;
+    };
   };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    let
-        myvim = lib.overrideDerivation pkgs.vim_configurable (o: {
-          gui = false;
-          xterm_clipboard = true;
-        });
-    in
-  with pkgs; [
-    ag
-    anki
-    dmenu
-    encfs
-    evince
-    file
-    firefox
-    gitAndTools.gitFull
-    gnupg
-    gnupg1compat
-    gnutar
-    i3
-    i3status
-    lynx
-    meld
-    mplayer
-    p7zip
-    pandoc
-    pass
-    python
-    pwgen
-    rsync
-    stow
-    transmission_gtk
-    tree
-    unzip
-    myvim
-    wget
-    xfce.terminal
-    xorg.xev
-    xorg.xmodmap
-    zip
-  ];
+  environment.systemPackages = let
+    myvim = lib.overrideDerivation pkgs.vim_configurable (o: {
+      gui = false;
+      xterm_clipboard = true;
+    });
+  in
+    with pkgs; [
+      ag
+      anki
+      dmenu
+      encfs
+      evince
+      file
+      firefox
+      gitAndTools.gitFull
+      gnupg
+      gnupg1compat
+      gnutar
+      i3
+      i3status
+      lynx
+      meld
+      mplayer
+      p7zip
+      pandoc
+      pass
+      python
+      pwgen
+      rsync
+      stow
+      transmission_gtk
+      tree
+      unzip
+      myvim
+      wget
+      xfce.terminal
+      xorg.xev
+      xorg.xmodmap
+      zip
+    ];
 
   programs.bash.enableCompletion = true;
 
@@ -120,13 +119,13 @@
   services.xserver.windowManager.i3.enable = true;
 
   services.redshift = {
-      enable = true;
-      latitude = "56.948889";
-      longitude = "24.106389";
-      temperature = {
-          day = 5500;
-          night = 3700;
-      };
+    enable = true;
+    latitude = "56.948889";
+    longitude = "24.106389";
+    temperature = {
+      day = 5500;
+      night = 3700;
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -137,5 +136,4 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "16.09";
-
 }

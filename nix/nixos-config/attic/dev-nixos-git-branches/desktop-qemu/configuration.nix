@@ -1,10 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./base.nix
@@ -30,15 +31,14 @@
   boot.initrd.checkJournalingFS = false;
 
   networking.hostName = "qemu-nixos";
-  networking.extraHosts =
-    ''
-      178.62.54.226  mazais
-    '';
+  networking.extraHosts = ''
+    178.62.54.226  mazais
+  '';
 
   time.timeZone = "Europe/Riga";
 
   nixpkgs.config = {
-      allowUnfree = true;
+    allowUnfree = true;
   };
 
   # No passwords! Login only with an authorized keys.
@@ -62,5 +62,4 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "20.03"; # Did you read the comment?
-
 }

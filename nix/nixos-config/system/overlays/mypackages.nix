@@ -1,5 +1,4 @@
-self: super:
-{
+self: super: {
   # st = super.callPackage pkgs/st-lukesmith { };
-  zutty = super.callPackage pkgs/zutty { };
+  zutty = super.callPackage pkgs/zutty {};
 }

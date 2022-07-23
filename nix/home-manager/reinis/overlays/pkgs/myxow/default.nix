@@ -1,10 +1,15 @@
-{ lib, stdenv, cabextract, fetchurl, fetchFromGitHub, mylibusb1 }:
-
+{
+  lib,
+  stdenv,
+  cabextract,
+  fetchurl,
+  fetchFromGitHub,
+  mylibusb1,
+}:
 # Files created in $UDEVDIR, $MODLDIR, etc. must be installed.
 # For now I do it manually with install-xow-system-files.sh - didn't have time to think of a proper
 # solution.
 # TODO: Install the files automatically using home-manager.
-
 stdenv.mkDerivation rec {
   pname = "myxow";
   version = "0.5";
@@ -37,15 +42,14 @@ stdenv.mkDerivation rec {
   '';
 
   enableParallelBuilding = true;
-  nativeBuildInputs = [ cabextract ];
-  buildInputs = [ mylibusb1 ];
+  nativeBuildInputs = [cabextract];
+  buildInputs = [mylibusb1];
 
   meta = with lib; {
     homepage = "https://github.com/medusalix/xow";
     description = "Linux driver for the Xbox One wireless dongle";
     license = licenses.gpl2Plus;
-    maintainers = [ maintainers.jansol ];
+    maintainers = [maintainers.jansol];
     platforms = platforms.linux;
   };
 }
-
