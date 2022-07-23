@@ -15,6 +15,9 @@
 [push]
     default = upstream
 
+[blame]
+    ignoreRevsFile = .git-blame-ignore-revs
+
 [pager]
     diff = delta
     log = delta
