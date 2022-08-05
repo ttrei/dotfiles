@@ -83,22 +83,14 @@ if [ -n "$START_CWD" ]; then
     unset START_CWD
 fi
 
-export REVIEW_BASE=master
-
 EDITOR=vim
 export EDITOR
 
 export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 
-# Colored man
-#export PAGER=most
-
 if ! [ -x "$(command -v delta)" ]; then
     export GIT_PAGER=less
 fi
-
-# Commands with leading space will not be saved in ~/.bash_history
-export HISTCONTROL="ignorespace"
 
 # Eternal bash history.
 # ---------------------
@@ -126,42 +118,6 @@ elif [ -f $HOME/.z.sh ]; then
     # Fallback to z.sh which is not as flexible, but better than nothing
     source $HOME/.z.sh
 fi
-
-# Wrapper to get notifications over ssh after a long running command
-#
-# You have to connect by specifying some communication ports:
-#   ssh -R 4000:127.0.0.1:5000 user@remote
-#   ssh -R 4001:127.0.0.1:5001 user@remote
-# Local machine should listen for the notifications:
-#   #!/usr/bin/env bash
-#   while :
-#   do
-#       message=$(nc -l -p 5000)
-#       notify-send -u normal -t -1 "${message}"
-#   done
-#
-#   #!/usr/bin/env bash
-#   while :
-#   do
-#       message=$(nc -l -p 5001)
-#       notify-send -u critical -t -1 "${message}"
-#   done
-#
-# Usage:
-#   $ ntf <your command>
-ntf() {
-    start=$(date +%s)
-    eval $(printf "%q " "$@")
-    rc=$?
-    duration=$(($(date +%s) - start))
-    if [ $rc -eq 0 ]
-    then
-        echo "$@ ($(pwd)) successful on $(hostname)" | nc 127.0.0.1 4000
-    else
-        echo "$@ ($(pwd)) failed on $(hostname)" | nc 127.0.0.1 4001
-    fi
-    (exit $rc);
-}
 
 # https://github.com/nix-community/nix-direnv/wiki/Shell-integration
 nixify() {
