@@ -88,6 +88,10 @@ export EDITOR
 
 export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 
+# Get rid of locale warnings when searching history (with fzf from nixpkgs as the search engine)
+# https://github.com/NixOS/nix/issues/599#issuecomment-130359048
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+
 if ! [ -x "$(command -v delta)" ]; then
     export GIT_PAGER=less
 fi
