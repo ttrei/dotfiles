@@ -3,5 +3,5 @@
 set -o errexit
 
 . ~/.venv/bin/activate
-pipx install black
-pipx install youtube-dl
+pipx install --force black
+pipx install --force youtube-dl
