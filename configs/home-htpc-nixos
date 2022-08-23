@@ -1,0 +1,4 @@
+export DISTRO=nixos
+export CONTEXT=home
+export MACHINE=htpc
+export EXECUTION_ENV=baremetal
