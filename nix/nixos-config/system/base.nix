@@ -4,7 +4,6 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    ag
     clang-tools
     delta
     diffstat
@@ -33,12 +32,13 @@
     ripgrep
     rsync
     shellcheck
-    sshfsFuse
+    sshfs-fuse
     stow
     traceroute
     tree
     universal-ctags
     unzip
+    vim
     wget
     zip
     zutty

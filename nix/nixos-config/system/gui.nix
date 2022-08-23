@@ -26,10 +26,10 @@
     rofi
     st
     thunderbird
-    transmission_gtk
+    transmission-gtk
     vlc
     xbindkeys
-    xfce.terminal
+    xfce.xfce4-terminal
     xorg.xev
     xorg.xmodmap
     xsel
