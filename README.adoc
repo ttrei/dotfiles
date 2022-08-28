@@ -1,5 +1,28 @@
 = dotfiles
 
+== Configuration variables and their possible values
+
+DISTRO
+debian
+ubuntu
+nixos
+
+CONTEXT
+home
+work
+
+MACHINE
+home-desktop
+work-laptop
+htpc
+taukulis.lv
+
+EXECUTION_ENV
+baremetal
+qemu
+wsl
+digitalocean
+
 == How to deploy
 
 . Choose an appropriate environment config from `dotfiles/configs` and copy it to
