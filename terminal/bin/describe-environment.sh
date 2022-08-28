@@ -17,6 +17,12 @@ echo "pwd: $(pwd)"
 
 [ -n "$1" ] && [ "$1" != "0" ] && echo "exit status: $1"
 
+st_username=$(starship module username)
+print_if "$st_username"
+
+st_hostname=$(starship module hostname)
+print_if "$st_hostname"
+
 st_git_branch=$(starship module git_branch)
 st_git_commit=$(starship module git_commit)
 st_git_status=$(starship module git_status)
