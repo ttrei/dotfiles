@@ -50,6 +50,8 @@ elif [ "$DISTRO" = "ubuntu" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "htpc
     OLD_DEPLOYMENT_NAME="kodi"
 elif [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "htpc" ]; then
     OLD_DEPLOYMENT_NAME="home-desktop-nixos"
+elif [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "home-desktop" ]; then
+    OLD_DEPLOYMENT_NAME="home-desktop-nixos"
 elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "taukulis.lv" ]; then
     OLD_DEPLOYMENT_NAME="debian"
 else
