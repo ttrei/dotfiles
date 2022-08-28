@@ -87,6 +87,13 @@ mkdir -p "$STAGINGDIR/.config/htop"
 ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop"
 ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin"
 ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
+if [ "$DISTRO" = "nixos" ]; then
+    ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc.legacy"
+    ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile.legacy"
+else
+    ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc"
+    ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile"
+fi
 
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
