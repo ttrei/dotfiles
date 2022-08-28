@@ -145,5 +145,25 @@ ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
 mkdir -p "$STAGINGDIR/.config/nixpkgs"
 ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix"
 
+# NIXOS
+if [ "$DISTRO" = "nixos" ]; then
+    mkdir -p "$STAGINGDIR/.config/nixos"
+    nixos_dir="$DOTFILES/nix/nixos-config/system"
+    if [ "$EXECUTION_ENV" = "qemu" ]; then
+        ln -s "$nixos_dir/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
+        ln -s "$nixos_dir/hardware-configuration.nix" "$STAGINGDIR/.config/nixos/hardware-configuration.nix"
+    elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ]; then
+        ln -s "$nixos_dir/htpc/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
+        ln -s "$nixos_dir/htpc/hardware-configuration.nix" "$STAGINGDIR/.config/nixos/hardware-configuration.nix"
+    else
+        echo "ABORT! NixOS config not available for this environment:"
+        print_env
+        exit 1
+    fi
+    ln -s "$nixos_dir/base.nix" "$STAGINGDIR/.config/nixos/base.nix"
+    ln -s "$nixos_dir/gui.nix" "$STAGINGDIR/.config/nixos/gui.nix"
+    ln -s "$nixos_dir/overlays" "$STAGINGDIR/.config/nixos/overlays"
+fi
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
