@@ -1,13 +1,26 @@
 # https://starship.rs/config/
 
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = "user: [$user]($style) "
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+ssh_symbol = "ssh "
+format = "host: [$ssh_symbol](bold blue)[$hostname](bold red)"
+disabled = false
+
 [git_commit]
 tag_symbol = " tag "
-format = "[git: \\($hash$tag\\)]($style) "
+format = "[git: \\($hash$tag\\)]($style)"
 style = "bold purple"
 
 [git_branch]
 symbol = ""
-format = "[git: $branch(:$remote_branch)]($style) "
+format = "[git: $branch(:$remote_branch)]($style)"
 only_attached = true
 
 [sudo]
@@ -17,14 +30,14 @@ format = "[sudo]($style)"
 
 [jobs]
 number_threshold = 1
-format = '[\[+$number\]]($style) '
+format = '[\[+$number\]]($style)'
 
 [python]
 # version_format = "${major}.${minor}.${micro}"
 format = '[python: ${pyenv_prefix}(${version} )(\(venv: $virtualenv\) )]($style)'
 
 [kubernetes]
-format = '[k8s: (user\[$user\] )(cluster\[$cluster\] )context\[$context\] namespace\[$namespace\]](dimmed green) '
+format = '[k8s: (user\[$user\] )(cluster\[$cluster\] )context\[$context\] namespace\[$namespace\]](dimmed green)'
 disabled = false
 [kubernetes.context_aliases]
 "dev.local.cluster.k8s" = "dev"
