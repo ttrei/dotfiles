@@ -152,6 +152,18 @@ ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
 mkdir -p "$STAGINGDIR/.config/nixpkgs"
 ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix"
 
+# HOME-MANAGER
+mkdir -p "$STAGINGDIR/.config/home-manager"
+hm_dir="$DOTFILES/nix/home-manager/"
+if [ "$DISTRO" = "nixos" ]; then
+    ln -s "$hm_dir/reinis/nixos.nix" "$STAGINGDIR/.config/home-manager/config.nix"
+else
+    ln -s "$hm_dir/reinis/non-nixos.nix" "$STAGINGDIR/.config/home-manager/config.nix"
+fi
+ln -s "$hm_dir/reinis/common.nix" "$STAGINGDIR/.config/home-manager/common.nix"
+ln -s "$hm_dir/reinis/includes" "$STAGINGDIR/.config/home-manager/includes"
+ln -s "$hm_dir/reinis/overlays" "$STAGINGDIR/.config/home-manager/overlays"
+
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
     mkdir -p "$STAGINGDIR/.config/nixos"

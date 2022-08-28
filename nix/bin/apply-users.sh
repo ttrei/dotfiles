@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-pushd ~/dotfiles/nix/home-manager
+pushd ~/.config/home-manager
 
-home-manager switch -f ./reinis/home.nix
+home-manager switch -f ./config.nix
 
 if [ "$HOSTNAME" = "kodi-new" ]; then
     echo "Installing xow"
-    ./reinis/overlays/pkgs/myxow/install-xow.sh
+    ./overlays/pkgs/myxow/install-xow.sh
 fi
 
 popd
