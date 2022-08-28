@@ -32,8 +32,6 @@
   ];
 
   programs.bash = {
-    # TODO: enable for NixOS deployments
-    enable = false;
     # initExtra = ''
     #   # This is probably needed if we want to add extra env variables
     #   # https://discourse.nixos.org/t/home-manager-doesnt-seem-to-recognize-sessionvariables/8488/7
