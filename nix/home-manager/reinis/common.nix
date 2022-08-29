@@ -21,6 +21,7 @@
     feh
     fzf
     gron
+    k9s
     neovim
     git
     git-crypt

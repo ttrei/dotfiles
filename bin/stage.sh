@@ -184,5 +184,9 @@ if [ "$DISTRO" = "nixos" ]; then
     ln -s "$nixos_dir/overlays" "$STAGINGDIR/.config/nixos/overlays"
 fi
 
+# K8S
+mkdir -p "$STAGINGDIR/.config/k9s"
+ln -s "$DOTFILES/k8s/k9s-skin-gruvbox-light.yml" "$STAGINGDIR/.config/k9s/skin.yml"
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
