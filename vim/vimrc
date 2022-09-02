@@ -195,6 +195,8 @@ vnoremap <silent># <ESC>:call VisualSearch('?')<CR>?<CR>
         let @@=l:register
     endfunction
 
+set relativenumber
+set number
 " no numbers --> absolute line numbers --> relative line numbers + absolute for current line
 nnoremap <silent> <C-n> :call NumberToggle()<cr>
 
