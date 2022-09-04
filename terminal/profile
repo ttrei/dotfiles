@@ -22,7 +22,10 @@ fi
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]
 then
     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+fi
 
+if [ -d "$HOME/.nix-profile" ]
+then
     # Necessary according to
     # https://nix-community.github.io/home-manager/index.html#sec-install-standalone
     # Until https://github.com/NixOS/nix/issues/2033 is fixed
