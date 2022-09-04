@@ -24,7 +24,7 @@ then
     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
 
-if [ -d "$HOME/.nix-profile" ]
+if [ -d "$HOME/.nix-defexpr" ]
 then
     # Necessary according to
     # https://nix-community.github.io/home-manager/index.html#sec-install-standalone
