@@ -1,0 +1,15 @@
+Defaults    env_keep += "GNUPGHOME"
+
+# Host alias specification
+User_Alias      MYADMINS = reinis
+
+# User alias specification
+
+# Cmnd alias specification
+Cmnd_Alias      PKGMGMT = /usr/bin/dpkg, /usr/bin/apt-get, /usr/bin/aptitude, /usr/bin/apt
+Cmnd_Alias      MOUNT = /bin/mount, /bin/umount
+Cmnd_Alias      BACKUP = /usr/bin/run-backup.sh
+Cmnd_Alias      GPARTED = /usr/sbin/gparted
+
+MYADMINS ALL = PKGMGMT, GPARTED
+MYADMINS ALL = NOPASSWD: BACKUP, MOUNT
