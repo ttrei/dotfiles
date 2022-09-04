@@ -60,7 +60,7 @@ qemu-system-x86 \
 default-jdk-headless \
 obs-studio \
 v4l2loopback-dkms \
-xbindkeys \
+#xbindkeys \
 #qtcreator \
 #libclang-dev \
 #default-jre \
