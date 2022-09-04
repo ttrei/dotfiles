@@ -4,7 +4,3 @@
 
 Either "git clean -fd" them or copy only specific files instead of directories.
 Encountered while developing workspace init scripts (dotfiles/i3/workspace-scripts).
-
-== Sway
-
-* IntelliJ needs `export _JAVA_AWT_WM_NONREPARENTING=1`
