@@ -25,7 +25,8 @@ read -rp "Press Enter to continue" </dev/tty
 # fi
 
 # `bash -x` needed to record commands+output of the called script
-bash -x ./setup_base_system.sh 2>&1 | tee "$LOGFILE"
+bash -x ./install_base.sh 2>&1 | tee "$LOGFILE"
+# bash -x ./install_gui.sh 2>&1 | tee -a "$LOGFILE"
 # bash -x ./install_additional_software.sh 2>&1 | tee -a "$LOGFILE"
 
 # if [ "$virtualbox" != true ]; then
