@@ -4,6 +4,13 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+if [[ -z "$BOOTSTRAP_BASEDIR" ]]; then
+    echo "BOOTSTRAP_BASEDIR not set" 1>&2
+    exit 1
+fi
+
+# TODO: Move these to base or gui install script, as appropriate.
+
 # sudo dpkg --add-architecture i386
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -q
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y \
@@ -21,14 +28,16 @@ libsdl2-image-dev \
 libsdl2-ttf-dev \
 moreutils \
 ninja-build \
-#libboost-all-dev \
-#rapid-photo-downloader \
-#rawtherapee \
+#libboost-all-dev
+#rapid-photo-downloader
+#rawtherapee
 
-./install-zutty.sh
-./install-i3blocks.sh
+# TODO
+#./install-zutty.sh
+#./install-i3blocks.sh
 
-# # Debian-supplied Maven 3.6.3 throws some warnings, so download the upstream binaries
+# TODO: Can we just get it from nixpkgs?
+#"$BOOTSTRAP_BASEDIR/ # Debian-supplied Maven 3.6.3 throws some warnings, so download the upstream binaries
 # # (see https://stackoverflow.com/a/63876216/9124671)
 # pushd /opt
 # wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
