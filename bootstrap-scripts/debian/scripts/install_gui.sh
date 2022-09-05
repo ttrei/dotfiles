@@ -4,6 +4,11 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+if [[ -z "$BOOTSTRAP_BASEDIR" ]]; then
+    echo "BOOTSTRAP_BASEDIR not set" 1>&2
+    exit 1
+fi
+
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -q
 sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -q -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -q -y
@@ -35,19 +40,19 @@ xdotool \
 xfce4-terminal \
 xinit \
 xsel \
-#xbindkeys \
-#qtcreator \
-#default-jre \
+#xbindkeys
+#qtcreator
+#default-jre
 
-sudo cp files/lv-reinis /usr/share/X11/xkb/symbols/
+sudo cp "$BOOTSTRAP_BASEDIR/files/lv-reinis" /usr/share/X11/xkb/symbols/
 sudo mkdir -p /etc/X11/xorg.conf.d
-sudo cp files/10-keyboard.conf /etc/X11/xorg.conf.d/
-sudo cp files/10-mouse.conf /etc/X11/xorg.conf.d/
-sudo cp -r ./consolas /usr/local/share/fonts/
+sudo cp "$BOOTSTRAP_BASEDIR/files/10-keyboard.conf" /etc/X11/xorg.conf.d/
+sudo cp "$BOOTSTRAP_BASEDIR/files/10-mouse.conf" /etc/X11/xorg.conf.d/
+sudo cp -r "$BOOTSTRAP_BASEDIR/consolas" /usr/local/share/fonts/
 sudo fc-cache
 
 sudo mkdir -p /etc/lightdm/lightdm.conf.d/
-sudo cp files/01-lightdm-autologin.conf /etc/lightdm/lightdm.conf.d/
+sudo cp "$BOOTSTRAP_BASEDIR/files/01-lightdm-autologin.conf" /etc/lightdm/lightdm.conf.d/
 
 # dunst systemd user service doesn't load properly, I will run it manually in .xsessionrc.
 # See my org notes for more info.

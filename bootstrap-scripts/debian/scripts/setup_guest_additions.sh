@@ -4,7 +4,12 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+if [[ -z "$BOOTSTRAP_BASEDIR" ]]; then
+    echo "BOOTSTRAP_BASEDIR not set" 1>&2
+    exit 1
+fi
+
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y build-essential module-assistant expect
-sudo expect prepare_for_guest_additions.ex
+sudo expect "BOOTSTRAP_BASEDIR/scripts/prepare_for_guest_additions.ex"
 sudo mount /media/cdrom
 sudo sh /media/cdrom/VBoxLinuxAdditions.run

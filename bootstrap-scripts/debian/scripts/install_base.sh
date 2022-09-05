@@ -4,7 +4,12 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-sudo cp files/sources.list-testing /etc/apt/sources.list
+if [[ -z "$BOOTSTRAP_BASEDIR" ]]; then
+    echo "BOOTSTRAP_BASEDIR not set" 1>&2
+    exit 1
+fi
+
+sudo cp "$BOOTSTRAP_BASEDIR/files/sources.list-testing" /etc/apt/sources.list
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -q
 sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -q -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -q -y
@@ -36,7 +41,7 @@ sysstat \
 tmux \
 v4l2loopback-dkms \
 vim \
-#libclang-dev \
+#libclang-dev
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get remove -q -y \
 pipewire \
@@ -48,7 +53,7 @@ sudo update-initramfs -u
 
 # TODO: My custom sudo configuration does not allow to set the DEBIAN_FRONTEND variable.
 #       Maybe use the default config that allows to do anything.
-# sudo cp files/sudoers /etc/sudoers
-# sudo cp files/sudoers-admins /etc/sudoers.d/
+# sudo cp "$BOOTSTRAP_BASEDIR/files/sudoers" /etc/sudoers
+# sudo cp "$BOOTSTRAP_BASEDIR/files/sudoers-admins" /etc/sudoers.d/
 # TODO: How can we add the user to sudo group if we don't have sudo rights yet?
 # sudo usermod -a -G sudo reinis
