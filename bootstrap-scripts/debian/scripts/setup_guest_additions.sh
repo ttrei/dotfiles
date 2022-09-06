@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: Test this script (haven't executed it in a long time)
+
 set -o errexit
 set -o nounset
 set -o pipefail
