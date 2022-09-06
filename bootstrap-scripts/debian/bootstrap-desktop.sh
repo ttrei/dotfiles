@@ -27,5 +27,5 @@ bash -x scripts/install_base.sh 2>&1 | tee "$LOGFILE"
 bash -x scripts/install_gui.sh 2>&1 | tee -a "$LOGFILE"
 bash -x scripts/install_additional_software.sh 2>&1 | tee -a "$LOGFILE"
 
-cp files/grub /etc/default/grub
-update-grub
+sudo cp files/grub /etc/default/grub
+sudo update-grub
