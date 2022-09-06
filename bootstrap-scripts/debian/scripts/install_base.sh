@@ -17,6 +17,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -q -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y \
 alsa-utils \
 bash-completion \
+clang-format \
+cmake \
 curl \
 diffstat \
 exuberant-ctags \
@@ -26,8 +28,11 @@ firmware-realtek \
 fzf \
 git \
 htop \
+jq \
 lua5.3 \
+moreutils \
 neovim \
+ninja-build \
 pass \
 python2 \
 python3-i3ipc \
@@ -41,6 +46,7 @@ sysstat \
 tmux \
 v4l2loopback-dkms \
 vim \
+#libboost-all-dev
 #libclang-dev
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get remove -q -y \

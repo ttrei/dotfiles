@@ -23,10 +23,18 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y \
 default-jdk-headless \
 dmenu \
 dunst \
+evince \
 feh \
 firefox-esr \
+fonts-font-awesome \
 gitk \
 i3-wm \
+libfreetype6-dev \
+libglew-dev \
+libglm-dev \
+libsdl2-dev \
+libsdl2-image-dev \
+libsdl2-ttf-dev \
 lightdm \
 obs-studio \
 pavucontrol \
@@ -56,3 +64,7 @@ sudo cp "$BOOTSTRAP_BASEDIR/files/01-lightdm-autologin.conf" /etc/lightdm/lightd
 # dunst systemd user service doesn't load properly, I will run it manually in .xsessionrc.
 # See my org notes for more info.
 sudo systemctl --global disable dunst.service
+
+# TODO
+#./install-zutty.sh
+#./install-i3blocks.sh
