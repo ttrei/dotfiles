@@ -22,6 +22,5 @@ read -r -p "Make sure the VirtualBox Guest Additions CD is inserted and press an
 # `bash -x` needed to record commands+output of the called script
 bash -x scripts/install_base.sh 2>&1 | tee "$LOGFILE"
 bash -x scripts/install_gui.sh 2>&1 | tee -a "$LOGFILE"
-bash -x scripts/install_additional_software.sh 2>&1 | tee -a "$LOGFILE"
 
 scripts/setup_guest_additions.sh "$LOGFILE"
