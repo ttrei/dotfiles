@@ -12,6 +12,6 @@ if [[ -z "$BOOTSTRAP_BASEDIR" ]]; then
 fi
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y build-essential module-assistant expect
-sudo expect "BOOTSTRAP_BASEDIR/scripts/prepare_for_guest_additions.ex"
+sudo expect "BOOTSTRAP_BASEDIR/scripts/virtualbox/prepare_for_guest_additions.ex"
 sudo mount /media/cdrom
 sudo sh /media/cdrom/VBoxLinuxAdditions.run
