@@ -20,5 +20,5 @@ read -rp "Press Enter to continue" </dev/tty
 # `bash -x` needed to record commands+output of the called script
 bash -x scripts/install_base.sh 2>&1 | tee "$LOGFILE"
 
-cp files/grub /etc/default/grub
-update-grub
+sudo cp files/grub /etc/default/grub
+sudo update-grub
