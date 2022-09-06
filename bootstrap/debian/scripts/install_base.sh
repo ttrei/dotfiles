@@ -57,6 +57,12 @@ echo "blacklist pcspkr" | sudo tee -a /etc/modprobe.d/blacklist.conf > /dev/null
 sudo depmod -a
 sudo update-initramfs -u
 
+~/dotfiles/bootstrap/software/python/install-python-venv.sh
+~/dotfiles/bootstrap/software/python/install-python-apps.sh
+
+~/dotfiles/bootstrap/software/python/install-nix.sh
+~/dotfiles/bootstrap/software/python/install-home-manager.sh
+
 # TODO: My custom sudo configuration does not allow to set the DEBIAN_FRONTEND variable.
 #       Maybe use the default config that allows to do anything.
 # sudo cp "$BOOTSTRAP_BASEDIR/files/sudoers" /etc/sudoers
