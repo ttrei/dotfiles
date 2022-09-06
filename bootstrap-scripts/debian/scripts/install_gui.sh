@@ -19,7 +19,6 @@ xserver-xorg-input-all \
 xserver-xorg-input-evdev \
 xserver-xorg-video-fbdev
 
-# TODO: move these to another script
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y \
 default-jdk-headless \
 dmenu \
