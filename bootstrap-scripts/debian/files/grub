@@ -12,6 +12,8 @@ GRUB_CMDLINE_LINUX=""
 # NOTE: Not sure if these options are still relevant
 # amd_iommu=on - needed for GPU passthrough on qemu
 # kvm.ignore_msrs=1 - avoid BSOD when running inside Virtualbox on windows host
+#                     (or windows inside Virtualbox on debian host? I don't
+#                     remember)
 #GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on kvm.ignore_msrs=1"
 
 # Support resume from hibernate
