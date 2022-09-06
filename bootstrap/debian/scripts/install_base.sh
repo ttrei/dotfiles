@@ -61,6 +61,8 @@ sudo update-initramfs -u
 ~/dotfiles/bootstrap/software/python/install-python-apps.sh
 
 ~/dotfiles/bootstrap/software/nix/install-nix.sh || true
+# TODO: home-manager installation fails because nix not available yet - need to restart shell.
+#       Find out if we can source some rc files or set some env vars to avoid the shell restart.
 ~/dotfiles/bootstrap/software/nix/install-home-manager.sh || true
 ~/dotfiles/nix/bin/update-user.sh
 ~/dotfiles/nix/bin/apply-users.sh
