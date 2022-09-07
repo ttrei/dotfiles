@@ -9,6 +9,11 @@ if [[ -z "$BOOTSTRAP_BASEDIR" ]]; then
     exit 1
 fi
 
+if ! [ -f "$HOME/.dotfiles-env" ]; then
+    echo "~/.dotfiles-env missing"
+    exit 1
+fi
+
 sudo cp "$BOOTSTRAP_BASEDIR/files/sources.list-testing" /etc/apt/sources.list
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -q
 sudo DEBIAN_FRONTEND=noninteractive apt-get upgrade -q -y
@@ -57,12 +62,13 @@ echo "blacklist pcspkr" | sudo tee -a /etc/modprobe.d/blacklist.conf > /dev/null
 sudo depmod -a
 sudo update-initramfs -u
 
+~/dotfiles/bin/deploy.sh
+
 ~/dotfiles/bootstrap/software/python/install-python-venv.sh || true
 ~/dotfiles/bootstrap/software/python/install-python-apps.sh
 
 ~/dotfiles/bootstrap/software/nix/install-nix.sh || true
-# TODO: home-manager installation fails because nix not available yet - need to restart shell.
-#       Find out if we can source some rc files or set some env vars to avoid the shell restart.
+. /etc/profile.d/nix.sh # Access nix without restarting shell
 ~/dotfiles/bootstrap/software/nix/install-home-manager.sh || true
 ~/dotfiles/nix/bin/update-user.sh
 ~/dotfiles/nix/bin/apply-users.sh
