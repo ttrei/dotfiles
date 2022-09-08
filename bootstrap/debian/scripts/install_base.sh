@@ -9,10 +9,7 @@ if [[ -z "$BOOTSTRAP_BASEDIR" ]]; then
     exit 1
 fi
 
-if ! [ -f "$HOME/.dotfiles-env" ]; then
-    echo "~/.dotfiles-env missing"
-    exit 1
-fi
+~/dotfiles/bin/select-config.sh
 
 sudo cp "$BOOTSTRAP_BASEDIR/files/sources.list-testing" /etc/apt/sources.list
 sudo DEBIAN_FRONTEND=noninteractive apt-get update -q
