@@ -103,10 +103,12 @@ ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
 # XORG
 ln -s "$DOTFILES/xorg/xbindkeysrc" "$STAGINGDIR/.xbindkeysrc"
+ln -s "$DOTFILES/xorg/xmodmaprc-kinesis-advantage" "$STAGINGDIR/.xmodmaprc"
 ln -s "$DOTFILES/xorg/xprofile" "$STAGINGDIR/.xprofile"
 ln -s "$DOTFILES/xorg/Xresources" "$STAGINGDIR/.Xresources"
 ln -s "$DOTFILES/xorg/xsessionrc" "$STAGINGDIR/.xsessionrc"
 if [ "$MACHINE" = "htpc" ]; then
+    ln -sf "$DOTFILES/xorg/xmodmaprc-standard-keyboards-kodi" "$STAGINGDIR/.xmodmaprc"
     ln -sf "$DOTFILES/xorg/xsessionrc-kodi" "$STAGINGDIR/.xsessionrc"
 fi
 if [ "$DISTRO" = "nixos" ]; then
