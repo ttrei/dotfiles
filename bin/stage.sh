@@ -101,6 +101,13 @@ fi
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
+# XORG
+if [ "$MACHINE" = "htpc" ]; then
+    ln -s "$DOTFILES/xorg/xsessionrc-kodi" "$STAGINGDIR/.xsessionrc"
+else
+    ln -s "$DOTFILES/xorg/xsessionrc" "$STAGINGDIR/.xsessionrc"
+fi
+
 # I3/SWAY
 mkdir -p "$STAGINGDIR/.config/i3"
 mkdir -p "$STAGINGDIR/.config/i3blocks"
