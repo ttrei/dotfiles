@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Show the difference between dotfiles currently found in $DOTFILES_TARGETDIR
+# and dotfiles that would be deployed.
+
 set -o errexit
 set -o nounset
 set -o pipefail
