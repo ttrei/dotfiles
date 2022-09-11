@@ -105,6 +105,7 @@ ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 ln -s "$DOTFILES/xorg/xsessionrc" "$STAGINGDIR/.xsessionrc"
 ln -s "$DOTFILES/xorg/Xresources" "$STAGINGDIR/.Xresources"
 ln -s "$DOTFILES/xorg/xprofile" "$STAGINGDIR/.xprofile"
+ln -s "$DOTFILES/xorg/xbindkeysrc" "$STAGINGDIR/.xbindkeysrc"
 if [ "$MACHINE" = "htpc" ]; then
     ln -sf "$DOTFILES/xorg/xsessionrc-kodi" "$STAGINGDIR/.xsessionrc"
 fi
