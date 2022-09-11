@@ -102,11 +102,15 @@ fi
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
 # XORG
+ln -s "$DOTFILES/xorg/xsessionrc" "$STAGINGDIR/.xsessionrc"
 if [ "$MACHINE" = "htpc" ]; then
-    ln -s "$DOTFILES/xorg/xsessionrc-kodi" "$STAGINGDIR/.xsessionrc"
-else
-    ln -s "$DOTFILES/xorg/xsessionrc" "$STAGINGDIR/.xsessionrc"
+    ln -sf "$DOTFILES/xorg/xsessionrc-kodi" "$STAGINGDIR/.xsessionrc"
 fi
+ln -s "$DOTFILES/xorg/Xresources" "$STAGINGDIR/.Xresources"
+if [ "$DISTRO" = "nixos" ]; then
+    ln -sf "$DOTFILES/xorg/Xresources-nixos" "$STAGINGDIR/.Xresources"
+fi
+# TODO: $DOTFILES/xorg/Xresources-lenovo is unused
 
 # I3/SWAY
 mkdir -p "$STAGINGDIR/.config/i3"
