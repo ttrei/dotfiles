@@ -21,6 +21,9 @@ if ! [ -f "$ENVFILE" ]; then
     echo "ABORT! dotfiles env file $ENVFILE not found."
     exit 1
 fi
+if [ "$ARG" == "-v" ]; then
+    echo "Found dotfiles config file: $ENVFILE"
+fi
 # shellcheck source=/dev/null
 . "$ENVFILE"
 
