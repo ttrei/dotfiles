@@ -26,8 +26,8 @@ find "$DOTFILES_CURRENT/configs" -type f -printf "%f\n" | sort > $CURRENT_CONFIG
 common_configs=$(comm -12 $BASE_CONFIGS_FILE $CURRENT_CONFIGS_FILE)
 
 # Deploy all the configs that are in common between base and current dotfiles.
-DEPLOY_CURRENT="$DIFFDIR/deploye-current"
-DEPLOY_BASE="$DIFFDIR/deploye-base"
+DEPLOY_CURRENT="$DIFFDIR/deploy-current"
+DEPLOY_BASE="$DIFFDIR/deploy-base"
 mkdir -p "$DEPLOY_CURRENT"
 mkdir -p "$DEPLOY_BASE"
 while IFS= read -r config
