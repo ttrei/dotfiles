@@ -4,8 +4,8 @@ set -o errexit
 set -o nounset
 
 DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
-STAGINGDIR=${STAGINGDIR:-"$DOTFILES/.staging"}
-ENVFILE="$HOME/.dotfiles-env"
+STAGINGDIR=${DOTFILES_STAGINGDIR:-"$DOTFILES/.staging"}
+ENVFILE=${DOTFILES_ENVFILE:-"$HOME/.dotfiles-env"}
 
 ARG=${1:-}
 
