@@ -102,6 +102,7 @@ fi
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
 # XORG
+# TODO: $DOTFILES/xorg/Xresources-lenovo is unused
 ln -s "$DOTFILES/xorg/xbindkeysrc" "$STAGINGDIR/.xbindkeysrc"
 ln -s "$DOTFILES/xorg/xmodmaprc-kinesis-advantage" "$STAGINGDIR/.xmodmaprc"
 ln -s "$DOTFILES/xorg/xprofile" "$STAGINGDIR/.xprofile"
@@ -115,7 +116,7 @@ if [ "$DISTRO" = "nixos" ]; then
     ln -sf "$DOTFILES/xorg/xprofile-nixos" "$STAGINGDIR/.xprofile"
     ln -sf "$DOTFILES/xorg/Xresources-nixos" "$STAGINGDIR/.Xresources"
 fi
-# TODO: $DOTFILES/xorg/Xresources-lenovo is unused
+ln -s "$STAGINGDIR/.Xresources" "$STAGINGDIR/.Xdefaults"
 
 # I3/SWAY
 mkdir -p "$STAGINGDIR/.config/i3"
