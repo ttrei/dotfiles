@@ -84,11 +84,11 @@ mkdir -p "$STAGINGDIR/.config"
 mkdir -p "$STAGINGDIR/bin"
 
 # TERMINAL
-ln -s "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config"
-ln -s "$DOTFILES/terminal/starship2.toml" "$STAGINGDIR/.config"
+ln -s "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config/starship.toml"
+ln -s "$DOTFILES/terminal/starship2.toml" "$STAGINGDIR/.config/starship2.toml"
 mkdir -p "$STAGINGDIR/.config/htop"
-ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop"
-ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin"
+ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop/htoprc"
+ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin/describe-environment.sh"
 ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
 if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc.legacy"
