@@ -55,7 +55,7 @@ elif [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "htpc"
     OLD_DEPLOYMENT_NAME="home-desktop-nixos"
 elif [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "home-desktop" ]; then
     OLD_DEPLOYMENT_NAME="home-desktop-nixos"
-elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "taukulis.lv" ]; then
+elif [ "$DISTRO" = "debian" ] && [ "$MACHINE" = "taukulis.lv" ]; then
     OLD_DEPLOYMENT_NAME="debian"
 else
     echo "ABORT! Couldn't select the old-style deployment directory."
@@ -107,6 +107,19 @@ ln -s "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config/starship.toml"
 ln -s "$DOTFILES/terminal/tmux.conf" "$STAGINGDIR/.tmux.conf"
 ln -s "$DOTFILES/terminal/z.lua/z.lua" "$STAGINGDIR/.z.lua"
 ln -s "$DOTFILES/terminal/z/z.sh" "$STAGINGDIR/.z.sh"
+
+mkdir -p "$STAGINGDIR/.bash_aliases"
+ln -s "$DOTFILES/terminal/aliases/common" "$STAGINGDIR/.bash_aliases/common"
+if [ "$DISTRO" = "debian" ] || [ "$DISTRO" = "ubuntu" ]; then
+    ln -s "$DOTFILES/terminal/aliases/debian" "$STAGINGDIR/.bash_aliases/debian"
+elif [ "$DISTRO" = "nixos" ]; then
+    ln -s "$DOTFILES/terminal/aliases/nixos" "$STAGINGDIR/.bash_aliases/nixos"
+fi
+if [ "$CONTEXT" = "home" ]; then
+    ln -s "$DOTFILES/terminal/aliases/home" "$STAGINGDIR/.bash_aliases/home"
+elif [ "$CONTEXT" = "work" ]; then
+    ln -s "$DOTFILES/terminal/aliases/work" "$STAGINGDIR/.bash_aliases/work"
+fi
 
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
