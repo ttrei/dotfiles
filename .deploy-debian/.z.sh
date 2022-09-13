@@ -1,1 +1,0 @@
-../terminal/z/z.sh
