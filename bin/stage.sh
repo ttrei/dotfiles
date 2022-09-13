@@ -94,6 +94,7 @@ else
 fi
 ln -s "$DOTFILES/terminal/bash_fzf" "$STAGINGDIR/.bash_fzf"
 ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin/describe-environment.sh"
+ln -s "$DOTFILES/terminal/dircolors" "$STAGINGDIR/.dircolors"
 ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
 ln -s "$DOTFILES/terminal/git-prompt.sh" "$STAGINGDIR/.git-prompt.sh"
 mkdir -p "$STAGINGDIR/.config/htop"
