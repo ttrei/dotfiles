@@ -80,16 +80,17 @@ cp --recursive \
 # NEW STYLE
 ################################################################################
 
-mkdir -p "$STAGINGDIR/.config"
 mkdir -p "$STAGINGDIR/bin"
+mkdir -p "$STAGINGDIR/.config"
+mkdir -p "$STAGINGDIR/.config/htop"
 
 # TERMINAL
 if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc.legacy"
     ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile.legacy"
 else
-    ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc"
     ln -s "$DOTFILES/terminal/bash_profile" "$STAGINGDIR/.bash_profile"
+    ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc"
     ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile"
 fi
 ln -s "$DOTFILES/terminal/bash_fzf" "$STAGINGDIR/.bash_fzf"
@@ -97,14 +98,15 @@ ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin/describe
 ln -s "$DOTFILES/terminal/dircolors" "$STAGINGDIR/.dircolors"
 ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
 ln -s "$DOTFILES/terminal/git-prompt.sh" "$STAGINGDIR/.git-prompt.sh"
-mkdir -p "$STAGINGDIR/.config/htop"
 ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop/htoprc"
 ln -s "$DOTFILES/terminal/ignore" "$STAGINGDIR/.ignore"
 ln -s "$DOTFILES/terminal/inputrc" "$STAGINGDIR/.inputrc"
 ln -s "$DOTFILES/terminal/ripgreprc" "$STAGINGDIR/.ripgreprc"
-ln -s "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config/starship.toml"
 ln -s "$DOTFILES/terminal/starship2.toml" "$STAGINGDIR/.config/starship2.toml"
+ln -s "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config/starship.toml"
 ln -s "$DOTFILES/terminal/tmux.conf" "$STAGINGDIR/.tmux.conf"
+ln -s "$DOTFILES/terminal/z.lua/z.lua" "$STAGINGDIR/.z.lua"
+ln -s "$DOTFILES/terminal/z/z.sh" "$STAGINGDIR/.z.sh"
 
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
