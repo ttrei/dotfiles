@@ -90,6 +90,8 @@ mkdir -p "$STAGINGDIR/.config/htop"
 ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop/htoprc"
 ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin/describe-environment.sh"
 ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
+ln -s "$DOTFILES/terminal/ignore" "$STAGINGDIR/.ignore"
+ln -s "$DOTFILES/terminal/inputrc" "$STAGINGDIR/.inputrc"
 ln -s "$DOTFILES/terminal/git-prompt.sh" "$STAGINGDIR/.git-prompt.sh"
 ln -s "$DOTFILES/terminal/tmux.conf" "$STAGINGDIR/.tmux.conf"
 if [ "$DISTRO" = "nixos" ]; then
