@@ -1,6 +1,6 @@
 set guifont=Consolas\ 13
 
-let mapleader="\\"
+let mapleader=" "
 
 set encoding=utf8
 set termguicolors
