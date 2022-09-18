@@ -1,1 +1,0 @@
-../../nix/bin/apply-system.sh
