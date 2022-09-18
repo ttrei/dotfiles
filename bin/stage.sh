@@ -242,8 +242,14 @@ ln -s "$DOTFILES/python/pip.conf" "$STAGINGDIR/.config/pip/pip.conf"
 
 # NIX
 mkdir -p "$STAGINGDIR/.config/nix"
-ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
 mkdir -p "$STAGINGDIR/.config/nixpkgs"
+ln -s "$DOTFILES/nix/bin/apply-users.sh" "$STAGINGDIR/bin/apply-users.sh"
+ln -s "$DOTFILES/nix/bin/update-user.sh" "$STAGINGDIR/bin/update-user.sh"
+if [ "$DISTRO" = "nixos" ]; then
+    ln -s "$DOTFILES/nix/bin/apply-system.sh" "$STAGINGDIR/bin/apply-system.sh"
+    ln -s "$DOTFILES/nix/bin/update-system.sh" "$STAGINGDIR/bin/update-system.sh"
+fi
+ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
 ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix"
 
 # HOME-MANAGER

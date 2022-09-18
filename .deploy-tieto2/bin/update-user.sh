@@ -1,1 +1,0 @@
-../../nix/bin/update-user.sh
