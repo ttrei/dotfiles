@@ -213,10 +213,12 @@ ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
 # VIM
 mkdir -p "$STAGINGDIR/.vim"
+mkdir -p "$STAGINGDIR/.local/share/nvim/site"
 ln -s "$DOTFILES/vim/ideavimrc" "$STAGINGDIR/.ideavimrc"
 ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
 ln -s "$DOTFILES/vim/after" "$STAGINGDIR/.vim/after"
 ln -s "$DOTFILES/vim/pack" "$STAGINGDIR/.vim/pack"
+ln -s "$DOTFILES/vim/neovim/pack" "$STAGINGDIR/.local/share/nvim/site/pack"
 
 # EMACS
 mkdir -p "$STAGINGDIR/.config/doom"
