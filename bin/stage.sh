@@ -85,6 +85,8 @@ mkdir -p "$STAGINGDIR/.config"
 
 # TERMINAL
 mkdir -p "$STAGINGDIR/.config/htop"
+mkdir -p "$STAGINGDIR/.config/htop"
+mkdir -p "$STAGINGDIR/.config/xfce4/terminal"
 if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc.legacy"
     ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile.legacy"
@@ -105,6 +107,7 @@ ln -s "$DOTFILES/terminal/ripgreprc" "$STAGINGDIR/.ripgreprc"
 ln -s "$DOTFILES/terminal/starship2.toml" "$STAGINGDIR/.config/starship2.toml"
 ln -s "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config/starship.toml"
 ln -s "$DOTFILES/terminal/tmux.conf" "$STAGINGDIR/.tmux.conf"
+ln -s "$DOTFILES/terminal/xfce4terminalrc" "$STAGINGDIR/.config/xfce4/terminal/terminalrc"
 ln -s "$DOTFILES/terminal/z.lua/z.lua" "$STAGINGDIR/.z.lua"
 ln -s "$DOTFILES/terminal/z/z.sh" "$STAGINGDIR/.z.sh"
 
