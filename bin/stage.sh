@@ -304,7 +304,22 @@ ln -s "$DOTFILES/language-servers/zls.json" "$STAGINGDIR/.config/zls.json"
 # WEB
 ln -s "$DOTFILES/web/userChrome.css" "$STAGINGDIR/.config/userChrome.css"
 
-# OTHER
-ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
+# CLANG-FORMAT
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
 ln -s "$DOTFILES/clang-format/clang-format.py" "$STAGINGDIR/.vim/clang-format.py"
+
+# NETWORKING
+if [ "$MACHINE" = "htpc" ]; then
+    ln -s "$DOTFILES/net/bin/vpn-start.sh" "$STAGINGDIR/bin/vpn-start.sh"
+    ln -s "$DOTFILES/net/bin/vpn-stop.sh" "$STAGINGDIR/bin/vpn-stop.sh"
+    ln -s "$DOTFILES/net/bin/vpn-switch.sh" "$STAGINGDIR/bin/vpn-switch.sh"
+fi
+
+# OTHER
+ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
+ln -s "$DOTFILES/other/bin/get_remote_stats.py" "$STAGINGDIR/bin/get_remote_stats.py"
+ln -s "$DOTFILES/other/bin/get_upgrade_counts.py" "$STAGINGDIR/bin/get_upgrade_counts.py"
+ln -s "$DOTFILES/other/bin/steam-offline" "$STAGINGDIR/bin/steam-offline"
+if [ "$CONTEXT" = "work" ]; then
+    ln -s "$DOTFILES/other/bin/firefox-home" "$STAGINGDIR/bin/firefox-home"
+fi
