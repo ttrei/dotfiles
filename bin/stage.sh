@@ -43,38 +43,23 @@ fi
 # OLD STYLE (to be gradually migrated to new style)
 ################################################################################
 
-if [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "home-desktop" ]; then
-    OLD_DEPLOYMENT_NAME="home-desktop-debian"
-elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "work" ] && [ "$MACHINE" = "home-desktop" ]; then
-    OLD_DEPLOYMENT_NAME="tieto2-desktop-debian"
-elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "work" ] && [ "$MACHINE" = "work-laptop" ]; then
-    OLD_DEPLOYMENT_NAME="tieto2-laptop-debian"
-elif [ "$DISTRO" = "ubuntu" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "htpc" ]; then
-    OLD_DEPLOYMENT_NAME="kodi"
-elif [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "htpc" ]; then
+if [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "htpc" ]; then
     OLD_DEPLOYMENT_NAME="home-desktop-nixos"
 elif [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "home-desktop" ]; then
     OLD_DEPLOYMENT_NAME="home-desktop-nixos"
-elif [ "$DISTRO" = "debian" ] && [ "$MACHINE" = "taukulis.lv" ]; then
-    OLD_DEPLOYMENT_NAME="debian"
 else
-    echo "ABORT! Couldn't select the old-style deployment directory."
-    echo ""
-    print_env
-    exit 1
+    OLD_DEPLOYMENT_NAME="NONE"
 fi
+
 OLD_DEPLOYMENT_DIR="$DOTFILES/.deploy-$OLD_DEPLOYMENT_NAME"
 if [ "$ARG" == "-v" ]; then
     echo "Selected old-style deployment directory: $OLD_DEPLOYMENT_DIR"
 fi
-if ! [ -d "$OLD_DEPLOYMENT_DIR" ]; then
-    echo "ABORT! Old-style deployment directory $OLD_DEPLOYMENT_DIR not found."
-    exit 1
+if [ -d "$OLD_DEPLOYMENT_DIR" ]; then
+    cp --recursive \
+        --no-dereference \
+        "$OLD_DEPLOYMENT_DIR/." "$STAGINGDIR"
 fi
-
-cp --recursive \
-    --no-dereference \
-    "$OLD_DEPLOYMENT_DIR/." "$STAGINGDIR"
 
 ################################################################################
 # NEW STYLE
