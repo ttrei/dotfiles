@@ -208,6 +208,12 @@ ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/settings.j
 ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybindings.json"
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
+# EMACS
+mkdir -p "$STAGINGDIR/.config/doom"
+ln -s "$DOTFILES/emacs/doom/config.el" "$STAGINGDIR/.config/doom/config.el"
+ln -s "$DOTFILES/emacs/doom/init.el" "$STAGINGDIR/.config/doom/init.el"
+ln -s "$DOTFILES/emacs/doom/packages.el" "$STAGINGDIR/.config/doom/packages.el"
+
 # PYTHON
 mkdir -p "$STAGINGDIR/.config/pip"
 ln -s "$DOTFILES/python/pip.conf" "$STAGINGDIR/.config/pip/pip.conf"
