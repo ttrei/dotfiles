@@ -133,8 +133,11 @@ fi
 
 # GIT
 mkdir -p "$STAGINGDIR/.config/git"
-ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
+ln -s "$DOTFILES/git/bin/git-checkout-fzf.sh" "$STAGINGDIR/bin/git-checkout-fzf.sh"
+ln -s "$DOTFILES/git/bin/git-commit-jira.sh" "$STAGINGDIR/bin/git-commit-jira.sh"
+ln -s "$DOTFILES/git/bin/git-set-upstream.sh" "$STAGINGDIR/bin/git-set-upstream.sh"
 ln -s "$DOTFILES/git/config" "$STAGINGDIR/.config/git/config"
+ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 ln -s "$DOTFILES/git/gitk" "$STAGINGDIR/.config/git/gitk"
 if [ "$CONTEXT" = "work" ]; then
     ln -s "$DOTFILES/git/config-work" "$STAGINGDIR/.config/git/config-work"

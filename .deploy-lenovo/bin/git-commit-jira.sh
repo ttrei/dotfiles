@@ -1,1 +1,0 @@
-../../git/bin/git-commit-jira.sh
