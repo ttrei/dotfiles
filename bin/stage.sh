@@ -212,8 +212,11 @@ ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybind
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
 # VIM
+mkdir -p "$STAGINGDIR/.vim"
 ln -s "$DOTFILES/vim/ideavimrc" "$STAGINGDIR/.ideavimrc"
 ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
+ln -s "$DOTFILES/vim/after" "$STAGINGDIR/.vim/after"
+ln -s "$DOTFILES/vim/pack" "$STAGINGDIR/.vim/pack"
 
 # EMACS
 mkdir -p "$STAGINGDIR/.config/doom"
@@ -286,3 +289,4 @@ ln -s "$DOTFILES/web/userChrome.css" "$STAGINGDIR/.config/userChrome.css"
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
+ln -s "$DOTFILES/clang-format/clang-format.py" "$STAGINGDIR/.vim/clang-format.py"
