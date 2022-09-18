@@ -82,6 +82,7 @@ cp --recursive \
 
 mkdir -p "$STAGINGDIR/bin"
 mkdir -p "$STAGINGDIR/.config"
+mkdir -p "$STAGINGDIR/.config/git"
 mkdir -p "$STAGINGDIR/.config/htop"
 
 # TERMINAL
@@ -130,6 +131,16 @@ fi
 
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
+ln -s "$DOTFILES/git/config" "$STAGINGDIR/.config/git/config"
+ln -s "$DOTFILES/git/gitk" "$STAGINGDIR/.config/git/gitk"
+if [ "$CONTEXT" = "work" ]; then
+    ln -s "$DOTFILES/git/config-work" "$STAGINGDIR/.config/git/config-work"
+elif [ "$CONTEXT" = "home" ]; then
+    ln -s "$DOTFILES/git/config-home" "$STAGINGDIR/.config/git/config-home"
+fi
+if [ "$DISTRO" = "nixos" ]; then
+    ln -sf "$DOTFILES/git/gitk-nixos" "$STAGINGDIR/.config/git/gitk"
+fi
 
 # XORG
 # TODO: $DOTFILES/xorg/Xresources-lenovo is unused
