@@ -276,6 +276,9 @@ ln -s "$DOTFILES/dunst/dunstrc" "$STAGINGDIR/.config/dunst/dunstrc"
 # LANGUAGE SERVERS
 ln -s "$DOTFILES/language-servers/zls.json" "$STAGINGDIR/.config/zls.json"
 
+# WEB
+ln -s "$DOTFILES/web/userChrome.css" "$STAGINGDIR/.config/userChrome.css"
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
