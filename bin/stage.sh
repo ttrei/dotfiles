@@ -273,6 +273,9 @@ ln -s "$DOTFILES/music/navidrome/navidrome.toml" "$STAGINGDIR/.config/navidrome/
 mkdir -p "$STAGINGDIR/.config/dunst"
 ln -s "$DOTFILES/dunst/dunstrc" "$STAGINGDIR/.config/dunst/dunstrc"
 
+# LANGUAGE SERVERS
+ln -s "$DOTFILES/language-servers/zls.json" "$STAGINGDIR/.config/zls.json"
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
