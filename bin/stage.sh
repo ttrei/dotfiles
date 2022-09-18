@@ -211,6 +211,9 @@ ln -s "$DOTFILES/vscode/settings.json" "$STAGINGDIR/.config/Code/User/settings.j
 ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybindings.json"
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
+# VIM
+ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
+
 # EMACS
 mkdir -p "$STAGINGDIR/.config/doom"
 ln -s "$DOTFILES/emacs/doom/config.el" "$STAGINGDIR/.config/doom/config.el"
