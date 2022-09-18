@@ -86,6 +86,7 @@ mkdir -p "$STAGINGDIR/.config/beets"
 mkdir -p "$STAGINGDIR/.config/git"
 mkdir -p "$STAGINGDIR/.config/htop"
 mkdir -p "$STAGINGDIR/.config/navidrome"
+mkdir -p "$STAGINGDIR/.config/redshift"
 
 # TERMINAL
 if [ "$DISTRO" = "nixos" ]; then
@@ -198,6 +199,10 @@ fi
 if [ "$EXECUTION_ENV" = "qemu" ]; then
     ln -sf "$DOTFILES/i3/i3blocks/config-qemu" "$STAGINGDIR/.config/i3blocks/config"
 fi
+
+# REDSHIFT
+ln -s "$DOTFILES/redshift/redshift.conf" "$STAGINGDIR/.config/redshift.conf"
+ln -s "$DOTFILES/redshift/redshift.conf" "$STAGINGDIR/.config/redshift/redshift.conf"
 
 # VSCODE
 mkdir -p "$STAGINGDIR/.config/Code/User"
