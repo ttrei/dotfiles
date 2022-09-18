@@ -82,13 +82,9 @@ cp --recursive \
 
 mkdir -p "$STAGINGDIR/bin"
 mkdir -p "$STAGINGDIR/.config"
-mkdir -p "$STAGINGDIR/.config/beets"
-mkdir -p "$STAGINGDIR/.config/git"
-mkdir -p "$STAGINGDIR/.config/htop"
-mkdir -p "$STAGINGDIR/.config/navidrome"
-mkdir -p "$STAGINGDIR/.config/redshift"
 
 # TERMINAL
+mkdir -p "$STAGINGDIR/.config/htop"
 if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc.legacy"
     ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile.legacy"
@@ -133,6 +129,7 @@ if [ "$CONTEXT" = "work" ]; then
 fi
 
 # GIT
+mkdir -p "$STAGINGDIR/.config/git"
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 ln -s "$DOTFILES/git/config" "$STAGINGDIR/.config/git/config"
 ln -s "$DOTFILES/git/gitk" "$STAGINGDIR/.config/git/gitk"
@@ -201,6 +198,7 @@ if [ "$EXECUTION_ENV" = "qemu" ]; then
 fi
 
 # REDSHIFT
+mkdir -p "$STAGINGDIR/.config/redshift"
 ln -s "$DOTFILES/redshift/redshift.conf" "$STAGINGDIR/.config/redshift.conf"
 ln -s "$DOTFILES/redshift/redshift.conf" "$STAGINGDIR/.config/redshift/redshift.conf"
 
@@ -256,8 +254,12 @@ fi
 mkdir -p "$STAGINGDIR/.config/k9s"
 ln -s "$DOTFILES/k8s/k9s-skin-gruvbox-light.yml" "$STAGINGDIR/.config/k9s/skin.yml"
 
+# MUSIC
+mkdir -p "$STAGINGDIR/.config/beets"
+mkdir -p "$STAGINGDIR/.config/navidrome"
+ln -s "$DOTFILES/music/beets/config.yaml" "$STAGINGDIR/.config/beets/config.yaml"
+ln -s "$DOTFILES/music/navidrome/navidrome.toml" "$STAGINGDIR/.config/navidrome/navidrome.toml"
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
-ln -s "$DOTFILES/music/beets/config.yaml" "$STAGINGDIR/.config/beets/config.yaml"
-ln -s "$DOTFILES/music/navidrome/navidrome.toml" "$STAGINGDIR/.config/navidrome/navidrome.toml"
