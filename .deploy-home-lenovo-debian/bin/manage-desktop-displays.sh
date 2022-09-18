@@ -1,1 +1,0 @@
-../../xorg/bin/manage-desktop-displays.sh

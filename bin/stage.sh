@@ -154,6 +154,7 @@ fi
 
 # XORG
 # TODO: $DOTFILES/xorg/Xresources-lenovo is unused
+ln -s "$DOTFILES/xorg/bin/manage-desktop-displays.sh" "$STAGINGDIR/bin/manage-desktop-displays.sh"
 ln -s "$DOTFILES/xorg/xbindkeysrc" "$STAGINGDIR/.xbindkeysrc"
 ln -s "$DOTFILES/xorg/xmodmaprc-kinesis-advantage" "$STAGINGDIR/.xmodmaprc"
 ln -s "$DOTFILES/xorg/xprofile" "$STAGINGDIR/.xprofile"
