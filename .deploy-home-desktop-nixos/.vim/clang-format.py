@@ -1,1 +1,0 @@
-../../clang-format/clang-format.py
