@@ -1,1 +1,0 @@
-../../terminal/bin/fzf-search-contents.sh
