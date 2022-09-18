@@ -233,3 +233,4 @@ ln -s "$DOTFILES/k8s/k9s-skin-gruvbox-light.yml" "$STAGINGDIR/.config/k9s/skin.y
 
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
+ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
