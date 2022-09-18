@@ -212,6 +212,7 @@ ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybind
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
 # VIM
+ln -s "$DOTFILES/vim/ideavimrc" "$STAGINGDIR/.ideavimrc"
 ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
 
 # EMACS
