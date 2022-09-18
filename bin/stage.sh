@@ -121,6 +121,13 @@ elif [ "$CONTEXT" = "work" ]; then
     ln -s "$DOTFILES/terminal/aliases/work" "$STAGINGDIR/.bash_aliases/work"
 fi
 
+# SSH
+mkdir -p "$STAGINGDIR/.ssh"
+ln -s "$DOTFILES/ssh/config" "$STAGINGDIR/.ssh/config"
+if [ "$CONTEXT" = "work" ]; then
+    ln -sf "$DOTFILES/ssh/config-work" "$STAGINGDIR/.ssh/config"
+fi
+
 # GIT
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 
