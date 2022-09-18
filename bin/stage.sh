@@ -212,13 +212,15 @@ ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybind
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
 # VIM
-mkdir -p "$STAGINGDIR/.vim"
+mkdir -p "$STAGINGDIR/.config/nvim"
 mkdir -p "$STAGINGDIR/.local/share/nvim/site"
-ln -s "$DOTFILES/vim/ideavimrc" "$STAGINGDIR/.ideavimrc"
-ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
+mkdir -p "$STAGINGDIR/.vim"
 ln -s "$DOTFILES/vim/after" "$STAGINGDIR/.vim/after"
-ln -s "$DOTFILES/vim/pack" "$STAGINGDIR/.vim/pack"
+ln -s "$DOTFILES/vim/ideavimrc" "$STAGINGDIR/.ideavimrc"
+ln -s "$DOTFILES/vim/neovim/init.vim" "$STAGINGDIR/.config/nvim/init.vim"
 ln -s "$DOTFILES/vim/neovim/pack" "$STAGINGDIR/.local/share/nvim/site/pack"
+ln -s "$DOTFILES/vim/pack" "$STAGINGDIR/.vim/pack"
+ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
 
 # EMACS
 mkdir -p "$STAGINGDIR/.config/doom"
