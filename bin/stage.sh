@@ -82,8 +82,10 @@ cp --recursive \
 
 mkdir -p "$STAGINGDIR/bin"
 mkdir -p "$STAGINGDIR/.config"
+mkdir -p "$STAGINGDIR/.config/beets"
 mkdir -p "$STAGINGDIR/.config/git"
 mkdir -p "$STAGINGDIR/.config/htop"
+mkdir -p "$STAGINGDIR/.config/navidrome"
 
 # TERMINAL
 if [ "$DISTRO" = "nixos" ]; then
@@ -252,3 +254,5 @@ ln -s "$DOTFILES/k8s/k9s-skin-gruvbox-light.yml" "$STAGINGDIR/.config/k9s/skin.y
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
+ln -s "$DOTFILES/music/beets/config.yaml" "$STAGINGDIR/.config/beets/config.yaml"
+ln -s "$DOTFILES/music/navidrome/navidrome.toml" "$STAGINGDIR/.config/navidrome/navidrome.toml"
