@@ -266,6 +266,10 @@ mkdir -p "$STAGINGDIR/.config/navidrome"
 ln -s "$DOTFILES/music/beets/config.yaml" "$STAGINGDIR/.config/beets/config.yaml"
 ln -s "$DOTFILES/music/navidrome/navidrome.toml" "$STAGINGDIR/.config/navidrome/navidrome.toml"
 
+# DUNST
+mkdir -p "$STAGINGDIR/.config/dunst"
+ln -s "$DOTFILES/dunst/dunstrc" "$STAGINGDIR/.config/dunst/dunstrc"
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
