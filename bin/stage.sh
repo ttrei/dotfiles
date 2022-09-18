@@ -39,32 +39,6 @@ if [ "$ARG" == "-v" ]; then
     echo "Staging to $STAGINGDIR"
 fi
 
-################################################################################
-# OLD STYLE (to be gradually migrated to new style)
-################################################################################
-
-if [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "htpc" ]; then
-    OLD_DEPLOYMENT_NAME="home-desktop-nixos"
-elif [ "$DISTRO" = "nixos" ] && [ "$CONTEXT" = "home" ] && [ "$MACHINE" = "home-desktop" ]; then
-    OLD_DEPLOYMENT_NAME="home-desktop-nixos"
-else
-    OLD_DEPLOYMENT_NAME="NONE"
-fi
-
-OLD_DEPLOYMENT_DIR="$DOTFILES/.deploy-$OLD_DEPLOYMENT_NAME"
-if [ "$ARG" == "-v" ]; then
-    echo "Selected old-style deployment directory: $OLD_DEPLOYMENT_DIR"
-fi
-if [ -d "$OLD_DEPLOYMENT_DIR" ]; then
-    cp --recursive \
-        --no-dereference \
-        "$OLD_DEPLOYMENT_DIR/." "$STAGINGDIR"
-fi
-
-################################################################################
-# NEW STYLE
-################################################################################
-
 mkdir -p "$STAGINGDIR/bin"
 mkdir -p "$STAGINGDIR/.config"
 
@@ -74,6 +48,7 @@ mkdir -p "$STAGINGDIR/.config/htop"
 mkdir -p "$STAGINGDIR/.config/xfce4/terminal"
 if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc.legacy"
+    ln -s "$DOTFILES/terminal/bash_nixos" "$STAGINGDIR/.bash_nixos"
     ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile.legacy"
 else
     ln -s "$DOTFILES/terminal/bash_profile" "$STAGINGDIR/.bash_profile"
