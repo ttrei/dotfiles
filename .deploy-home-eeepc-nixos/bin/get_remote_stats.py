@@ -1,1 +1,0 @@
-../../other/bin/get_remote_stats.py
