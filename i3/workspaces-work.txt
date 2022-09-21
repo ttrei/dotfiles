@@ -9,6 +9,7 @@
 40:postman
 50:database
 51:kafka
+60:minilab
 80:daemons
 85:dotfiles
 90:audio
