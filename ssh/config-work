@@ -2,6 +2,10 @@
 #    RemoteForward 127.0.0.1:3333 127.0.0.1:3333
 #
 
+# https://www.openssh.com/txt/release-8.8
+# See "Potentially-incompatible changes".
+# The alternative to this config is to use a key with different algorithm, e.g.,
+#   ssh-keygen -t ed25519
 Host cvs.konts.lv
     HostkeyAlgorithms +ssh-rsa
     PubkeyAcceptedAlgorithms +ssh-rsa
