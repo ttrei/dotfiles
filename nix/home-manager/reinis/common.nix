@@ -23,6 +23,7 @@
     gron
     k9s
     neovim
+    nethogs
     git
     git-crypt
     ripgrep
