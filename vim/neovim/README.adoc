@@ -4,5 +4,3 @@ https://github.com/nanotee/nvim-lua-guide
 
 The Primeagen inspired me to start configuring neovim with lua.
 https://www.youtube.com/watch?v=x2QJYq4IX6M
-
-TODO Start using https://github.com/wbthomason/packer.nvim
