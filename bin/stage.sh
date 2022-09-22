@@ -188,7 +188,6 @@ ln -s "$DOTFILES/vim/ideavimrc" "$STAGINGDIR/.ideavimrc"
 ln -s "$DOTFILES/vim/neovim/after" "$STAGINGDIR/.config/nvim/after"
 ln -s "$DOTFILES/vim/neovim/init.vim" "$STAGINGDIR/.config/nvim/init.vim"
 ln -s "$DOTFILES/vim/neovim/lua" "$STAGINGDIR/.config/nvim/lua"
-ln -s "$DOTFILES/vim/neovim/pack" "$STAGINGDIR/.local/share/nvim/site/pack"
 ln -s "$DOTFILES/vim/pack" "$STAGINGDIR/.vim/pack"
 ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
 
