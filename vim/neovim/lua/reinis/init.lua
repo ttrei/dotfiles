@@ -1,1 +1,1 @@
--- print("hello from reinis")
+require ('reinis.lspconfig')
