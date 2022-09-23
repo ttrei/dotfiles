@@ -83,7 +83,11 @@ if [ -n "$START_CWD" ]; then
     unset START_CWD
 fi
 
-EDITOR=vim
+if [ -x "$(command -v nvim)" ]; then
+    EDITOR=nvim
+else
+    EDITOR=vim
+fi
 export EDITOR
 
 export PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
