@@ -19,9 +19,6 @@ colorscheme gruvbox
 " Do not create .netrwhist
 let g:netrw_dirhistmax = 0
 
-" Enable mouse in terminal (only in visual mode)
-set mouse=v
-
 set clipboard+=unnamedplus
 
 " Show filename in terminal title
@@ -129,13 +126,6 @@ let g:asciidoc_fold_style = 'nested'
 " vim-table-mode
 let g:table_mode_corner_corner = '+'
 let g:table_mode_header_fillchar = '='
-
-" clang-format
-if has('python')
-  map <C-K> :pyf /home/reinis/.vim/clang-format.py<cr>
-elseif has('python3')
-  map <C-K> :py3f /home/reinis/.vim/clang-format.py<cr>
-endif
 
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1
