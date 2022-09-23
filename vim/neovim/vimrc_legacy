@@ -1,0 +1,215 @@
+set guifont=Consolas\ 13
+
+let mapleader=" "
+
+set encoding=utf8
+set termguicolors
+set background=light
+"https://github.com/vim/vim/issues/993#issuecomment-255651605
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+if ( match(hostname(), '.*lenovo.*') >= 0 )
+  let g:gruvbox_contrast_light="soft"
+else
+  let g:gruvbox_contrast_light="hard"
+endif
+colorscheme gruvbox
+
+
+" Do not create .netrwhist
+let g:netrw_dirhistmax = 0
+
+" Enable mouse in terminal (only in visual mode)
+set mouse=v
+
+" Solve the problem of copying text when using Vim through SSH.
+" When connecting we create a reverse tunnel on port 3333.
+" Then we write content of a register to netcat and the other side intercepts it
+" using a program that manages X clipboard (xsel or xclip).
+" Based on https://stackoverflow.com/a/46542771/9124671
+" If this solution lacks some bells and whistles, consider using clipper:
+" https://github.com/wincent/clipper https://github.com/wincent/vim-clipper
+:map <Leader>yy :call system('nc -q0 127.0.0.1 3333', @0)<CR>
+
+set clipboard+=unnamedplus
+
+" Show filename in terminal title
+set title
+
+" Enable backspace in Insert mode (sometimes disabled by default)
+set backspace=indent,eol,start
+
+" Better tab-autocomplete
+set wildmode=longest,list,full
+set wildmenu
+
+" Disable modelines
+set nomodeline
+set modelines=0
+
+" Indenting options
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smarttab
+set autoindent
+set cindent
+
+" Reload file automatically if it has been modified externally
+set autoread
+
+" Treat all numbers as decimal
+set nrformats=
+
+if exists('+colorcolumn')
+    set colorcolumn=80,100
+endif
+
+set textwidth=80
+" Toggle textwidth between 80 and 100 and report the new value.
+" Useful when handling files with different conventions of where to break lines.
+nnoremap <silent> <Leader>tw :call ToggleTextWidth()<cr>:set textwidth<cr>
+    function! ToggleTextWidth()
+      if(&textwidth == 80)
+        set textwidth=100
+      elseif(&textwidth == 100)
+        set textwidth=80
+      else
+        set textwidth=80
+      endif
+    endfunc
+
+" Textwidth of specific file formats
+au BufWinEnter *.adoc set textwidth=100
+au BufWinEnter *.md set textwidth=100
+au BufWinEnter *.txt set textwidth=100
+
+" GVim options
+set guioptions-=T " Remove toolbar
+set guioptions-=m " Remove menubar
+set guioptions-=r " Remove right scroll-bar
+
+filetype plugin on
+filetype indent on
+syntax on
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set nowrapscan
+
+" Disable C-c in Insert mode. Learn to use Esc - it will help in Doom Emacs
+" where C-c doesn't work.
+inoremap <C-c> <Nop>
+
+"Start syntax parsing from the start of the file
+"(useful to fix broken syntax highlighting)
+nnoremap <F9> <Esc>:syntax sync fromstart<CR>
+"Revert back to the default `sync` value
+"(`fromstart` is likely to be slow)
+nnoremap <F10> <Esc>:syntax sync minlines=200<CR>
+
+" Disable-enable folding
+set nofoldenable " Disabled by default
+nnoremap <F7> <Esc>:set foldenable \| FastFoldUpdate<CR>
+nnoremap <F8> <Esc>:set nofoldenable<CR>
+
+" Toggle trailing whitespace highlighting
+nnoremap <F6> <Esc>:ToggleWhitespace<CR>
+
+" Disable automatic wrappping while typing
+set formatoptions-=tc
+
+" fzf
+nnoremap <silent> <C-p> :Files<CR>
+
+" FileType-specific settings
+au FileType gitcommit setlocal foldmethod=syntax
+au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
+au FileType lua setlocal shiftwidth=2 tabstop=2
+au FileType vue setlocal shiftwidth=2 tabstop=2
+au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
+
+" Automatic foldmethod
+au BufWinEnter *.py set foldmethod=indent
+au BufWinEnter *.c set foldmethod=syntax
+au BufWinEnter *.h set foldmethod=syntax
+au BufWinEnter *.cpp set foldmethod=syntax
+au BufWinEnter *.hpp set foldmethod=syntax
+au BufWinEnter *.zig set foldmethod=syntax
+au BufWinEnter *.js set  shiftwidth=2 foldmethod=indent tabstop=2
+au BufWinEnter *.json set shiftwidth=2 foldmethod=indent tabstop=2
+
+" Try to fix vim-markdown plugin folding behavior
+let g:vim_markdown_folding_style_pythonic = 1
+
+" asciidoc folding
+let g:asciidoc_fold_style = 'nested'
+
+" vim-table-mode
+let g:table_mode_corner_corner = '+'
+let g:table_mode_header_fillchar = '='
+
+" clang-format
+if has('python')
+  map <C-K> :pyf /home/reinis/.vim/clang-format.py<cr>
+elseif has('python3')
+  map <C-K> :py3f /home/reinis/.vim/clang-format.py<cr>
+endif
+
+" Disable matching of parenthesis
+let g:loaded_matchparen = 1
+
+" Remove trailing whitespace
+nnoremap <Leader>s :%s/\s\+$//<CR>
+
+"BufExplorer
+let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
+
+" Move through tabs
+noremap <c-l> :tabnext<cr>
+noremap <c-h> :tabprevious<cr>
+
+" Execute linter
+nnoremap <F5> :Neomake<CR>
+
+" Exit visual mode and search in the previously selected range
+vnoremap <Leader>/ <Esc>/\%V
+
+" Search for selection ('*' - forward; '#' - backward)
+vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
+vnoremap <silent># <ESC>:call VisualSearch('?')<CR>?<CR>
+
+    function! VisualSearch(direction)
+        let l:register=@@
+        normal! gvy
+        let l:search=escape(@@, '$.*/\[]')
+        if a:direction=='/'
+            execute 'normal! /'.l:search
+        else
+            execute 'normal! ?'.l:search
+        endif
+        let @/=l:search
+        normal! gV
+        let @@=l:register
+    endfunction
+
+set relativenumber
+set number
+" no numbers --> absolute line numbers --> relative line numbers + absolute for current line
+nnoremap <silent> <C-n> :call NumberToggle()<cr>
+
+    function! NumberToggle()
+      if(&number == 1 && &relativenumber == 1)
+        set norelativenumber
+        set nonumber
+      elseif(&number == 1 && &relativenumber == 0)
+        set relativenumber
+      elseif(&number == 0 && &relativenumber == 1)
+        set number
+      elseif(&number == 0 && &relativenumber == 0)
+        set number
+      endif
+    endfunc
