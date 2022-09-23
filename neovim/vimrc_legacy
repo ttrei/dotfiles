@@ -108,14 +108,8 @@ au FileType vue setlocal shiftwidth=2 tabstop=2
 au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
 
 " Automatic foldmethod
-au BufWinEnter *.py set foldmethod=indent
-au BufWinEnter *.c set foldmethod=syntax
-au BufWinEnter *.h set foldmethod=syntax
-au BufWinEnter *.cpp set foldmethod=syntax
-au BufWinEnter *.hpp set foldmethod=syntax
-au BufWinEnter *.zig set foldmethod=syntax
-au BufWinEnter *.js set  shiftwidth=2 foldmethod=indent tabstop=2
-au BufWinEnter *.json set shiftwidth=2 foldmethod=indent tabstop=2
+au BufWinEnter *.js set  shiftwidth=2 tabstop=2
+au BufWinEnter *.json set shiftwidth=2 tabstop=2
 
 " Try to fix vim-markdown plugin folding behavior
 let g:vim_markdown_folding_style_pythonic = 1
