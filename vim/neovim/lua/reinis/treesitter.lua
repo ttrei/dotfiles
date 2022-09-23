@@ -1,17 +1,24 @@
--- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation/b99d9ac6229535f4f7cf2cd87c588d6768878b71#packernvim
----WORKAROUND
-vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
-  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-  callback = function()
-    vim.opt.foldmethod     = 'expr'
-    vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
-  end
-})
----ENDWORKAROUND
-
+-- https://github.com/nvim-treesitter/nvim-treesitter#modules
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "yaml", "lua" },
+  ensure_installed = {
+    "bash",
+    "c",
+    "cpp",
+    "dockerfile",
+    "java",
+    "json",
+    "lua",
+    "make",
+    "markdown",
+    "nix",
+    "org",
+    "python",
+    "sql",
+    "vim",
+    "yaml",
+    "zig",
+  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -33,3 +40,15 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+---WORKAROUND
+-- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation/b99d9ac6229535f4f7cf2cd87c588d6768878b71#packernvim
+vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
+  group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+  callback = function()
+    vim.opt.foldmethod     = 'expr'
+    vim.opt.foldexpr       = 'nvim_treesitter#foldexpr()'
+  end
+})
+---ENDWORKAROUND
+
