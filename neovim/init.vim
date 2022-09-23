@@ -5,6 +5,4 @@ require('plugins')
 require('reinis')
 EOF
 
-set runtimepath+=~/.vim,~/.vim/after
-set packpath+=~/.vim
 source ~/.config/nvim/vimrc_legacy

@@ -16,10 +16,23 @@ local packer_bootstrap = ensure_packer()
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'neovim/nvim-lspconfig'
+  use 'https://github.com/dhruvasagar/vim-table-mode.git'
+  use 'https://github.com/junegunn/fzf.git'
+  use 'https://github.com/junegunn/fzf.vim.git'
+  use 'https://github.com/Konfekt/FastFold.git'
+  use 'https://github.com/LnL7/vim-nix.git'
+  use 'https://github.com/matcatc/vim-asciidoc-folding'
+  use 'https://github.com/morhetz/gruvbox.git'
+  use 'https://github.com/neomake/neomake.git'
+  use 'https://github.com/neovim/nvim-lspconfig.git'
+  use 'https://github.com/othree/xml.vim.git'
+  use 'https://github.com/pangloss/vim-javascript'
+  use 'https://github.com/plasticboy/vim-markdown.git'
+  use 'https://github.com/tpope/vim-fugitive.git'
+  use 'https://github.com/ziglang/zig.vim.git'
 
   use {
-    'nvim-treesitter/nvim-treesitter',
+    'https://github.com/nvim-treesitter/nvim-treesitter.git',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
 
