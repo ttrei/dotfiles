@@ -1,3 +1,5 @@
+-- https://github.com/wbthomason/packer.nvim/tree/6afb67460283f0e990d35d229fd38fdc04063e0a#bootstrapping
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
