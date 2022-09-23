@@ -270,7 +270,6 @@ ln -s "$DOTFILES/web/userChrome.css" "$STAGINGDIR/.config/userChrome.css"
 
 # CLANG-FORMAT
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
-ln -s "$DOTFILES/clang-format/clang-format.py" "$STAGINGDIR/.vim/clang-format.py"
 
 # NETWORKING
 if [ "$MACHINE" = "htpc" ]; then

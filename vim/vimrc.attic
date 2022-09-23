@@ -26,3 +26,21 @@ let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
 " Exit visual mode and search in the previously selected range
 vnoremap <Leader>/ <Esc>/\%V
 
+" Enable mouse in terminal (only in visual mode)
+set mouse=v
+
+"Start syntax parsing from the start of the file
+"(useful to fix broken syntax highlighting)
+nnoremap <F9> <Esc>:syntax sync fromstart<CR>
+"Revert back to the default `sync` value
+"(`fromstart` is likely to be slow)
+nnoremap <F10> <Esc>:syntax sync minlines=200<CR>
+
+" clang-format
+" gt
+if has('python')
+  map <C-K> :pyf /home/reinis/.vim/clang-format.py<cr>
+elseif has('python3')
+  map <C-K> :py3f /home/reinis/.vim/clang-format.py<cr>
+endif
+
