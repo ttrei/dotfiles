@@ -180,17 +180,19 @@ ln -s "$DOTFILES/vscode/keybindings.json" "$STAGINGDIR/.config/Code/User/keybind
 ln -s "$DOTFILES/vscode/workspaces" "$STAGINGDIR/.config/vscode-workspaces"
 
 # VIM
-mkdir -p "$STAGINGDIR/.config/nvim"
-mkdir -p "$STAGINGDIR/.local/share/nvim/site"
 mkdir -p "$STAGINGDIR/.vim"
 ln -s "$DOTFILES/vim/after" "$STAGINGDIR/.vim/after"
 ln -s "$DOTFILES/vim/ideavimrc" "$STAGINGDIR/.ideavimrc"
-ln -s "$DOTFILES/vim/neovim/after" "$STAGINGDIR/.config/nvim/after"
-ln -s "$DOTFILES/vim/neovim/init.vim" "$STAGINGDIR/.config/nvim/init.vim"
-ln -s "$DOTFILES/vim/neovim/vimrc_legacy" "$STAGINGDIR/.config/nvim/vimrc_legacy"
-ln -s "$DOTFILES/vim/neovim/lua" "$STAGINGDIR/.config/nvim/lua"
 ln -s "$DOTFILES/vim/pack" "$STAGINGDIR/.vim/pack"
 ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
+
+# NEOVIM
+mkdir -p "$STAGINGDIR/.config/nvim"
+mkdir -p "$STAGINGDIR/.local/share/nvim/site"
+ln -s "$DOTFILES/neovim/after" "$STAGINGDIR/.config/nvim/after"
+ln -s "$DOTFILES/neovim/init.vim" "$STAGINGDIR/.config/nvim/init.vim"
+ln -s "$DOTFILES/neovim/vimrc_legacy" "$STAGINGDIR/.config/nvim/vimrc_legacy"
+ln -s "$DOTFILES/neovim/lua" "$STAGINGDIR/.config/nvim/lua"
 
 # EMACS
 mkdir -p "$STAGINGDIR/.config/doom"
