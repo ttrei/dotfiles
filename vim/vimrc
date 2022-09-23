@@ -108,16 +108,6 @@ au BufWinEnter *.zig set foldmethod=syntax
 au BufWinEnter *.js set  shiftwidth=2 foldmethod=indent tabstop=2
 au BufWinEnter *.json set shiftwidth=2 foldmethod=indent tabstop=2
 
-" Try to fix vim-markdown plugin folding behavior
-let g:vim_markdown_folding_style_pythonic = 1
-
-" asciidoc folding
-let g:asciidoc_fold_style = 'nested'
-
-" vim-table-mode
-let g:table_mode_corner_corner = '+'
-let g:table_mode_header_fillchar = '='
-
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1
 
