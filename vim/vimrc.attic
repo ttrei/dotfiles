@@ -1,0 +1,28 @@
+" Solve the problem of copying text when using Vim through SSH.
+" When connecting we create a reverse tunnel on port 3333.
+" Then we write content of a register to netcat and the other side intercepts it
+" using a program that manages X clipboard (xsel or xclip).
+" Based on https://stackoverflow.com/a/46542771/9124671
+" If this solution lacks some bells and whistles, consider using clipper:
+" https://github.com/wincent/clipper https://github.com/wincent/vim-clipper
+:map <Leader>yy :call system('nc -q0 127.0.0.1 3333', @0)<CR>
+
+" GVim options
+set guioptions-=T " Remove toolbar
+set guioptions-=m " Remove menubar
+set guioptions-=r " Remove right scroll-bar
+
+" Disable-enable folding
+set nofoldenable " Disabled by default
+nnoremap <F7> <Esc>:set foldenable \| FastFoldUpdate<CR>
+nnoremap <F8> <Esc>:set nofoldenable<CR>
+
+" Toggle trailing whitespace highlighting
+nnoremap <F6> <Esc>:ToggleWhitespace<CR>
+
+"BufExplorer
+let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
+
+" Exit visual mode and search in the previously selected range
+vnoremap <Leader>/ <Esc>/\%V
+

@@ -22,17 +22,6 @@ let g:netrw_dirhistmax = 0
 " Enable mouse in terminal (only in visual mode)
 set mouse=v
 
-" Solve the problem of copying text when using Vim through SSH.
-" When connecting we create a reverse tunnel on port 3333.
-" Then we write content of a register to netcat and the other side intercepts it
-" using a program that manages X clipboard (xsel or xclip).
-" Based on https://stackoverflow.com/a/46542771/9124671
-" If this solution lacks some bells and whistles, consider using clipper:
-" https://github.com/wincent/clipper https://github.com/wincent/vim-clipper
-:map <Leader>yy :call system('nc -q0 127.0.0.1 3333', @0)<CR>
-
-set clipboard+=unnamedplus
-
 " Show filename in terminal title
 set title
 
@@ -85,11 +74,6 @@ au BufWinEnter *.adoc set textwidth=100
 au BufWinEnter *.md set textwidth=100
 au BufWinEnter *.txt set textwidth=100
 
-" GVim options
-set guioptions-=T " Remove toolbar
-set guioptions-=m " Remove menubar
-set guioptions-=r " Remove right scroll-bar
-
 filetype plugin on
 filetype indent on
 syntax on
@@ -110,14 +94,6 @@ nnoremap <F9> <Esc>:syntax sync fromstart<CR>
 "Revert back to the default `sync` value
 "(`fromstart` is likely to be slow)
 nnoremap <F10> <Esc>:syntax sync minlines=200<CR>
-
-" Disable-enable folding
-set nofoldenable " Disabled by default
-nnoremap <F7> <Esc>:set foldenable \| FastFoldUpdate<CR>
-nnoremap <F8> <Esc>:set nofoldenable<CR>
-
-" Toggle trailing whitespace highlighting
-nnoremap <F6> <Esc>:ToggleWhitespace<CR>
 
 " Disable automatic wrappping while typing
 set formatoptions-=tc
@@ -165,18 +141,12 @@ let g:loaded_matchparen = 1
 " Remove trailing whitespace
 nnoremap <Leader>s :%s/\s\+$//<CR>
 
-"BufExplorer
-let g:bufExplorerFindActive=0   " Don't jump around when opening a buffer
-
 " Move through tabs
 noremap <c-l> :tabnext<cr>
 noremap <c-h> :tabprevious<cr>
 
 " Execute linter
 nnoremap <F5> :Neomake<CR>
-
-" Exit visual mode and search in the previously selected range
-vnoremap <Leader>/ <Esc>/\%V
 
 " Search for selection ('*' - forward; '#' - backward)
 vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
