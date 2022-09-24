@@ -35,15 +35,6 @@ set wildmenu
 set nomodeline
 set modelines=0
 
-" Indenting options
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smarttab
-set autoindent
-set cindent
-
 " Reload file automatically if it has been modified externally
 set autoread
 
