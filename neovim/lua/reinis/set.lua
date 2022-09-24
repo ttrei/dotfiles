@@ -1,7 +1,8 @@
 require('reinis.setutils')
 
--- Many of these options follow ThePrimeagen example:
+-- I'm mimicing the setup of ThePrimeagen:
 -- https://www.youtube.com/watch?v=DogKdiRx7ls
+-- Stopped here: https://youtu.be/DogKdiRx7ls?t=845
 
 -- Indent
 vim.opt.tabstop = 4
