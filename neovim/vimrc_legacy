@@ -1,7 +1,5 @@
 set guifont=Consolas\ 13
 
-let mapleader=" "
-
 set encoding=utf8
 set termguicolors
 set background=light
@@ -69,7 +67,6 @@ filetype indent on
 syntax on
 
 set incsearch
-set hlsearch
 set ignorecase
 set smartcase
 set nowrapscan
