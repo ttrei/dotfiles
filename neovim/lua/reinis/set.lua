@@ -1,5 +1,8 @@
 require('reinis.setutils')
 
+-- Many of these options follow ThePrimeagen example:
+-- https://www.youtube.com/watch?v=DogKdiRx7ls
+
 -- Indent
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -18,3 +21,9 @@ vim.opt.smartcase = true
 
 vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
 vim.opt.wrap = false
+
+-- Undo, History
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = '~/.local/share/nvim/undodir/'
+vim.opt.undofile = false
