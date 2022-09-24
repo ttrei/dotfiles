@@ -19,11 +19,12 @@ vim.opt.ignorecase = true
 vim.keymap.set('n', '<Leader>i', function() vim_opt_toggle('ignorecase', true, false, 'ignorecase') end)
 vim.opt.smartcase = true
 
-vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
-vim.opt.wrap = false
-
 -- Undo, History
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = '~/.local/share/nvim/undodir/'
 vim.opt.undofile = false
+
+vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
+vim.opt.scrolloff = 8
+vim.opt.wrap = false
