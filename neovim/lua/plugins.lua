@@ -37,6 +37,11 @@ require('packer').startup(function(use)
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
 
+  use {
+    'https://github.com/nvim-telescope/telescope.nvim.git', tag = '0.1.0',
+    requires = { {'https://github.com/nvim-lua/plenary.nvim.git'} }
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
