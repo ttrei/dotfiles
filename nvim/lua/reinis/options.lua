@@ -18,8 +18,8 @@ vim.opt.smartcase = true
 -- Undo, History
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = '~/.local/share/nvim/undodir/'
-vim.opt.undofile = false
+vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir/"
+vim.opt.undofile = true
 
 vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
 vim.opt.scrolloff = 8
