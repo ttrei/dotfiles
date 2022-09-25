@@ -14,3 +14,5 @@ source ~/.config/nvim/vimrc_legacy
 " ThePrimeagen https://www.youtube.com/watch?v=DogKdiRx7ls
 " Teej https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim
 
+" TODO
+" * Move current line up or down (or move the whole visual selection? maybe overkill)
