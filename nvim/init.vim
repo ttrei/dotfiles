@@ -16,3 +16,5 @@ source ~/.config/nvim/vimrc_legacy
 
 " TODO
 " * Move current line up or down (or move the whole visual selection? maybe overkill)
+" * LSP stuff
+" * undotree
