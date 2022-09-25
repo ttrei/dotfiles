@@ -189,10 +189,10 @@ ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
 # NEOVIM
 mkdir -p "$STAGINGDIR/.config/nvim"
 mkdir -p "$STAGINGDIR/.local/share/nvim/site"
-ln -s "$DOTFILES/neovim/after" "$STAGINGDIR/.config/nvim/after"
-ln -s "$DOTFILES/neovim/init.vim" "$STAGINGDIR/.config/nvim/init.vim"
-ln -s "$DOTFILES/neovim/vimrc_legacy" "$STAGINGDIR/.config/nvim/vimrc_legacy"
-ln -s "$DOTFILES/neovim/lua" "$STAGINGDIR/.config/nvim/lua"
+ln -s "$DOTFILES/nvim/after" "$STAGINGDIR/.config/nvim/after"
+ln -s "$DOTFILES/nvim/init.vim" "$STAGINGDIR/.config/nvim/init.vim"
+ln -s "$DOTFILES/nvim/vimrc_legacy" "$STAGINGDIR/.config/nvim/vimrc_legacy"
+ln -s "$DOTFILES/nvim/lua" "$STAGINGDIR/.config/nvim/lua"
 
 # EMACS
 mkdir -p "$STAGINGDIR/.config/doom"
