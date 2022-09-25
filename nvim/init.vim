@@ -7,6 +7,9 @@ EOF
 
 source ~/.config/nvim/vimrc_legacy
 
+" Guide on migrating from vimscript to lua
+" https://github.com/nanotee/nvim-lua-guide
+
 " My neovim config is inspired by
 " ThePrimeagen https://www.youtube.com/watch?v=DogKdiRx7ls
 " Teej https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim
