@@ -17,4 +17,7 @@ source ~/.config/nvim/vimrc_legacy
 " TODO
 " * Move current line up or down (or move the whole visual selection? maybe overkill)
 " * LSP stuff
+"   lsp plugin - https://github.com/glepnir/lspsaga.nvim.git
+"   lsp configs - https://github.com/neovim/nvim-lspconfig.git
+"   pictograms for completion items - https://github.com/onsails/lspkind.nvim
 " * undotree
