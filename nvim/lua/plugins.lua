@@ -18,17 +18,20 @@ require('packer').startup(function(use)
 
   use 'https://github.com/dhruvasagar/vim-table-mode.git'
   use 'https://github.com/Konfekt/FastFold.git'
-  use 'https://github.com/LnL7/vim-nix.git'
-  use 'https://github.com/matcatc/vim-asciidoc-folding'
   use 'https://github.com/gruvbox-community/gruvbox.git'
   use 'https://github.com/neomake/neomake.git'
   use 'https://github.com/neovim/nvim-lspconfig.git'
+  use 'https://github.com/tpope/vim-fugitive.git'
+
+  --[[
+  -- These should be handled by treesitter, right?
+  use 'https://github.com/matcatc/vim-asciidoc-folding'
+  use 'https://github.com/LnL7/vim-nix.git'
   use 'https://github.com/othree/xml.vim.git'
   use 'https://github.com/pangloss/vim-javascript'
   use 'https://github.com/plasticboy/vim-markdown.git'
-  use 'https://github.com/tpope/vim-fugitive.git'
   use 'https://github.com/ziglang/zig.vim.git'
-
+  --]]
   use {
     'https://github.com/nvim-treesitter/nvim-treesitter.git',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
