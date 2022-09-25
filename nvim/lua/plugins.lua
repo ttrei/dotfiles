@@ -17,8 +17,6 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use 'https://github.com/dhruvasagar/vim-table-mode.git'
-  use 'https://github.com/junegunn/fzf.git'
-  use 'https://github.com/junegunn/fzf.vim.git'
   use 'https://github.com/Konfekt/FastFold.git'
   use 'https://github.com/LnL7/vim-nix.git'
   use 'https://github.com/matcatc/vim-asciidoc-folding'
@@ -40,10 +38,13 @@ require('packer').startup(function(use)
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
 
-  use {
-    'https://github.com/nvim-telescope/telescope.nvim.git', tag = '0.1.0',
-    requires = { {'https://github.com/nvim-lua/plenary.nvim.git'} }
-  }
+  -- I will go with fzf-lua for now.
+  -- But should re-visit this decision if I notice some feature I want from nvim-telescope.
+  use 'https://github.com/ibhagwan/fzf-lua.git'
+  -- use {
+  --   'https://github.com/nvim-telescope/telescope.nvim.git', tag = '0.1.0',
+  --   requires = { {'https://github.com/nvim-lua/plenary.nvim.git'} }
+  -- }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

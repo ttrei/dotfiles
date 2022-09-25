@@ -80,9 +80,6 @@ nnoremap <F10> <Esc>:syntax sync minlines=200<CR>
 " Disable automatic wrappping while typing
 set formatoptions-=tc
 
-" fzf
-nnoremap <silent> <C-p> :Files<CR>
-
 " FileType-specific settings
 au FileType gitcommit setlocal foldmethod=syntax
 au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
