@@ -9,6 +9,7 @@ require('reinis.utils')
 
 vim.keymap.set('n', '<leader>h', function() vim_opt_toggle('hlsearch', true, false) end)
 vim.keymap.set('n', '<leader>i', function() vim_opt_toggle('ignorecase', true, false) end)
+vim.keymap.set('n', '<leader>u', ':UndotreeToggle<cr>')
 vim.keymap.set('n', '<leader>w', function() vim_opt_toggle('wrap', true, false) end)
 
 vim.keymap.set('n', '<c-p>', require('fzf-lua').files, { desc = 'Find files using fzf' })
