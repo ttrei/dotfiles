@@ -37,8 +37,8 @@ require('packer').startup(function(use)
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
 
-  -- I will go with fzf-lua for now.
-  -- But should re-visit this decision if I notice some feature I want from nvim-telescope.
+  -- I will go with fzf-lua for now - people say it has better performance than telescope.
+  -- But should re-visit this decision if I notice some telescope feature I really want.
   use 'https://github.com/ibhagwan/fzf-lua.git'
   -- use {
   --   'https://github.com/nvim-telescope/telescope.nvim.git', tag = '0.1.0',
