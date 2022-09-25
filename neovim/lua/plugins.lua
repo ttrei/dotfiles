@@ -32,6 +32,9 @@ require('packer').startup(function(use)
   use 'https://github.com/tpope/vim-fugitive.git'
   use 'https://github.com/ziglang/zig.vim.git'
 
+  -- TODO
+  -- undotree
+
   use {
     'https://github.com/nvim-treesitter/nvim-treesitter.git',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,

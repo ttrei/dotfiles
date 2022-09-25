@@ -1,5 +1,3 @@
-let mapleader=" "
-
 lua << EOF
 require('plugins')
 -- On the very first startup of neovim there will be errors due to missing plugins.
