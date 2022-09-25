@@ -107,10 +107,6 @@ let g:loaded_matchparen = 1
 " Remove trailing whitespace
 nnoremap <Leader>s :%s/\s\+$//<CR>
 
-" Move through tabs
-noremap <c-l> :tabnext<cr>
-noremap <c-h> :tabprevious<cr>
-
 " Execute linter
 nnoremap <F5> :Neomake<CR>
 
