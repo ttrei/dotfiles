@@ -1,6 +1,3 @@
--- I'm mimicking the setup of ThePrimeagen:
--- https://www.youtube.com/watch?v=DogKdiRx7ls
-
 -- Indent
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

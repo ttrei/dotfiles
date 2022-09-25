@@ -6,3 +6,8 @@ require('reinis')
 EOF
 
 source ~/.config/nvim/vimrc_legacy
+
+" My neovim config is inspired by
+" ThePrimeagen https://www.youtube.com/watch?v=DogKdiRx7ls
+" Teej https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim
+
