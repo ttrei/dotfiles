@@ -1,5 +1,16 @@
 -- https://github.com/neovim/nvim-lspconfig/tree/d4eb971db353ccf78cefb3be1b05483b69ec1e69#suggested-configuration
 
+--[[ TODO
+
+* Java language server
+https://zignar.net/2019/11/21/setup-neovim-for-java-development/
+https://zignar.net/2020/10/17/setup-neovim-for-java-development-2/
+https://github.com/eclipse/eclipse.jdt.ls
+
+* Python language server
+
+--]]
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
