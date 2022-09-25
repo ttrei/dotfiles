@@ -1,8 +1,7 @@
 require('reinis.setutils')
 
--- I'm mimicing the setup of ThePrimeagen:
+-- I'm mimicking the setup of ThePrimeagen:
 -- https://www.youtube.com/watch?v=DogKdiRx7ls
--- Stopped here: https://youtu.be/DogKdiRx7ls?t=845
 
 -- Indent
 vim.opt.tabstop = 4
@@ -14,10 +13,8 @@ vim.opt.smartindent = true
 -- Search
 vim.opt.incsearch = true
 vim.opt.hlsearch = false
-vim.keymap.set('n', '<Leader>h', function() vim_opt_toggle('hlsearch', true, false) end)
 vim.opt.wrapscan = false
 vim.opt.ignorecase = true
-vim.keymap.set('n', '<Leader>i', function() vim_opt_toggle('ignorecase', true, false) end)
 vim.opt.smartcase = true
 
 -- Undo, History
@@ -33,4 +30,8 @@ vim.opt.wrap = false
 --- Reserve a column on the left for linter hints.
 --- I will not use it yet, but might come in handy.
 -- vim.opt.signcolumn = 'yes'
--- vim.keymap.set('n', '<Leader>c', function() vim_opt_toggle('signcolumn', 'yes', 'auto') end)
+
+vim.g.mapleader = " "
+
+vim.keymap.set('n', '<Leader>h', function() vim_opt_toggle('hlsearch', true, false) end)
+vim.keymap.set('n', '<Leader>i', function() vim_opt_toggle('ignorecase', true, false) end)
