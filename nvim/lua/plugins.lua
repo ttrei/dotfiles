@@ -39,6 +39,9 @@ require('packer').startup(function(use)
   -- Git
   use 'https://github.com/tpope/vim-fugitive.git'
 
+  -- Undo history
+  use 'https://github.com/mbbill/undotree.git'
+
   -- Other
   use 'https://github.com/dhruvasagar/vim-table-mode.git'
   use 'https://github.com/Konfekt/FastFold.git'

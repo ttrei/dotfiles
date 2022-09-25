@@ -19,4 +19,3 @@ source ~/.config/nvim/vimrc_legacy
 " * LSP stuff
 "   lsp plugin - https://github.com/glepnir/lspsaga.nvim.git
 "   pictograms for completion items - https://github.com/onsails/lspkind.nvim
-" * undotree
