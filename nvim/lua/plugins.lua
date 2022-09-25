@@ -16,13 +16,12 @@ local packer_bootstrap = ensure_packer()
 require('packer').startup(function(use)
   use 'https://github.com/wbthomason/packer.nvim'
 
-  use 'https://github.com/dhruvasagar/vim-table-mode.git'
-  use 'https://github.com/Konfekt/FastFold.git'
+  -- Colors
   use 'https://github.com/gruvbox-community/gruvbox.git'
+
+  -- Syntax, LSP
   use 'https://github.com/neomake/neomake.git'
   use 'https://github.com/neovim/nvim-lspconfig.git'
-  use 'https://github.com/tpope/vim-fugitive.git'
-
   --[[
   -- These should be handled by treesitter, right?
   use 'https://github.com/matcatc/vim-asciidoc-folding'
@@ -37,9 +36,17 @@ require('packer').startup(function(use)
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
 
+  -- Git
+  use 'https://github.com/tpope/vim-fugitive.git'
+
+  -- Other
+  use 'https://github.com/dhruvasagar/vim-table-mode.git'
+  use 'https://github.com/Konfekt/FastFold.git'
+
+  -- Fuzzy finding
+  use 'https://github.com/ibhagwan/fzf-lua.git'
   -- I will go with fzf-lua for now - people say it has better performance than telescope.
   -- But should re-visit this decision if I notice some telescope feature I really want.
-  use 'https://github.com/ibhagwan/fzf-lua.git'
   -- use {
   --   'https://github.com/nvim-telescope/telescope.nvim.git', tag = '0.1.0',
   --   requires = { {'https://github.com/nvim-lua/plenary.nvim.git'} }
