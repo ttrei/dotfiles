@@ -1,5 +1,3 @@
-require('reinis.setutils')
-
 -- I'm mimicking the setup of ThePrimeagen:
 -- https://www.youtube.com/watch?v=DogKdiRx7ls
 
@@ -32,6 +30,3 @@ vim.opt.wrap = false
 -- vim.opt.signcolumn = 'yes'
 
 vim.g.mapleader = " "
-
-vim.keymap.set('n', '<Leader>h', function() vim_opt_toggle('hlsearch', true, false) end)
-vim.keymap.set('n', '<Leader>i', function() vim_opt_toggle('ignorecase', true, false) end)
