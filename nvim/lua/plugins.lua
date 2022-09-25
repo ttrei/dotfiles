@@ -14,7 +14,7 @@ end
 local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+  use 'https://github.com/wbthomason/packer.nvim'
 
   use 'https://github.com/dhruvasagar/vim-table-mode.git'
   use 'https://github.com/Konfekt/FastFold.git'
