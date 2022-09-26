@@ -24,6 +24,7 @@
     k9s
     neovim
     nethogs
+    nodePackages.pyright
     nodePackages.typescript-language-server
     git
     git-crypt
