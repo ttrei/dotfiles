@@ -41,6 +41,9 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+--[[
+-- 2022-09-26 Seems that I don't need this workaround
+--
 ---WORKAROUND
 -- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Installation/b99d9ac6229535f4f7cf2cd87c588d6768878b71#packernvim
 vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
@@ -51,4 +54,4 @@ vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEn
   end
 })
 ---ENDWORKAROUND
-
+--]]

@@ -18,6 +18,9 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir/"
 vim.opt.undofile = true
 
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
 vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
 vim.opt.scrolloff = 8
 vim.opt.wrap = false

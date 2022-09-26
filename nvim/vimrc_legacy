@@ -57,11 +57,6 @@ nnoremap <silent> <Leader>tw :call ToggleTextWidth()<cr>:set textwidth<cr>
       endif
     endfunc
 
-" Textwidth of specific file formats
-au BufWinEnter *.adoc set textwidth=100
-au BufWinEnter *.md set textwidth=100
-au BufWinEnter *.txt set textwidth=100
-
 filetype plugin on
 filetype indent on
 syntax on
@@ -80,17 +75,22 @@ nnoremap <F10> <Esc>:syntax sync minlines=200<CR>
 " Disable automatic wrappping while typing
 set formatoptions-=tc
 
-" FileType-specific settings
-au FileType gitcommit setlocal foldmethod=syntax
-au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
-au FileType lua setlocal shiftwidth=2 tabstop=2
-au FileType vue setlocal shiftwidth=2 tabstop=2
-au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
+augroup VIMRC_FILETYPE_SETTINGS
 
-" Automatic foldmethod
-au BufWinEnter *.js set  shiftwidth=2 tabstop=2
-au BufWinEnter *.json set shiftwidth=2 tabstop=2
-au BufWinEnter *.adoc setlocal foldexpr=NestedAsciidocFolds()
+    autocmd!
+
+    au FileType asciidoc setlocal foldexpr=NestedAsciidocFolds() textwidth=100
+    au FileType gitcommit setlocal foldmethod=syntax
+    au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
+    au FileType javascript set shiftwidth=2 tabstop=2
+    au FileType json set shiftwidth=2 tabstop=2
+    au FileType lua setlocal shiftwidth=2 tabstop=2
+    au FileType markdown setlocal textwidth=100
+    au FileType text setlocal textwidth=100
+    au FileType vue setlocal shiftwidth=2 tabstop=2
+    au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
+
+augroup END
 
 " Try to fix vim-markdown plugin folding behavior
 let g:vim_markdown_folding_style_pythonic = 1
