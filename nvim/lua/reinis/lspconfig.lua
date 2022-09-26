@@ -53,10 +53,6 @@ local lsp_flags = {
 --     on_attach = on_attach,
 --     flags = lsp_flags,
 -- }
--- require('lspconfig')['tsserver'].setup{
---     on_attach = on_attach,
---     flags = lsp_flags,
--- }
 -- require('lspconfig')['rust_analyzer'].setup{
 --     on_attach = on_attach,
 --     flags = lsp_flags,
@@ -65,6 +61,10 @@ local lsp_flags = {
 --       ["rust-analyzer"] = {}
 --     }
 -- }
+require('lspconfig')['tsserver'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
 require('lspconfig')['zls'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
