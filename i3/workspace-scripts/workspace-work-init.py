@@ -49,7 +49,6 @@ Popen(
         "nvim",
         "-p",
         "pages/todo.adoc",
-        "pages/done.adoc",
         "pages/log.adoc",
     ]
 )
