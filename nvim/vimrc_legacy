@@ -90,6 +90,7 @@ au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
 " Automatic foldmethod
 au BufWinEnter *.js set  shiftwidth=2 tabstop=2
 au BufWinEnter *.json set shiftwidth=2 tabstop=2
+au BufWinEnter *.adoc setlocal foldexpr=NestedAsciidocFolds()
 
 " Try to fix vim-markdown plugin folding behavior
 let g:vim_markdown_folding_style_pythonic = 1
