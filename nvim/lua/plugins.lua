@@ -16,6 +16,9 @@ local packer_bootstrap = ensure_packer()
 require('packer').startup(function(use)
   use 'https://github.com/wbthomason/packer.nvim'
 
+  -- TODO
+  -- use 'https://github.com/ThePrimeagen/harpoon.git'
+
   -- Colors
   use 'https://github.com/gruvbox-community/gruvbox.git'
 
