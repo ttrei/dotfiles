@@ -4,25 +4,34 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    alejandra
     clang-tools
     delta
     diffstat
     direnv
+    emacs
     encfs
     fd
+    feh
     file
     fzf
+    git
     gitAndTools.gitFull
+    git-crypt
     gnupg
     gnupg1compat
     gnutar
+    gron
     jq
+    k9s
     lua
     lynx
     moreutils
-    mplayer
     neovim
+    nethogs
     nix-bash-completions
+    nodePackages.pyright
+    nodePackages.typescript-language-server
     p7zip
     pandoc
     pass
@@ -33,6 +42,7 @@
     rsync
     shellcheck
     sshfs-fuse
+    starship
     stow
     traceroute
     tree
