@@ -1,4 +1,5 @@
 require ('reinis.options')
+require ('reinis.colors')
 require ('reinis.remaps')
 require ('reinis.lspconfig')
 require ('reinis.treesitter')
