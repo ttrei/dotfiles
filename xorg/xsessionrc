@@ -6,7 +6,7 @@ xmodmap $HOME/.xmodmaprc &
 
 redshift &
 
-feh --bg-scale /media/storage-new/wallpaper-zig.png &
+feh --bg-scale $HOME/.wallpaper &
 
 xrandr --output HDMI-2 --auto --primary --output HDMI-1 --off
 
