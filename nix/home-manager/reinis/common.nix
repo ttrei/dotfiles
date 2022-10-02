@@ -14,7 +14,6 @@
 
   home.packages = with pkgs; [
     alejandra
-    brave
     direnv
     emacs
     fd
@@ -31,7 +30,6 @@
     ripgrep
     signal-desktop
     starship
-    vscode-with-extensions
     # myxow
   ];
 
