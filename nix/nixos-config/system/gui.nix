@@ -5,7 +5,6 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    brave
     chromium
     djview
     dmenu
@@ -16,16 +15,14 @@
     i3
     i3blocks
     i3status
-    inkscape
+    # inkscape
     kdiff3
     meld
-    mnemosyne
     neovim
-    picard
+    # picard
     python3Packages.i3ipc
     rofi
     st
-    thunderbird
     transmission-gtk
     vlc
     xbindkeys
