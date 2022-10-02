@@ -25,6 +25,8 @@ vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
 
+vim.opt.colorcolumn = { 80, 100 }
+
 --- Reserve a column on the left for linter hints.
 --- I will not use it yet, but might come in handy.
 -- vim.opt.signcolumn = 'yes'
