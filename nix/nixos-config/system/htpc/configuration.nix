@@ -16,15 +16,13 @@
     (import overlays/mypackages.nix)
   ];
 
-  # Use the GRUB 2 boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "htpc-nixos";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Enable networking
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Riga";
