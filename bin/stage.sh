@@ -231,20 +231,33 @@ ln -s "$hm_dir/reinis/overlays" "$STAGINGDIR/.config/home-manager/overlays"
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
     mkdir -p "$STAGINGDIR/.config/nixos"
+    mkdir -p "$STAGINGDIR/.config/nixos/packages"
     nixos_dir="$DOTFILES/nix/nixos-config/system"
+
     if [ "$EXECUTION_ENV" = "qemu" ]; then
-        ln -s "$nixos_dir/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
-        ln -s "$nixos_dir/hardware-configuration.nix" "$STAGINGDIR/.config/nixos/hardware-configuration.nix"
-    elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ]; then
-        ln -s "$nixos_dir/htpc/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
+        ln -s "$nixos_dir/qemu/hardware-configuration.nix" "$STAGINGDIR/.config/nixos/hardware-configuration.nix"
+        ln -s "$nixos_dir/qemu/boot.nix" "$STAGINGDIR/.config/nixos/boot.nix"
+        ln -s "$nixos_dir/qemu/hostname.nix" "$STAGINGDIR/.config/nixos/hostname.nix"
+    elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ] ; then
         ln -s "$nixos_dir/htpc/hardware-configuration.nix" "$STAGINGDIR/.config/nixos/hardware-configuration.nix"
+        ln -s "$nixos_dir/htpc/boot.nix" "$STAGINGDIR/.config/nixos/boot.nix"
+        ln -s "$nixos_dir/htpc/hostname.nix" "$STAGINGDIR/.config/nixos/hostname.nix"
     else
-        echo "ABORT! NixOS config not available for this environment:"
+        echo "ABORT! NixOS hardware config not available for this environment:"
         print_env
         exit 1
     fi
-    ln -s "$nixos_dir/base.nix" "$STAGINGDIR/.config/nixos/base.nix"
-    ln -s "$nixos_dir/gui.nix" "$STAGINGDIR/.config/nixos/gui.nix"
+
+    ln -s "$nixos_dir/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
+
+    ln -s "$nixos_dir/packages/base.nix" "$STAGINGDIR/.config/nixos/packages/base.nix"
+    ln -s "$nixos_dir/packages/gui.nix" "$STAGINGDIR/.config/nixos/packages/gui.nix"
+    if [ "$MACHINE" = "htpc" ]; then
+        ln -s "$nixos_dir/htpc/packages.nix" "$STAGINGDIR/.config/nixos/packages/additional.nix"
+    else
+        echo "" > "$STAGINGDIR/.config/nixos/packages/additional.nix"
+    fi
+
     ln -s "$nixos_dir/overlays" "$STAGINGDIR/.config/nixos/overlays"
 fi
 
