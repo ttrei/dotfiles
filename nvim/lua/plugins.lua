@@ -46,6 +46,7 @@ require('packer').startup(function(use)
   use 'https://github.com/mbbill/undotree.git'
 
   -- Other
+  -- TODO: vim-visual-star-search doesn't work
   use 'https://github.com/bronson/vim-visual-star-search.git'
   use 'https://github.com/dhruvasagar/vim-table-mode.git'
   use 'https://github.com/Konfekt/FastFold.git'
