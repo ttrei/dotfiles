@@ -122,6 +122,7 @@ noremap <c-h> :tabprevious<cr>
 nnoremap <F5> :Neomake<CR>
 
 " Search for selection ('*' - forward; '#' - backward)
+" NOTE: In Neovim I use a plugin for this - https://github.com/bronson/vim-visual-star-search
 vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
 vnoremap <silent># <ESC>:call VisualSearch('?')<CR>?<CR>
 

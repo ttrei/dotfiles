@@ -95,24 +95,6 @@ nnoremap <Leader>s :%s/\s\+$//<CR>
 " Execute linter
 nnoremap <F5> :Neomake<CR>
 
-" Search for selection ('*' - forward; '#' - backward)
-vnoremap <silent>* <ESC>:call VisualSearch('/')<CR>/<CR>
-vnoremap <silent># <ESC>:call VisualSearch('?')<CR>?<CR>
-
-    function! VisualSearch(direction)
-        let l:register=@@
-        normal! gvy
-        let l:search=escape(@@, '$.*/\[]')
-        if a:direction=='/'
-            execute 'normal! /'.l:search
-        else
-            execute 'normal! ?'.l:search
-        endif
-        let @/=l:search
-        normal! gV
-        let @@=l:register
-    endfunction
-
 set relativenumber
 set number
 " no numbers --> absolute line numbers --> relative line numbers + absolute for current line
