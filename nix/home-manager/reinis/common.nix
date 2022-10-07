@@ -27,6 +27,7 @@
     nodePackages.typescript-language-server
     git
     git-crypt
+    python310Packages.pgsanity
     ripgrep
     signal-desktop
     starship
