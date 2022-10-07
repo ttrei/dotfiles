@@ -74,6 +74,9 @@ augroup VIMRC_FILETYPE_SETTINGS
     au FileType vue setlocal shiftwidth=2 tabstop=2
     au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
 
+    " Open all folds
+    au BufRead * normal zR
+
 augroup END
 
 " Try to fix vim-markdown plugin folding behavior
