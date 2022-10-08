@@ -46,8 +46,9 @@ require('packer').startup(function(use)
   use 'https://github.com/mbbill/undotree.git'
 
   -- Other
-  -- TODO: Consider if I can use the built-in visual star search instead.
-  use 'https://github.com/bronson/vim-visual-star-search.git'
+  -- TODO: Enable vim-visual-star-search after bug in zutty fixed
+  -- TODO: Consider using the built-in visual star search instead (note, it is also affected by the bug)
+  -- use 'https://github.com/bronson/vim-visual-star-search.git'
   use 'https://github.com/dhruvasagar/vim-table-mode.git'
   use 'https://github.com/Konfekt/FastFold.git'
 
