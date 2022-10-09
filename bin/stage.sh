@@ -121,8 +121,10 @@ ln -s "$DOTFILES/xorg/xprofile" "$STAGINGDIR/.xprofile"
 ln -s "$DOTFILES/xorg/Xresources" "$STAGINGDIR/.Xresources"
 ln -s "$DOTFILES/xorg/xsessionrc" "$STAGINGDIR/.xsessionrc"
 if [ "$MACHINE" = "htpc" ]; then
-    ln -sf "$DOTFILES/xorg/xmodmaprc-standard-keyboards-kodi" "$STAGINGDIR/.xmodmaprc"
     ln -sf "$DOTFILES/xorg/xsessionrc-kodi" "$STAGINGDIR/.xsessionrc"
+    if [ "$EXECUTION_ENV" = "baremetal" ]; then
+        ln -sf "$DOTFILES/xorg/xmodmaprc-standard-keyboards-kodi" "$STAGINGDIR/.xmodmaprc"
+    fi
 fi
 if [ "$DISTRO" = "nixos" ]; then
     ln -sf "$DOTFILES/xorg/xprofile-nixos" "$STAGINGDIR/.xprofile"
