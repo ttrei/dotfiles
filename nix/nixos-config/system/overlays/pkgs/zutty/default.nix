@@ -11,12 +11,12 @@
 }:
 stdenv.mkDerivation rec {
   pname = "zutty";
-  version = "0.8.0";
+  version = "0.13.0";
 
   src = fetchgit {
     url = "https://github.com/tomszilagyi/zutty.git";
-    rev = "0e88a1072616fb214bc442dd238c3119e61c7e0b";
-    sha256 = "17qh8ll70pl7i2wzajdap2f3y8srqpshdxy2x4bni2cgyvbqwk39";
+    rev = "b7bc75148a0a15eda4f9b5437941949cf72ef5bd";
+    hash = "sha256-1eB5GDhWGwyhiKzxpepzjQ44Co0ZeL9JJI5ppPE1TJw=";
     fetchSubmodules = false;
   };
 
