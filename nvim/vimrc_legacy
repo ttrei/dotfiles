@@ -72,7 +72,7 @@ augroup VIMRC_FILETYPE_SETTINGS
     au FileType markdown setlocal textwidth=100
     au FileType text setlocal textwidth=100
     au FileType vue setlocal shiftwidth=2 tabstop=2
-    au FileType xml setlocal shiftwidth=2 foldmethod=indent tabstop=2
+    au FileType xml setlocal foldmethod=indent
 
     " Open all folds
     au BufRead * normal zR
