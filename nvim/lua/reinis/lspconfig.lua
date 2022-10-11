@@ -7,8 +7,6 @@ https://zignar.net/2019/11/21/setup-neovim-for-java-development/
 https://zignar.net/2020/10/17/setup-neovim-for-java-development-2/
 https://github.com/eclipse/eclipse.jdt.ls
 
-* Python language server
-
 --]]
 
 -- Mappings.
@@ -49,6 +47,10 @@ local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
+-- require('lspconfig')['clangd'].setup{
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+-- }
 require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
