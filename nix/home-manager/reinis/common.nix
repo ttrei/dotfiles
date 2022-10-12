@@ -31,6 +31,7 @@
     ripgrep
     signal-desktop
     starship
+    zathura
     # myxow
   ];
 
