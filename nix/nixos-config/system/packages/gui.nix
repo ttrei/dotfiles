@@ -30,6 +30,7 @@
     xorg.xev
     xorg.xmodmap
     xsel
+    whatsapp-for-linux
     zathura
   ];
 
