@@ -32,6 +32,7 @@
     signal-desktop
     starship
     zathura
+    zutty
     # myxow
   ];
 

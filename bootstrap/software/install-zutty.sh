@@ -14,7 +14,7 @@ libgles-dev \
 libxmu-dev
 
 sudo rm -rf /tmp/zutty
-git clone ssh://reinis@taukulis.lv:/home/reinis/gitrepos/zutty.git /tmp/zutty
+git clone https://github.com/tomscii/zutty.git /tmp/zutty
 pushd /tmp/zutty
 
 ./waf configure
