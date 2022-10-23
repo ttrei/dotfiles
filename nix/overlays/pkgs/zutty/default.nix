@@ -11,11 +11,12 @@
 }:
 stdenv.mkDerivation rec {
   pname = "zutty";
-  version = "0.13.0";
+  version = "0.13.0-patch-reinis";
 
   src = fetchgit {
-    url = "https://github.com/tomszilagyi/zutty.git";
-    rev = "b7bc75148a0a15eda4f9b5437941949cf72ef5bd";
+    # url = "https://github.com/tomszilagyi/zutty.git";
+    url = "ssh://reinis@taukulis.lv:/home/reinis/gitrepos/zutty.git";
+    rev = "c8e4c458fa34d3b79aa7757be51303ff3367ab65";
     hash = "sha256-1eB5GDhWGwyhiKzxpepzjQ44Co0ZeL9JJI5ppPE1TJw=";
     fetchSubmodules = false;
   };
