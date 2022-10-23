@@ -15,9 +15,9 @@ stdenv.mkDerivation rec {
 
   src = fetchgit {
     # url = "https://github.com/tomszilagyi/zutty.git";
-    url = "ssh://reinis@taukulis.lv:/home/reinis/gitrepos/zutty.git";
+    url = "https://github.com/ttrei/zutty.git";
     rev = "c8e4c458fa34d3b79aa7757be51303ff3367ab65";
-    hash = "sha256-1eB5GDhWGwyhiKzxpepzjQ44Co0ZeL9JJI5ppPE1TJw=";
+    hash = "sha256-Gvnh9lxO2Z0rRy+ADGBV66QVI54MUdX1RYVXzMdqW3U=";
     fetchSubmodules = false;
   };
 
