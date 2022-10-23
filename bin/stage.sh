@@ -228,7 +228,7 @@ else
 fi
 ln -s "$hm_dir/reinis/common.nix" "$STAGINGDIR/.config/home-manager/common.nix"
 ln -s "$hm_dir/reinis/includes" "$STAGINGDIR/.config/home-manager/includes"
-ln -s "$hm_dir/reinis/overlays" "$STAGINGDIR/.config/home-manager/overlays"
+ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/home-manager/overlays"
 
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
@@ -260,7 +260,7 @@ if [ "$DISTRO" = "nixos" ]; then
         echo "" > "$STAGINGDIR/.config/nixos/packages/additional.nix"
     fi
 
-    ln -s "$nixos_dir/overlays" "$STAGINGDIR/.config/nixos/overlays"
+    ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/nixos/overlays"
 fi
 
 # K8S
