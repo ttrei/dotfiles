@@ -32,7 +32,7 @@
     signal-desktop
     starship
     zathura
-    zutty
+    # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
     # myxow
   ];
 
