@@ -11,6 +11,18 @@
 
 
 /*  Remove top tabbar
- *  https://support.mozilla.org/en-US/questions/1184674#answer-1028260
+ *  https://github.com/mbnuqw/sidebery/wiki/Firefox-Styles-Snippets-(via-userChrome.css)
+ *  Sidebery settings > Help > Preface value > enter "XXX"
  *  */
-#tabbrowser-tabs { visibility: collapse !important; }
+
+#main-window #TabsToolbar {
+  height: 29px !important;
+  overflow: hidden;
+  transition: height .3s .3s !important;
+}
+#main-window[titlepreface*="XXX"] #TabsToolbar {
+  height: 0 !important;
+}
+#main-window[titlepreface*="XXX"] #tabbrowser-tabs {
+  z-index: 0 !important;
+}
