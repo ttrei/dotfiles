@@ -59,6 +59,11 @@ nnoremap <F10> <Esc>:syntax sync minlines=200<CR>
 " Disable automatic wrappping while typing
 set formatoptions-=tc
 
+" Disable automatic re-formatting when joining comment lines.
+" https://github.com/neovim/neovim/issues/16017
+" Let's go with a whitelist approach - enable for specific filetypes.
+set formatoptions-=j
+
 augroup VIMRC_FILETYPE_SETTINGS
 
     autocmd!
