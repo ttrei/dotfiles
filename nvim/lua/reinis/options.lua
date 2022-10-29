@@ -26,6 +26,7 @@ vim.opt.scrolloff = 8
 vim.opt.wrap = false
 
 vim.opt.colorcolumn = { 80, 100 }
+vim.opt.cursorline = true
 
 --- Reserve a column on the left for linter hints.
 --- I will not use it yet, but might come in handy.
