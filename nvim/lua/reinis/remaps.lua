@@ -8,7 +8,7 @@ require('reinis.utils')
 
 
 vim.keymap.set('n', '<leader>bd', ':bdelete<cr>')
-vim.keymap.set('n', '<leader>h', function() vim_opt_toggle('hlsearch', true, false) end)
+vim.keymap.set('n', '<leader>h', ':nohlsearch<cr>')
 vim.keymap.set('n', '<leader>i', function() vim_opt_toggle('ignorecase', true, false) end)
 vim.keymap.set('n', '<leader>u', ':UndotreeToggle<cr>')
 vim.keymap.set('n', '<leader>w', function() vim_opt_toggle('wrap', true, false) end)
