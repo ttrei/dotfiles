@@ -7,6 +7,7 @@
     alejandra
     clang-tools
     delta
+    diffoscope
     diffstat
     direnv
     emacs
