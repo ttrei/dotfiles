@@ -27,6 +27,11 @@ set $alt Mod1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Left click+Drag to change the tiling layout
+# https://build.i3wm.org/docs/userguide.html#config_tiling_drag
+# NOTE: This option available only in i3-4.21.1
+# tiling_drag modifier
+
 # reload the configuration file
 # 54 = c
 bindcode $mod+Shift+54 reload
