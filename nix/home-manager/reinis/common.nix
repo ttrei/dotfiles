@@ -14,6 +14,7 @@
 
   home.packages = with pkgs; [
     alejandra
+    diffoscope
     direnv
     emacs
     fd
