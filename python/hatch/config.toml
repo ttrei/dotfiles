@@ -1,0 +1,4 @@
+[template.plugins.default]
+tests = true
+ci = false
+src-layout = true

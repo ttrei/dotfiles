@@ -204,7 +204,9 @@ ln -s "$DOTFILES/emacs/doom/packages.el" "$STAGINGDIR/.config/doom/packages.el"
 
 # PYTHON
 mkdir -p "$STAGINGDIR/.config/pip"
+mkdir -p "$STAGINGDIR/.config/hatch"
 ln -s "$DOTFILES/python/pip.conf" "$STAGINGDIR/.config/pip/pip.conf"
+ln -s "$DOTFILES/python/hatch/config.toml" "$STAGINGDIR/.config/hatch/config.toml"
 
 # NIX
 mkdir -p "$STAGINGDIR/.config/nix"
