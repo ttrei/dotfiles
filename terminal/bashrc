@@ -155,6 +155,32 @@ flakify() {
   ${EDITOR:-vim} flake.nix
 }
 
+nodeify() {
+  if [ -e ./.envrc ]; then
+    echo "Abort! .envrc exists"
+    return
+  fi
+  if [ -e ./default.nix ]; then
+    echo "Abort! default.nix exists"
+    return
+  fi
+  cat > default.nix <<'EOF'
+with import <nixpkgs> {};
+mkShell {
+  nativeBuildInputs = [
+    nodejs
+    bashInteractive
+  ];
+}
+EOF
+  cat > .envrc <<'EOF'
+use nix
+export NPM_CONFIG_PREFIX=$HOME/.node_modules
+export PATH=$HOME/.node_modules/bin:$PATH
+EOF
+  direnv allow
+}
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
