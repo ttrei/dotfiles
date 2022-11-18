@@ -1,4 +1,6 @@
-# .bashrc
+# shellcheck shell=bash
+# shellcheck disable=SC1090
+# shellcheck disable=SC1091
 
 # Don't do anyting for non-interactive sessions
 case $- in
@@ -32,8 +34,8 @@ alias_files=(
     debian
 )
 for a in "${alias_files[@]}"; do
-	if [ -f $HOME/.bash_aliases/$a ]; then
-		source $HOME/.bash_aliases/$a
+	if [ -f "$HOME/.bash_aliases/$a" ]; then
+		source "$HOME/.bash_aliases/$a"
 	fi
 done
 
@@ -47,11 +49,11 @@ shopt -s checkwinsize
 RCol='\[\e[0m\]'  # Reset
 Bld='\[\e[1m\]'   # Bold
 Red='\[\e[31m\]'  # Red
-Gre='\[\e[32m\]'  # Green
-Yel='\[\e[33m\]'  # Yellow
+# Gre='\[\e[32m\]'  # Green
+# Yel='\[\e[33m\]'  # Yellow
 Blu='\[\e[34m\]'  # Light Blue
-Inv='\[\e[7m\]'  # Invert
-LGry='\[\e[97m\]' # Light Grey
+# Inv='\[\e[7m\]'  # Invert
+# LGry='\[\e[97m\]' # Light Grey
 Pur='\[\e[35m\]'  # Purple
 
 # Root user is red, normal user is blue
@@ -60,18 +62,17 @@ if [ $UID -eq "0" ];then
 else
     UCol="$Blu"
 fi
-# hostname color
-HCol="$Blu"
 # Terminal prompt
+user_host="${Bld}${UCol}[\W]${RCol}"
 
-user_host="$Bld$UCol[\W]$RCol"
-
-source $HOME/.git-prompt.sh # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
+source "$HOME/.git-prompt.sh" # from http://code-worrier.com/blog/git-branch-in-bash-prompt/
+# shellcheck disable=SC2016
 git_branch='$(__git_ps1 " %s ")'
 git_branch="$Bld$Pur$git_branch$RCol"
 
 # https://unix.stackexchange.com/a/446149/260131
 anyjobs() { [[ "$1" != 0 ]] && echo "[$1]"; }
+# shellcheck disable=SC2016
 jobs='$(anyjobs \j)'
 
 prompt="$Bld$Blu\$$RCol"
@@ -117,14 +118,14 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # Jump-around script
-if [ -f $HOME/.z.lua ] && [ -x "$(command -v lua)" ]; then
-    eval "$(lua $HOME/.z.lua --init bash enhanced)"
+if [ -f "$HOME/.z.lua" ] && [ -x "$(command -v lua)" ]; then
+    eval "$(lua "$HOME/.z.lua" --init bash enhanced)"
     # Use the same datafile as z.sh
     export _ZL_DATA=$HOME/.z
-elif [ -f $HOME/.z.sh ]; then
+elif [ -f "$HOME/.z.sh" ]; then
     echo "Cannot use z.lua because lua not available, falling back to z.sh"
     # Fallback to z.sh which is not as flexible, but better than nothing
-    source $HOME/.z.sh
+    source "$HOME/.z.sh"
 fi
 
 # https://github.com/nix-community/nix-direnv/wiki/Shell-integration
@@ -192,12 +193,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -f $HOME/.bash_fzf ]; then
-    source $HOME/.bash_fzf
+if [ -f "$HOME/.bash_fzf" ]; then
+    source "$HOME/.bash_fzf"
 fi
 
-if [ -f $HOME/.bash_nixos ]; then
-    source $HOME/.bash_nixos
+if [ -f "$HOME/.bash_nixos" ]; then
+    source "$HOME/.bash_nixos"
 fi
 
 # https://github.com/direnv/direnv/issues/106#issuecomment-1027330218
