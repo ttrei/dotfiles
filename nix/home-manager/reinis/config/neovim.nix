@@ -7,6 +7,16 @@
     enable = true;
     plugins = (with pkgs.vimPlugins; [
       packer-nvim
+
+      # TODO
+      # harpoon
+
+      # colors
+      gruvbox
+
+      # syntax, LSP
+      neomake
+      nvim-lspconfig
       nvim-treesitter.withAllGrammars
       # # The following approach failed to build on 2022-11-20 with a strange error:
       # #   error: The option `programs.neovim.plugins."[definition 1-entry 2]".__ignoreNulls' does not exist. Definition values:
@@ -29,6 +39,20 @@
       #   yaml
       #   zig
       # ])
+      vim-nix
+      # # These should be handled by treesitter, right?
+      # xml.vim
+      # vim-javascript
+      # vim-markdown
+
+      fastfold
+      fzf-lua
+      # # I will go with fzf-lua for now - people say it has better performance than telescope.
+      # # But should re-visit this decision if I notice some telescope feature I really want.
+      # telescope-nvim
+      undotree
+      vim-fugitive
+      vim-table-mode
     ]);
   };
 
