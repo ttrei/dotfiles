@@ -6,8 +6,12 @@
   home.username = "reinis";
   home.homeDirectory = "/home/reinis";
 
+  imports = [
+    ./config/neovim.nix
+  ];
+
   nixpkgs.overlays = [
-    (import overlays/mypackages.nix)
+    (import ../../overlays/mypackages.nix)
   ];
 
   home.packages = with pkgs; [
@@ -20,7 +24,6 @@
     fzf
     gron
     k9s
-    neovim
     nethogs
     nodePackages.pyright
     nodePackages.typescript-language-server

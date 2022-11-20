@@ -188,9 +188,6 @@ ln -s "$DOTFILES/vim/ideavimrc" "$STAGINGDIR/.ideavimrc"
 ln -s "$DOTFILES/vim/pack" "$STAGINGDIR/.vim/pack"
 ln -s "$DOTFILES/vim/vimrc" "$STAGINGDIR/.vimrc"
 
-# NEOVIM
-ln -s "$DOTFILES/nvim" "$STAGINGDIR/.config/nvim"
-
 # EMACS
 mkdir -p "$STAGINGDIR/.config/doom"
 ln -s "$DOTFILES/emacs/doom/config.el" "$STAGINGDIR/.config/doom/config.el"
@@ -214,18 +211,6 @@ if [ "$DISTRO" = "nixos" ]; then
 fi
 ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
 ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix"
-
-# HOME-MANAGER
-mkdir -p "$STAGINGDIR/.config/home-manager"
-hm_dir="$DOTFILES/nix/home-manager/"
-if [ "$DISTRO" = "nixos" ]; then
-    ln -s "$hm_dir/reinis/nixos.nix" "$STAGINGDIR/.config/home-manager/config.nix"
-else
-    ln -s "$hm_dir/reinis/non-nixos.nix" "$STAGINGDIR/.config/home-manager/config.nix"
-fi
-ln -s "$hm_dir/reinis/common.nix" "$STAGINGDIR/.config/home-manager/common.nix"
-ln -s "$hm_dir/reinis/includes" "$STAGINGDIR/.config/home-manager/includes"
-ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/home-manager/overlays"
 
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
