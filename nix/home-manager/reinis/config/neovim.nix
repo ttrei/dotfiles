@@ -11,10 +11,10 @@
       # TODO
       # harpoon
 
-      # colors
+      ### colors
       gruvbox
 
-      # syntax, LSP
+      ### syntax, LSP
       neomake
       nvim-lspconfig
       nvim-treesitter.withAllGrammars
@@ -45,6 +45,7 @@
       # vim-javascript
       # vim-markdown
 
+      ### other
       fastfold
       fzf-lua
       # # I will go with fzf-lua for now - people say it has better performance than telescope.
