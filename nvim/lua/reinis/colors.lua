@@ -14,11 +14,14 @@ vim.opt.termguicolors = true
 vim.opt.background = 'light'
 -- vim.opt.background = 'dark'
 
-vim.g.gruvbox_contrast_light = 'hard'
-vim.g.gruvbox_contrast_dark = 'hard'
--- vim.g.gruvbox_invert_selection = '0'
-
-vim.cmd("colorscheme gruvbox")
+-- See ':help gruvbox-material' for configuration options
+vim.g.gruvbox_material_background = 'hard' -- 'hard', 'medium', 'soft'
+vim.g.gruvbox_material_foreground = 'original' -- 'material', 'mix', 'original'
+vim.g.gruvbox_material_ui_contrast = 'high'
+vim.g.gruvbox_material_visual = 'reverse'
+vim.g.gruvbox_material_sign_column_background = 'grey'
+vim.g.gruvbox_material_disable_italic_comment = 1
+vim.cmd("colorscheme gruvbox-material")
 
 local hl = function(name, opts)
     vim.api.nvim_set_hl(0, name, opts)
