@@ -64,7 +64,7 @@
     lgm = lg --first-parent -i --grep=merge --invert-grep
 
     # choose a commit on which to rebase
-    frbi = "!f() { git rebase -i $(git log --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cd%Cblue %an%Creset' --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
+    fzf-rebase = "!f() { git rebase -i $(git log --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cd%Cblue %an%Creset' --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
 
     # (From https://blog.jez.io/cli-code-review/)
     # list changes since REVIEW_BASE (defaults to 'master' in my bashrc)
