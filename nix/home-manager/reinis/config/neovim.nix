@@ -12,7 +12,8 @@
       # harpoon
 
       ### colors
-      gruvbox
+      # gruvbox
+      gruvbox-material
 
       ### syntax, LSP
       neomake
