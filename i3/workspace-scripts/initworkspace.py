@@ -11,6 +11,13 @@ from typing import Dict, List
 TIMEOUT = 5.0
 
 
+# TODO
+# Figure out what is necessary to fix typing errors like these:
+# window_name = e.container.name # Cannot access member "name" for type "Con"
+# Maybe I can contribute by adding type stubs?
+# https://github.com/altdesktop/i3ipc-python/issues/187
+
+
 class Program:
     def __init__(self, execstr: str, window_name, window_class, window_handling_commands):
         self.exec_tuple = self._parse_exec_string(execstr, window_name)
@@ -61,23 +68,23 @@ def construct_workspace_programs(workspace_program_config: dict):
 
 async def on_new_window(i3: Connection, e: WindowEvent):
     _ = i3
-    window_name = e.container.name
+    window_name = e.container.name  # type: ignore
     window_class = e.container.window_class
 
     print(f"on_new_window: {window_name=}, {window_class=}")
 
     matched_program = None
     for program in STARTING_PROGRAMS:
-        if program.match(window_name, window_class):
+        if program.match(window_name, window_class):  # type: ignore
             matched_program = program
             break
     if matched_program is None:
         return
 
     STARTING_PROGRAMS.remove(matched_program)
-    await e.container.command(f"move to workspace {matched_program.workspace}")
+    await e.container.command(f"move to workspace {matched_program.workspace}")  # type: ignore
     for command in matched_program.window_handling_commands:
-        await e.container.command(command)
+        await e.container.command(command)  # type: ignore
 
     if len(STARTING_PROGRAMS) == 0:
         i3.main_quit()
@@ -102,7 +109,7 @@ async def main(workspace_program_config, timeout):
     if len(STARTING_PROGRAMS) == 0:
         return
 
-    i3.on(Event.WINDOW_NEW, on_new_window)
+    i3.on(Event.WINDOW_NEW, on_new_window)  # type: ignore
 
     await asyncio.wait_for(i3.main(), timeout=timeout)
 
@@ -131,6 +138,6 @@ def get_nonempty_workspaces(tree: Con):
 
 
 def print_i3_nodes(node: Con, depth=0):
-    print(f"{'  ' * depth}[{node.type}] {node.name}")
+    print(f"{'  ' * depth}[{node.type}] {node.name}")  # type: ignore
     for child_node in node.nodes:
         print_i3_nodes(child_node, depth + 1)
