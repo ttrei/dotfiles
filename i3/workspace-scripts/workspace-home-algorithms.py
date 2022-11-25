@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
 
-import initworkspace
+import i3init
 
 TIMEOUT = 5.0
 
@@ -25,4 +25,4 @@ WORKSPACE_PROGRAMS = {
     ],
 }
 
-initworkspace.run(WORKSPACE_PROGRAMS, TIMEOUT)
+i3init.run(WORKSPACE_PROGRAMS, TIMEOUT)
