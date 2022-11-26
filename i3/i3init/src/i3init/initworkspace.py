@@ -1,21 +1,12 @@
 #!/usr/bin/env python3
 import asyncio
-from typing import Set
+from typing import Dict, List, Set
 
-from i3ipc import Event, WindowEvent
-from i3ipc.aio import Connection
-from i3ipc.aio import Con
-
-from typing import Dict, List
+from i3ipc import Con, Event, WindowEvent
+from i3ipc.aio import Con as AioCon
+from i3ipc.aio import Connection as AioConnection
 
 TIMEOUT = 5.0
-
-
-# TODO
-# Figure out what is necessary to fix typing errors like these:
-# window_name = e.container.name # Cannot access member "name" for type "Con"
-# Maybe I can contribute by adding type stubs?
-# https://github.com/altdesktop/i3ipc-python/issues/187
 
 
 class Program:
@@ -66,25 +57,25 @@ def construct_workspace_programs(workspace_program_config: dict):
     return workspace_programs
 
 
-async def on_new_window(i3: Connection, e: WindowEvent):
+async def on_new_window(i3: AioConnection, e: WindowEvent):
     _ = i3
-    window_name = e.container.name  # type: ignore
+    window_name = e.container.name
     window_class = e.container.window_class
 
     print(f"on_new_window: {window_name=}, {window_class=}")
 
     matched_program = None
     for program in STARTING_PROGRAMS:
-        if program.match(window_name, window_class):  # type: ignore
+        if program.match(window_name, window_class):
             matched_program = program
             break
     if matched_program is None:
         return
 
     STARTING_PROGRAMS.remove(matched_program)
-    await e.container.command(f"move to workspace {matched_program.workspace}")  # type: ignore
+    await e.container.command(f"move to workspace {matched_program.workspace}")
     for command in matched_program.window_handling_commands:
-        await e.container.command(command)  # type: ignore
+        await e.container.command(command)
 
     if len(STARTING_PROGRAMS) == 0:
         i3.main_quit()
@@ -94,7 +85,7 @@ STARTING_PROGRAMS: Set["Program"] = set()
 
 
 async def main(workspace_program_config, timeout):
-    i3 = await Connection(auto_reconnect=True).connect()
+    i3 = await AioConnection(auto_reconnect=True).connect()
 
     # We will not touch already existing workspaces containing something
     nonempty_workspaces = get_nonempty_workspaces(await i3.get_tree())
@@ -109,7 +100,7 @@ async def main(workspace_program_config, timeout):
     if len(STARTING_PROGRAMS) == 0:
         return
 
-    i3.on(Event.WINDOW_NEW, on_new_window)  # type: ignore
+    i3.on(Event.WINDOW_NEW, on_new_window)
 
     await asyncio.wait_for(i3.main(), timeout=timeout)
 
@@ -118,7 +109,7 @@ def run(workspace_program_config, timeout):
     asyncio.run(main(workspace_program_config, timeout))
 
 
-def get_nonempty_workspaces(tree: Con):
+def get_nonempty_workspaces(tree: AioCon):
     nonempty_workspaces = set()
     outputs = [n for n in tree.nodes if n.name != "__i3"]
     for output in outputs:
@@ -138,6 +129,6 @@ def get_nonempty_workspaces(tree: Con):
 
 
 def print_i3_nodes(node: Con, depth=0):
-    print(f"{'  ' * depth}[{node.type}] {node.name}")  # type: ignore
+    print(f"{'  ' * depth}[{node.type}] {node.name}")
     for child_node in node.nodes:
         print_i3_nodes(child_node, depth + 1)
