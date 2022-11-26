@@ -64,8 +64,9 @@ exclude_lines = [
 
 [tool.pyright]
 include = ["src", "tests"]
+stubPath = "typings"
 reportMissingImports = true
-reportMissingTypeStubs = true
+reportMissingTypeStubs = false
 
 [tool.black]
 line-length = 120

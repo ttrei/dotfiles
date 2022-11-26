@@ -2,9 +2,9 @@
 import asyncio
 from typing import Set
 
-from i3ipc import Event
-from i3ipc.aio import Connection, Con
-from i3ipc.events import WindowEvent
+from i3ipc import Event, WindowEvent
+from i3ipc.aio import Connection
+from i3ipc.aio import Con
 
 from typing import Dict, List
 
