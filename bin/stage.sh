@@ -275,6 +275,10 @@ if [ "$MACHINE" = "htpc" ]; then
     ln -s "$DOTFILES/net/bin/vpn-switch.sh" "$STAGINGDIR/bin/vpn-switch.sh"
 fi
 
+# TEXMACS
+mkdir -p "$STAGINGDIR/.config/texmacs/progs"
+ln -s "$DOTFILES/texmacs/my-init-texmacs.scm" "$STAGINGDIR/.config/texmacs/progs"
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
 ln -s "$DOTFILES/other/bin/get_remote_stats.py" "$STAGINGDIR/bin/get_remote_stats.py"

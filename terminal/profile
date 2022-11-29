@@ -38,3 +38,4 @@ then
     export NIX_PATH
 fi
 
+export TEXMACS_HOME_PATH=$HOME/.config/texmacs
