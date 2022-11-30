@@ -100,7 +100,7 @@ async def main(workspace_program_config, timeout):
     if len(STARTING_PROGRAMS) == 0:
         return
 
-    i3.on(Event.WINDOW_NEW, on_new_window)
+    i3.on(Event.WINDOW_NEW, on_new_window)  # type: ignore
 
     await asyncio.wait_for(i3.main(), timeout=timeout)
 
