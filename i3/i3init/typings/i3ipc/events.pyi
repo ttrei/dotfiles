@@ -113,7 +113,6 @@ class WindowEvent(IpcBaseEvent):
     """
 
     container: Con
-
     def __init__(self, data, conn, _Con=...) -> None: ...
 
 class BarconfigUpdateEvent(IpcBaseEvent, BarConfigReply):

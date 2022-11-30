@@ -18,6 +18,8 @@ from .replies import (
     WorkspaceReply,
 )
 
+logger = ...
+
 class Connection:
     """A connection to the i3 ipc used for querying window manager state and
     listening to events.
@@ -173,16 +175,7 @@ class Connection:
         :type handler: :class:`Callable`
         """
         ...
-    def on(self, event: Union[Event, str], handler: Callable[[Connection, IpcBaseEvent], None]):  # -> None:
-        """Subscribe to the event and call the handler when it is emitted by
-        the i3 ipc.
-
-        :param event: The event to subscribe to.
-        :type event: :class:`Event <i3ipc.Event>` or str
-        :param handler: The event handler to call.
-        :type handler: :class:`Callable`
-        """
-        ...
+    def on(self, event: Union[Event, str], handler: Callable[[Connection, IpcBaseEvent], None] = ...): ...
     def main(self, timeout: float = ...):  # -> None:
         """Starts the main loop for this connection to start handling events.
 

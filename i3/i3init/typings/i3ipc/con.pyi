@@ -15,8 +15,8 @@ class Con:
     :vartype border: str
     :ivar current_border_width:
     :vartype current_border_with: int
-    :ivar floating:
-    :vartype floating: bool
+    :ivar floating: Either "auto_off", "auto_on", "user_off", or "user_on".
+    :vartype floating: str
     :ivar focus: The focus stack for this container as a list of container ids.
         The "focused inactive" is at the top of the list which is the container
         that would be focused if this container recieves focus.
@@ -41,6 +41,8 @@ class Con:
     :vartype percent: float
     :ivar scratchpad_state:
     :vartype scratchpad_state: str
+    :ivar shell: (sway only)
+    :vartype shell: str
     :ivar sticky:
     :vartype sticky: bool
     :ivar type:
@@ -92,6 +94,13 @@ class Con:
     def __init__(self, data, parent, conn) -> None: ...
     def __iter__(self):  # -> Generator[Unknown, None, None]:
         """Iterate through the descendents of this node (breadth-first tree traversal)"""
+        ...
+    def is_floating(self) -> bool:
+        """A boolean value of whether this is a floating node.
+
+        :returns: Whether this is a floating node
+        :rtype: bool
+        """
         ...
     def root(self) -> Con:
         """Gets the root container.
@@ -214,11 +223,11 @@ class Con:
         """
         ...
     def find_classed(self, pattern: str) -> List[Con]:
-        """Finds all the containers under this node with a window class that
-        matches the given regex pattern.
+        """Finds all the containers under this node with a window class,
+        or app_id that matches the given regex pattern.
 
-        :returns: A list of containers that have a window class that matches the
-            pattern.
+        :returns: A list of containers that have a window class, or
+            app_id that matches the pattern.
         :rtype: list(:class:`Con`)
         """
         ...

@@ -24,6 +24,12 @@ _chunk_size = ...
 _timeout = ...
 _struct_header = ...
 _struct_header_size = ...
+_running_futures = ...
+logger = ...
+
+def ensure_future(obj):
+    """Wrapper around futures keeping a reference to them."""
+    ...
 
 class _AIOPubSub(PubSub):
     def queue_handler(self, handler, data=...): ...
@@ -38,8 +44,8 @@ class Con(con.Con):
     :vartype border: str
     :ivar current_border_width:
     :vartype current_border_with: int
-    :ivar floating:
-    :vartype floating: bool
+    :ivar floating: Either "auto_off", "auto_on", "user_off", or "user_on".
+    :vartype floating: str
     :ivar focus: The focus stack for this container as a list of container ids.
         The "focused inactive" is at the top of the list which is the container
         that would be focused if this container recieves focus.
@@ -158,6 +164,10 @@ class Connection:
         ...
     @property
     def auto_reconect(self) -> bool:
+        """**Deprecated:** Use :attr:`~.Connection.auto_reconnect`"""
+        ...
+    @property
+    def auto_reconnect(self) -> bool:
         """Whether this ``Connection`` will attempt to reconnect when the
         connection to the socket is broken.
 
@@ -186,16 +196,7 @@ class Connection:
         :vartype force: bool
         """
         ...
-    def on(self, event: Union[Event, str], handler: Callable[[Connection, IpcBaseEvent], None]):  # -> None:
-        """Subscribe to the event and call the handler when it is emitted by
-        the i3 ipc.
-
-        :param event: The event to subscribe to.
-        :type event: :class:`Event <i3ipc.Event>` or str
-        :param handler: The event handler to call.
-        :type handler: :class:`Callable`
-        """
-        ...
+    def on(self, event: Union[Event, str], handler: Callable[[Connection, IpcBaseEvent], None] = ...): ...
     def off(self, handler: Callable[[Connection, IpcBaseEvent], None]):  # -> None:
         """Unsubscribe the handler from being called on ipc events.
 

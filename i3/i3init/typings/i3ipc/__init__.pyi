@@ -30,8 +30,4 @@ from .replies import (
     WorkspaceReply,
 )
 
-__all__ = [
-    "Con",
-    "Event",
-    "WindowEvent",
-]
+__all__ = ["Con", "Event", "WindowEvent"]
