@@ -21,3 +21,5 @@ vim.keymap.set('n', '<c-l>', ':tabnext<cr>')
 vim.keymap.set('n', '<c-h>', ':tabprevious<cr>')
 vim.keymap.set('n', '<c-s-l>', ':tabmove+1<cr>')
 vim.keymap.set('n', '<c-s-h>', ':tabmove-1<cr>')
+
+vim.keymap.set('n', '<leader>,', require('fzf-lua').buffers)
