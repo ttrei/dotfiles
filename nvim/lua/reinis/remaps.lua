@@ -6,6 +6,7 @@ require('reinis.utils')
 -- vim.keymap.set('n', '<C-p>', require('fzf-lua').files)
 -- vim.keymap.set('n', '<C-p>', function() require('fzf-lua').files() end)
 
+vim.keymap.set('n', '<leader>rr', ':ReloadConfig<cr>:source $MYVIMRC<cr>')
 
 vim.keymap.set('n', '<leader>bd', ':bdelete<cr>')
 vim.keymap.set('n', '<leader>h', ':nohlsearch<cr>')
