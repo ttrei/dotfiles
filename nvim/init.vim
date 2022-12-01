@@ -7,6 +7,18 @@ EOF
 
 source ~/.config/nvim/vimrc_legacy
 
+" https://www.reddit.com/r/neovim/comments/puuskh/how_to_reload_my_lua_config_while_using_neovim/he5vnqc/
+lua <<EOF
+function _G.ReloadConfig()
+  for name,_ in pairs(package.loaded) do
+    if name:match('^reinis') then
+      package.loaded[name] = nil
+    end
+  end
+end
+EOF
+command! ReloadConfig lua ReloadConfig()
+
 " Guide on migrating from vimscript to lua
 " https://github.com/nanotee/nvim-lua-guide
 
