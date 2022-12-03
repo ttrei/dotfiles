@@ -6,7 +6,13 @@ require('reinis.utils')
 -- vim.keymap.set('n', '<C-p>', require('fzf-lua').files)
 -- vim.keymap.set('n', '<C-p>', function() require('fzf-lua').files() end)
 
-vim.keymap.set('n', '<leader>rr', ':ReloadConfig<cr>:source $MYVIMRC<cr>')
+-- Reload configuration from the default location.
+vim.keymap.set('n', '<leader>rr',
+    ':set runtimepath-=~/dotfiles/nvim<cr>:ReloadConfig<cr>:source $MYVIMRC<cr>')
+-- Reload configuration straight from the dotfiles directory.
+-- This allows for faster iteration when trying out configuration changes.
+vim.keymap.set('n', '<leader>rd',
+    ':set runtimepath^=~/dotfiles/nvim<cr>:ReloadConfig<cr>:source ~/dotfiles/nvim/init.vim<cr>')
 
 vim.keymap.set('n', '<leader>bd', ':bdelete<cr>')
 vim.keymap.set('n', '<leader>h', ':nohlsearch<cr>')
