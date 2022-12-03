@@ -5,7 +5,7 @@ require('plugins')
 require('reinis')
 EOF
 
-source ~/.config/nvim/vimrc_legacy
+runtime vimrc_legacy
 
 " https://www.reddit.com/r/neovim/comments/puuskh/how_to_reload_my_lua_config_while_using_neovim/he5vnqc/
 lua <<EOF
