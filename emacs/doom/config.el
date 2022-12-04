@@ -67,6 +67,9 @@
 ; Does not unfold automatically, though.
 (setq search-invisible t)
 
+; Create an ID property when storing a link to org section, if no ID or CUSTOM_ID exists
+(setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
