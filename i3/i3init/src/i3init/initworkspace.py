@@ -2,6 +2,8 @@
 import asyncio
 from typing import Dict, List, Set
 
+import logging
+
 from i3ipc import Con, Event, WindowEvent
 from i3ipc.aio import Con as AioCon
 from i3ipc.aio import Connection as AioConnection
@@ -94,7 +96,11 @@ async def main(workspace_program_config, timeout):
         if workspace in nonempty_workspaces:
             continue
         for program in programs:
-            await asyncio.create_subprocess_exec(*program.exec_tuple)
+            try:
+                await asyncio.create_subprocess_exec(*program.exec_tuple)
+            except FileNotFoundError as e:
+                logging.error(f"Couldn't execute {program.exec_tuple}: {e}")
+                continue
             STARTING_PROGRAMS.add(program)
 
     if len(STARTING_PROGRAMS) == 0:
