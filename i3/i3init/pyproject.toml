@@ -69,4 +69,4 @@ reportMissingImports = true
 reportMissingTypeStubs = false
 
 [tool.black]
-line-length = 120
+line-length = 100
