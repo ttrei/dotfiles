@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 import asyncio
-from typing import Dict, List, Set
-
 import logging
+from typing import Dict, List, Optional, Set, Tuple
 
 from i3ipc import Con, Event, WindowEvent
 from i3ipc.aio import Con as AioCon
@@ -12,15 +11,22 @@ TIMEOUT = 5.0
 
 
 class Program:
-    def __init__(self, execstr: str, window_name, window_class, window_handling_commands):
+    def __init__(
+        self,
+        workspace: str,
+        execstr: str,
+        window_name: str,
+        window_class: str,
+        window_handling_commands: Optional[List[str]] = None,
+    ):
+        self.workspace = workspace
         self.exec_tuple = self._parse_exec_string(execstr, window_name)
         self.window_name = window_name
         self.window_class = window_class
         self.window_handling_commands = window_handling_commands or []
-        self.workspace = None
 
     @staticmethod
-    def _parse_exec_string(execstr: str, window_name: str):
+    def _parse_exec_string(execstr: str, window_name: str) -> Tuple[str, ...]:
         binary = execstr.split()[0]
         argstr: str = execstr.lstrip(binary).strip()
         args = argstr.split()
@@ -51,9 +57,10 @@ def construct_workspace_programs(workspace_program_config: dict):
     workspace_programs: Dict[str, List[Program]] = {}
     for workspace, program_args_list in workspace_program_config.items():
         program_list = []
-        for args in program_args_list:
-            program = Program(*args)
-            program.workspace = workspace
+        for execstr, window_name, window_class, window_handling_commands in program_args_list:
+            program = Program(
+                workspace, execstr, window_name, window_class, window_handling_commands
+            )
             program_list.append(program)
         workspace_programs[workspace] = program_list
     return workspace_programs
