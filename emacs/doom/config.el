@@ -34,10 +34,8 @@
 ;; Record the time when note was marked as done
 (setq org-log-done 'time)
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
-
+;; Relative line numbers, counting only the visible lines
+(setq display-line-numbers-type 'visual)
 
 ;; Convenient navigation of large deeply-nested org documents
 (defun org-show-current-heading-tidily ()
