@@ -5,6 +5,7 @@
 21:zig
 25:vscode
 26:pycharm
+65:wireshark
 70:virt
 71:ubuntu
 72:nixos
