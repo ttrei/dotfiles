@@ -32,9 +32,7 @@
     git-crypt
     python310Packages.pgsanity
     ripgrep
-    signal-desktop
     starship
-    zathura
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
     # myxow
   ];
