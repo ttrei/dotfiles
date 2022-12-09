@@ -8,6 +8,8 @@
 nmap <c-l> <Action>(NextTab)
 nmap <c-h> <Action>(PreviousTab)
 
+set clipboard+=unnamedplus
+
 set relativenumber
 set number
 " no numbers --> absolute line numbers --> relative line numbers + absolute for current line
