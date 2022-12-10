@@ -23,6 +23,7 @@ vim.keymap.set('n', '<leader>w', function() vim_opt_toggle('wrap', true, false) 
 vim.keymap.set('n', '<c-p>', require('fzf-lua').files, { desc = 'Find files using fzf' })
 
 -- Navigation
+vim.keymap.set('n', '<leader>tn', ':tabnew<cr>')
 vim.keymap.set('n', '<c-l>', ':tabnext<cr>')
 vim.keymap.set('n', '<c-h>', ':tabprevious<cr>')
 vim.keymap.set('n', '<c-s-l>', ':tabmove+1<cr>')
