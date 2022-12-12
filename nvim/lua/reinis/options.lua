@@ -25,6 +25,8 @@ vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
 vim.opt.scrolloff = 8
 vim.opt.wrap = false
 
+vim.opt.mouse = ""
+
 vim.opt.colorcolumn = { 80, 100 }
 vim.opt.cursorline = true
 
