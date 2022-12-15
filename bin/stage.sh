@@ -91,7 +91,14 @@ fi
 mkdir -p "$STAGINGDIR/.ssh"
 ln -s "$DOTFILES/ssh/config" "$STAGINGDIR/.ssh/config"
 if [ "$CONTEXT" = "work" ]; then
-    ln -sf "$DOTFILES/ssh/config-work" "$STAGINGDIR/.ssh/config"
+    # shellcheck disable=SC1091
+    os_release_codename=$(. /etc/os-release && echo "$VERSION_CODENAME")
+    if [ "$DISTRO" = "debian" ] && [ "$os_release_codename" = "bullseye" ]; then
+        # Debian 11 "bullseye" has openssh without the PubkeyAcceptedAlgorithms option
+        true
+    else
+        ln -sf "$DOTFILES/ssh/config-work" "$STAGINGDIR/.ssh/config"
+    fi
 fi
 
 # GIT
