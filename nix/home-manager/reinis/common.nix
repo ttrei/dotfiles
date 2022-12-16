@@ -24,6 +24,7 @@
     fzf
     gron
     k9s
+    ncdu
     nethogs
     nodePackages.pyright
     nodePackages.typescript-language-server
