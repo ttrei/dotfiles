@@ -27,9 +27,8 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-gruvbox-light)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/dev/notes/org")
+(setq org-agenda-files (list org-directory))
 
 ;; Record the time when note was marked as done
 (setq org-log-done 'time)
