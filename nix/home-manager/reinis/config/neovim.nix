@@ -40,6 +40,7 @@
       #   yaml
       #   zig
       # ])
+      nvim-treesitter-context
       vim-nix
       # # These should be handled by treesitter, right?
       # xml.vim
