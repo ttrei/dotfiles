@@ -1,4 +1,3 @@
-
 {
   config,
   lib,
@@ -8,5 +7,4 @@
   environment.systemPackages = with pkgs; [
     kodi
   ];
-
 }
