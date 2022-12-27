@@ -247,8 +247,6 @@ if [ "$DISTRO" = "nixos" ]; then
     ln -s "$nixos_dir/packages/gui.nix" "$STAGINGDIR/.config/nixos/packages/gui.nix"
     if [ "$MACHINE" = "htpc" ]; then
         ln -s "$nixos_dir/htpc/packages.nix" "$STAGINGDIR/.config/nixos/packages/additional.nix"
-    else
-        echo "" > "$STAGINGDIR/.config/nixos/packages/additional.nix"
     fi
 
     ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/nixos/overlays"

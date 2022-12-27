@@ -3,18 +3,20 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-    ./boot.nix
-    ./hostname.nix
+  imports =
+    [
+      ./hardware-configuration.nix
+      ./boot.nix
+      ./hostname.nix
 
-    ./packages/base.nix
-    ./packages/gui.nix
-    ./packages/additional.nix
-  ];
+      ./packages/base.nix
+      ./packages/gui.nix
+    ]
+    ++ lib.optionals (builtins.pathExists ./packages/additional.nix) [./packages/additional.nix];
 
   nixpkgs.overlays = [
     (import overlays/mypackages.nix)
