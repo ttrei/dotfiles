@@ -3,7 +3,5 @@
   pkgs,
   ...
 }: {
-
   networking.hostName = "htpc-nixos";
-
 }
