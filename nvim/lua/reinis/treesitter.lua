@@ -10,6 +10,42 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  textobjects = {
+    -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects#text-objects-select
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects#built-in-textobjects
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+      selection_modes = {
+        ['@parameter.outer'] = 'v', -- charwise
+        ['@function.outer'] = 'V', -- linewise
+        ['@function.inner'] = 'V', -- linewise
+        ['@class.outer'] = 'V', -- blockwise
+      },
+      include_surrounding_whitespace = false,
+    },
+  },
+
+  -- https://github.com/nvim-treesitter/nvim-treesitter#incremental-selection
+  -- NOTE: Not using this for now - maybe nvim-treesitter-textobjects will cover all I need
+  -- incremental_selection = {
+  --   enable = true,
+  --   keymaps = {
+  --       init_selection = "<CR>",
+  --       node_incremental = "<CR>",
+  --       scope_incremental = false,
+  --       node_decremental = "<BS>",
+  --   },
+  -- },
+
 }
 
 --[[

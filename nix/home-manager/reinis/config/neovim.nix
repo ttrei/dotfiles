@@ -41,6 +41,7 @@
       #   zig
       # ])
       nvim-treesitter-context
+      nvim-treesitter-textobjects
       vim-nix
       # # These should be handled by treesitter, right?
       # xml.vim
