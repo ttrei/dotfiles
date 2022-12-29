@@ -16,7 +16,9 @@
       gruvbox-material
 
       ### syntax, LSP
+      cmp-nvim-lsp
       neomake
+      nvim-cmp
       nvim-lspconfig
       nvim-treesitter.withAllGrammars
       # # The following approach failed to build on 2022-11-20 with a strange error:
