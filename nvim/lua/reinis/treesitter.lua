@@ -45,6 +45,11 @@ require'nvim-treesitter.configs'.setup {
   --       node_decremental = "<BS>",
   --   },
   -- },
+  -- NOTE: Other plugins for text selection based on treesitter AST
+  -- I tried nvim-treesitter-textsubjects but didn't immediately see the value-add over the
+  -- nvim-treesitter built-in incremental selection.
+  -- https://github.com/RRethy/nvim-treesitter-textsubjects
+  -- https://github.com/mfussenegger/nvim-treehopper
 
 }
 
