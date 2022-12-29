@@ -53,7 +53,7 @@ if exists('+colorcolumn')
 endif
 set cursorline
 
-set textwidth=80
+set textwidth=100
 " Toggle textwidth between 80 and 100 and report the new value.
 " Useful when handling files with different conventions of where to break lines.
 nnoremap <silent> <Leader>tw :call ToggleTextWidth()<cr>:set textwidth<cr>
@@ -66,11 +66,6 @@ nnoremap <silent> <Leader>tw :call ToggleTextWidth()<cr>:set textwidth<cr>
         set textwidth=80
       endif
     endfunc
-
-" Textwidth of specific file formats
-au BufWinEnter *.adoc set textwidth=100
-au BufWinEnter *.md set textwidth=100
-au BufWinEnter *.txt set textwidth=100
 
 filetype plugin on
 filetype indent on
