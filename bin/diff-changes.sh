@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 # Suppose we make a small change in how some dotfiles are deployed.
-# E.g., we move some file from old-style to new-style in bin/stage.sh.
 # This script shows how the change affects output of bin/deploy.sh for all configurations.
+# This was useful during migration from the old-style deployment paradigm where for each deployment
+# target there was a permanent directory containing symlinks to config files.
 
 # "BASE" refers to the dotfiles repo state against which we will diff.
 BASE_COMMIT=${1:-"HEAD"}
