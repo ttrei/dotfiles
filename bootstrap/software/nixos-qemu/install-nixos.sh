@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+DOTFILES="$( cd "$(dirname "$0")/../../.." || exit >/dev/null 2>&1 ; pwd -P )"
 
 parted /dev/vda -- mklabel msdos
 parted /dev/vda -- mkpart primary 1MiB -8GiB
@@ -14,12 +16,15 @@ swapon /dev/vda2
 
 mkdir -p /mnt/etc/nixos
 
+# Copy our configuration to /mnt/etc/nixos
+pushd "$DOTFILES/nix" || exit
 # Exclude GUI stuff to speed up the installation
 grep -v gui.nix nixos-config/system/configuration.nix > /mnt/etc/nixos/configuration.nix
 
 cp -r nixos-config/system/packages /mnt/etc/nixos
 cp -r nixos-config/system/qemu/* /mnt/etc/nixos
 cp -r overlays /mnt/etc/nixos
+popd || exit
 
 nixos-install
 
