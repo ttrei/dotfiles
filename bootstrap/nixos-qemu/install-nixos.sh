@@ -19,12 +19,15 @@ mkdir -p /mnt/etc/nixos
 
 # Copy our configuration to /mnt/etc/nixos
 pushd "$DOTFILES/nix" || exit
-# Exclude GUI stuff to speed up the installation
-grep -v gui.nix nixos-config/system/configuration.nix > /mnt/etc/nixos/configuration.nix
 
-cp -r nixos-config/system/packages /mnt/etc/nixos
-cp -r nixos-config/system/qemu/* /mnt/etc/nixos
-cp -r overlays /mnt/etc/nixos
+cp nixos-config/system/configuration.nix /mnt/etc/nixos/configuration.nix
+cp nixos-config/system/qemu-base.nix /mnt/etc/nixos/custom.nix
+cp -r \
+    nixos-config/system/hardware-configurations \
+    nixos-config/system/packages \
+    overlays \
+    /mnt/etc/nixos
+
 popd || exit
 
 nixos-install
