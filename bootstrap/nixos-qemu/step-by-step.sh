@@ -3,7 +3,10 @@
 set -o errexit
 set -o pipefail
 
-source env.sh
+SCRIPTDIR="$( cd "$(dirname "$0")" || exit >/dev/null 2>&1 ; pwd -P )"
+
+# shellcheck disable=SC1091
+source "$SCRIPTDIR/env.sh"
 
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
@@ -34,7 +37,7 @@ step "Upload and execute the install script"
 echo "When prompted, use the password that you just set"
 pause
 ssh-keygen -f "/home/reinis/.ssh/known_hosts" -R "[localhost]:$QEMU_GUEST_PORT"
-ssh -o StrictHostKeyChecking=no nixos@localhost -p $QEMU_GUEST_PORT <<'ENDSSH'
+ssh -o StrictHostKeyChecking=no nixos@localhost -p "$QEMU_GUEST_PORT" <<'ENDSSH'
 nix-env -iA nixos.git
 git clone https://github.com/ttrei/dotfiles.git
 sudo ~/dotfiles/bootstrap/nixos-qemu/install-nixos.sh
@@ -54,12 +57,12 @@ ssh-keygen -f "/home/reinis/.ssh/known_hosts" -R "[localhost]:$QEMU_GUEST_PORT"
 
 step "Set up home-manager and deploy dotfiles"
 pause
-ssh reinis@localhost -p $QEMU_GUEST_PORT <<'ENDSSH'
+ssh reinis@localhost -p "$QEMU_GUEST_PORT" <<'ENDSSH'
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-22.11.tar.gz home-manager
 nix-channel --update
 ENDSSH
 # log out, as per home-manager install instructions
-ssh -o StrictHostKeyChecking=no reinis@localhost -p $QEMU_GUEST_PORT <<'ENDSSH'
+ssh -o StrictHostKeyChecking=no reinis@localhost -p "$QEMU_GUEST_PORT" <<'ENDSSH'
 nix-shell '<home-manager>' -A install
 git clone https://github.com/ttrei/dotfiles.git
 cp ~/dotfiles/configs/home-desktop-nixos-qemu ~/.dotfiles-env
