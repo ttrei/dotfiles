@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES="$( cd "$(dirname "$0")/../../.." || exit >/dev/null 2>&1 ; pwd -P )"
+DOTFILES="$( cd "$(dirname "$0")/../.." || exit >/dev/null 2>&1 ; pwd -P )"
 
 parted /dev/vda -- mklabel msdos
 parted /dev/vda -- mkpart primary 1MiB -2GiB
