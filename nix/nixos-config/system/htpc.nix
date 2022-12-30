@@ -5,7 +5,7 @@
 }: {
   imports = [
     ./hardware-configurations/htpc.nix
-    ./packages/base.nix
+    ./packages/cli.nix
     ./packages/gui.nix
     ./packages/htpc.nix
   ];

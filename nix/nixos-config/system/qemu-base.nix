@@ -5,8 +5,6 @@
 }: {
   imports = [
     ./hardware-configurations/qemu.nix
-    ./packages/cli.nix
-    ./packages/gui.nix
   ];
 
   boot.loader.grub.enable = true;

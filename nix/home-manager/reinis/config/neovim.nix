@@ -1,11 +1,13 @@
-{ config, pkgs, ... }:
-
+{
+  config,
+  pkgs,
+  ...
+}:
 # Inspired by https://gitlab.com/LongerHV/nixos-configuration
-
 {
   programs.neovim = {
     enable = true;
-    plugins = (with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
       packer-nvim
 
       # TODO
@@ -59,7 +61,7 @@
       undotree
       vim-fugitive
       vim-table-mode
-    ]);
+    ];
   };
 
   home.file = {
