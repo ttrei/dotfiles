@@ -45,6 +45,7 @@
     sshfs-fuse
     starship
     stow
+    tmux
     traceroute
     tree
     universal-ctags
