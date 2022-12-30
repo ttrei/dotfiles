@@ -3,8 +3,7 @@
   pkgs,
   ...
 }: {
-
-  imports = [ ./common.nix ];
+  imports = [./common.nix];
 
   programs.bash.enable = true;
 }

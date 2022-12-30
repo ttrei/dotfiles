@@ -7,7 +7,6 @@
   pkgs,
   ...
 }: {
-
   imports = lib.optionals (builtins.pathExists ./custom.nix) [./custom.nix];
 
   nixpkgs.overlays = [
@@ -27,6 +26,15 @@
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
+  # };
+
+  # services.cron = {
+  #   enable = true;
+  #   systemCronJobs = [
+  #     "*/3 * * * *  root    . /etc/profile && nix-channel --update nixos"
+  #     "*/5 * * * *  root    . /etc/profile && nixos-rebuild dry-build > /tmp/upgr.txt 2>&1 && mv /tmp/upgr.txt /var/tmp/upgradable_packages.txt"
+  #     "*/2 * * * *  reinis  /home/reinis/bin/get_upgrade_counts.py"
+  #   ];
   # };
 
   services.printing.enable = true;
@@ -55,10 +63,11 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
+  programs.bash.enableCompletion = true;
 
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.passwordAuthentication = false;
+  services.openssh.permitRootLogin = "prohibit-password";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
