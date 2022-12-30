@@ -224,32 +224,22 @@ ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
     mkdir -p "$STAGINGDIR/.config/nixos"
-    mkdir -p "$STAGINGDIR/.config/nixos/packages"
     nixos_dir="$DOTFILES/nix/nixos-config/system"
 
+    ln -s "$nixos_dir/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
+    ln -s "$nixos_dir/hardware-configurations" "$STAGINGDIR/.config/nixos/hardware-configurations"
+    ln -s "$nixos_dir/packages" "$STAGINGDIR/.config/nixos/packages"
+    ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/nixos/overlays"
+
     if [ "$EXECUTION_ENV" = "qemu" ]; then
-        ln -s "$nixos_dir/qemu/hardware-configuration.nix" "$STAGINGDIR/.config/nixos/hardware-configuration.nix"
-        ln -s "$nixos_dir/qemu/boot.nix" "$STAGINGDIR/.config/nixos/boot.nix"
-        ln -s "$nixos_dir/qemu/hostname.nix" "$STAGINGDIR/.config/nixos/hostname.nix"
+        ln -s "$nixos_dir/qemu.nix" "$STAGINGDIR/.config/nixos/custom.nix"
     elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ] ; then
-        ln -s "$nixos_dir/htpc/hardware-configuration.nix" "$STAGINGDIR/.config/nixos/hardware-configuration.nix"
-        ln -s "$nixos_dir/htpc/boot.nix" "$STAGINGDIR/.config/nixos/boot.nix"
-        ln -s "$nixos_dir/htpc/hostname.nix" "$STAGINGDIR/.config/nixos/hostname.nix"
+        ln -s "$nixos_dir/htpc.nix" "$STAGINGDIR/.config/nixos/custom.nix"
     else
-        echo "ABORT! NixOS hardware config not available for this environment:"
+        echo "ABORT! NixOS config not available for this environment:"
         print_env
         exit 1
     fi
-
-    ln -s "$nixos_dir/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
-
-    ln -s "$nixos_dir/packages/base.nix" "$STAGINGDIR/.config/nixos/packages/base.nix"
-    ln -s "$nixos_dir/packages/gui.nix" "$STAGINGDIR/.config/nixos/packages/gui.nix"
-    if [ "$MACHINE" = "htpc" ]; then
-        ln -s "$nixos_dir/htpc/packages.nix" "$STAGINGDIR/.config/nixos/packages/additional.nix"
-    fi
-
-    ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/nixos/overlays"
 fi
 
 # K8S

@@ -3,8 +3,9 @@
 DOTFILES="$( cd "$(dirname "$0")/../../.." || exit >/dev/null 2>&1 ; pwd -P )"
 
 parted /dev/vda -- mklabel msdos
-parted /dev/vda -- mkpart primary 1MiB -8GiB
-parted /dev/vda -- mkpart primary linux-swap -8GiB 100%
+parted /dev/vda -- mkpart primary 1MiB -2GiB
+parted /dev/vda -- set 1 boot on
+parted /dev/vda -- mkpart primary linux-swap -2GiB 100%
 
 mkfs.ext4 -L nixos /dev/vda1
 mkswap -L swap /dev/vda2
