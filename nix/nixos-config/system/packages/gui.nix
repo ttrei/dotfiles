@@ -31,6 +31,7 @@
     xorg.xmodmap
     xsel
     zathura
+    zutty
   ];
 
   services.xserver = {
