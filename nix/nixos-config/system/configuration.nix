@@ -7,16 +7,8 @@
   pkgs,
   ...
 }: {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./boot.nix
-      ./hostname.nix
 
-      ./packages/base.nix
-      ./packages/gui.nix
-    ]
-    ++ lib.optionals (builtins.pathExists ./packages/additional.nix) [./packages/additional.nix];
+  imports = lib.optionals (builtins.pathExists ./custom.nix) [./custom.nix];
 
   nixpkgs.overlays = [
     (import overlays/mypackages.nix)
@@ -80,5 +72,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
 }
