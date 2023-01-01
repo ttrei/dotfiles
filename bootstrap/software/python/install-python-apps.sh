@@ -9,6 +9,7 @@ pipx install --force hatch
 pipx install --force youtube-dl
 pipx install --force yt-dlp
 pipx install --force ipython
+pipx install --force i3pyblocks
 
 pushd ~/dotfiles
 git submodule update --init i3/i3init/deps/i3ipc-python
