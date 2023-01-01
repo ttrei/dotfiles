@@ -176,12 +176,12 @@ async def main():
         )
 
     # Simulate the popular Caffeine extension from Gnome and macOS.
-    await runner.register_block(
-        x11.CaffeineBlock(
-            format_on="  ",
-            format_off="  ",
-        )
-    )
+    # await runner.register_block(
+    #     x11.CaffeineBlock(
+    #         format_on="  ",
+    #         format_off="  ",
+    #     )
+    # )
 
     # KbddBlock uses D-Bus to get the keyboard layout information updates, so
     # it is very efficient (i.e.: there is no polling). But it needs `kbdd`
@@ -191,14 +191,14 @@ async def main():
     # so we lowercase it using '!l' and truncate it to the first two letters
     # using ':.2s', resulting in `en`
     # You could also use '!u' to UPPERCASE it instead
-    await runner.register_block(
-        dbus.KbddBlock(
-            format=" {full_layout!l:.2s}",
-        )
-    )
+    # await runner.register_block(
+    #     dbus.KbddBlock(
+    #         format=" {full_layout!l:.2s}",
+    #     )
+    # )
 
     # MediaPlayerBlock listen for updates in your player (in this case Spotify)
-    await runner.register_block(dbus.MediaPlayerBlock(player="spotify"))
+    # await runner.register_block(dbus.MediaPlayerBlock(player="spotify"))
 
     # In case of `kbdd` isn't available for you, here is a alternative using
     # ShellBlock and `xkblayout-state` program.  ShellBlock just show the output
@@ -250,13 +250,13 @@ async def main():
     # For more complex requests, we can also pass a custom async function
     # `response_callback`, that receives the response of the HTTP request and
     # you can manipulate it the way you want
-    await runner.register_block(
-        http.PollingRequestBlock(
-            "https://wttr.in/?format=%c+%t",
-            format_error="",
-            sleep=60 * 60,
-        ),
-    )
+    # await runner.register_block(
+    #     http.PollingRequestBlock(
+    #         "https://wttr.in/?format=%c+%t",
+    #         format_error="",
+    #         sleep=60 * 60,
+    #     ),
+    # )
 
     # You can use Pango markup for more control over text formating, as the
     # example below shows
@@ -264,8 +264,8 @@ async def main():
     # https://developer.gnome.org/pango/stable/pango-Markup.html
     await runner.register_block(
         datetime.DateTimeBlock(
-            format_time=utils.pango_markup(" %T", font_weight="bold"),
-            format_date=utils.pango_markup(" %a, %d/%m", font_weight="light"),
+            format_time=utils.pango_markup(" %H:%M", font_weight="bold"),
+            format_date=utils.pango_markup(" %a %Y-%m-%d", font_weight="light"),
             default_state={"markup": types.MarkupText.PANGO},
         )
     )
