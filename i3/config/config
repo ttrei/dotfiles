@@ -12,7 +12,7 @@ font pango:DejaVu Sans Mono 10
 force_focus_wrapping yes
 
 bar {
-    status_command i3blocks
+    status_command ~/.venv/bin/i3pyblocks -c ~/.config/i3pyblocks/config.py
 }
 
 

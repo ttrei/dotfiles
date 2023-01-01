@@ -9,7 +9,11 @@ pipx install --force hatch
 pipx install --force youtube-dl
 pipx install --force yt-dlp
 pipx install --force ipython
-pipx install --force i3pyblocks
+
+python -m pip install i3pyblocks[blocks.dbus,blocks.http,blocks.inotify,blocks.pulse]
+# blocks.i3ipc
+# blocks.ps
+# blocks.x11
 
 pushd ~/dotfiles
 git submodule update --init i3/i3init/deps/i3ipc-python
