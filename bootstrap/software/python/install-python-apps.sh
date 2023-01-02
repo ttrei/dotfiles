@@ -10,9 +10,8 @@ pipx install --force youtube-dl
 pipx install --force yt-dlp
 pipx install --force ipython
 
-python -m pip install i3pyblocks[blocks.dbus,blocks.http,blocks.inotify,blocks.pulse]
+python -m pip install i3pyblocks[blocks.dbus,blocks.http,blocks.inotify,blocks.pulse,blocks.ps]
 # blocks.i3ipc
-# blocks.ps
 # blocks.x11
 
 pushd ~/dotfiles

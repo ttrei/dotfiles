@@ -94,7 +94,7 @@ class CustomNetworkSpeedBlock(ps.NetworkSpeedBlock):
         self.previous_time = now_time
 
 
-def get_partitions(excludes={"/boot", "/nix/store"}):
+def get_partitions(excludes={"/boot", "/boot/efi", "/nix/store"}):
     partitions = psutil.disk_partitions()
     return [p for p in partitions if p.mountpoint not in excludes]
 
