@@ -21,6 +21,7 @@
     emacs
     fd
     feh
+    font-awesome
     fzf
     gron
     k9s
@@ -38,6 +39,8 @@
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
     # myxow
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs.bash = {
     # initExtra = ''
