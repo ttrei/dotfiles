@@ -117,12 +117,12 @@ async def main():
     for partition in get_partitions():
         await runner.register_block(
             ps.DiskUsageBlock(
-                format=" {short_path}: {free:.1f}GiB",
+                format=" {short_path}: {free:.1f}G",
                 path=partition.mountpoint,
             )
         )
 
-    await runner.register_block(ps.VirtualMemoryBlock(format=" {available:.1f}GiB"))
+    await runner.register_block(ps.VirtualMemoryBlock(format=" {available:.1f}G"))
 
     # Using custom icons to show the temperature visually
     # So when the temperature is above 75,  is shown, when it is above 50,
@@ -141,7 +141,7 @@ async def main():
     )
 
     await runner.register_block(
-        ps.CpuPercentBlock(format=" {percent}%"),
+            ps.CpuPercentBlock(format=" {percent:4.1f}%"),
     )
 
     # Load only makes sense depending of the number of CPUs installed in
