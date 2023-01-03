@@ -48,6 +48,8 @@ bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -R
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 # 70 = F4
 bindcode $alt+70 kill
+# button3 = right-click
+bindsym $mod+Shift+button3 kill
 # 27 = r
 bindcode $mod+27 exec --no-startup-id dmenu_run
 # 16 = 7
