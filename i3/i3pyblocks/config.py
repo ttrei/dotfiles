@@ -105,7 +105,7 @@ async def main():
     # Current network speed for either en* (ethernet) or wl* devices.
     await runner.register_block(
         CustomNetworkSpeedBlock(
-            format_up=" {interface:.2s}:  {download}  {upload}",
+            format_up="{interface}  {download}  {upload}",
             format_down="",
             interface_regex="en*|wl*",
         )
@@ -117,8 +117,13 @@ async def main():
     for partition in get_partitions():
         await runner.register_block(
             ps.DiskUsageBlock(
-                format=" {short_path}: {free:.1f}G",
+                format=" {short_path} {free:.1f}G",
                 path=partition.mountpoint,
+                colors={
+                    0: types.Color.NEUTRAL,
+                    80: types.Color.WARN,
+                    95: types.Color.URGENT,
+                },
             )
         )
 
@@ -141,7 +146,7 @@ async def main():
     )
 
     await runner.register_block(
-            ps.CpuPercentBlock(format=" {percent:4.1f}%"),
+        ps.CpuPercentBlock(format=" {percent:4.1f}%"),
     )
 
     # Load only makes sense depending of the number of CPUs installed in
