@@ -146,7 +146,14 @@ async def main():
     )
 
     await runner.register_block(
-        ps.CpuPercentBlock(format=" {percent:4.1f}%"),
+        ps.CpuPercentBlock(
+            format=" {percent:4.1f}%",
+            colors={
+                0: types.Color.NEUTRAL,
+                10: types.Color.WARN,
+                50: types.Color.URGENT,
+            },
+        ),
     )
 
     # Load only makes sense depending of the number of CPUs installed in
