@@ -20,6 +20,7 @@ vim.opt.undofile = true
 
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldenable = false -- No folding on startup
 
 vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
 vim.opt.scrolloff = 8
