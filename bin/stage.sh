@@ -258,7 +258,9 @@ mkdir -p "$STAGINGDIR/.config/dunst"
 ln -s "$DOTFILES/dunst/dunstrc" "$STAGINGDIR/.config/dunst/dunstrc"
 
 # LANGUAGE SERVERS
-ln -s "$DOTFILES/language-servers/zls.json" "$STAGINGDIR/.config/zls.json"
+ln -s "$DOTFILES/language-servers/zls/zls.json" "$STAGINGDIR/.config/zls.json"
+mkdir -p "$STAGINGDIR/.config/clangd"
+ln -s "$DOTFILES/language-servers/clangd/config.yaml" "$STAGINGDIR/.config/clangd/config.yaml"
 
 # WEB
 ln -s "$DOTFILES/web/userChrome.css" "$STAGINGDIR/.config/userChrome.css"
