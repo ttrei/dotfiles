@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 
 HOSTS = {
     "mazais": {"user": "reinis", "port": 22},
-    "KODI": {"user": "user", "port": 22},
+    "kodi": {"user": "user", "port": 22},
 }
 
 logging.basicConfig(
