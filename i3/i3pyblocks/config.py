@@ -3,19 +3,23 @@
 # https://i3pyblocks.readthedocs.io/en/latest/autoapi/index.html
 # https://github.com/thiagokokada/i3pyblocks/blob/master/example.py
 
+
 import asyncio
 import json
 import logging
 import signal
 import socket
 import time
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 
 import psutil
 
 from i3pyblocks import Runner, blocks, types, utils
 from i3pyblocks._internal import misc
-from i3pyblocks.blocks import datetime, inotify, ps, pulse
+from i3pyblocks.blocks import datetime as datetime_block
+from i3pyblocks.blocks import inotify, ps, pulse
 
 # from i3pyblocks.blocks import dbus, http, x11
 
@@ -24,10 +28,99 @@ logging.basicConfig(
 )
 
 
+class RemoteSummaryBlock(blocks.PollingBlock):
+    def __init__(self, hostname: str, path: str, sleep: int = 5, **kwargs) -> None:
+        super().__init__(sleep=sleep, **kwargs)
+        self.hostname = hostname
+        self.path = path
+
+    def get_summary(self) -> tuple[str, str, Optional[str]]:
+        try:
+            f = open(self.path, "r")
+            strdata = f.read()
+            f.close()
+        except IOError:
+            logging.error(f"Could not read {self.path}")
+            return "", "", types.Color.NEUTRAL
+
+        try:
+            data = json.loads(strdata)
+        except ValueError:
+            logging.error(f"{self.path} contains invalid JSON")
+            return "", "", types.Color.NEUTRAL
+
+        host_data = data.get(self.hostname)
+        if host_data is None:
+            logging.error(f"{self.hostname} not in {self.path}")
+            return "", "", types.Color.NEUTRAL
+
+        if "error" in host_data:
+            return host_data["error"], host_data["error"][:5], types.Color.URGENT
+
+        try:
+            upgrades = host_data["upgrades"]
+            space = host_data["space"]
+            memory = host_data["memory"]
+        except KeyError as e:
+            logging.error(f"{e} not in {self.path}[{self.hostname}]")
+            return "", "", types.Color.NEUTRAL
+
+        full_text = self.hostname
+        short_text = self.hostname[:1]
+        color = types.Color.GOOD
+
+        upgrade_count = upgrades["count"]
+        if upgrade_count > 0:
+            full_text += f" upgrades({upgrade_count})"
+            short_text += f" u({upgrade_count})"
+            color = types.Color.WARN
+
+        low_space = []
+        for mountpoint in space:
+            size = space[mountpoint]["size"]
+            available = space[mountpoint]["available"]
+            if size == 0:
+                continue
+            percent = available / size * 100
+            if available < 1024 and percent < 5:
+                low_space.append(mountpoint)
+        if low_space:
+            low_space = " ".join(low_space)
+            full_text += f" space({low_space})"
+            short_text += f" space"
+            color = types.Color.WARN
+
+        memtotal = memory["total"]
+        memavail = memory["available"]
+        swaptotal = memory["swap_total"]
+        swapfree = memory["swap_free"]
+        percent = memavail / memtotal * 100
+        if percent < 5:
+            full_text += f" memory({memavail}M/{memtotal}M)"
+            short_text += f" mem"
+            color = types.Color.WARN
+        if swaptotal > 0 and swaptotal - swapfree > 1024:
+            full_text += f" swapping({swaptotal - swapfree}M)"
+            short_text += f" swap"
+            color = types.Color.WARN
+
+        mtime = datetime.fromisoformat(host_data["mtime"])
+        now = datetime.fromtimestamp(time.time(), tz=timezone.utc)
+        if (now - mtime).total_seconds() > 300:
+            color =  "#444444"  # dark gray
+
+        return full_text, short_text, color
+
+    async def run(self) -> None:
+        full_text, short_text, color = self.get_summary()
+        self.update(
+            full_text=full_text,
+            short_text=short_text,
+            color=color,
+        )
+
+
 class UpgradeCountBlock(blocks.PollingBlock):
-
-    # "/var/tmp/upgrade_counts.json"
-
     def __init__(self, hostname: str, path: str, sleep: int = 5, **kwargs) -> None:
         super().__init__(sleep=sleep, **kwargs)
         self.hostname = hostname
@@ -59,7 +152,7 @@ class UpgradeCountBlock(blocks.PollingBlock):
     async def run(self) -> None:
         count = self.get_upgrade_count()
         if count == 0:
-            self.update() # hide the block
+            self.update()  # hide the block
             return
         elif count > 0:
             color = types.Color.WARN
@@ -152,13 +245,24 @@ def get_partitions(excludes={"/boot", "/boot/efi", "/nix/store"}):
 async def main():
     runner = Runner()
 
+    hostname = socket.gethostname()
+
     # Upgrade count
     await runner.register_block(
         UpgradeCountBlock(
-            hostname=socket.gethostname(),
+            hostname=hostname,
             path="/var/tmp/upgrade_counts.json",
         )
     )
+
+    # Summary of remote machines
+    if hostname == "home-desktop-debian":
+        await runner.register_block(
+            RemoteSummaryBlock(hostname="mazais", path="/var/tmp/remote-summary.json")
+        )
+        await runner.register_block(
+            RemoteSummaryBlock(hostname="kodi", path="/var/tmp/remote-summary.json")
+        )
 
     # Current network speed for either en* (ethernet) or wl* devices.
     await runner.register_block(
@@ -333,7 +437,7 @@ async def main():
     # For a description of how you can customize, look:
     # https://developer.gnome.org/pango/stable/pango-Markup.html
     await runner.register_block(
-        datetime.DateTimeBlock(
+        datetime_block.DateTimeBlock(
             format_time=utils.pango_markup(" %H:%M", font_weight="bold"),
             format_date=utils.pango_markup(" %a %Y-%m-%d", font_weight="light"),
             default_state={"markup": types.MarkupText.PANGO},
