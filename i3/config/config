@@ -16,6 +16,9 @@ bar {
 }
 
 
+# TODO: Waiting for i3 4.22 to reach debian-testing
+# gaps inner 5px
+
 
 # Keybindings
 
