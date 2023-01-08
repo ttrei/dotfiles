@@ -19,6 +19,10 @@
 
       ### syntax, LSP
       cmp-nvim-lsp
+      luasnip
+      cmp-buffer
+      cmp_luasnip
+      cmp-path
       neomake
       nvim-cmp
       nvim-lspconfig
