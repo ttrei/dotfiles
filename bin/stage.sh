@@ -149,7 +149,6 @@ mkdir -p "$STAGINGDIR/bin/i3"
 cp "$DOTFILES/i3/config/config" "$STAGINGDIR/.config/i3/config"
 ln -s "$DOTFILES/i3/i3pyblocks" "$STAGINGDIR/.config/i3pyblocks"
 ln -s "$DOTFILES/i3/sway/config" "$STAGINGDIR/.config/sway/config"
-ln -s "$DOTFILES/i3/i3blocks/config" "$STAGINGDIR/.config/i3blocks/config"
 ln -s "$DOTFILES/i3/i3blocks/blocklets" "$STAGINGDIR/.config/i3blocks/blocklets"
 ln -s "$DOTFILES/i3/commands.json" "$STAGINGDIR/.config/i3/commands.json"
 ln -s "$DOTFILES/i3/bin/myrmidon/confirm.sh" "$STAGINGDIR/bin/confirm.sh"
@@ -165,11 +164,9 @@ if [ "$MACHINE" = "home-desktop" ]; then
         cat "$DOTFILES/i3/config/config-home" >> "$STAGINGDIR/.config/i3/config"
     elif [ "$CONTEXT" = "work" ]; then
         ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
-        ln -sf "$DOTFILES/i3/i3blocks/config-tieto2" "$STAGINGDIR/.config/i3blocks/config"
     fi
 elif [ "$MACHINE" = "work-laptop" ]; then
     ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
-    ln -sf "$DOTFILES/i3/i3blocks/config-tieto2" "$STAGINGDIR/.config/i3blocks/config"
 elif [ "$MACHINE" = "htpc" ]; then
     ln -s "$DOTFILES/i3/sway/config-kodi" "$STAGINGDIR/.config/sway/config-kodi"
     cat "$DOTFILES/i3/config/config-kodi" >> "$STAGINGDIR/.config/i3/config"
