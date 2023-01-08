@@ -65,9 +65,9 @@ class RemoteSummaryBlock(blocks.PollingBlock):
             logging.error(f"{e} not in {self.path}[{self.hostname}]")
             return "", "", types.Color.NEUTRAL
 
-        full_text = self.hostname
-        short_text = self.hostname[:1]
-        color = types.Color.GOOD
+        full_text = ""
+        short_text = ""
+        color = None
 
         upgrade_count = upgrades["count"]
         if upgrade_count > 0:
@@ -108,6 +108,10 @@ class RemoteSummaryBlock(blocks.PollingBlock):
         now = datetime.fromtimestamp(time.time(), tz=timezone.utc)
         if (now - mtime).total_seconds() > 300:
             color =  "#444444"  # dark gray
+
+        if full_text:
+            full_text = f"{self.hostname:}{full_text}"
+            short_text = f"{self.hostname[:1]:}{short_text}"
 
         return full_text, short_text, color
 
