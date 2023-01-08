@@ -1,24 +1,74 @@
 #!/usr/bin/env python3
-
 # https://i3pyblocks.readthedocs.io/en/latest/creating-a-new-block.html
 # https://i3pyblocks.readthedocs.io/en/latest/autoapi/index.html
 # https://github.com/thiagokokada/i3pyblocks/blob/master/example.py
 
 import asyncio
+import json
 import logging
 import signal
+import socket
 import time
 from pathlib import Path
 
 import psutil
 
-from i3pyblocks import Runner, types, utils
+from i3pyblocks import Runner, blocks, types, utils
 from i3pyblocks._internal import misc
-from i3pyblocks.blocks import datetime, dbus, http, inotify, ps, pulse, x11
+from i3pyblocks.blocks import datetime, inotify, ps, pulse
+
+# from i3pyblocks.blocks import dbus, http, x11
 
 logging.basicConfig(
     filename=Path.home().joinpath(".i3pyblocks.log"), level=logging.INFO
 )
+
+
+class UpgradeCountBlock(blocks.PollingBlock):
+
+    # "/var/tmp/upgrade_counts.json"
+
+    def __init__(self, hostname: str, path: str, sleep: int = 5, **kwargs) -> None:
+        super().__init__(sleep=sleep, **kwargs)
+        self.hostname = hostname
+        self.path = path
+
+    def get_upgrade_count(self) -> int:
+        try:
+            f = open(self.path, "r")
+            strdata = f.read()
+            f.close()
+        except IOError:
+            logging.error(f"Could not read {self.path}")
+            return -1
+
+        try:
+            data = json.loads(strdata)
+        except ValueError:
+            logging.error(f"{self.path} contains invalid JSON")
+            return -1
+
+        by_host = {x["host"]: x for x in data}
+        host_data = by_host.get(self.hostname)
+        if host_data is None:
+            logging.error(f"{self.hostname} not in {self.path}")
+            return -1
+
+        return int(host_data.get("count", -1))
+
+    async def run(self) -> None:
+        count = self.get_upgrade_count()
+        if count == 0:
+            self.update() # hide the block
+            return
+        elif count > 0:
+            color = types.Color.WARN
+        else:
+            color = types.Color.URGENT
+        self.update(
+            f"upgrades: {count}",
+            color=color,
+        )
 
 
 class CustomNetworkSpeedBlock(ps.NetworkSpeedBlock):
@@ -101,6 +151,14 @@ def get_partitions(excludes={"/boot", "/boot/efi", "/nix/store"}):
 
 async def main():
     runner = Runner()
+
+    # Upgrade count
+    await runner.register_block(
+        UpgradeCountBlock(
+            hostname=socket.gethostname(),
+            path="/var/tmp/upgrade_counts.json",
+        )
+    )
 
     # Current network speed for either en* (ethernet) or wl* devices.
     await runner.register_block(
