@@ -23,7 +23,7 @@ bar {
 gaps inner 3px
 smart_gaps on
 
-default_border normal 5
+default_border pixel 5
 smart_borders on
 # smart_borders no_gaps
 hide_edge_borders both
