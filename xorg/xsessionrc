@@ -6,7 +6,7 @@ xmodmap $HOME/.xmodmaprc &
 
 redshift &
 
-feh --bg-scale $HOME/.wallpaper &
+xsetroot -solid "#AAAAAA" &
 
 xrandr --output HDMI-2 --auto --primary --output HDMI-1 --off
 
