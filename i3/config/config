@@ -1,6 +1,5 @@
 focus_follows_mouse no
 mouse_warping none
-hide_edge_borders vertical
 
 # Urgency
 client.urgent #2f343a #900000 #ffffff #900000
@@ -15,10 +14,19 @@ bar {
     status_command ~/.venv/bin/i3pyblocks -c ~/.config/i3pyblocks/config.py
 }
 
+# Border and gap config
+# TODO: I want no gaps and no border at the right screen edge for browser.
+# With i3 4.22 I failed to configure it.
+# Maybe I should use a per-workspace gap+border config for this.
+# A different avenue is to reduce my reliance on scroll bars, use keyboard more.
 
-# TODO: Waiting for i3 4.22 to reach debian-testing
-# gaps inner 5px
+gaps inner 3px
+smart_gaps on
 
+default_border normal 5
+smart_borders on
+# smart_borders no_gaps
+hide_edge_borders both
 
 # Keybindings
 
