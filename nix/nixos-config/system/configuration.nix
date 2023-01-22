@@ -11,6 +11,9 @@
 
   nixpkgs.overlays = [
     (import overlays/mypackages.nix)
+    (import (builtins.fetchTarball {
+      url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
+    }))
   ];
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
