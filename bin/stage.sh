@@ -230,7 +230,11 @@ if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/nixos/overlays"
 
     if [ "$EXECUTION_ENV" = "qemu" ]; then
-        ln -s "$nixos_dir/qemu.nix" "$STAGINGDIR/.config/nixos/custom.nix"
+        if [ "$MACHINE" = "htpc" ]; then
+            ln -s "$nixos_dir/htpc-qemu.nix" "$STAGINGDIR/.config/nixos/custom.nix"
+        else
+            ln -s "$nixos_dir/qemu.nix" "$STAGINGDIR/.config/nixos/custom.nix"
+        fi
     elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ] ; then
         ln -s "$nixos_dir/htpc.nix" "$STAGINGDIR/.config/nixos/custom.nix"
     else
