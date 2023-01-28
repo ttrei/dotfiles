@@ -12,6 +12,9 @@
 
   nixpkgs.overlays = [
     (import ../../overlays/mypackages.nix)
+    (import (builtins.fetchTarball {
+      url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
+    }))
   ];
 
   home.packages = with pkgs; [
@@ -31,6 +34,7 @@
     nodePackages.typescript-language-server
     git
     git-crypt
+    i3pyblocks
     python310Packages.pgsanity
     ripgrep
     signal-desktop
