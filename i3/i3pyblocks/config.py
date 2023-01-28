@@ -12,7 +12,7 @@ import socket
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 
 import psutil
 
@@ -34,7 +34,7 @@ class RemoteSummaryBlock(blocks.PollingBlock):
         self.hostname = hostname
         self.path = path
 
-    def get_summary(self) -> tuple[str, str, Optional[str]]:
+    def get_summary(self) -> Tuple[str, str, Optional[str]]:
         try:
             f = open(self.path, "r")
             strdata = f.read()
