@@ -13,7 +13,6 @@
     font-awesome
     glxinfo
     i3
-    i3blocks
     i3pyblocks
     i3status
     # inkscape
