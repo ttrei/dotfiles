@@ -12,7 +12,7 @@ font pango:DejaVu Sans Mono 10
 focus_wrapping yes
 
 bar {
-    status_command ~/.venv/bin/i3pyblocks -c ~/.config/i3pyblocks/config.py
+    status_command i3pyblocks -c ~/.config/i3pyblocks/config.py
 }
 
 # Border and gap config
@@ -50,6 +50,10 @@ set $alt Mod1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Left click+Drag to change the tiling layout
+# https://build.i3wm.org/docs/userguide.html#config_tiling_drag
+tiling_drag modifier
+
 # reload the configuration file
 # 54 = c
 bindcode $mod+Shift+54 reload
@@ -67,6 +71,8 @@ bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -R
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
 # 70 = F4
 bindcode $alt+70 kill
+# button3 = right-click
+bindsym $mod+Shift+button3 kill
 # 27 = r
 bindcode $mod+27 exec --no-startup-id dmenu_run
 # 16 = 7
