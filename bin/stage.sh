@@ -237,6 +237,8 @@ if [ "$DISTRO" = "nixos" ]; then
         fi
     elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ] ; then
         ln -s "$nixos_dir/htpc.nix" "$STAGINGDIR/.config/nixos/custom.nix"
+    elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "home-desktop" ] ; then
+        ln -s "$nixos_dir/home-desktop.nix" "$STAGINGDIR/.config/nixos/custom.nix"
     else
         echo "ABORT! NixOS config not available for this environment:"
         print_env
