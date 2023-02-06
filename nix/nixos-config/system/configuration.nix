@@ -67,8 +67,10 @@
   programs.bash.enableCompletion = true;
 
   services.openssh.enable = true;
-  services.openssh.passwordAuthentication = false;
-  services.openssh.permitRootLogin = "prohibit-password";
+  services.openssh.settings = {
+    passwordAuthentication = false;
+    permitRootLogin = "prohibit-password";
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

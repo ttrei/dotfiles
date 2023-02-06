@@ -60,19 +60,21 @@
       Option "ButtonMapping" "1 2 3 4 5 6 7 0 0 0 11 12 13 14 15 16"
     EndSection
   '';
+  # Enable touchpad support
+  services.xserver.libinput.enable = true;
+
+  location = {
+      latitude = 56.948889;
+      longitude = 24.106389;
+  };
 
   # services.redshift = {
   #     enable = true;
-  #     latitude = "56.948889";
-  #     longitude = "24.106389";
   #     temperature = {
   #         day = 5500;
   #         night = 3700;
   #     };
   # };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   # Extra fonts
   fonts = {
