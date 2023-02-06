@@ -36,6 +36,7 @@
     git-crypt
     i3pyblocks
     python310Packages.pgsanity
+    redshift
     ripgrep
     signal-desktop
     starship
