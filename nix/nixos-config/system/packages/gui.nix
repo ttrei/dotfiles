@@ -55,9 +55,7 @@
       MatchIsPointer "on"
       MatchDevicePath "/dev/input/event*"
       Driver "evdev"
-      Option "AccelerationProfile" "-1"
       Option "AccelerationScheme" "none"
-      Option "ButtonMapping" "1 2 3 4 5 6 7 0 0 0 11 12 13 14 15 16"
     EndSection
   '';
   # Enable touchpad support
