@@ -42,6 +42,53 @@
 
   services.printing.enable = true;
 
+  # Attempt #1
+  # https://discourse.nixos.org/t/printers-they-work/17545
+  services.printing.browsing = true;
+  services.printing.browsedConf = ''
+  BrowseDNSSDSubTypes _cups,_print
+  BrowseLocalProtocols all
+  BrowseRemoteProtocols all
+  CreateIPPPrinterQueues All
+
+  BrowseProtocols all
+      '';
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+  # Printer test page doesn't print.
+  # Sample document doesn't print.
+  # Printer status in http://localhost:631/printers/:
+  # Paused - "No destination host name supplied by cups-browsed for printer "Brother_HL_L2340D_series", is cups-browsed running?"
+  # Tried to enable cups-browsed explicitly but systemctl status cups-browsed.service shows
+  # Feb 06 21:57:22 home-desktop-nixos systemd[1]: Started CUPS Remote Printer Discovery.
+  # Feb 06 21:57:22 home-desktop-nixos systemd[1]: cups-browsed.service: Deactivated successfully.
+  systemd.services.cups-browsed.enable = true;
+
+  # Attempt #2
+  # https://discourse.nixos.org/t/brother-dcp-572dw-wrapper/8113
+  # hardware.printers =
+  #   let
+  #     brother = "Brother_HL-L2340DW_NixOS";
+  #     # hostName = "printer.lan";
+  #     hostName = "192.168.1.215";
+  #   in
+  #   {
+  #       ensureDefaultPrinter = brother;
+  #       ensurePrinters = [
+  #         {
+  #           name = brother;
+  #           deviceUri = "ipp://${hostName}/ipp";
+  #           model = "everywhere";
+  #           description = lib.replaceStrings [ "_" ] [ " " ] brother;
+  #           location = "Bedroom";
+  #         }
+  #       ];
+  #   };
+  # Printer test page doesn't print.
+  # Sample document (1 page) prints as many blank pages.
+
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
