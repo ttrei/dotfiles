@@ -2,15 +2,14 @@
 
 [ -z "$1" ] && echo "Usage: $0 <one/two>" && exit 1
 
-PRIMARY=$(xrandr_display_outputs.sh | grep VG245 | cut -d" " -f2)
-SECONDARY=$(xrandr_display_outputs.sh | grep S23C650 | cut -d" " -f2)
+set -o nounset
 
 if [ "$1" = "one" ]; then
     xrandr \
-        --output "$PRIMARY" --auto --primary \
-        --output "$SECONDARY" --off
+        --output "$PRIMARY_DISPLAY" --auto --primary \
+        --output "$SECONDARY_DISPLAY" --off
 elif [ "$1" = "two" ]; then
     xrandr \
-        --output "$PRIMARY" --auto --primary \
-        --output "$SECONDARY" --auto --right-of "$PRIMARY" --rotate left
+        --output "$PRIMARY_DISPLAY" --auto --primary \
+        --output "$SECONDARY_DISPLAY" --auto --right-of "$PRIMARY_DISPLAY" --rotate left
 fi

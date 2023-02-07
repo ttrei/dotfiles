@@ -26,6 +26,7 @@
     transmission-gtk
     vlc
     xbindkeys
+    xdotool
     xfce.xfce4-terminal
     xorg.xev
     xorg.xmodmap

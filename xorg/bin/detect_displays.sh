@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-# Print connected displays and their xrandr outputs
+# Detect connected displays and export their xrandr outputs as env variables
 # Adapted from https://stackoverflow.com/a/24933353/9124671
 
+tmpfile=$(mktemp)
 while read -r output hex conn; do
     [[ -z "$conn" ]] && conn=${output%%-*}
-    echo "$(xxd -r -p <<< "$hex") $output"
+    echo "$(xxd -r -p <<< "$hex") $output" >> $tmpfile
 done < <(xrandr --prop | awk '
     !/^[ \t]/ {
         if (output && hex) print output, hex, conn
@@ -24,3 +25,10 @@ done < <(xrandr --prop | awk '
     END {if (output && hex) print output, hex, conn}
     ' | sort
 )
+
+PRIMARY_DISPLAY=$(grep VG245 "$tmpfile" | cut -d" " -f2)
+SECONDARY_DISPLAY=$(grep S23C650 "$tmpfile" | cut -d" " -f2)
+export PRIMARY_DISPLAY
+export SECONDARY_DISPLAY
+
+rm "$tmpfile"

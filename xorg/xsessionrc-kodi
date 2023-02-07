@@ -4,9 +4,6 @@ xset dpms 0 0 10000 & # monitor power saving timeouts:
 
 xmodmap $HOME/.xmodmaprc &
 
-# Ensure that initial workspaces will be created on the display that we want
-xdotool mousemove --screen HDMI-2 960 540 &
-
 if [ -x "$(command -v /usr/bin/dunst)" ]; then
     /usr/bin/dunst &
 fi
