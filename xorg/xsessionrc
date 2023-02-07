@@ -8,10 +8,13 @@ redshift &
 
 xsetroot -solid "#AAAAAA" &
 
-xrandr --output HDMI-2 --auto --primary --output HDMI-1 --off
+if [ -f "$HOME/bin/detect_displays.sh" ] && [ -f "$HOME/bin/manage-desktop-displays.sh" ] ; then
+    . $HOME/bin/detect_displays.sh
+    $HOME/bin/manage-desktop-displays.sh one
+fi
 
 # Ensure that initial workspaces will be created on the display that we want
-xdotool mousemove --screen HDMI-2 960 540 &
+xdotool mousemove --screen "$PRIMARY_DISPLAY" 960 540 &
 
 if [ -x "$(command -v /usr/bin/dunst)" ]; then
     /usr/bin/dunst &
