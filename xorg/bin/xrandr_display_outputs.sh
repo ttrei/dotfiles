@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Print connected displays and their xrandr outputs
 # Adapted from https://stackoverflow.com/a/24933353/9124671
