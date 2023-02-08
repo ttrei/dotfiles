@@ -8,14 +8,6 @@ redshift &
 
 xsetroot -solid "#AAAAAA" &
 
-if [ -f "$HOME/bin/detect_displays.sh" ] && [ -f "$HOME/bin/manage-desktop-displays.sh" ] ; then
-    . $HOME/bin/detect_displays.sh
-    $HOME/bin/manage-desktop-displays.sh one
-fi
-
-# Ensure that initial workspaces will be created on the display that we want
-xdotool mousemove --screen "$PRIMARY_DISPLAY" 960 540 &
-
 if [ -x "$(command -v /usr/bin/dunst)" ]; then
     /usr/bin/dunst &
 fi
@@ -27,6 +19,13 @@ fi
 if [ -f "$HOME/.profile" ] ; then
     . $HOME/.profile
 fi
+
+if [ -f "$HOME/bin/manage-desktop-displays.sh" ] ; then
+    $HOME/bin/manage-desktop-displays.sh one
+fi
+
+# Ensure that initial workspaces will be created on the display that we want
+xdotool mousemove --screen "$PRIMARY_DISPLAY" 960 540 &
 
 xbindkeys &
 
