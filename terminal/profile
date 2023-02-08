@@ -6,6 +6,10 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin/i3/workspace-scripts:$PATH"
 fi
 
+if [ -f "$HOME/bin/detect_displays.sh" ]; then
+    . "$HOME/bin/detect_displays.sh"
+fi
+
 if [ -d "$HOME/.venv" ]; then
     . "$HOME/.venv/bin/activate"
 fi
