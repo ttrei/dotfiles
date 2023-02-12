@@ -2,4 +2,4 @@
 Description=De-duplicate bash history
 
 [Service]
-ExecStart=/bin/bash -c "~/bin/deduplicate-bash-history.py ~/.bash_eternal_history /tmp/bash_history_deduplicated && mv --force /tmp/bash_history_deduplicated ~/.bash_eternal_history"
+ExecStart=%h/bin/deduplicate-bash-history.py %h/.bash_eternal_history
