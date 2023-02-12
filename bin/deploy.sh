@@ -6,10 +6,14 @@ set -o nounset
 DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
 STAGINGDIR=${DOTFILES_STAGINGDIR:-"$DOTFILES/.staging"}
 TARGETDIR=${DOTFILES_TARGETDIR:-"$HOME"}
+ENVFILE=${DOTFILES_ENVFILE:-"$HOME/.dotfiles-env"}
 
 ARG=${1:-}
 
 "$DOTFILES"/bin/stage.sh "$ARG"
+
+# shellcheck source=/dev/null
+. "$ENVFILE"
 
 echo "DEPLOYING $STAGINGDIR --> $TARGETDIR"
 
@@ -25,5 +29,7 @@ if [ -f "$TARGETDIR/.ssh/config" ]; then
     chmod 600 "$TARGETDIR/.ssh/config"
 fi
 
-systemctl --user daemon-reload
-systemctl --user enable deduplicate-bash-history.timer
+if [ "$DISTRO" != "nixos" ]; then
+    systemctl --user daemon-reload
+    systemctl --user enable deduplicate-bash-history.timer
+fi
