@@ -42,6 +42,12 @@ fi
 mkdir -p "$STAGINGDIR/bin"
 mkdir -p "$STAGINGDIR/.config"
 
+# SYSTEMD
+systemd_user_dir="$STAGINGDIR/.config/systemd/user"
+mkdir -p "$systemd_user_dir"
+ln -s "$DOTFILES/systemd/deduplicate-bash-history.service" "$systemd_user_dir/deduplicate-bash-history.service"
+ln -s "$DOTFILES/systemd/deduplicate-bash-history.timer" "$systemd_user_dir/deduplicate-bash-history.timer"
+
 # TERMINAL
 mkdir -p "$STAGINGDIR/.config/htop"
 mkdir -p "$STAGINGDIR/.config/htop"
@@ -57,6 +63,7 @@ else
     ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile"
 fi
 ln -s "$DOTFILES/terminal/bash_fzf" "$STAGINGDIR/.bash_fzf"
+ln -s "$DOTFILES/terminal/bin/deduplicate-bash-history.py" "$STAGINGDIR/bin/deduplicate-bash-history.py"
 ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin/describe-environment.sh"
 ln -s "$DOTFILES/terminal/bin/fzf-search-contents.sh" "$STAGINGDIR/bin/fzf-search-contents.sh"
 ln -s "$DOTFILES/terminal/bin/samecwd-terminal.sh" "$STAGINGDIR/bin/samecwd-terminal.sh"

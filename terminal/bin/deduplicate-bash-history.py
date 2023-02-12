@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # De-duplicate bash history, keeping the most recent occurrences of unique commands.
 # Inspired by https://superuser.com/a/1436733/1772509
 
