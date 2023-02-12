@@ -102,13 +102,22 @@ if ! [ -x "$(command -v delta)" ]; then
 fi
 
 # Eternal bash history
-# http://stackoverflow.com/questions/9457233/unlimited-bash-history
 # Features:
 # - Writes the executed command immediately to ~/.bash_eternal_history.
+#   Therefore, newly created shell has access to the history of currently open shells, as it was at
+#   the moment the new shell was created.
+#   When shells run in parallel, commands executed in them won't cross-pollute.
 # - ~/.bash_eternal_history is periodically de-duplicated by external python script.
 # - Doesn't use default history location because bash may truncate it upon close:
 #   http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
 # - On exit, logs the complete session to ~/.bash_eternal_history_log for future reference.
+# TODO:
+# - Upload the session logs to a central server, merge into one file
+# - Make it easy to download the merged session log and fuzzy-find commands in it
+#
+# Inspired by:
+# http://stackoverflow.com/questions/9457233/unlimited-bash-history
+# https://superuser.com/a/1436733
 export HISTFILE=~/.bash_eternal_history
 # Unlimited size
 export HISTFILESIZE=
@@ -116,20 +125,28 @@ export HISTSIZE=
 
 mkdir -p /tmp/bash_history
 session_history_log=$(mktemp -u -p /tmp/bash_history)
+last_logged_command_number=""
 
 function log_previous_command() {
     if ! [ -f "$session_history_log" ]; then
-        echo "# [$(date '+%Y-%m-%d %H:%M')] start session" >> "$session_history_log"
+        echo "# [$(date '+%Y-%m-%d %H:%M')][$(hostname)] begin session" > "$session_history_log"
     else
-        history 1 >> "$session_history_log"
+        previous_command_numbered=$(history 1 | sed -E 's/^[[:space:]]*//')
+        previous_command=$(echo $previous_command_numbered | sed -E 's/^[[:digit:]]+[[:space:]]+//')
+        previous_command_number=$(echo $previous_command_numbered | cut -d' ' -f1)
+        if [ "$last_logged_command_number" != "$previous_command_number" ]; then
+            echo "$previous_command" >> "$session_history_log"
+            last_logged_command_number="$previous_command_number"
+        fi
     fi
 }
-# Append to $HISTFILE
 PROMPT_COMMAND="log_previous_command; history -a; $PROMPT_COMMAND"
 
 function store_session_log() {
-    echo "# [$(date '+%Y-%m-%d %H:%M')] end session" >> "$session_history_log"
-    cat "$session_history_log" >> ~/.bash_eternal_history_log
+    echo "# [$(date '+%Y-%m-%d %H:%M')][$(hostname)] end session" >> "$session_history_log"
+    if [ "$last_logged_command_number" != "" ]; then
+        cat "$session_history_log" >> ~/.bash_eternal_history_log
+    fi
     rm "$session_history_log"
 }
 trap store_session_log EXIT
