@@ -67,6 +67,21 @@
     nix-direnv.enable = true;
   };
 
+  programs.firefox = {
+    # https://nix-community.github.io/home-manager/options.html#opt-programs.firefox.enable
+    enable = true;
+    profiles.reinis = {
+      id = 0;
+      name = "Reinis";
+      isDefault = true;
+      search.default = "DuckDuckGo";
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        bypass-paywalls-clean
+      ];
+    };
+  };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
