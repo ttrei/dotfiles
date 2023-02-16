@@ -79,6 +79,7 @@
         ublock-origin
         bypass-paywalls-clean
       ];
+      userChrome = builtins.readFile includes/userChrome.css;
     };
   };
 
