@@ -11,7 +11,7 @@
   ];
 
   nixpkgs.overlays = [
-    (import ../../overlays/mypackages.nix)
+    (import ./overlays/mypackages.nix)
     (import (builtins.fetchTarball {
       url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
     }))

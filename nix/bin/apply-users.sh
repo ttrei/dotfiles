@@ -8,7 +8,7 @@ fi
 # shellcheck source=/dev/null
 . "$ENVFILE"
 
-pushd ~/dotfiles/nix/home-manager/reinis || exit
+pushd ~/.config/home-manager/reinis || exit
 
 if [ "$DISTRO" = "nixos" ]; then
     home-manager switch -f ./nixos.nix
