@@ -64,9 +64,9 @@
     lgm = lg --first-parent -i --grep=merge --invert-grep
 
     # choose a commit on which to rebase
-    rebase-fzf-commit = "!f() { git rebase -i $(git log --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cd%Cblue %an%Creset' --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
+    rebase-fzf-commit = "!f() { git rebase -i $(git log --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cd%Cblue %an%Creset' --color=always | fzf --ansi --reverse --height=40% | cut -d ' ' -f1)^ ; }; f"
     # choose a branch on which to rebase
-    rebase-fzf-branch = "!f() { git rebase -i $(git for-each-ref --format='%(refname)' refs/ | fzf --ansi) ; }; f"
+    rebase-fzf-branch = "!f() { git rebase -i $(git for-each-ref --format='%(refname)' refs/ | fzf --ansi --reverse --height=40%) ; }; f"
 
     # Find the merge commit that introduced a commit into current branch.
     # Doesn't work correctly if there is no merge commit.
