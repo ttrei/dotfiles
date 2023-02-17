@@ -69,7 +69,7 @@
 
   programs.firefox = {
     # https://nix-community.github.io/home-manager/options.html#opt-programs.firefox.enable
-    enable = true;
+    enable = false;
     profiles.reinis = {
       id = 0;
       name = "Reinis";
