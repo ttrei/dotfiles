@@ -18,7 +18,7 @@ elif [ "$1" = "--local" ]; then
 elif [ "$1" = "--remote" ]; then
     branches="$remote_branches"
 fi
-branch=$(echo -e "$branches" | grep -v HEAD | sort | uniq | fzf --layout=reverse)
+branch=$(echo -e "$branches" | grep -v HEAD | sort | uniq | fzf --layout=reverse --height=40%)
 
 if [ -z "$branch" ]; then
     echo "No branch selected" >&2
@@ -40,7 +40,7 @@ if [ "$count" -eq "1" ]; then
     remote_branch="$remote_branches"
 else
     prompt="Select remote branch to track:"
-    remote_branch=$(echo -e "$remote_branches" | fzf --layout=reverse --prompt="$prompt")
+    remote_branch=$(echo -e "$remote_branches" | fzf --layout=reverse --height=40% --prompt="$prompt")
 fi
 
 command="git checkout -b $branch --track $remote_branch"
