@@ -1,6 +1,6 @@
 ! Menu (135), PrintScreen (107) and ScrLock (78) as CapsLock
 !keycode 135 = Caps_Lock
-!keycode 107 = Caps_Lock
+keycode 107 = Caps_Lock
 !keycode 78 = Caps_Lock
 
 ! Left Alt (64) as Alt, used for Emacs Meta key
