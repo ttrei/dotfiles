@@ -17,6 +17,8 @@ ARG=${1:-}
 
 echo "DEPLOYING $STAGINGDIR --> $TARGETDIR"
 
+rm -rf "$TARGETDIR/.config/home-manager"
+rm -rf "$TARGETDIR/.config/nixos"
 rm -rf "$TARGETDIR/.vim"
 rm -rf "$TARGETDIR/bin/i3/workspace-scripts"
 
