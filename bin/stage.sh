@@ -225,6 +225,7 @@ ln -s "$DOTFILES/nix/bin/update-user.sh" "$STAGINGDIR/bin/update-user.sh"
 if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/nix/bin/apply-system.sh" "$STAGINGDIR/bin/apply-system.sh"
     ln -s "$DOTFILES/nix/bin/update-system.sh" "$STAGINGDIR/bin/update-system.sh"
+    ln -s "$DOTFILES/nix/bin/cleanup-system.sh" "$STAGINGDIR/bin/cleanup-system.sh"
     ln -s "$DOTFILES/nix/bin/update-grub.sh" "$STAGINGDIR/bin/update-grub.sh"
 fi
 ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
