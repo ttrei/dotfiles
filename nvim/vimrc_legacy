@@ -71,6 +71,7 @@ augroup VIMRC_FILETYPE_SETTINGS
     au FileType asciidoc setlocal foldexpr=NestedAsciidocFolds()
     au FileType gitcommit setlocal foldmethod=syntax
     au FileType html setlocal shiftwidth=2 foldmethod=indent tabstop=2
+    au FileType htmldjango setlocal shiftwidth=2 foldmethod=indent tabstop=2
     au FileType javascript set shiftwidth=2 tabstop=2
     au FileType json set shiftwidth=2 tabstop=2
     au FileType lua setlocal shiftwidth=2 tabstop=2
