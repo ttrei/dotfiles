@@ -90,6 +90,11 @@
     };
   };
 
+  # networking.extraHosts =
+  #   ''
+  #     159.65.84.88 foodbook.taukulis.lv
+  #   '';
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
