@@ -216,6 +216,7 @@ mkdir -p "$STAGINGDIR/.config/pip"
 mkdir -p "$STAGINGDIR/.config/hatch"
 ln -s "$DOTFILES/python/pip.conf" "$STAGINGDIR/.config/pip/pip.conf"
 ln -s "$DOTFILES/python/hatch/config.toml" "$STAGINGDIR/.config/hatch/config.toml"
+ln -s "$DOTFILES/python/black" "$STAGINGDIR/.config/black"
 
 # NIX
 mkdir -p "$STAGINGDIR/.config/nix"
