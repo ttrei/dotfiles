@@ -21,6 +21,7 @@
     neovim
     # picard
     python3Packages.i3ipc
+    qbittorrent
     rofi
     st
     transmission-gtk
