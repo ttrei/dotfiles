@@ -17,6 +17,7 @@
     i3status
     # inkscape
     kdiff3
+    lutris
     meld
     neovim
     # picard
@@ -35,6 +36,8 @@
     zathura
     zutty
   ];
+
+  programs.steam.enable = true;
 
   services.xserver = {
     enable = true;
