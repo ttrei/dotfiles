@@ -22,6 +22,16 @@
     fsType = "ext4";
   };
 
+  fileSystems."/media/storage-new" = {
+    device = "/dev/disk/by-uuid/c7b00111-51f7-4c09-bf16-4239d25e72e1";
+    fsType = "ext4";
+  };
+
+  fileSystems."/media/extra-storage" = {
+    device = "/dev/disk/by-uuid/52945d79-d15b-4c45-b939-dd8b52b9a728";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/1027-5389";
     fsType = "vfat";
