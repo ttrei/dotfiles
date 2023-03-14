@@ -3,6 +3,7 @@
 30:notes
 31:dev
 32:log
+33:k8s
 35:idea
 36:vscode
 37:pycharm
