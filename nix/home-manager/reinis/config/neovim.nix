@@ -23,6 +23,7 @@
       cmp-buffer
       cmp_luasnip
       cmp-path
+      copilot-vim
       neomake
       nvim-cmp
       nvim-lspconfig

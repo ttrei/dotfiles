@@ -30,6 +30,7 @@
     k9s
     ncdu
     nethogs
+    nodejs-slim
     nodePackages.pyright
     nodePackages.typescript-language-server
     git
