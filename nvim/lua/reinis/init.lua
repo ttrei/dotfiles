@@ -4,3 +4,5 @@ require ('reinis.remaps')
 require ('reinis.lspconfig')
 require ('reinis.treesitter')
 require ('reinis.cmp')
+
+-- require ('reinis.copilot')
