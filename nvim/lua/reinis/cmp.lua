@@ -13,12 +13,11 @@ cmp.setup({
     ['<TAB>'] = cmp.mapping.confirm({ select = true }),
   }),
 
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  }, {
-    { name = 'buffer' },
-  }),
+  sources = {
+    { name = 'copilot', group_index = 2 },
+    { name = 'nvim_lsp', group_index = 2 },
+    { name = 'luasnip', group_index = 2 },
+  },
 
   snippet = {
     expand = function(args)
