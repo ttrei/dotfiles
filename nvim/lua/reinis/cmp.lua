@@ -17,6 +17,7 @@ cmp.setup({
     { name = 'copilot', group_index = 2 },
     { name = 'nvim_lsp', group_index = 2 },
     { name = 'luasnip', group_index = 2 },
+    { name = 'buffer', group_index = 5 },
   },
 
   snippet = {
