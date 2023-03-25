@@ -28,6 +28,7 @@
     fzf
     gron
     k9s
+    lutris
     ncdu
     nethogs
     nodejs-slim
