@@ -17,7 +17,6 @@
     i3status
     # inkscape
     kdiff3
-    lutris
     meld
     neovim
     # picard
