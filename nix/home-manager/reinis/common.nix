@@ -27,6 +27,7 @@
     font-awesome
     fzf
     gron
+    jdt-language-server
     k9s
     lutris
     ncdu
@@ -38,6 +39,7 @@
     git-crypt
     i3pyblocks
     python310Packages.pgsanity
+    openjdk
     redshift
     ripgrep
     signal-desktop

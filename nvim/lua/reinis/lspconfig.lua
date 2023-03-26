@@ -7,6 +7,10 @@ https://zignar.net/2019/11/21/setup-neovim-for-java-development/
 https://zignar.net/2020/10/17/setup-neovim-for-java-development-2/
 https://github.com/eclipse/eclipse.jdt.ls
 
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jdtls
+Note: language server fails to start (Client 1 quit with exit code 13 and signal 0)
+There is also the nvim-jdtls plugin - I tried it and it had the same problem.
+
 --]]
 
 -- Mappings.
@@ -47,24 +51,29 @@ local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
-require('lspconfig')['clangd'].setup{
+require'lspconfig'.clangd.setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig')['pyright'].setup{
+require'lspconfig'.jdtls.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  cmd = {"jdt-language-server"},
+}
+require'lspconfig'.pyright.setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig')['tsserver'].setup{
+require'lspconfig'.tsserver.setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
-require('lspconfig')['zls'].setup{
+require'lspconfig'.zls.setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
 
--- require('lspconfig')['rust_analyzer'].setup{
+-- require'lspconfig'.rust_analyzer.setup{
 --     on_attach = on_attach,
 --     flags = lsp_flags,
 --     -- Server-specific settings...
