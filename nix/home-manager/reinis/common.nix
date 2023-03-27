@@ -29,7 +29,6 @@
     gron
     jdt-language-server
     k9s
-    lutris
     ncdu
     nethogs
     nodejs-slim

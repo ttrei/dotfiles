@@ -36,8 +36,6 @@
     zutty
   ];
 
-  programs.steam.enable = true;
-
   services.xserver = {
     enable = true;
     layout = "lv";

@@ -7,6 +7,7 @@
     ./hardware-configurations/desktop.nix
     ./packages/cli.nix
     ./packages/gui.nix
+    ./packages/games.nix
   ];
 
   boot.loader.systemd-boot.enable = false;

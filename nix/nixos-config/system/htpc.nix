@@ -8,6 +8,7 @@
     ./packages/cli.nix
     ./packages/gui.nix
     ./packages/htpc.nix
+    ./packages/games.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
