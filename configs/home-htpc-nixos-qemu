@@ -2,3 +2,4 @@ export DISTRO=nixos
 export CONTEXT=home
 export MACHINE=htpc
 export EXECUTION_ENV=qemu
+export NIXOS_VERSION=22.11

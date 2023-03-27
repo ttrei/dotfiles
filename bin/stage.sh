@@ -24,6 +24,7 @@ fi
 if [ "$ARG" == "-v" ]; then
     echo "Found dotfiles config file: $ENVFILE"
 fi
+NIXOS_VERSION=""
 # shellcheck source=/dev/null
 . "$ENVFILE"
 
@@ -240,7 +241,11 @@ if [ "$DISTRO" = "nixos" ]; then
     mkdir -p "$STAGINGDIR/.config/nixos"
     nixos_dir="$DOTFILES/nix/nixos-config/system"
 
-    ln -s "$nixos_dir/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
+    if [ "$NIXOS_VERSION" = "22.11" ]; then
+        ln -s "$nixos_dir/configuration-22.11.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
+    else
+        ln -s "$nixos_dir/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
+    fi
     ln -s "$nixos_dir/hardware-configurations" "$STAGINGDIR/.config/nixos/hardware-configurations"
     ln -s "$nixos_dir/packages" "$STAGINGDIR/.config/nixos/packages"
     ln -s "$nixos_dir/bin" "$STAGINGDIR/.config/nixos/bin"
