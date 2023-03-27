@@ -68,10 +68,8 @@
   programs.bash.enableCompletion = true;
 
   services.openssh.enable = true;
-  services.openssh.settings = {
-    passwordAuthentication = false;
-    permitRootLogin = "prohibit-password";
-  };
+  services.openssh.passwordAuthentication = false;
+  services.openssh.permitRootLogin = "prohibit-password";
 
   systemd.user.services.deduplicate-bash-history = let
     deduplication-script = ./bin/deduplicate-bash-history.py;
