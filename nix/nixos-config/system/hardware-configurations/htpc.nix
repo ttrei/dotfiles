@@ -22,6 +22,24 @@
     fsType = "ext4";
   };
 
+  fileSystems."/media/Lielais" = {
+    device = "/dev/disk/by-uuid/779a0988-5573-4161-9b41-f963f9a96f2d";
+  };
+
+  fileSystems."/media/Storage" = {
+    device = "/dev/disk/by-uuid/4784089f-fdf3-4777-8822-d3b3c5a25c76";
+  };
+
+  fileSystems."/media/kodi-ubuntu" = {
+    device = "/dev/disk/by-uuid/9ef0e4e4-b28f-44b5-9686-b681255ce62e";
+    options = [ "noauto" ];
+  };
+
+  fileSystems."/media/kodi-ubuntu-old" = {
+    device = "/dev/disk/by-uuid/9a16a58c-376f-4e22-b9eb-7944063f69dd";
+    options = [ "noauto" ];
+  };
+
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/C1B9-00A8";
     fsType = "vfat";

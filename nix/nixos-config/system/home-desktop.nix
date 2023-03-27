@@ -6,8 +6,9 @@
   imports = [
     ./hardware-configurations/desktop.nix
     ./packages/cli.nix
-    ./packages/gui.nix
     ./packages/games.nix
+    ./packages/gui.nix
+    ./packages/qemu.nix
   ];
 
   boot.loader.systemd-boot.enable = false;
