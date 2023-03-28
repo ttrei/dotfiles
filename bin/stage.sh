@@ -248,6 +248,7 @@ if [ "$DISTRO" = "nixos" ]; then
     fi
     ln -s "$nixos_dir/hardware-configurations" "$STAGINGDIR/.config/nixos/hardware-configurations"
     ln -s "$nixos_dir/packages" "$STAGINGDIR/.config/nixos/packages"
+    ln -s "$nixos_dir/users" "$STAGINGDIR/.config/nixos/users"
     ln -s "$nixos_dir/bin" "$STAGINGDIR/.config/nixos/bin"
     ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/nixos/overlays"
 
