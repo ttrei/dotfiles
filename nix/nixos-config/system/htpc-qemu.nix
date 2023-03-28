@@ -13,7 +13,10 @@
     ./users/reinis.nix
   ];
 
+  services.transmission.enable = true;
+
 # transmission daemon settings from kodi (Ubuntu)
+# TODO: migrate to nixos options
 # {
 #     "alt-speed-down": 16000,
 #     "alt-speed-enabled": false,
