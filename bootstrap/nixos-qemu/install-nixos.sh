@@ -25,6 +25,7 @@ cp nixos-config/system/qemu-base.nix /mnt/etc/nixos/custom.nix
 cp -r \
     nixos-config/system/hardware-configurations \
     nixos-config/system/packages \
+    nixos-config/system/users \
     nixos-config/system/bin \
     overlays \
     /mnt/etc/nixos

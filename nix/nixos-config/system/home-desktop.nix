@@ -9,6 +9,7 @@
     ./packages/games.nix
     ./packages/gui.nix
     ./packages/qemu.nix
+    ./users/reinis.nix
   ];
 
   boot.loader.systemd-boot.enable = false;

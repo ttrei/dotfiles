@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configurations/qemu.nix
     ./packages/cli-base.nix
+    ./users/reinis.nix
   ];
 
   boot.loader.grub.enable = true;
