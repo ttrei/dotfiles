@@ -24,7 +24,6 @@
     qbittorrent
     rofi
     st
-    transmission-gtk
     vlc
     xbindkeys
     xdotool
