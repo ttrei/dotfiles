@@ -75,8 +75,6 @@ augroup VIMRC_FILETYPE_SETTINGS
     au FileType javascript set shiftwidth=2 tabstop=2
     au FileType json set shiftwidth=2 tabstop=2
     au FileType lua setlocal shiftwidth=2 tabstop=2
-    au FileType markdown setlocal
-    au FileType text setlocal
     au FileType vue setlocal shiftwidth=2 tabstop=2
     au FileType xml setlocal foldmethod=indent
     au FileType yaml setlocal formatoptions+=j
