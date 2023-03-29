@@ -19,6 +19,22 @@
 
   networking.hostName = "htpc-nixos";
 
+  networking.wg-quick.interfaces = {
+    wg-mullvad = {
+      autostart = false;
+      address = [ "10.64.155.123/32" ];
+      dns = [ "10.64.0.1" ];
+      privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
+      peers = [
+        {
+          publicKey = "m4jnogFbACz7LByjo++8z5+1WV0BuR1T7E1OWA+n8h0=";
+          allowedIPs = [ "0.0.0.0/0" ];
+          endpoint = "193.138.218.130:51820";
+        }
+      ];
+    };
+  };
+
   services.transmission.enable = true;
   services.transmission.settings = {
     dht-enabled = true;
