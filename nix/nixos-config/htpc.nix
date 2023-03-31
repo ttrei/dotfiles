@@ -34,7 +34,7 @@ in {
     navidrome = unstable.navidrome;
   };
 
-  networking.hostName = "htpc-nixos";
+  networking.hostName = "kodi";
 
   networking.wg-quick.interfaces = {
     wg-mullvad = {
