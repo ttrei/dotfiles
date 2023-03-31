@@ -239,7 +239,7 @@ ln -s "$DOTFILES/nix/home-manager" "$STAGINGDIR/.config/home-manager"
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
     mkdir -p "$STAGINGDIR/.config/nixos"
-    nixos_dir="$DOTFILES/nix/nixos-config/system"
+    nixos_dir="$DOTFILES/nix/nixos-config"
 
     if [ "$NIXOS_VERSION" = "22.11" ]; then
         ln -s "$nixos_dir/configuration-22.11.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
