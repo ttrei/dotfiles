@@ -113,11 +113,13 @@ in {
   };
 
   services.navidrome = {
-    enable = true;
+    enable = false;
     settings = {
       # https://www.navidrome.org/docs/usage/configuration-options/
       Address = "127.0.0.1";
       Port = 4533;
+      # TODO: This doesn't work. Navidrome tries to access the following directory:
+      # /run/navidrome/media/Storage/music
       MusicFolder = "/media/Storage/music";
     };
   };
