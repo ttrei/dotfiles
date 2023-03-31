@@ -1,0 +1,5 @@
+10:browser
+20:dev
+85:dotfiles
+90:steam
+95:upgrade
