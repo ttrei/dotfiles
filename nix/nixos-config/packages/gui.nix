@@ -63,8 +63,8 @@
   services.xserver.libinput.enable = true;
 
   location = {
-      latitude = 56.948889;
-      longitude = 24.106389;
+    latitude = 56.948889;
+    longitude = 24.106389;
   };
 
   # services.redshift = {

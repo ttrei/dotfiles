@@ -40,12 +40,12 @@
 
   fileSystems."/media/kodi-ubuntu" = {
     device = "/dev/disk/by-uuid/9ef0e4e4-b28f-44b5-9686-b681255ce62e";
-    options = [ "noauto" ];
+    options = ["noauto"];
   };
 
   fileSystems."/media/kodi-ubuntu-old" = {
     device = "/dev/disk/by-uuid/9a16a58c-376f-4e22-b9eb-7944063f69dd";
-    options = [ "noauto" ];
+    options = ["noauto"];
   };
 
   fileSystems."/boot/efi" = {
