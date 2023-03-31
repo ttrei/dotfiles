@@ -20,13 +20,13 @@ mkdir -p /mnt/etc/nixos
 # Copy our configuration to /mnt/etc/nixos
 pushd "$DOTFILES/nix" || exit
 
-cp nixos-config/system/configuration-22.11.nix /mnt/etc/nixos/configuration.nix
-cp nixos-config/system/qemu-base.nix /mnt/etc/nixos/custom.nix
+cp nixos-config/configuration-22.11.nix /mnt/etc/nixos/configuration.nix
+cp nixos-config/qemu-base.nix /mnt/etc/nixos/custom.nix
 cp -r \
-    nixos-config/system/hardware-configurations \
-    nixos-config/system/packages \
-    nixos-config/system/users \
-    nixos-config/system/bin \
+    nixos-config/hardware-configurations \
+    nixos-config/packages \
+    nixos-config/users \
+    nixos-config/bin \
     overlays \
     /mnt/etc/nixos
 
