@@ -16,7 +16,7 @@ in {
   disabledModules = [ "services/audio/navidrome.nix" ];
 
   imports = [
-    ./hardware-configurations/qemu.nix
+    ./hardware-configurations/htpc.nix
     ./packages/cli.nix
     ./packages/gui.nix
     ./packages/htpc.nix
@@ -33,10 +33,6 @@ in {
   nixpkgs.config.packageOverrides = pkgs: {
     navidrome = unstable.navidrome;
   };
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   networking.hostName = "htpc-nixos";
 

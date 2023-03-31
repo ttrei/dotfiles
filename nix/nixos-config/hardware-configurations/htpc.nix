@@ -17,6 +17,10 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e4462353-9c08-4a8f-8045-08914128972b";
     fsType = "ext4";
