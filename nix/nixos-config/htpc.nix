@@ -118,7 +118,7 @@ in {
       # https://www.navidrome.org/docs/usage/configuration-options/
       Address = "127.0.0.1";
       Port = 4533;
-      MusicFolder = "/home/reinis/music";
+      MusicFolder = "/media/Storage/music";
     };
   };
 
