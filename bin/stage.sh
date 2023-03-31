@@ -170,7 +170,7 @@ ln -s "$DOTFILES/i3/bin/i3-start" "$STAGINGDIR/bin/i3/i3-start"
 ln -s "$DOTFILES/i3/bin/i3-workspaces" "$STAGINGDIR/bin/i3/i3-workspaces"
 if [ "$MACHINE" = "home-desktop" ]; then
     if [ "$CONTEXT" = "home" ]; then
-        ln -s "$DOTFILES/i3/workspaces-home.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+        ln -s "$DOTFILES/i3/workspaces-home-desktop.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
         ln -s "$DOTFILES/i3/sway/config-home" "$STAGINGDIR/.config/sway/config-home"
         cat "$DOTFILES/i3/config/config-home" >> "$STAGINGDIR/.config/i3/config"
     elif [ "$CONTEXT" = "work" ]; then
@@ -179,6 +179,7 @@ if [ "$MACHINE" = "home-desktop" ]; then
 elif [ "$MACHINE" = "work-laptop" ]; then
     ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
 elif [ "$MACHINE" = "htpc" ]; then
+    ln -s "$DOTFILES/i3/workspaces-htpc.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
     ln -s "$DOTFILES/i3/sway/config-kodi" "$STAGINGDIR/.config/sway/config-kodi"
     cat "$DOTFILES/i3/config/config-kodi" >> "$STAGINGDIR/.config/i3/config"
     ln -sf "$DOTFILES/i3/i3blocks/config-kodi" "$STAGINGDIR/.config/i3blocks/config"
