@@ -17,6 +17,10 @@
   boot.kernelModules = [];
   boot.extraModulePackages = [];
 
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  boot.loader.grub.device = "/dev/vda";
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
