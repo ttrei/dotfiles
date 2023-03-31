@@ -7,13 +7,12 @@
     # https://github.com/NixOS/nixpkgs/issues/55366
     # Include the nixos config when importing nixos-unstable
     # But remove packageOverrides to avoid infinite recursion
-    config = removeAttrs config.nixpkgs.config [ "packageOverrides" ];
+    config = removeAttrs config.nixpkgs.config ["packageOverrides"];
   };
 in {
-
   # https://github.com/NixOS/nixpkgs/issues/55366
   # https://nixos.org/manual/nixos/unstable/#sec-replace-modules
-  disabledModules = [ "services/audio/navidrome.nix" ];
+  disabledModules = ["services/audio/navidrome.nix"];
 
   imports = [
     ./hardware-configurations/qemu.nix
@@ -39,13 +38,13 @@ in {
   networking.wg-quick.interfaces = {
     wg-mullvad = {
       autostart = false;
-      address = [ "10.64.155.123/32" ];
-      dns = [ "10.64.0.1" ];
+      address = ["10.64.155.123/32"];
+      dns = ["10.64.0.1"];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
       peers = [
         {
           publicKey = "m4jnogFbACz7LByjo++8z5+1WV0BuR1T7E1OWA+n8h0=";
-          allowedIPs = [ "0.0.0.0/0" ];
+          allowedIPs = ["0.0.0.0/0"];
           endpoint = "193.138.218.130:51820";
         }
       ];
@@ -121,5 +120,4 @@ in {
       MusicFolder = "/home/reinis/music";
     };
   };
-
 }

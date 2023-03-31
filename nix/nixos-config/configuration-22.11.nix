@@ -48,9 +48,9 @@
   users.mutableUsers = false;
 
   programs.gnupg.agent = {
-     enable = true;
-     pinentryFlavor = "gtk2";
-     enableSSHSupport = true;
+    enable = true;
+    pinentryFlavor = "gtk2";
+    enableSSHSupport = true;
   };
 
   programs.bash.enableCompletion = true;
@@ -63,13 +63,13 @@
     deduplication-script = ./bin/deduplicate-bash-history.py;
   in {
     enable = true;
-    path = [ pkgs.python3 ];
+    path = [pkgs.python3];
     script = "${deduplication-script} ~/.bash_eternal_history";
   };
 
   systemd.user.timers.deduplicate-bash-history = {
     enable = true;
-    wantedBy = [ "timers.target" ];
+    wantedBy = ["timers.target"];
     timerConfig = {
       OnBootSec = "5m";
       OnUnitActiveSec = "5m";

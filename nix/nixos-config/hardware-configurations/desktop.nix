@@ -40,12 +40,12 @@
 
   fileSystems."/media/debian-work" = {
     device = "/dev/disk/by-uuid/3d855ec1-722c-48a1-b273-cd934d321527";
-    options = [ "noauto" ];
+    options = ["noauto"];
   };
 
   fileSystems."/media/linux-main" = {
     device = "/dev/disk/by-uuid/56b3dbfe-a167-4d92-a4e3-826ba53c2a47";
-    options = [ "noauto" ];
+    options = ["noauto"];
   };
 
   fileSystems."/boot/efi" = {
