@@ -16,12 +16,16 @@
     "command": "i3-start spotify"
   },
   {
-    "name": "RetroArch",
-    "command": "i3-msg workspace retroarch; steam-offline -applaunch 1118310"
+    "name": "Steam",
+    "command": "i3-msg workspace 90:steam; steam"
   },
   {
-    "name": "Steam",
-    "command": "i3-msg workspace steam; steam"
+    "name": "Lutris",
+    "command": "i3-msg workspace 91:lutris; lutris"
+  },
+  {
+    "name": "RetroArch",
+    "command": "i3-msg workspace 92:retroarch; steam-offline -applaunch 1118310"
   },
   {
     "name": "VPN stop",

@@ -183,7 +183,7 @@ elif [ "$MACHINE" = "htpc" ]; then
     ln -s "$DOTFILES/i3/sway/config-kodi" "$STAGINGDIR/.config/sway/config-kodi"
     cat "$DOTFILES/i3/config/config-kodi" >> "$STAGINGDIR/.config/i3/config"
     ln -sf "$DOTFILES/i3/i3blocks/config-kodi" "$STAGINGDIR/.config/i3blocks/config"
-    ln -sf "$DOTFILES/i3/commands-kodi.json" "$STAGINGDIR/.config/i3/commands.json"
+    ln -sf "$DOTFILES/i3/commands-htpc.json" "$STAGINGDIR/.config/i3/commands.json"
 fi
 if [ "$EXECUTION_ENV" = "qemu" ]; then
     ln -sf "$DOTFILES/i3/i3blocks/config-qemu" "$STAGINGDIR/.config/i3blocks/config"

@@ -2,4 +2,6 @@
 20:dev
 85:dotfiles
 90:steam
+91:lutris
+92:retroarch
 95:upgrade
