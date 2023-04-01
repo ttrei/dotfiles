@@ -13,6 +13,7 @@
     emacs
     encfs
     feh
+    ffmpeg
     gitAndTools.gitFull
     git-crypt
     gron
@@ -24,6 +25,7 @@
     nodePackages.typescript-language-server
     pandoc
     python3
+    python3Packages.mutagen
     python3Packages.ipython
     stow
     universal-ctags
