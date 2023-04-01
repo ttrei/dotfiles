@@ -276,9 +276,7 @@ ln -s "$DOTFILES/k8s/k9s-skin-gruvbox-light.yml" "$STAGINGDIR/.config/k9s/skin.y
 
 # MUSIC
 mkdir -p "$STAGINGDIR/.config/beets"
-mkdir -p "$STAGINGDIR/.config/navidrome"
 ln -s "$DOTFILES/music/beets/config.yaml" "$STAGINGDIR/.config/beets/config.yaml"
-ln -s "$DOTFILES/music/navidrome/navidrome.toml" "$STAGINGDIR/.config/navidrome/navidrome.toml"
 
 # DUNST
 mkdir -p "$STAGINGDIR/.config/dunst"
