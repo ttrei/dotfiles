@@ -16,6 +16,7 @@
     gitAndTools.gitFull
     git-crypt
     gron
+    htop
     jq
     k9s
     lua
