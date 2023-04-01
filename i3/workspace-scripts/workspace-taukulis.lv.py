@@ -11,8 +11,8 @@ VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/taukulis.lv.code-workspace
 
 WORKSPACE_PROGRAMS = {
     "20:dev": [
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
+        [f"exec-in-dir {DIR} zutty", "zutty-taukulis.lv", "zutty", None],
+        [f"exec-in-dir {DIR} zutty", "zutty-taukulis.lv", "zutty", None],
     ],
     "25:vscode": [
         [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],

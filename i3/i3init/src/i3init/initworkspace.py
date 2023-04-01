@@ -46,7 +46,7 @@ class Program:
             return binary, *args
 
     def match(self, window_name: str, window_class: str):
-        if self.window_name == window_name.lower() and self.window_class == window_class.lower():
+        if self.window_name.lower() == window_name.lower() and self.window_class.lower() == window_class.lower():
             return True
         else:
             return False
@@ -77,11 +77,14 @@ async def on_new_window(i3: AioConnection, e: WindowEvent):
     for program in STARTING_PROGRAMS:
         if program.match(window_name, window_class):
             matched_program = program
+            print("Program matched")
             break
     if matched_program is None:
+        print("Program not matched")
         return
 
     STARTING_PROGRAMS.remove(matched_program)
+    print(f"Moving {matched_program.window_name} to {matched_program.workspace}")
     await e.container.command(f"move to workspace {matched_program.workspace}")
     for command in matched_program.window_handling_commands:
         await e.container.command(command)
