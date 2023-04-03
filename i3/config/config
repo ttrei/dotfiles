@@ -7,8 +7,9 @@ client.urgent #2f343a #900000 #ffffff #900000
 # font for window titles
 font pango:DejaVu Sans Mono 10
 
-# don't break out of child containers when wrapping possible
-force_focus_wrapping yes
+# Disable focus wrapping. It will still switch to neighbor workspace.
+# https://github.com/i3/i3/issues/4279
+focus_wrapping no
 
 bar {
     status_command i3pyblocks -c ~/.config/i3pyblocks/config.py
