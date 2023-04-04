@@ -120,5 +120,5 @@ in {
       MusicFolder = "/media/Storage/music";
     };
   };
-  networking.firewall.allowedTCPPorts = [ 4533 ];
+  networking.firewall.allowedTCPPorts = [4533];
 }
