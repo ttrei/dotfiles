@@ -38,20 +38,20 @@ in {
   networking.wg-quick.interfaces = {
     wg-mullvad = {
       autostart = false;
-      address = ["10.64.155.123/32"];
+      address = ["10.65.121.209/32"];
       dns = ["10.64.0.1"];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
       peers = [
         {
-          publicKey = "m4jnogFbACz7LByjo++8z5+1WV0BuR1T7E1OWA+n8h0=";
+          publicKey = "7ncbaCb+9za3jnXlR95I6dJBkwL1ABB5i4ndFUesYxE=";
           allowedIPs = ["0.0.0.0/0"];
-          endpoint = "193.138.218.130:51820";
+          endpoint = "45.83.220.68:51820";
         }
       ];
     };
   };
 
-  services.transmission.enable = true;
+  services.transmission.enable = false;
   services.transmission.settings = {
     dht-enabled = true;
     download-queue-enabled = true;
@@ -59,7 +59,7 @@ in {
     encryption = 0;
     peer-limit-global = 500;
     peer-limit-per-torrent = 50;
-    peer-port = 60465;
+    peer-port = 56322;
     pex-enabled = true;
     port-forwarding-enabled = true;
     preallocation = 1;
