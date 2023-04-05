@@ -51,6 +51,8 @@ in {
     };
   };
 
+  services.printing.enable = false;
+
   services.transmission.enable = true;
   services.transmission.settings = {
     dht-enabled = true;
