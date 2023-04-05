@@ -23,21 +23,6 @@
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
-
-  # services.cron = {
-  #   enable = true;
-  #   systemCronJobs = [
-  #     "*/3 * * * *  root    . /etc/profile && nix-channel --update nixos"
-  #     "*/5 * * * *  root    . /etc/profile && nixos-rebuild dry-build > /tmp/upgr.txt 2>&1 && mv /tmp/upgr.txt /var/tmp/upgradable_packages.txt"
-  #     "*/2 * * * *  reinis  /home/reinis/bin/get_upgrade_counts.py"
-  #   ];
-  # };
-
-  services.printing.enable = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -73,11 +58,6 @@
       Unit = "deduplicate-bash-history.service";
     };
   };
-
-  # networking.extraHosts =
-  #   ''
-  #     159.65.84.88 foodbook.taukulis.lv
-  #   '';
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

@@ -14,6 +14,22 @@
 
   networking.hostName = "home-desktop-nixos";
 
+  services.printing.enable = false;
+
+  # services.cron = {
+  #   enable = true;
+  #   systemCronJobs = [
+  #     "*/3 * * * *  root    . /etc/profile && nix-channel --update nixos"
+  #     "*/5 * * * *  root    . /etc/profile && nixos-rebuild dry-build > /tmp/upgr.txt 2>&1 && mv /tmp/upgr.txt /var/tmp/upgradable_packages.txt"
+  #     "*/2 * * * *  reinis  /home/reinis/bin/get_upgrade_counts.py"
+  #   ];
+  # };
+
+  # networking.extraHosts =
+  #   ''
+  #     159.65.84.88 foodbook.taukulis.lv
+  #   '';
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
