@@ -88,7 +88,7 @@ in {
   };
 
   services.radarr = {
-    enable = true;
+    enable = false;
     group = "users";
     user = "reinis";
     dataDir = "/home/reinis/.local/share/Radarr";
