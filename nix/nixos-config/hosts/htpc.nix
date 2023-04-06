@@ -15,12 +15,12 @@ in {
   disabledModules = ["services/audio/navidrome.nix"];
 
   imports = [
-    ./hardware-configurations/qemu.nix
-    ./packages/cli.nix
-    ./packages/gui.nix
-    ./packages/htpc.nix
-    ./packages/games.nix
-    ./users/reinis.nix
+    ../hardware-configurations/htpc.nix
+    ../packages/cli.nix
+    ../packages/gui.nix
+    ../packages/htpc.nix
+    ../packages/games.nix
+    ../users/reinis.nix
 
     # https://github.com/NixOS/nixpkgs/issues/55366
     # https://nixos.org/manual/nixos/unstable/#sec-replace-modules
@@ -33,19 +33,19 @@ in {
     navidrome = unstable.navidrome;
   };
 
-  networking.hostName = "kodi-qemu";
+  networking.hostName = "kodi";
 
   networking.wg-quick.interfaces = {
     wg-mullvad = {
       autostart = false;
-      address = ["10.64.155.123/32"];
+      address = ["10.65.121.209/32"];
       dns = ["10.64.0.1"];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
       peers = [
         {
-          publicKey = "m4jnogFbACz7LByjo++8z5+1WV0BuR1T7E1OWA+n8h0=";
+          publicKey = "7ncbaCb+9za3jnXlR95I6dJBkwL1ABB5i4ndFUesYxE=";
           allowedIPs = ["0.0.0.0/0"];
-          endpoint = "193.138.218.130:51820";
+          endpoint = "45.83.220.68:51820";
         }
       ];
     };
@@ -53,7 +53,7 @@ in {
 
   services.printing.enable = false;
 
-  services.transmission.enable = true;
+  services.transmission.enable = false;
   services.transmission.settings = {
     dht-enabled = true;
     download-queue-enabled = true;
@@ -61,7 +61,7 @@ in {
     encryption = 0;
     peer-limit-global = 500;
     peer-limit-per-torrent = 50;
-    peer-port = 60465;
+    peer-port = 56322;
     pex-enabled = true;
     port-forwarding-enabled = true;
     preallocation = 1;
@@ -90,7 +90,7 @@ in {
   };
 
   services.radarr = {
-    enable = true;
+    enable = false;
     group = "users";
     user = "reinis";
     dataDir = "/home/reinis/.local/share/Radarr";
@@ -117,11 +117,12 @@ in {
     enable = true;
     settings = {
       # https://www.navidrome.org/docs/usage/configuration-options/
-      Address = "127.0.0.1";
+      Address = "0.0.0.0";
       Port = 4533;
-      MusicFolder = "/home/reinis/music";
+      MusicFolder = "/media/Storage/music";
     };
   };
+  networking.firewall.allowedTCPPorts = [ 4533 ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -129,5 +130,5 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
 }
