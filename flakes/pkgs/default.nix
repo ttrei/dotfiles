@@ -1,6 +1,6 @@
-# Custom packages, that can be defined similarly to ones from nixpkgs
-# You can build them using 'nix build .#example' or (legacy) 'nix-build -A example'
-
+# Custom packages
+# Can build them manually with 'nix build .#example' or (legacy) 'nix-build -A example'
 { pkgs ? (import ../nixpkgs.nix) { } }: {
-  # example = pkgs.callPackage ./example { };
+  # st = pkgs.callPackage ./st-lukesmith { };
+  zutty = pkgs.callPackage ./zutty { };
 }

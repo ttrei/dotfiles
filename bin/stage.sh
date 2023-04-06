@@ -242,11 +242,6 @@ if [ "$DISTRO" = "nixos" ]; then
     mkdir -p "$STAGINGDIR/.config/nixos/hosts"
     nixos_dir="$DOTFILES/nix/nixos-config"
 
-    if [ "$NIXOS_VERSION" = "22.11" ]; then
-        ln -s "$nixos_dir/configuration-22.11.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
-    else
-        ln -s "$nixos_dir/configuration.nix" "$STAGINGDIR/.config/nixos/configuration.nix"
-    fi
     ln -s "$nixos_dir/hardware-configurations" "$STAGINGDIR/.config/nixos/hardware-configurations"
     ln -s "$nixos_dir/packages" "$STAGINGDIR/.config/nixos/packages"
     ln -s "$nixos_dir/users" "$STAGINGDIR/.config/nixos/users"
