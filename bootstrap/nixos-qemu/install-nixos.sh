@@ -15,13 +15,13 @@ sleep 1 # let nixos appear in /dev/disk/by-label/
 mount /dev/disk/by-label/nixos /mnt
 swapon /dev/vda2
 
-mkdir -p /mnt/etc/nixos
+mkdir -p /mnt/etc/nixos/hosts
 
 # Copy our configuration to /mnt/etc/nixos
 pushd "$DOTFILES/nix" || exit
 
 cp nixos-config/configuration-22.11.nix /mnt/etc/nixos/configuration.nix
-cp nixos-config/qemu-base.nix /mnt/etc/nixos/custom.nix
+cp nixos-config/hosts/qemu-base.nix /mnt/etc/nixos/hosts/custom.nix
 cp -r \
     nixos-config/hardware-configurations \
     nixos-config/packages \

@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  imports = lib.optionals (builtins.pathExists ./custom.nix) [./custom.nix];
+  imports = lib.optionals (builtins.pathExists ./hosts/config.nix) [./hosts/config.nix];
 
   nixpkgs.overlays = [
     (import overlays/mypackages.nix)

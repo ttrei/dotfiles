@@ -239,7 +239,7 @@ ln -s "$DOTFILES/nix/home-manager" "$STAGINGDIR/.config/home-manager"
 
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
-    mkdir -p "$STAGINGDIR/.config/nixos"
+    mkdir -p "$STAGINGDIR/.config/nixos/hosts"
     nixos_dir="$DOTFILES/nix/nixos-config"
 
     if [ "$NIXOS_VERSION" = "22.11" ]; then
@@ -255,14 +255,14 @@ if [ "$DISTRO" = "nixos" ]; then
 
     if [ "$EXECUTION_ENV" = "qemu" ]; then
         if [ "$MACHINE" = "htpc" ]; then
-            ln -s "$nixos_dir/htpc-qemu.nix" "$STAGINGDIR/.config/nixos/custom.nix"
+            ln -s "$nixos_dir/hosts/htpc-qemu.nix" "$STAGINGDIR/.config/nixos/hosts/config.nix"
         else
-            ln -s "$nixos_dir/qemu.nix" "$STAGINGDIR/.config/nixos/custom.nix"
+            ln -s "$nixos_dir/hosts/qemu.nix" "$STAGINGDIR/.config/nixos/hosts/config.nix"
         fi
     elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ] ; then
-        ln -s "$nixos_dir/htpc.nix" "$STAGINGDIR/.config/nixos/custom.nix"
+        ln -s "$nixos_dir/hosts/htpc.nix" "$STAGINGDIR/.config/nixos/hosts/config.nix"
     elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "home-desktop" ] ; then
-        ln -s "$nixos_dir/home-desktop.nix" "$STAGINGDIR/.config/nixos/custom.nix"
+        ln -s "$nixos_dir/hosts/home-desktop.nix" "$STAGINGDIR/.config/nixos/hosts/config.nix"
     else
         echo "ABORT! NixOS config not available for this environment:"
         print_env
