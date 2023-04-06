@@ -1,6 +1,4 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
-
-  # You can import other NixOS modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
@@ -11,17 +9,13 @@
   ] ++ lib.optionals (builtins.pathExists ./hosts/config.nix) [./hosts/config.nix];
 
   nixpkgs = {
-    # You can add overlays here
     overlays = [
-      # (import overlays/mypackages.nix)
-      (import (builtins.fetchTarball {
-        url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
-      }))
-
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+
+      outputs.overlays.i3pyblocks
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -33,11 +27,11 @@
       #   });
       # })
     ];
-    # Configure your nixpkgs instance
+
     config = {
-      # Disable if you don't want unfree packages
       allowUnfree = true;
 
+      # TODO: Use a flake if it exists. This was needed only for firefox.
       packageOverrides = pkgs: {
         nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
           inherit pkgs;

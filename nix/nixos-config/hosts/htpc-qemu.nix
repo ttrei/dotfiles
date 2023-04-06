@@ -1,19 +1,9 @@
 {
   config,
+  lib,
   pkgs,
   ...
-}: let
-  unstable = import <nixos-unstable> {
-    # https://github.com/NixOS/nixpkgs/issues/55366
-    # Include the nixos config when importing nixos-unstable
-    # But remove packageOverrides to avoid infinite recursion
-    config = removeAttrs config.nixpkgs.config ["packageOverrides"];
-  };
-in {
-  # https://github.com/NixOS/nixpkgs/issues/55366
-  # https://nixos.org/manual/nixos/unstable/#sec-replace-modules
-  disabledModules = ["services/audio/navidrome.nix"];
-
+}: {
   imports = [
     ../hardware-configurations/qemu.nix
     ../packages/cli.nix
@@ -21,17 +11,9 @@ in {
     ../packages/htpc.nix
     ../packages/games.nix
     ../users/reinis.nix
-
-    # https://github.com/NixOS/nixpkgs/issues/55366
-    # https://nixos.org/manual/nixos/unstable/#sec-replace-modules
-    <nixos-unstable/nixos/modules/services/audio/navidrome.nix>
   ];
 
-  # https://github.com/NixOS/nixpkgs/issues/55366
-  # Override select packages to use the unstable channel
-  nixpkgs.config.packageOverrides = pkgs: {
-    navidrome = unstable.navidrome;
-  };
+  services.xserver.displayManager.autoLogin.enable = lib.mkForce false;
 
   networking.hostName = "htpc-qemu";
 
