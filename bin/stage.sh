@@ -268,6 +268,9 @@ if [ "$DISTRO" = "nixos" ]; then
         print_env
         exit 1
     fi
+
+    cp --recursive --dereference --remove-destination "$DOTFILES/flakes" "$STAGINGDIR/.config/flakes"
+    cp "$STAGINGDIR/.config/nixos/hosts/config.nix" "$STAGINGDIR/.config/flakes/nixos/hosts/config.nix"
 fi
 
 # K8S
