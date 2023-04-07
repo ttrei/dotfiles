@@ -234,9 +234,6 @@ fi
 ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
 ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix"
 
-# HOME-MANAGER
-ln -s "$DOTFILES/nix/home-manager" "$STAGINGDIR/.config/home-manager"
-
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
     mkdir -p "$STAGINGDIR/.config/nixos/hosts"
