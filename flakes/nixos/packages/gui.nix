@@ -45,7 +45,7 @@
     };
 
     windowManager.i3.enable = true;
-    # windowManager.i3.package = unstable.i3;
+    windowManager.i3.package = pkgs.unstable.i3;
     displayManager.defaultSession = "none+i3";
   };
 

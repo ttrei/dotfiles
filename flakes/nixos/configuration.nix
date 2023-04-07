@@ -1,4 +1,13 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
+
+  disabledModules = [ 
+    "services/audio/navidrome.nix"
+    "services/misc/bazarr.nix"
+    "services/misc/jackett.nix"
+    "services/misc/radarr.nix"
+    "services/misc/sonarr.nix"
+  ];
+
   imports = [
     # If you want to use modules your own flake exports (from modules/nixos):
     # outputs.nixosModules.example
@@ -6,6 +15,12 @@
     # Or modules from other flakes (such as nixos-hardware):
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
+
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/audio/navidrome.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/bazarr.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/jackett.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/radarr.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/sonarr.nix"
   ] ++ lib.optionals (builtins.pathExists ./hosts/config.nix) [./hosts/config.nix];
 
   nixpkgs = {
@@ -75,8 +90,8 @@
 
   programs.bash.enableCompletion = true;
 
-  services.openssh.enable = true;
-  services.openssh.settings = {
+  services.openssh = {
+    enable = true;
     passwordAuthentication = false;
     permitRootLogin = "prohibit-password";
   };

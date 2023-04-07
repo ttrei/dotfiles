@@ -9,6 +9,12 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
+    bazarr = final.unstable.bazarr;
+    jackett = final.unstable.jackett;
+    navidrome = final.unstable.navidrome;
+    radarr = final.unstable.radarr;
+    sonarr = final.unstable.sonarr;
+
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
