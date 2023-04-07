@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 
-pushd ~/.config/nixos
-sudo nixos-rebuild switch -I nixos-config=./configuration.nix
-popd
+sudo nixos-rebuild switch --flake "$HOME/.config/flakes#$(hostname)"

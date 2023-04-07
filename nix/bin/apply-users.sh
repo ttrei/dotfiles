@@ -8,12 +8,8 @@ fi
 # shellcheck source=/dev/null
 . "$ENVFILE"
 
-pushd ~/.config/home-manager/reinis || exit
-
 if [ "$DISTRO" = "nixos" ]; then
-    home-manager switch -f ./nixos.nix
+    home-manager switch --flake "$HOME/.config/flakes#reinis@nixos"
 else
-    home-manager switch -f ./non-nixos.nix
+    home-manager switch --flake "$HOME/.config/flakes#reinis@non-nixos"
 fi
-
-popd || exit
