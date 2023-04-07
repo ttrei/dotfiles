@@ -20,6 +20,8 @@ mkdir -p /mnt/etc/nixos/hosts
 # Copy our configuration to /mnt/etc/nixos
 pushd "$DOTFILES/nix" || exit
 
+# TODO: This is probably broken after the migration to flake-based config.
+
 cp nixos-config/configuration-22.11.nix /mnt/etc/nixos/configuration.nix
 cp nixos-config/hosts/qemu-base.nix /mnt/etc/nixos/hosts/custom.nix
 cp -r \
