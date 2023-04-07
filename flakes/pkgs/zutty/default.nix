@@ -11,14 +11,14 @@
 }:
 stdenv.mkDerivation rec {
   pname = "zutty";
-  version = "0.13.0-2022-12-30";
+  version = "0.14.0-2023-02-18";
   # version = "0.13.0-patch-reinis";
 
   src = fetchgit {
     url = "https://github.com/tomszilagyi/zutty.git";
     # url = "https://github.com/ttrei/zutty.git";
-    rev = "53319956858f6146d78910fa4fcbf3a944eae35b";
-    hash = "sha256-baUuKsiD7oiZFUqnNzTKxwKMlac1ZLMX5yOKx/vFgz4=";
+    rev = "bc6e0893e91bc0ffd08cb7d15727973de450c3d6";
+    hash = "sha256-b/q7hIi/U/GkKo+MIFX2wWnHZAy5rQGXNul3I1pxo1Q=";
     fetchSubmodules = false;
   };
 
