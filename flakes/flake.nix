@@ -54,10 +54,28 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild switch --flake .#your-hostname'
       nixosConfigurations = {
+        home-desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nixos/home-desktop.nix
+          ];
+        };
+        htpc = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nixos/htpc.nix
+          ];
+        };
         htpc-qemu = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            ./nixos/configuration.nix
+            ./nixos/htpc-qemu.nix
+          ];
+        };
+        qemu-base = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nixos/qemu-base.nix
           ];
         };
       };

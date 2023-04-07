@@ -16,7 +16,6 @@
     # inkscape
     kdiff3
     meld
-    neovim
     # picard
     python3Packages.i3ipc
     qbittorrent

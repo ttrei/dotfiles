@@ -1,16 +1,12 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{ inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
-    ../hardware-configurations/qemu.nix
-    ../packages/cli.nix
-    ../packages/gui.nix
-    ../packages/htpc.nix
-    ../packages/games.nix
-    ../users/reinis.nix
+    ./common.nix
+    ./hardware-configurations/qemu.nix
+    ./packages/cli.nix
+    ./packages/games.nix
+    ./packages/gui.nix
+    ./packages/htpc.nix
+    ./users/reinis.nix
   ];
 
   services.xserver.displayManager.autoLogin.enable = lib.mkForce false;
@@ -32,8 +28,6 @@
       ];
     };
   };
-
-  services.printing.enable = false;
 
   services.transmission.enable = true;
   services.transmission.settings = {

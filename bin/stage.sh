@@ -223,6 +223,7 @@ ln -s "$DOTFILES/python/black" "$STAGINGDIR/.config/black"
 # NIX
 mkdir -p "$STAGINGDIR/.config/nix"
 mkdir -p "$STAGINGDIR/.config/nixpkgs"
+ln -s "$DOTFILES/flakes" "$STAGINGDIR/.config/flakes"
 ln -s "$DOTFILES/nix/bin/apply-users.sh" "$STAGINGDIR/bin/apply-users.sh"
 ln -s "$DOTFILES/nix/bin/update-user.sh" "$STAGINGDIR/bin/update-user.sh"
 if [ "$DISTRO" = "nixos" ]; then
@@ -234,28 +235,6 @@ fi
 ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
 ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix"
 
-# NIXOS
-if [ "$DISTRO" = "nixos" ]; then
-    cp --recursive --dereference --remove-destination "$DOTFILES/flakes" "$STAGINGDIR/.config/flakes"
-
-    nixos_dir="$DOTFILES/flakes/nixos"
-    nixos_config_file="$STAGINGDIR/.config/flakes/nixos/hosts/config.nix"
-    if [ "$EXECUTION_ENV" = "qemu" ]; then
-        if [ "$MACHINE" = "htpc" ]; then
-            ln -s "$nixos_dir/hosts/htpc-qemu.nix" "$nixos_config_file"
-        else
-            ln -s "$nixos_dir/hosts/qemu.nix" "$nixos_config_file"
-        fi
-    elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ] ; then
-        ln -s "$nixos_dir/hosts/htpc.nix" "$nixos_config_file"
-    elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "home-desktop" ] ; then
-        ln -s "$nixos_dir/hosts/home-desktop.nix" "$nixos_config_file"
-    else
-        echo "ABORT! NixOS config not available for this environment:"
-        print_env
-        exit 1
-    fi
-fi
 
 # K8S
 mkdir -p "$STAGINGDIR/.config/k9s"
