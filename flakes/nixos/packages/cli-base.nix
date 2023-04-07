@@ -15,7 +15,6 @@
     gnutar
     lynx
     moreutils
-    neovim
     nethogs
     nix-bash-completions
     p7zip

@@ -1,15 +1,12 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{ inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
-    ../hardware-configurations/htpc.nix
-    ../packages/cli.nix
-    ../packages/gui.nix
-    ../packages/htpc.nix
-    ../packages/games.nix
-    ../users/reinis.nix
+    ./common.nix
+    ./hardware-configurations/htpc.nix
+    ./packages/cli.nix
+    ./packages/games.nix
+    ./packages/gui.nix
+    ./packages/htpc.nix
+    ./users/reinis.nix
   ];
 
   networking.hostName = "kodi";
@@ -29,8 +26,6 @@
       ];
     };
   };
-
-  services.printing.enable = false;
 
   services.transmission.enable = false;
   services.transmission.settings = {

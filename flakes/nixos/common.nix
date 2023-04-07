@@ -21,7 +21,7 @@
     "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/jackett.nix"
     "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/radarr.nix"
     "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/sonarr.nix"
-  ] ++ lib.optionals (builtins.pathExists ./hosts/config.nix) [./hosts/config.nix];
+  ];
 
   nixpkgs = {
     overlays = [

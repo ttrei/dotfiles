@@ -1,20 +1,21 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{ inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
-    ../hardware-configurations/desktop.nix
-    ../packages/cli.nix
-    ../packages/games.nix
-    ../packages/gui.nix
-    ../packages/qemu.nix
-    ../users/reinis.nix
+    ./common.nix
+    ./hardware-configurations/desktop.nix
+    ./packages/cli.nix
+    ./packages/games.nix
+    ./packages/gui.nix
+    ./users/reinis.nix
   ];
 
   networking.hostName = "home-desktop-nixos";
 
-  services.printing.enable = false;
+  environment.systemPackages = with pkgs; [
+    qemu_kvm
+  ];
+
+  # TODO: Fix printing
+  # services.printing.enable = true;
 
   # services.cron = {
   #   enable = true;

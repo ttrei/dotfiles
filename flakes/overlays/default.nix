@@ -15,9 +15,9 @@
     radarr = final.unstable.radarr;
     sonarr = final.unstable.sonarr;
 
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
+    # neovim 0.8.1 of nixpkgs-22.11 has some problems with the copilot plugin
+    neovim-unwrapped = final.unstable.neovim-unwrapped;
+    vimPlugins = final.unstable.vimPlugins;
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
