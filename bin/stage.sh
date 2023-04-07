@@ -236,33 +236,25 @@ ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix
 
 # NIXOS
 if [ "$DISTRO" = "nixos" ]; then
-    mkdir -p "$STAGINGDIR/.config/nixos/hosts"
-    nixos_dir="$DOTFILES/nix/nixos-config"
+    cp --recursive --dereference --remove-destination "$DOTFILES/flakes" "$STAGINGDIR/.config/flakes"
 
-    ln -s "$nixos_dir/hardware-configurations" "$STAGINGDIR/.config/nixos/hardware-configurations"
-    ln -s "$nixos_dir/packages" "$STAGINGDIR/.config/nixos/packages"
-    ln -s "$nixos_dir/users" "$STAGINGDIR/.config/nixos/users"
-    ln -s "$nixos_dir/bin" "$STAGINGDIR/.config/nixos/bin"
-    ln -s "$DOTFILES/nix/overlays" "$STAGINGDIR/.config/nixos/overlays"
-
+    nixos_dir="$DOTFILES/flakes/nixos"
+    nixos_config_file="$STAGINGDIR/.config/flakes/nixos/hosts/config.nix"
     if [ "$EXECUTION_ENV" = "qemu" ]; then
         if [ "$MACHINE" = "htpc" ]; then
-            ln -s "$nixos_dir/hosts/htpc-qemu.nix" "$STAGINGDIR/.config/nixos/hosts/config.nix"
+            ln -s "$nixos_dir/hosts/htpc-qemu.nix" "$nixos_config_file"
         else
-            ln -s "$nixos_dir/hosts/qemu.nix" "$STAGINGDIR/.config/nixos/hosts/config.nix"
+            ln -s "$nixos_dir/hosts/qemu.nix" "$nixos_config_file"
         fi
     elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "htpc" ] ; then
-        ln -s "$nixos_dir/hosts/htpc.nix" "$STAGINGDIR/.config/nixos/hosts/config.nix"
+        ln -s "$nixos_dir/hosts/htpc.nix" "$nixos_config_file"
     elif [ "$EXECUTION_ENV" = "baremetal" ] && [ "$MACHINE" = "home-desktop" ] ; then
-        ln -s "$nixos_dir/hosts/home-desktop.nix" "$STAGINGDIR/.config/nixos/hosts/config.nix"
+        ln -s "$nixos_dir/hosts/home-desktop.nix" "$nixos_config_file"
     else
         echo "ABORT! NixOS config not available for this environment:"
         print_env
         exit 1
     fi
-
-    cp --recursive --dereference --remove-destination "$DOTFILES/flakes" "$STAGINGDIR/.config/flakes"
-    cp "$STAGINGDIR/.config/nixos/hosts/config.nix" "$STAGINGDIR/.config/flakes/nixos/hosts/config.nix"
 fi
 
 # K8S
