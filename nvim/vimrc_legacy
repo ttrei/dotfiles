@@ -8,7 +8,9 @@ let g:netrw_dirhistmax = 0
 set clipboard+=unnamedplus
 
 " Show filename in terminal title
-set title
+" NOTE: In zutty (on NixOS 22.11) this leads to garbled neovim output.
+"       And it doesn't affect zutty title, anyway.
+" set title
 
 " Enable backspace in Insert mode (sometimes disabled by default)
 set backspace=indent,eol,start
