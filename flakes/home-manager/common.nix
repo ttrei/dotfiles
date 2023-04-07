@@ -1,22 +1,48 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
-  home.username = "reinis";
-  home.homeDirectory = "/home/reinis";
-
+{ inputs, outputs, lib, config, pkgs, ... }: {
   imports = [
+    # If you want to use modules your own flake exports (from modules/home-manager):
+    # outputs.homeManagerModules.example
+
+    # Or modules exported from other flakes (such as nix-colors):
+    # inputs.nix-colors.homeManagerModules.default
+
     ./config/neovim.nix
   ];
 
-  nixpkgs.overlays = [
-    (import ./overlays/mypackages.nix)
-    (import (builtins.fetchTarball {
-      url = https://github.com/thiagokokada/i3pyblocks/archive/nix-overlay.tar.gz;
-    }))
-  ];
+  nixpkgs = {
+    overlays = [
+      # Add overlays your own flake exports (from overlays and pkgs dir):
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
 
+      outputs.overlays.i3pyblocks
+
+      # You can also add overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = (_: true);
+    };
+  };
+
+  home = {
+    username = "reinis";
+    homeDirectory = "/home/reinis";
+  };
+
+  # programs.neovim.enable = true;
   home.packages = with pkgs; [
     alejandra
     # diffoscope
@@ -45,7 +71,6 @@
     starship
     zathura
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
-    # myxow
   ];
 
   fonts.fontconfig.enable = true;
@@ -91,17 +116,14 @@
     };
   };
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  # https://nix-community.github.io/home-manager/release-notes.html
-  home.stateVersion = "22.11";
+  programs.git.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # Nicely reload system units when changing configs
+  systemd.user.startServices = "sd-switch";
+
+  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+  home.stateVersion = "22.11";
 }

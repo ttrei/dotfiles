@@ -59,7 +59,7 @@
       homeManagerModules = import ./modules/home-manager;
 
       # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
+      # Available through 'nixos-rebuild switch --flake .#your-hostname'
       nixosConfigurations = {
         htpc-qemu = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
@@ -70,13 +70,20 @@
       };
 
       # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
+      # Available through 'home-manager switch --flake .#reinis@nixos'
       homeConfigurations = {
-        "reinis@htpc-qemu" = home-manager.lib.homeManagerConfiguration {
+        "reinis@nixos" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./home-manager/home.nix
+            ./home-manager/home-nixos.nix
+          ];
+        };
+        "reinis@non-nixos" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/home-non-nixos.nix
           ];
         };
       };
