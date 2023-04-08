@@ -21,6 +21,7 @@
         {
           publicKey = "7ncbaCb+9za3jnXlR95I6dJBkwL1ABB5i4ndFUesYxE=";
           allowedIPs = ["0.0.0.0/0"];
+          # se21-wireguard
           endpoint = "45.83.220.68:51820";
         }
       ];
