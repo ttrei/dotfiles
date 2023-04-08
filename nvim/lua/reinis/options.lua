@@ -18,6 +18,8 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir/"
 vim.opt.undofile = true
 
+vim.opt.diffopt = 'internal,filler,closeoff'
+
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldenable = false -- No folding on startup
