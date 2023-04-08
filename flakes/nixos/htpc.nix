@@ -13,7 +13,7 @@
 
   networking.wg-quick.interfaces = {
     wg-mullvad = {
-      autostart = false;
+      autostart = true;
       address = ["10.65.121.209/32"];
       dns = ["10.64.0.1"];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
