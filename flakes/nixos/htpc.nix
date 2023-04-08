@@ -96,7 +96,7 @@
       MusicFolder = "/media/Storage/music";
     };
   };
-  networking.firewall.allowedTCPPorts = [ 4533 ];
+  networking.firewall.allowedTCPPorts = [ 4533 9091 ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
