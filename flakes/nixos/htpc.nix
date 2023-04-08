@@ -33,6 +33,9 @@
     dht-enabled = true;
     download-queue-enabled = true;
     download-queue-size = 20;
+    download-dir = "/media/Storage/torrents";
+    incomplete-dir = "/media/Storage/torrents/.incomplete";
+    incomplete-dir-enabled = true;
     encryption = 0;
     peer-limit-global = 500;
     peer-limit-per-torrent = 50;
