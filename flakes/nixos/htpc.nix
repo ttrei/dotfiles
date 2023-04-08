@@ -27,7 +27,7 @@
     };
   };
 
-  services.transmission.enable = false;
+  services.transmission.enable = true;
   services.transmission.settings = {
     dht-enabled = true;
     download-queue-enabled = true;
