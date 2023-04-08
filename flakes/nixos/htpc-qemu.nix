@@ -98,6 +98,7 @@
       MusicFolder = "/home/reinis/music";
     };
   };
+  networking.firewall.allowedTCPPorts = [ 4533 ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
