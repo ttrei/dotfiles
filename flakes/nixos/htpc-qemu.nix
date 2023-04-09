@@ -22,15 +22,16 @@
 
   networking.wg-quick.interfaces = {
     wg-mullvad = {
-      autostart = false;
-      address = ["10.64.155.123/32"];
+      autostart = true;
+      address = ["10.66.33.143/32"];
       dns = ["10.64.0.1"];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
       peers = [
         {
-          publicKey = "m4jnogFbACz7LByjo++8z5+1WV0BuR1T7E1OWA+n8h0=";
+          publicKey = "XscA5gebj51nmhAr6o+aUCnMHWGjbS1Gvvd0tuLRiFE=";
           allowedIPs = ["0.0.0.0/0"];
-          endpoint = "193.138.218.130:51820";
+          # se23-wireguard
+          endpoint = "45.83.220.70:51820";
         }
       ];
     };
@@ -44,7 +45,7 @@
     encryption = 0;
     peer-limit-global = 500;
     peer-limit-per-torrent = 50;
-    peer-port = 60465;
+    peer-port = 56393;
     pex-enabled = true;
     port-forwarding-enabled = true;
     preallocation = 1;
@@ -109,7 +110,7 @@
   networking.firewall.allowedTCPPorts = [
     4533 # navidrome
     9091 # transmission UI
-    60465 # transmission peer port
+    56393 # transmission peer port
   ];
 
   security.sudo.extraRules = [
