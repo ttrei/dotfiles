@@ -98,7 +98,12 @@
       MusicFolder = "/home/reinis/music";
     };
   };
-  networking.firewall.allowedTCPPorts = [ 4533 ];
+
+  networking.firewall.allowedTCPPorts = [
+    4533 # navidrome
+    9091 # transmission UI
+    60465 # transmission peer port
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
