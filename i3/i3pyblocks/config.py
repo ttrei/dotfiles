@@ -240,6 +240,137 @@ class CustomNetworkSpeedBlock(ps.NetworkSpeedBlock):
         self.previous = now
         self.previous_time = now_time
 
+class WireguardBlock(blocks.PollingBlock):
+    pass
+    # TODO: Create a simple block for showing wireguard status
+    # Green "VPN" if active, red "VPN off" if inactive.
+    # My interface is called "wg-mullvad"
+    # Can get the status either from "ip link show wg-mullvad"
+    # or from "wg show" (but this needs sudo rights)
+
+    # r"""Block that shows if Wireguard VPN is currently enabled
+
+    # :param format_up: Format string to shown when there is at least one
+    #     connected interface. Supports the following placeholders:
+
+    #     - ``{interface}``: Interface name, for example: ``eno1``
+    #     - ``{upload}``: Upload speed
+    #     - ``{download}``: Download speed
+
+    #     Since upload/download speeds varies greatly during usage, this module
+    #     automatically finds the most compact speed representation. So instead
+    #     of showing ``1500K`` it will show ``1.5M``, for example.
+
+    # :param format_down: Format string to shown when there is no connected
+    #     interface.
+
+    # :param colors: A mapping that represents the color that will be shown in
+    #     each load1 interval. For example::
+
+    #         {
+    #             0: "000000",
+    #             2 * types.IECUnit.MIB: "#FF0000",
+    #             4 * types.IECUnit.MIB: "#FFFFFF",
+    #         }
+
+    #     When the network speed is between [0, 2) MiB the color is set to
+    #     "000000", from [2, 4) is set to "FF0000" and from 4 and beyond it is
+    #     "#FFFFFF".
+
+    # :param interface_regex: Regex for which interfaces to use. By default it
+    #      already includes the most common ones and excludes things like ``lo``
+    #      (loopback interface).
+
+    # :param sleep: Sleep in seconds between each call to
+    #     :meth:`~i3pyblocks.blocks.base.PollingBlock.run()`.
+
+    # :param \*\*kwargs: Extra arguments to be passed to
+    #     :class:`~i3pyblocks.blocks.base.PollingBlock` class.
+    # """
+
+    # def __init__(
+    #     self,
+    #     format_up: str = "{interface}:  U {upload} D {download}",
+    #     format_down: str = "No network",
+    #     colors: models.Threshold = {
+    #         0: types.Color.NEUTRAL,
+    #         2 * types.IECUnit.MiB: types.Color.WARN,
+    #         5 * types.IECUnit.MiB: types.Color.URGENT,
+    #     },
+    #     interface_regex: str = r"en*|eth*|ppp*|sl*|wl*|ww*",
+    #     sleep: int = 3,
+    #     **kwargs,
+    # ) -> None:
+    #     super().__init__(sleep=sleep, **kwargs)
+    #     self.format_up = format_up
+    #     self.format_down = format_down
+    #     self.colors = colors
+    #     self.interface_regex = re.compile(interface_regex)
+    #     self.interface = self._find_interface()
+    #     self.previous = psutil.net_io_counters(pernic=True)
+    #     self.previous_time = time.time()
+
+    # def _find_interface(
+    #     self,
+    #     previous_interface: Optional[str] = None,
+    # ) -> Optional[str]:
+    #     interfaces_stats = psutil.net_if_stats()
+
+    #     # Give preference to the current interface if more than one interface
+    #     # match the rules
+    #     previous_stats = interfaces_stats.get(previous_interface)
+    #     if previous_stats and previous_stats.isup:
+    #         return previous_interface
+
+    #     for interface, stats in interfaces_stats.items():
+    #         if stats.isup and self.interface_regex.match(interface):
+    #             return interface
+
+    #     return None
+
+    # def _calculate_speed(
+    #     self, previous, previous_time, now, now_time
+    # ) -> Tuple[float, float]:
+    #     upload = (now.bytes_sent - previous.bytes_sent) / (now_time - previous_time)
+    #     download = (now.bytes_recv - previous.bytes_recv) / (now_time - previous_time)
+
+    #     return upload, download
+
+    # async def run(self) -> None:
+    #     self.interface = self._find_interface(self.interface)
+
+    #     if not self.interface:
+    #         self.update(self.format_down, color=types.Color.URGENT)
+    #         return
+
+    #     now = psutil.net_io_counters(pernic=True)
+    #     now_time = time.time()
+
+    #     if self.interface in now.keys():
+    #         upload, download = self._calculate_speed(
+    #             self.previous[self.interface],
+    #             self.previous_time,
+    #             now[self.interface],
+    #             now_time,
+    #         )
+    #     else:
+    #         upload, download = 0, 0
+
+    #     color = misc.calculate_threshold(self.colors, max(upload, download))
+
+    #     self.update(
+    #         self.ex_format(
+    #             self.format_up,
+    #             upload=bytes2human(upload),
+    #             download=bytes2human(download),
+    #             interface=self.interface,
+    #         ),
+    #         color=color,
+    #     )
+
+    #     self.previous = now
+    #     self.previous_time = now_time
+
 
 def get_partitions(excludes={"/boot", "/boot/efi", "/nix/store"}):
     partitions = psutil.disk_partitions()
