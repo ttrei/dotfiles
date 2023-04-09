@@ -1,5 +1,12 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
-# Inspired by https://gitlab.com/LongerHV/nixos-configuration
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  # Inspired by https://gitlab.com/LongerHV/nixos-configuration
 
   programs.neovim = {
     enable = true;
