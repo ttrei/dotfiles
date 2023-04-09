@@ -38,11 +38,6 @@
     "command": "vpn-start.sh"
   },
   {
-    "name": "VPN switch",
-    "confirm": false,
-    "command": "vpn-switch.sh rofi"
-  },
-  {
     "name": "Log out",
     "confirm": true,
     "command": "i3-msg exit"

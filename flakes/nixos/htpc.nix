@@ -107,6 +107,30 @@
     56322 # transmission peer port
   ];
 
+  security.sudo.extraRules = [
+    {
+      users = ["reinis"];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/systemctl start wg-quick-wg-mullvad.service";
+          options = ["SETENV" "NOPASSWD"];
+        }
+        {
+          command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg-mullvad.service";
+          options = ["SETENV" "NOPASSWD"];
+        }
+        {
+          command = "/run/current-system/sw/bin/systemctl start transmission.service";
+          options = ["SETENV" "NOPASSWD"];
+        }
+        {
+          command = "/run/current-system/sw/bin/systemctl stop transmission.service";
+          options = ["SETENV" "NOPASSWD"];
+        }
+      ];
+    }
+  ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
