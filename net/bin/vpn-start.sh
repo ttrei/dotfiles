@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-sudo systemctl start wg-quick.target
-sudo systemctl start transmission-daemon-user.service
+sudo systemctl start wg-quick-wg-mullvad.service
+sudo systemctl start transmission.service
