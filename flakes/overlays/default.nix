@@ -22,6 +22,8 @@
       };
     });
 
+    comma = final.unstable.comma;
+
     # neovim 0.8.1 of nixpkgs-22.11 has some problems with the copilot plugin
     neovim-unwrapped = final.unstable.neovim-unwrapped;
     vimPlugins = final.unstable.vimPlugins;

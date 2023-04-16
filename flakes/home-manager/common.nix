@@ -50,6 +50,7 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
     alejandra
+    comma
     # diffoscope
     direnv
     emacs
