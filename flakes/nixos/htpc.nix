@@ -110,6 +110,7 @@
 
   networking.firewall.allowedTCPPorts = [
     4533 # navidrome
+    8080 # kodi
     9091 # transmission UI
     56322 # transmission peer port
   ];
