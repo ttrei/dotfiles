@@ -10,6 +10,9 @@
 
     i3pyblocks.url = "github:thiagokokada/i3pyblocks";
 
+    # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
+    neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+
     # hardware.url = "github:nixos/nixos-hardware";
 
     # Shameless plug: looking for a way to nixify your themes and make

@@ -38,6 +38,9 @@
       # # Integration with nvim-cmp
       # copilot-cmp
 
+      # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
+      neorg
+
       neomake
       nvim-cmp
       nvim-lspconfig
