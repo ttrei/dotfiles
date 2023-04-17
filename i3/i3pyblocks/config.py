@@ -300,8 +300,10 @@ async def main():
         )
     )
 
-    # VPN status
-    await runner.register_block(WireguardBlock(interface="wg-mullvad"))
+
+    if hostname in {"kodi", "htpc", "htpc-qemu"}:
+        # VPN status
+        await runner.register_block(WireguardBlock(interface="wg-mullvad"))
 
     # For each partition found, add it to the Runner
     # Using `{{short_path}}` shows only the first letter of the path
