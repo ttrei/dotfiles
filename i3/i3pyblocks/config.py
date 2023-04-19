@@ -136,7 +136,7 @@ class UpgradeCountBlock(blocks.PollingBlock):
             strdata = f.read()
             f.close()
         except IOError:
-            logging.error(f"Could not read {self.path}")
+            # logging.error(f"Could not read {self.path}")
             return -1
 
         try:

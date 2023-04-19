@@ -16,6 +16,7 @@
     # inkscape
     kdiff3
     meld
+    pavucontrol
     # picard
     python3Packages.i3ipc
     qbittorrent

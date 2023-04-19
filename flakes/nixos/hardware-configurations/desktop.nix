@@ -11,7 +11,7 @@
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = ["kvm-amd" "snd-seq" "snd-rawmidi"];
   boot.extraModulePackages = [];
 
   boot.loader.systemd-boot.enable = false;
@@ -56,4 +56,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  hardware.pulseaudio.enable = false;
 }

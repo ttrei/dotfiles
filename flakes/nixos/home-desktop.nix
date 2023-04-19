@@ -9,6 +9,7 @@
   imports = [
     ./common.nix
     ./hardware-configurations/desktop.nix
+    ./packages/audio.nix
     ./packages/cli.nix
     ./packages/games.nix
     ./packages/gui.nix
@@ -20,6 +21,17 @@
   environment.systemPackages = with pkgs; [
     qemu_kvm
   ];
+
+  # https://discourse.nixos.org/t/state-of-jackd-in-nixos/6007/14
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    jack.enable = true;
+    pulse.enable = true;
+  };
 
   # TODO: Fix printing
   # services.printing.enable = true;
