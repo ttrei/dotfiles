@@ -5,27 +5,23 @@
   },
   {
     "name": "Firefox",
-    "command": "i3-start firefox"
+    "command": "workspaces-htpc.py firefox"
   },
   {
     "name": "Chrome",
-    "command": "i3-start chromium"
+    "command": "workspaces-htpc.py chromium"
   },
   {
     "name": "Spotify",
-    "command": "i3-start spotify"
+    "command": "workspaces-htpc.py spotify"
   },
   {
     "name": "Steam",
-    "command": "i3-msg workspace 90:steam; steam"
+    "command": "workspaces-htpc.py steam"
   },
   {
     "name": "Lutris",
-    "command": "i3-msg workspace 91:lutris; lutris"
-  },
-  {
-    "name": "RetroArch",
-    "command": "i3-msg workspace 92:retroarch; steam-offline -applaunch 1118310"
+    "command": "workspaces-htpc.py lutris"
   },
   {
     "name": "VPN stop",

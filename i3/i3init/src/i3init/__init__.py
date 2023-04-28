@@ -2,6 +2,6 @@
 #
 # SPDX-License-Identifier: MIT
 
-from .initworkspace import run
+from .initworkspace import run, run_command
 
-__all__ = ["run"]
+__all__ = ["run", "run_command"]

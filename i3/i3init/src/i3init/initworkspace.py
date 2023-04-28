@@ -3,7 +3,7 @@ import asyncio
 import logging
 from typing import Dict, List, Optional, Set, Tuple
 
-from i3ipc import Con, Event, WindowEvent
+from i3ipc import Con, Connection, Event, WindowEvent
 from i3ipc.aio import Con as AioCon
 from i3ipc.aio import Connection as AioConnection
 
@@ -46,10 +46,20 @@ class Program:
             return binary, *args
 
     def match(self, window_name: str, window_class: str):
-        if self.window_name.lower() == window_name.lower() and self.window_class.lower() == window_class.lower():
-            return True
-        else:
+        if self.window_name is None:
+            return self.equals_case_insensitive(self.window_class, window_class)
+        if self.window_class is None:
+            return self.equals_case_insensitive(self.window_name, window_name)
+        return (
+            self.equals_case_insensitive(self.window_class, window_class)
+            and self.equals_case_insensitive(self.window_name, window_name)
+        )
+
+    @staticmethod
+    def equals_case_insensitive(left: str, right: str):
+        if left is None or right is None:
             return False
+        return left.lower() == right.lower()
 
 
 def construct_workspace_programs(workspace_program_config: dict):
@@ -123,6 +133,11 @@ async def main(workspace_program_config, timeout):
 
 def run(workspace_program_config, timeout):
     asyncio.run(main(workspace_program_config, timeout))
+
+
+def run_command(command: str):
+    i3 = Connection()
+    i3.command(command)
 
 
 def get_nonempty_workspaces(tree: AioCon):
