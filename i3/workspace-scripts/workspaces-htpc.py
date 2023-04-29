@@ -34,7 +34,7 @@ CONFIG = {
     },
     "steam": {
         "90:steam": [
-            ["steam", "steam", "steam", None],
+            [f"exec-in-dir {HOME} steam", "steam", "steam", None],
         ],
     },
     # NOTE: If we don't use "exec-in-dir", Lutris gets killed when this script exits.
