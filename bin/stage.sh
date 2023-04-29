@@ -72,7 +72,7 @@ ln -s "$DOTFILES/terminal/bin/fzf-search-contents.sh" "$STAGINGDIR/bin/fzf-searc
 ln -s "$DOTFILES/terminal/bin/samecwd-terminal.sh" "$STAGINGDIR/bin/samecwd-terminal.sh"
 ln -s "$DOTFILES/terminal/bin/unique-strings.sh" "$STAGINGDIR/bin/unique-strings.sh"
 ln -s "$DOTFILES/terminal/dircolors" "$STAGINGDIR/.dircolors"
-ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
+# ln -s "$DOTFILES/terminal/envrc" "$STAGINGDIR/.envrc"
 ln -s "$DOTFILES/terminal/git-prompt.sh" "$STAGINGDIR/.git-prompt.sh"
 ln -s "$DOTFILES/terminal/htoprc" "$STAGINGDIR/.config/htop/htoprc"
 ln -s "$DOTFILES/terminal/ignore" "$STAGINGDIR/.ignore"
