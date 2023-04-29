@@ -1,7 +1,7 @@
 [
   {
-    "name": "KODI",
-    "command": "i3-start kodi"
+    "name": "Kodi",
+    "command": "workspaces-htpc.py kodi"
   },
   {
     "name": "Firefox",

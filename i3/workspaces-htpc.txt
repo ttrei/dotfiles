@@ -1,4 +1,5 @@
 00:dotfiles
+05:kodi
 10:firefox
 15:chrome
 50:spotify
