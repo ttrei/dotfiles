@@ -10,9 +10,14 @@ HOME = os.path.expanduser("~")
 DIR = f"{HOME}/dotfiles/bootstrap/nixos-qemu"
 
 CONFIG = {
+    "kodi": {
+        "05:kodi": [
+            # execstr, window_name, window_class, window_handling_commands
+            ["kodi", "kodi", "kodi", None],
+        ],
+    },
     "firefox": {
         "10:firefox": [
-            # execstr, window_name, window_class, window_handling_commands
             ["firefox", "mozilla firefox", "firefox", None],
         ],
     },

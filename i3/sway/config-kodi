@@ -1,4 +1,4 @@
 # 148 = calculator media key
 bindcode 148 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
 
-exec --no-startup-id i3-start kodi
+exec --no-startup-id workspaces-htpc.py kodi
