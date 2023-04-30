@@ -1,3 +1,0 @@
-[submodule "i3/i3init/deps/i3ipc-python"]
-	path = i3/i3init/deps/i3ipc-python
-	url = https://github.com/altdesktop/i3ipc-python.git
