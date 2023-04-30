@@ -2,18 +2,8 @@
 
 set -o errexit
 
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+
 . ~/.venv/bin/activate
-
-pipx install --force black
-pipx install --force isort
-pipx install --force hatch
-pipx install --force youtube-dl
-pipx install --force yt-dlp
-pipx install --force ipython
-
-pushd ~/dotfiles
-git submodule update --init i3/i3init/deps/i3ipc-python
-popd
-
-python -m pip install --editable ~/dotfiles/i3/i3init/deps/i3ipc-python
+python -m pip install -r "$SCRIPT_DIR/requirements.txt"
 python -m pip install --editable ~/dotfiles/i3/i3init
