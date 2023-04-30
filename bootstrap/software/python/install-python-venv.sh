@@ -16,5 +16,3 @@ direnv allow
 eval "$(direnv export bash)" || exit 1
 
 python3 -m venv --upgrade-deps ~/.venv
-. ~/.venv/bin/activate
-python -m pip install pipx
