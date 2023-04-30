@@ -1,5 +1,10 @@
 [
   {
+    "name": "Launch i3 schema",
+    "confirm": false,
+    "command": "i3-schema-select"
+  },
+  {
     "name": "One display",
     "confirm": false,
     "command": "manage-desktop-displays.sh one"

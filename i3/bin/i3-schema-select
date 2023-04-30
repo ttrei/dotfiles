@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# shellcheck source=/dev/null
+. "$HOME/.dotfiles-env"
+
+PYTHON="$HOME/.venv/bin/python"
+SCHEMA_DIR="$HOME/.config/i3schemas"
+
+if [ "$CONTEXT" = "home" ]; then
+    if [ "$MACHINE" = "home-desktop" ]; then
+        schemas_config="$SCHEMA_DIR/home.py"
+    elif [ "$MACHINE" = "htpc" ]; then
+        schemas_config="$SCHEMA_DIR/htpc.py"
+    fi
+elif [ "$CONTEXT" = "work" ]; then
+    schemas_config="$SCHEMA_DIR/htpc.py"
+fi
+
+$PYTHON "$schemas_config" "$@"

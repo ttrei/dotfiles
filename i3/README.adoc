@@ -6,7 +6,9 @@ Here are some resources about i3 workspace management:
 * https://github.com/swaywm/sway/pull/3022
 * https://github.com/swaywm/sway/issues/1005
 
-== TODO: Rework workspace scripts
+== TODO Migrate work init to the new async schema approach
+
+== DONE Rework workspace scripts
 
 As of now I have my workspace scripts as executables on my path, and they assume that my i3init
 library is available.
@@ -25,3 +27,8 @@ all workspace scripts easily available, as they are now (now they are just execu
 I could create one python script for all workspaces, then I would need only one wrapper for calling
 the script with the virtual environment python.
 Inside the script I can select what I want, probably with https://github.com/bcbnz/python-rofi.
+The python-rofi project seems abandoned, PyPI version is stale: https://github.com/bcbnz/python-rofi/issues/13
+Maybe I can live with the older version.
+Maybe some fork is better maintained? https://github.com/bcbnz/python-rofi/forks
+This one is in nixpkgs: https://github.com/papis/python-rofi
+There's also a fork for Wofi: https://github.com/cristobaltapia/python-wofi
