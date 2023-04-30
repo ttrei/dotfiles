@@ -1,27 +1,27 @@
 [
   {
     "name": "Kodi",
-    "command": "workspaces-htpc.py kodi"
+    "command": "i3-schema-select kodi"
   },
   {
     "name": "Firefox",
-    "command": "workspaces-htpc.py firefox"
+    "command": "i3-schema-select firefox"
   },
   {
     "name": "Chrome",
-    "command": "workspaces-htpc.py chromium"
+    "command": "i3-schema-select chromium"
   },
   {
     "name": "Spotify",
-    "command": "workspaces-htpc.py spotify"
+    "command": "i3-schema-select spotify"
   },
   {
     "name": "Steam",
-    "command": "workspaces-htpc.py steam"
+    "command": "i3-schema-select steam"
   },
   {
     "name": "Lutris",
-    "command": "workspaces-htpc.py lutris"
+    "command": "i3-schema-select lutris"
   },
   {
     "name": "VPN stop",
