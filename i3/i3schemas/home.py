@@ -12,8 +12,8 @@ HOME = os.path.expanduser("~")
 I3SCHEMA_INIT = {
     "05:notes": [
         # execstr, window_name, window_class, window_handling_commands
+        [f"exec-in-dir {HOME}/dev/notes zutty", "zutty-notes", "zutty", ["move left"]],
         ["emacs", "emacs-notes", "emacs", ["move right"]],
-        [f"exec-in-dir {HOME}/dev/notes zutty", "zutty-notes", "zutty", None],
     ],
     "10:browser": [
         ["firefox", "mozilla firefox", "firefox", None],
