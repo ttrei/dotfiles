@@ -46,14 +46,15 @@ class Program:
             return binary, *args
 
     def match(self, window_name: str, window_class: str):
+        print("Trying to match:")
+        print(f"  {window_name=}, {window_class=} against {self.window_name}, {self.window_class}")
         if self.window_name is None:
             return self.equals_case_insensitive(self.window_class, window_class)
         if self.window_class is None:
             return self.equals_case_insensitive(self.window_name, window_name)
-        return (
-            self.equals_case_insensitive(self.window_class, window_class)
-            and self.equals_case_insensitive(self.window_name, window_name)
-        )
+        return self.equals_case_insensitive(
+            self.window_class, window_class
+        ) and self.equals_case_insensitive(self.window_name, window_name)
 
     @staticmethod
     def equals_case_insensitive(left: str, right: str):
@@ -94,7 +95,9 @@ async def on_new_window(i3: AioConnection, e: WindowEvent):
         return
 
     STARTING_PROGRAMS.remove(matched_program)
-    print(f"Moving {matched_program.window_name} to {matched_program.workspace}")
+    print(
+        f"Moving {matched_program.window_name}, {matched_program.window_class} to {matched_program.workspace}"
+    )
     await e.container.command(f"move to workspace {matched_program.workspace}")
     for command in matched_program.window_handling_commands:
         await e.container.command(command)

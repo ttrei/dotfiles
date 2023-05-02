@@ -8,10 +8,8 @@ TIMEOUT = 5.0
 
 HOME = os.path.expanduser("~")
 
+# execstr, window_name, window_class, window_handling_commands
 I3SCHEMA_INIT = {
-    "80:daemons": [
-        ["zutty -e sudo openvpn --config /etc/openvpn/client/work.conf", "zutty-openvpn", "zutty", None],
-    ],
     # "00:teams": [
     #     ["teams", "teams", "teams", None],
     # ],
@@ -32,10 +30,13 @@ I3SCHEMA_INIT = {
         [f"exec-in-dir {HOME}/ips/core zutty", "zutty-dev", "zutty", None],
     ],
     "35:idea": [
-        ["idea", "idea", "idea", None],
+        ["idea nosplash", None, "jetbrains-idea-ce", None],
     ],
     "37:pycharm": [
-        ["pycharm", "pycharm", "pycharm", None],
+        ["pycharm nosplash", None, "jetbrains-pycharm-ce", None],
+    ],
+    "80:daemons": [
+        ["zutty -e sudo openvpn --config /etc/openvpn/client/work.conf", "zutty-openvpn", "zutty", None],
     ],
 }
 
