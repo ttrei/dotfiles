@@ -42,11 +42,8 @@
     download-queue-enabled = true;
     download-queue-size = 20;
     download-dir = "/media/Storage/torrents";
-    # incomplete-dir = "/media/Storage/torrents/.incomplete";
-    # NOTE Disable the incomplete directory because torrents with a custom download directory (on a
-    # different partitition) were not moved to it at completion. It's also more efficient to keep
-    # the partially downloaded torrents on the target partition - avoids copy on torrent completion.
-    incomplete-dir-enabled = false;
+    incomplete-dir = "/media/Storage/torrents/.incomplete";
+    incomplete-dir-enabled = true;
     encryption = 0;
     peer-limit-global = 500;
     peer-limit-per-torrent = 50;
