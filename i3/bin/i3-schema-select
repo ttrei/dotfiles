@@ -13,7 +13,7 @@ if [ "$CONTEXT" = "home" ]; then
         schemas_config="$SCHEMA_DIR/htpc.py"
     fi
 elif [ "$CONTEXT" = "work" ]; then
-    schemas_config="$SCHEMA_DIR/htpc.py"
+    schemas_config="$SCHEMA_DIR/work.py"
 fi
 
 $PYTHON "$schemas_config" "$@"
