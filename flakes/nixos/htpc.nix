@@ -37,12 +37,16 @@
 
   services.transmission.enable = true;
   services.transmission.settings = {
+    # https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
     dht-enabled = true;
     download-queue-enabled = true;
     download-queue-size = 20;
     download-dir = "/media/Storage/torrents";
-    incomplete-dir = "/media/Storage/torrents/.incomplete";
-    incomplete-dir-enabled = true;
+    # incomplete-dir = "/media/Storage/torrents/.incomplete";
+    # NOTE Disable the incomplete directory because torrents with a custom download directory (on a
+    # different partitition) were not moved to it at completion. It's also more efficient to keep
+    # the partially downloaded torrents on the target partition - avoids copy on torrent completion.
+    incomplete-dir-enabled = false;
     encryption = 0;
     peer-limit-global = 500;
     peer-limit-per-torrent = 50;
@@ -53,6 +57,7 @@
     prefetch-enabled = true;
     ratio-limit = 3;
     ratio-limit-enabled = true;
+    rename-partial-files = true;
     rpc-authentication-required = true;
     rpc-bind-address = "0.0.0.0";
     rpc-enabled = true;
