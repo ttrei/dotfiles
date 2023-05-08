@@ -10,9 +10,11 @@ HOME = os.path.expanduser("~")
 
 # execstr, window_name, window_class, window_handling_commands
 I3SCHEMA_INIT = {
-    # "00:teams": [
-    #     ["teams", "teams", "teams", None],
-    # ],
+    "00:teams": [
+        # TODO: The splash screen matches but then the main window gets created from scratch and
+        # opens on current workspace.
+        ["teams", None, "microsoft teams - preview", None],
+    ],
     "25:browser": [
         ["firefox", "mozilla firefox", "firefox", None],
     ],
