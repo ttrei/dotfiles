@@ -18,6 +18,7 @@
     git-crypt
     gron
     htop
+    imagemagick
     jq
     k9s
     lua
