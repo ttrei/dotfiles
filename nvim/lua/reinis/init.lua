@@ -1,5 +1,6 @@
 require ('reinis.options')
 require ('reinis.colors')
+require ('reinis.filetype')
 require ('reinis.remaps')
 require ('reinis.lspconfig')
 require ('reinis.neorg')
