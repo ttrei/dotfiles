@@ -1,3 +1,4 @@
+# https://github.com/Misterio77/nix-starter-configs
 {
   description = "NixOS and home-manager configuration";
 
