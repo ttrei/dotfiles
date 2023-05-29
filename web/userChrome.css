@@ -12,17 +12,19 @@
 
 /*  Remove top tabbar
  *  https://github.com/mbnuqw/sidebery/wiki/Firefox-Styles-Snippets-(via-userChrome.css)
- *  Sidebery settings > Help > Preface value > enter "XXX"
+ *  https://unicode-explorer.com/c/200B -> "Copy to the clipboard"
+ *  Sidebery settings > Help > Preface value > paste the copied value
  *  */
 
-#main-window #TabsToolbar {
-  height: 29px !important;
+#main-window #titlebar {
   overflow: hidden;
-  transition: height .3s .3s !important;
+  transition: height 0.1s 0.1s !important;
 }
-#main-window[titlepreface*="XXX"] #TabsToolbar {
-  height: 0 !important;
-}
-#main-window[titlepreface*="XXX"] #tabbrowser-tabs {
-  z-index: 0 !important;
-}
+/* Default state: Set initial height to enable animation */
+#main-window #titlebar { height: 3em !important; }
+#main-window[uidensity="touch"] #titlebar { height: 3.35em !important; }
+#main-window[uidensity="compact"] #titlebar { height: 2.7em !important; }
+/* Hidden state: Hide native tabs strip */
+#main-window[titlepreface*="​"] #titlebar { height: 0 !important; }
+/* Hidden state: Fix z-index of active pinned tabs */
+#main-window[titlepreface*="​"] #tabbrowser-tabs { z-index: 0 !important; }
