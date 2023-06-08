@@ -4,7 +4,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    unstable.kodi
+    kodi
     spotify
     transmission
   ];

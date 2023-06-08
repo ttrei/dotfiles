@@ -4,7 +4,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    unstable.lutris
+    lutris
   ];
 
   programs.steam.enable = true;

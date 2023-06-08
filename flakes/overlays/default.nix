@@ -25,9 +25,12 @@
 
     comma = final.unstable.comma;
 
-    # neovim 0.8.1 of nixpkgs-22.11 has some problems with the copilot plugin
-    neovim-unwrapped = final.unstable.neovim-unwrapped;
-    vimPlugins = final.unstable.vimPlugins;
+    # # neovim 0.8.1 of nixpkgs-22.11 has some problems with the copilot plugin
+    # # Update 2023-06-08:
+    # # Disabled this modification after switching to next release (23.05).
+    # # Leaving it here for future reference.
+    # neovim-unwrapped = final.unstable.neovim-unwrapped;
+    # vimPlugins = final.unstable.vimPlugins;
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
