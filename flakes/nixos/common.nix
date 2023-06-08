@@ -97,8 +97,10 @@
 
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
-    permitRootLogin = "prohibit-password";
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "prohibit-password";
+    };
   };
 
   systemd.user.services.deduplicate-bash-history = let
