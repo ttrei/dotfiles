@@ -9,7 +9,10 @@ fi
 . "$ENVFILE"
 
 if [ "$DISTRO" = "nixos" ]; then
-    home-manager switch --flake "$HOME/.config/flakes#reinis@nixos"
+    command="home-manager switch --flake $HOME/.config/flakes#reinis@nixos"
 else
-    home-manager switch --flake "$HOME/.config/flakes#reinis@non-nixos"
+    command="home-manager switch --flake $HOME/.config/flakes#reinis@non-nixos"
 fi
+
+echo "$command"
+$command
