@@ -25,7 +25,7 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldenable = false -- No folding on startup
 
 vim.opt.hidden = true -- Allow hidden buffers with unsaved changes
-vim.opt.scrolloff = 4
+vim.opt.scrolloff = 3
 vim.opt.wrap = false
 
 vim.opt.mouse = ""
