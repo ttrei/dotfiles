@@ -17,7 +17,7 @@ alias tree='tree -C'
 
 # Python
 alias pip='echo -e "Use \"python -m pip\" instead (see https://snarky.ca/why-you-should-use-python-m-pip/)"'
-alias p='~/.venv/bin/python'
+alias pyactivate='. ~/.virtualenvs/misc/bin/activate'
 
 # Disk usage
 alias duu='du -ms ./* | sort -n'

@@ -2,8 +2,8 @@
 
 set -o errexit
 
-if [ -d ~/.venv ]; then
-    echo "Cannot create global virtualenv - directory ~/.venv already exists"
+if [ -d ~/.virtualenvs/misc ]; then
+    echo "Cannot create global virtualenv - directory ~/.virtualenvs/misc already exists"
     exit 1
 fi
 
@@ -15,4 +15,4 @@ cd "$SCRIPT_DIR"
 direnv allow
 eval "$(direnv export bash)" || exit 1
 
-python3 -m venv --upgrade-deps ~/.venv
+python3 -m venv --upgrade-deps ~/.virtualenvs/misc
