@@ -3,7 +3,7 @@
 # shellcheck source=/dev/null
 . "$HOME/.dotfiles-env"
 
-PYTHON="$HOME/.venv/bin/python"
+PYTHON="$HOME/.virtualenvs/misc/bin/python"
 SCHEMA_DIR="$HOME/.config/i3schemas"
 
 if [ "$CONTEXT" = "home" ]; then
