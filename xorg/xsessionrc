@@ -6,7 +6,7 @@ xmodmap $HOME/.xmodmaprc &
 
 redshift &
 
-xsetroot -solid "#AAAAAA" &
+xsetroot -solid "#000000" &
 
 if [ -x "$(command -v /usr/bin/dunst)" ]; then
     /usr/bin/dunst &
