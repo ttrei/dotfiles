@@ -19,6 +19,7 @@
     gron
     htop
     imagemagick
+    jmtpfs
     jq
     k9s
     lua
