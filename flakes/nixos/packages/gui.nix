@@ -25,6 +25,7 @@
     vlc
     xbindkeys
     xdotool
+    xfce.thunar
     xfce.xfce4-terminal
     xorg.xev
     xorg.xmodmap
