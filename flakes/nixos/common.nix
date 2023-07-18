@@ -87,6 +87,15 @@
 
   users.mutableUsers = false;
 
+  # https://github.com/NixOS/nixpkgs/issues/160923
+  # https://github.com/NixOS/nixpkgs/pull/197118
+  # https://github.com/NixOS/nixpkgs/pull/243834
+  # xdg.portal = {
+  #   enable = true;
+  #   xdgOpenUsePortal = true;
+  #   extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  # };
+
   xdg.mime.defaultApplications = {
     "application/pdf" = "firefox.desktop";
     "inode/directory" = "thunar.desktop";
