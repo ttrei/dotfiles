@@ -76,7 +76,7 @@
     ripgrep
     signal-desktop
     starship
-    teams
+    teams-for-linux
     whatsapp-for-linux
     zathura
     unstable.zig
