@@ -31,18 +31,14 @@
     device = "/dev/disk/by-uuid/c7b00111-51f7-4c09-bf16-4239d25e72e1";
   };
 
-  fileSystems."/media/extra-storage" = {
-    device = "/dev/disk/by-uuid/52945d79-d15b-4c45-b939-dd8b52b9a728";
-  };
-
   fileSystems."/media/debian-work" = {
     device = "/dev/disk/by-uuid/3d855ec1-722c-48a1-b273-cd934d321527";
-    options = ["noauto"];
+    options = ["noauto" "nofail"];
   };
 
   fileSystems."/media/linux-main" = {
     device = "/dev/disk/by-uuid/56b3dbfe-a167-4d92-a4e3-826ba53c2a47";
-    options = ["noauto"];
+    options = ["noauto" "nofail"];
   };
 
   fileSystems."/boot/efi" = {
