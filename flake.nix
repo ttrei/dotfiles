@@ -47,7 +47,7 @@
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
       in
-        import ./pkgs {inherit pkgs;}
+        import ./nix/pkgs {inherit pkgs;}
     );
     # Devshell for bootstrapping
     # Acessible through 'nix develop' or 'nix-shell' (legacy)
@@ -55,17 +55,17 @@
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
       in
-        import ./shell.nix {inherit pkgs;}
+        import ./nix/shell.nix {inherit pkgs;}
     );
 
     # Your custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
+    overlays = import ./nix/overlays {inherit inputs;};
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./modules/nixos;
+    nixosModules = import ./nix/modules/nixos;
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./modules/home-manager;
+    homeManagerModules = import ./nix/modules/home-manager;
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild switch --flake .#your-hostname'
@@ -73,25 +73,25 @@
       home-desktop-nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/home-desktop.nix
+          ./nix/nixos/home-desktop.nix
         ];
       };
       kodi = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/htpc.nix
+          ./nix/nixos/htpc.nix
         ];
       };
       htpc-qemu = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/htpc-qemu.nix
+          ./nix/nixos/htpc-qemu.nix
         ];
       };
       nixos-qemu = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/qemu-base.nix
+          ./nix/nixos/qemu-base.nix
         ];
       };
     };
@@ -103,14 +103,14 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./home-manager/home-nixos.nix
+          ./nix/home-manager/home-nixos.nix
         ];
       };
       "reinis@non-nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./home-manager/home-non-nixos.nix
+          ./nix/home-manager/home-non-nixos.nix
         ];
       };
     };
