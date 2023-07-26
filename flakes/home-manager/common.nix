@@ -62,6 +62,8 @@
     gron
     i3
     jdt-language-server
+    jetbrains.idea-community
+    jetbrains.pycharm-community
     kubectl
     kubelogin-oidc
     k9s

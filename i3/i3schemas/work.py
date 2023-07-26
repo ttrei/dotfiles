@@ -10,10 +10,10 @@ HOME = os.path.expanduser("~")
 
 # execstr, window_name, window_class, window_handling_commands
 I3SCHEMA_INIT = {
-    "00:teams": [
+    "00:corp": [
         # TODO: The splash screen matches but then the main window gets created from scratch and
         # opens on current workspace.
-        ["teams", None, "microsoft teams - preview", None],
+        ["microsoft-edge", None, "Microsoft-edge", None],
     ],
     "25:browser": [
         ["firefox", "mozilla firefox", "firefox", None],
@@ -32,10 +32,10 @@ I3SCHEMA_INIT = {
         [f"exec-in-dir {HOME}/ips/core zutty", "zutty-dev", "zutty", None],
     ],
     "35:idea": [
-        ["idea nosplash", None, "jetbrains-idea-ce", None],
+        ["idea-community nosplash", None, "jetbrains-idea-ce", None],
     ],
     "37:pycharm": [
-        ["pycharm nosplash", None, "jetbrains-pycharm-ce", None],
+        ["pycharm-community nosplash", None, "jetbrains-pycharm-ce", None],
     ],
     "80:daemons": [
         ["zutty -e sudo openvpn --config /etc/openvpn/client/work.conf", "zutty-openvpn", "zutty", None],
