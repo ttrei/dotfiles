@@ -264,9 +264,9 @@ class WireguardBlock(blocks.PollingBlock):
             self.update("VPN on", color=types.Color.NEUTRAL)
 
 
-def get_partitions(excludes={"/boot", "/boot/efi", "/nix/store"}):
+def get_partitions(excludes={"/boot", "/nix", "/snap", "/var/snap"}):
     partitions = psutil.disk_partitions()
-    return [p for p in partitions if p.mountpoint not in excludes]
+    return [p for p in partitions if not any(p.mountpoint.startswith(e) for e in excludes)]
 
 
 async def main():
