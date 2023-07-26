@@ -224,7 +224,6 @@ ln -s "$DOTFILES/python/black" "$STAGINGDIR/.config/black"
 # NIX
 mkdir -p "$STAGINGDIR/.config/nix"
 mkdir -p "$STAGINGDIR/.config/nixpkgs"
-ln -s "$DOTFILES/flakes" "$STAGINGDIR/.config/flakes"
 ln -s "$DOTFILES/nix/bin/apply-users.sh" "$STAGINGDIR/bin/apply-users.sh"
 if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/nix/bin/apply-system.sh" "$STAGINGDIR/bin/apply-system.sh"
