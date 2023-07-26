@@ -14,6 +14,8 @@
     # Then you also have to change nixpkgs to nixpkgs-unstable in homeConfigurations below.
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    devenv.url = "github:cachix/devenv";
+
     i3pyblocks.url = "github:thiagokokada/i3pyblocks";
 
     # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
@@ -26,10 +28,16 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
+  nixConfig = {
+    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-substituters = "https://devenv.cachix.org";
+  };
+
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    devenv,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -49,14 +57,35 @@
       in
         import ./nix/pkgs {inherit pkgs;}
     );
+
+    # NOTE: This is from https://github.com/Misterio77/nix-starter-configs
     # Devshell for bootstrapping
     # Acessible through 'nix develop' or 'nix-shell' (legacy)
-    devShells = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./nix/shell.nix {inherit pkgs;}
-    );
+    # devShells = forAllSystems (
+    #   system: let
+    #     pkgs = nixpkgs.legacyPackages.${system};
+    #   in
+    #     import ./nix/shell.nix {inherit pkgs;}
+    # );
+
+    # NOTE: This is from
+    # https://devenv.sh/guides/using-with-flakes/#modifying-your-flakenix-file
+    # TODO: use forAllSystems
+    devShell.x86_64-linux = let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in
+      devenv.lib.mkShell {
+        inherit inputs pkgs;
+        modules = [
+          ({pkgs, ...}: {
+            packages = [pkgs.hello];
+
+            enterShell = ''
+              hello
+            '';
+          })
+        ];
+      };
 
     # Your custom packages and modifications, exported as overlays
     overlays = import ./nix/overlays {inherit inputs;};
