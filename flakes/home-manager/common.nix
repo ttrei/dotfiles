@@ -62,7 +62,10 @@
     gron
     i3
     jdt-language-server
+    kubectl
+    kubelogin-oidc
     k9s
+    maven
     ncdu
     nethogs
     nodejs-slim
