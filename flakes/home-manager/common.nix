@@ -60,6 +60,7 @@
     font-awesome
     fzf
     gron
+    i3
     jdt-language-server
     k9s
     ncdu
