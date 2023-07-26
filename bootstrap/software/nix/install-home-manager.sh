@@ -2,6 +2,9 @@
 
 set -o errexit
 
+echo "This script is obsolete. See README.md for how to install flake-based home-manager."
+exit 1
+
 if [ -x "$(command -v home-manager)" ]; then
     echo "home-manager already installed"
     exit 1
