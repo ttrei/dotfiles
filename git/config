@@ -21,13 +21,13 @@
     # ignoreRevsFile = .git-blame-ignore-revs
 
 [pager]
-    diff = delta
+    # diff = delta
     log = delta
     reflog = delta
     show = delta
 
-[interactive]
-    diffFilter = delta --color-only --features=interactive
+# [interactive]
+#     diffFilter = delta --color-only --features=interactive
 
 [delta]
     features = decorations
@@ -36,7 +36,7 @@
     max-line-length = 500
 
 [delta "interactive"]
-    keep-plus-minus-markers = true
+    keep-plus-minus-markers = false
 
 [delta "decorations"]
     commit-style = raw
