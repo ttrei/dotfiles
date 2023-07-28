@@ -29,6 +29,8 @@
 
 (setq org-directory "~/dev/notes/org")
 (setq org-agenda-files (list org-directory))
+;; For work machine:
+;; (setq org-agenda-files (list "~/home-dev/notes/org"))
 
 ;; Record the time when note was marked as done
 (setq org-log-done 'time)
