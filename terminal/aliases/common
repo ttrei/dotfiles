@@ -35,6 +35,8 @@ alias gof='git-checkout-fzf.sh'
 alias gofl='git-checkout-fzf.sh --local'
 alias gofr='git-checkout-fzf.sh --remote'
 
+alias groot='cd $(git root)'
+
 alias gc='git commit'
 alias gca='git commit -a'
 alias gcm='git commit -m'
