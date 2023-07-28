@@ -52,6 +52,7 @@
   home.packages = with pkgs; [
     alejandra
     comma
+    unstable.delta
     # diffoscope
     direnv
     emacs
@@ -80,6 +81,7 @@
     openjdk
     redshift
     ripgrep
+    sd
     signal-desktop
     starship
     # teams # proprietary
