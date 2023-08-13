@@ -30,7 +30,7 @@ vim.opt.wrap = false
 
 vim.opt.mouse = ""
 
-vim.opt.colorcolumn = { 80, 100 }
+vim.opt.colorcolumn = { 80, 120 }
 vim.opt.cursorline = true
 
 --- Reserve a column on the left for linter hints.
