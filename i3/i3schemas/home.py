@@ -62,6 +62,15 @@ I3SCHEMA_HANDMADE_POOL = {
 }
 
 
+DIR = f"{HOME}/dev/projects/foodbook"
+I3SCHEMA_FOODBOOK = {
+    "20:dev": [
+        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
+        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
+    ],
+}
+
+
 DEVDIR = f"{HOME}/dev/learn/tcp"
 BOOK = "/media/storage-new/Stevens-TCP_IP_Illustrated_Volume_1_The_Protocols_1994.pdf"
 BOOK2 = "/media/storage-new/books/LinuxProgrammingInterface.pdf"
@@ -131,6 +140,7 @@ I3SCHEMAS = {
     "dotfiles": I3SCHEMA_DOTFILES,
     "algorithms": I3SCHEMA_ALGORITHMS,
     "handmade-pool": I3SCHEMA_HANDMADE_POOL,
+    "foodbook": I3SCHEMA_FOODBOOK,
     "linux-programming-interface": I3SCHEMA_TLPI,
     "tcp": I3SCHEMA_TCP,
     "taukulis.lv": I3SCHEMA_TAUKULIS_LV,
