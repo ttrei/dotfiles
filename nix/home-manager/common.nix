@@ -52,6 +52,7 @@
   home.packages = with pkgs; [
     alejandra
     comma
+    dbeaver
     unstable.delta
     # diffoscope
     direnv
