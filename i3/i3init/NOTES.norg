@@ -1,0 +1,4 @@
+* TODO
+
+  - Execute window_handling_commands only when all programs in a workspace has started.
+    STARTING_PROGRAMS will probably have to be dict with workspace names as keys.
