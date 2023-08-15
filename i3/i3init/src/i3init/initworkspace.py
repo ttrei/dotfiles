@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import asyncio
 import logging
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from i3ipc import Con, Connection, Event, WindowEvent
 from i3ipc.aio import Con as AioCon
@@ -13,17 +13,20 @@ TIMEOUT = 5.0
 class Program:
     def __init__(
         self,
+        index_in_workspace: int,
         workspace: str,
         execstr: str,
         window_name: str,
         window_class: str,
         window_handling_commands: Optional[List[str]] = None,
     ):
+        self.index_in_workspace = index_in_workspace
         self.workspace = workspace
         self.exec_tuple = self._parse_exec_string(execstr, window_name)
         self.window_name = window_name
         self.window_class = window_class
         self.window_handling_commands = window_handling_commands or []
+        self.container: Any = None
 
     @staticmethod
     def _parse_exec_string(execstr: str, window_name: str) -> Tuple[str, ...]:
@@ -46,8 +49,6 @@ class Program:
             return binary, *args
 
     def match(self, window_name: str, window_class: str):
-        print("Trying to match:")
-        print(f"  {window_name=}, {window_class=} against {self.window_name}, {self.window_class}")
         if self.window_name is None:
             return self.equals_case_insensitive(self.window_class, window_class)
         if self.window_class is None:
@@ -68,9 +69,11 @@ def construct_workspace_programs(workspace_program_config: dict):
     workspace_programs: Dict[str, List[Program]] = {}
     for workspace, program_args_list in workspace_program_config.items():
         program_list = []
-        for execstr, window_name, window_class, window_handling_commands in program_args_list:
+        for i, (execstr, window_name, window_class, window_handling_commands) in enumerate(
+            program_args_list
+        ):
             program = Program(
-                workspace, execstr, window_name, window_class, window_handling_commands
+                i, workspace, execstr, window_name, window_class, window_handling_commands
             )
             program_list.append(program)
         workspace_programs[workspace] = program_list
@@ -79,37 +82,68 @@ def construct_workspace_programs(workspace_program_config: dict):
 
 async def on_new_window(i3: AioConnection, e: WindowEvent):
     _ = i3
-    window_name = e.container.name
-    window_class = e.container.window_class
+    print(f"on_new_window: window_name={e.container.name}, window_class={e.container.window_class}")
 
-    print(f"on_new_window: {window_name=}, {window_class=}")
+    global STARTING_PROGRAMS
+    global WORKSPACE_PROGRAMS_STARTED
 
-    matched_program = None
-    for program in STARTING_PROGRAMS:
-        if program.match(window_name, window_class):
-            matched_program = program
-            print("Program matched")
-            break
-    if matched_program is None:
-        print("Program not matched")
+    try:
+        workspace, matched_program = match_program(e)
+    except UnmatchedProgramError:
+        print("WARNING: Unmatched program")
         return
 
-    STARTING_PROGRAMS.remove(matched_program)
     print(
-        f"Moving {matched_program.window_name}, {matched_program.window_class} to {matched_program.workspace}"
+        f"Moving {matched_program.window_name}, {matched_program.window_class} "
+        f"to {matched_program.workspace}"
     )
+    print(f"{matched_program.window_handling_commands=}")
     await e.container.command(f"move to workspace {matched_program.workspace}")
-    for command in matched_program.window_handling_commands:
-        await e.container.command(command)
+
+    programs_started = WORKSPACE_PROGRAMS_STARTED.setdefault(workspace, set())
+    matched_program.container = e.container
+    programs_started.add(matched_program)
+    STARTING_PROGRAMS[workspace].remove(matched_program)
+    if len(STARTING_PROGRAMS[workspace]) == 0:
+        print(f"All programs in {workspace=} started")
+        for program in sorted(programs_started, key=lambda p: p.index_in_workspace):
+            print(f"Executing window handling commands for {program.window_name}")
+            for command in program.window_handling_commands:
+                print(f"{command =}")
+                await program.container.command(command)
+        print(f"Removing {workspace} from STARTING_PROGRAMS")
+        STARTING_PROGRAMS.pop(workspace)
 
     if len(STARTING_PROGRAMS) == 0:
         i3.main_quit()
 
 
-STARTING_PROGRAMS: Set["Program"] = set()
+def match_program(e: WindowEvent):
+    global STARTING_PROGRAMS
+    window_name = e.container.name
+    window_class = e.container.window_class
+    for workspace, programs in STARTING_PROGRAMS.items():
+        for program in programs:
+            print(
+                f"Matching {window_name=}, {window_class=} against {program.window_name}, {program.window_class}"
+            )
+            if program.match(window_name, window_class):
+                print("Matched")
+                return workspace, program
+    raise UnmatchedProgramError
+
+
+class UnmatchedProgramError(Exception):
+    pass
+
+
+STARTING_PROGRAMS: Dict[str, Set["Program"]] = {}
+WORKSPACE_PROGRAMS_STARTED: Dict[str, Set["Program"]] = {}
 
 
 async def main(workspace_program_config, timeout):
+    global STARTING_PROGRAMS
+
     i3 = await AioConnection(auto_reconnect=True).connect()
 
     # We will not touch already existing workspaces containing something
@@ -124,7 +158,8 @@ async def main(workspace_program_config, timeout):
             except FileNotFoundError as e:
                 logging.error(f"Couldn't execute {program.exec_tuple}: {e}")
                 continue
-            STARTING_PROGRAMS.add(program)
+            programs = STARTING_PROGRAMS.setdefault(workspace, set())
+            programs.add(program)
 
     if len(STARTING_PROGRAMS) == 0:
         return
