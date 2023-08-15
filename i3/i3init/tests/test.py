@@ -11,7 +11,13 @@ WORKSPACE_PROGRAMS = {
     # workspace
     "100:test": [
         # execstr, window_name, window_class, window_handling_commands
-        [f"exec-in-dir {HOME}/dotfiles zutty -e sleep 2", "zutty-test", "zutty", None],
+        [f"exec-in-dir {HOME}/dotfiles zutty -e sleep 3", "zutty-test", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dotfiles zutty -e sleep 3",
+            "zutty-test",
+            "zutty",
+            ["move to workspace 101:test"],
+        ],
         # [f"code {HOME}/.config/vscode-workspaces/ziglings.code-workspace", "visual studio code", "code", None],
         # [f"code {HOME}/.config/vscode-workspaces/algorithms.code-workspace", "visual studio code", "code", None],
     ],
