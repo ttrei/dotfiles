@@ -65,8 +65,14 @@ I3SCHEMA_HANDMADE_POOL = {
 DIR = f"{HOME}/dev/projects/foodbook"
 I3SCHEMA_FOODBOOK = {
     "20:dev": [
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
+        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {DIR} zutty",
+            "zutty-pool",
+            "zutty",
+            ["move right", "move right", "split vertical", "layout stacking"],
+        ],
+        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", ["move right", "resize set width 70 ppt"]],
     ],
 }
 
