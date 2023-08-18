@@ -2,6 +2,7 @@
 import os
 
 import click
+
 import i3init
 
 TIMEOUT = 5.0

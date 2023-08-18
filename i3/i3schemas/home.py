@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import os
 
-import i3init
 from rofi import Rofi
+
+import i3init
 
 TIMEOUT = 5.0
 
