@@ -13,7 +13,7 @@ I3SCHEMA_INIT = {
     "05:notes": [
         # execstr, window_name, window_class, window_handling_commands
         [f"exec-in-dir {HOME}/dev/notes zutty", "zutty-notes", "zutty", ["move left"]],
-        ["emacs", "emacs-notes", "emacs", ["move right"]],
+        ["emacs", "emacs-notes", "emacs", ["resize set width 70 ppt"]],
     ],
     "10:browser": [
         ["firefox", "mozilla firefox", "firefox", None],
@@ -23,8 +23,13 @@ I3SCHEMA_INIT = {
 
 I3SCHEMA_DOTFILES = {
     "85:dotfiles": [
-        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", None],
-        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", None],
+        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dotfiles zutty",
+            "zutty-dotfiles",
+            "zutty",
+            ["split vertical", "layout stacking", "resize set width 70 ppt"],
+        ],
     ],
 }
 
