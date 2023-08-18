@@ -1,3 +1,16 @@
 * TODO
 
-  -
+** More readable workspace configuration files
+
+   I don't like configuring them in python, would like to use a declarative config format.
+
+   But with python configuration there is a potential feature where one could specify an arbitrary callback function to
+   modify the workspace layout after windows have been created.
+
+** Declarative layouts
+
+   Currently it's possible to define consistent layouts by specifying i3 commands to be executed after all windows of a
+   workspace have been created.
+
+   Would be nice to declare only the final layout, and then i3init would generate the necessary i3 commands.
+   Is this feasible?
