@@ -23,9 +23,7 @@ from i3pyblocks.blocks import inotify, ps, pulse
 
 # from i3pyblocks.blocks import dbus, http, x11
 
-logging.basicConfig(
-    filename=Path.home().joinpath(".i3pyblocks.log"), level=logging.INFO
-)
+logging.basicConfig(filename=Path.home().joinpath(".i3pyblocks.log"), level=logging.INFO)
 
 
 class RemoteSummaryBlock(blocks.PollingBlock):
@@ -107,7 +105,7 @@ class RemoteSummaryBlock(blocks.PollingBlock):
         mtime = datetime.fromisoformat(host_data["mtime"])
         now = datetime.fromtimestamp(time.time(), tz=timezone.utc)
         if (now - mtime).total_seconds() > 300:
-            color =  "#444444"  # dark gray
+            color = "#444444"  # dark gray
 
         if full_text:
             full_text = f"{self.hostname:}{full_text}"
@@ -191,19 +189,13 @@ class CustomNetworkSpeedBlock(ps.NetworkSpeedBlock):
         """Optimized to keep the string constant"""
         if value < 10 * (2**10):  # < 10 KiB/s
             # from "0.0K" to "9.9K"
-            return CustomNetworkSpeedBlock.bytes2human(
-                value, format="%(value).1f%(symbol)s"
-            )
+            return CustomNetworkSpeedBlock.bytes2human(value, format="%(value).1f%(symbol)s")
         elif value < 2**20:  # < 1 MiB/s
             # from " 10K" to "999K"
-            return CustomNetworkSpeedBlock.bytes2human(
-                value, format="%(value)3d%(symbol)s"
-            )
+            return CustomNetworkSpeedBlock.bytes2human(value, format="%(value)3d%(symbol)s")
         else:
             # from "1.0M"
-            return CustomNetworkSpeedBlock.bytes2human(
-                value, format="%(value).1f%(symbol)s"
-            )
+            return CustomNetworkSpeedBlock.bytes2human(value, format="%(value).1f%(symbol)s")
 
     async def run(self) -> None:
         self.interface = self._find_interface(self.interface)
@@ -239,6 +231,7 @@ class CustomNetworkSpeedBlock(ps.NetworkSpeedBlock):
 
         self.previous = now
         self.previous_time = now_time
+
 
 class WireguardBlock(blocks.PollingBlock):
     r"""Block that shows if Wireguard VPN is currently enabled
@@ -284,12 +277,8 @@ async def main():
 
     # Summary of remote machines
     if hostname == "home-desktop-debian":
-        await runner.register_block(
-            RemoteSummaryBlock(hostname="mazais", path="/var/tmp/remote-summary.json")
-        )
-        await runner.register_block(
-            RemoteSummaryBlock(hostname="kodi", path="/var/tmp/remote-summary.json")
-        )
+        await runner.register_block(RemoteSummaryBlock(hostname="mazais", path="/var/tmp/remote-summary.json"))
+        await runner.register_block(RemoteSummaryBlock(hostname="kodi", path="/var/tmp/remote-summary.json"))
 
     # Current network speed for either en* (ethernet) or wl* devices.
     await runner.register_block(
@@ -299,7 +288,6 @@ async def main():
             interface_regex="en*|wl*",
         )
     )
-
 
     if hostname in {"kodi", "htpc", "htpc-qemu"}:
         # VPN status

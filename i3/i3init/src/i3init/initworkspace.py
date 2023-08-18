@@ -53,9 +53,9 @@ class Program:
             return self.equals_case_insensitive(self.window_class, window_class)
         if self.window_class is None:
             return self.equals_case_insensitive(self.window_name, window_name)
-        return self.equals_case_insensitive(
-            self.window_class, window_class
-        ) and self.equals_case_insensitive(self.window_name, window_name)
+        return self.equals_case_insensitive(self.window_class, window_class) and self.equals_case_insensitive(
+            self.window_name, window_name
+        )
 
     @staticmethod
     def equals_case_insensitive(left: str, right: str):
@@ -69,12 +69,8 @@ def construct_workspace_programs(workspace_program_config: dict):
     workspace_programs: Dict[str, List[Program]] = {}
     for workspace, program_args_list in workspace_program_config.items():
         program_list = []
-        for i, (execstr, window_name, window_class, window_handling_commands) in enumerate(
-            program_args_list
-        ):
-            program = Program(
-                i, workspace, execstr, window_name, window_class, window_handling_commands
-            )
+        for i, (execstr, window_name, window_class, window_handling_commands) in enumerate(program_args_list):
+            program = Program(i, workspace, execstr, window_name, window_class, window_handling_commands)
             program_list.append(program)
         workspace_programs[workspace] = program_list
     return workspace_programs
@@ -93,10 +89,7 @@ async def on_new_window(i3: AioConnection, e: WindowEvent):
         print("WARNING: Unmatched program")
         return
 
-    print(
-        f"Moving {matched_program.window_name}, {matched_program.window_class} "
-        f"to {matched_program.workspace}"
-    )
+    print(f"Moving {matched_program.window_name}, {matched_program.window_class} " f"to {matched_program.workspace}")
     print(f"{matched_program.window_handling_commands=}")
     await e.container.command(f"move to workspace {matched_program.workspace}")
 
@@ -124,9 +117,7 @@ def match_program(e: WindowEvent):
     window_class = e.container.window_class
     for workspace, programs in STARTING_PROGRAMS.items():
         for program in programs:
-            print(
-                f"Matching {window_name=}, {window_class=} against {program.window_name}, {program.window_class}"
-            )
+            print(f"Matching {window_name=}, {window_class=} against {program.window_name}, {program.window_class}")
             if program.match(window_name, window_class):
                 print("Matched")
                 return workspace, program
