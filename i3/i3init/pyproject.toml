@@ -28,6 +28,9 @@ dependencies = [
 ]
 dynamic = ["version"]
 
+# [project.scripts]
+# i3init = "i3init.cli:main_cli"
+
 # [project.urls]
 # Documentation = "https://github.com/unknown/i3init#readme"
 # Issues = "https://github.com/unknown/i3init/issues"
