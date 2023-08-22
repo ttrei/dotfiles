@@ -35,6 +35,14 @@
     };
   };
 
+  services.xserver.desktopManager.kodi = {
+    enable = true;
+    package = pkgs.kodi.withPackages (pkgs:
+      with pkgs; [
+        youtube
+      ]);
+  };
+
   services.transmission.enable = true;
   services.transmission.settings = {
     # https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
