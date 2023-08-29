@@ -29,6 +29,7 @@ curl -L https://releases.nixos.org/nix/nix-2.13.0/install | sh -s -- --daemon
 Install home-manager:
 ``` shell
 # TODO: Check if these instructions work on NixOS.
+mkdir -p ~/.local/state/nix/profiles
 nix run home-manager/master -- init --switch
 rm -rf ~/.config/home-manager
 apply-users.sh
