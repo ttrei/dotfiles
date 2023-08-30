@@ -33,8 +33,15 @@
     pulse.enable = true;
   };
 
-  # TODO: Fix printing
-  # services.printing.enable = true;
+  # Printing (Brother HL-L2340DW)
+  # http://localhost:631/admin -> Find New Printers -> Add This Printer -> Continue -> Make = Generic -> Continue ->
+  # Model = IPP Everywhere -> Add Printer
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+  };
 
   # services.cron = {
   #   enable = true;
