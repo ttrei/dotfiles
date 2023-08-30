@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 import os
 
-from rofi import Rofi
-
 import i3init
+from rofi import Rofi
 
 TIMEOUT = 5.0
 
@@ -25,12 +24,17 @@ I3SCHEMA_INIT = {
             f"exec-in-dir {HOME}/dev/doc/modules/ROOT zutty -e nvim -p pages/todo.adoc pages/log.adoc",
             "zutty-dotfiles",
             "zutty",
-            ["move right"],
+            ["resize set width 70 ppt"],
         ],
     ],
     "31:dev": [
-        [f"exec-in-dir {HOME}/ips/core zutty", "zutty-dev", "zutty", None],
-        [f"exec-in-dir {HOME}/ips/core zutty", "zutty-dev", "zutty", None],
+        [f"exec-in-dir {HOME}/ips/core zutty", "zutty-dev", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/ips/core zutty",
+            "zutty-dev",
+            "zutty",
+            ["split vertical", "layout stacking", "resize set width 70 ppt"],
+        ],
     ],
     "35:idea": [
         ["idea-community nosplash", None, "jetbrains-idea-ce", None],
@@ -46,8 +50,13 @@ I3SCHEMA_INIT = {
 
 I3SCHEMA_DOTFILES = {
     "85:dotfiles": [
-        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", None],
-        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", None],
+        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dotfiles zutty",
+            "zutty-dotfiles",
+            "zutty",
+            ["split vertical", "layout stacking", "resize set width 70 ppt"],
+        ],
     ],
 }
 
