@@ -29,6 +29,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     ...
   } @ inputs: let
@@ -41,9 +42,11 @@
       "x86_64-darwin"
     ];
   in rec {
+    inherit nixpkgs;
+    inherit nixpkgs-unstable;
     # Your custom packages
     # Acessible through 'nix build', 'nix shell', etc
-    packages = forAllSystems (
+    mypkgs = forAllSystems (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
       in
@@ -113,6 +116,11 @@
           ./nix/home-manager/home-non-nixos.nix
         ];
       };
+    };
+
+    templates.nix-direnv = {
+      path = ./nix/templates/nix-direnv;
+      description = "nix flake new -t github:ttrei/dotfiles#nix-direnv .";
     };
   };
 }

@@ -155,32 +155,22 @@ elif [ -f "$HOME/.z.sh" ]; then
     source "$HOME/.z.sh"
 fi
 
-# https://github.com/nix-community/nix-direnv/wiki/Shell-integration
-nixify() {
-  if [ ! -e ./.envrc ]; then
-    echo "use nix" > .envrc
-    direnv allow
-  fi
-  if [[ ! -e shell.nix ]] && [[ ! -e default.nix ]]; then
-    cat > default.nix <<'EOF'
-with import <nixpkgs> {};
-mkShell {
-  nativeBuildInputs = [
-    bashInteractive
-  ];
-}
-EOF
-    ${EDITOR:-vim} default.nix
-  fi
-}
+# Inspired by https://github.com/nix-community/nix-direnv/wiki/Shell-integration
 flakify() {
-  if [ ! -e flake.nix ]; then
-    nix flake new -t github:nix-community/nix-direnv .
-  elif [ ! -e .envrc ]; then
-    echo "use flake" > .envrc
+  nix flake new -t github:nix-community/nix-direnv .
+  rc=$?
+  if [ $rc -eq 0 ]; then
     direnv allow
+    ${EDITOR:-vim} flake.nix
   fi
-  ${EDITOR:-vim} flake.nix
+}
+flakify-ttrei() {
+  nix flake new --template github:ttrei/dotfiles#nix-direnv .
+  rc=$?
+  if [ $rc -eq 0 ]; then
+    direnv allow
+    ${EDITOR:-vim} flake.nix
+  fi
 }
 
 nodeify() {
