@@ -3,4 +3,5 @@
 {pkgs ? (import ../nixpkgs.nix) {}}: {
   # st = pkgs.callPackage ./st-lukesmith { };
   zutty = pkgs.callPackage ./zutty {};
+  arcanPackages = pkgs.recurseIntoAttrs (pkgs.callPackage ./arcan { });
 }
