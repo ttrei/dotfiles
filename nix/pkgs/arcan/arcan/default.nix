@@ -58,13 +58,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "arcan" + lib.optionalString useStaticOpenAL "-static-openal";
-  version = "0.6.2.1";
+  version = "0.6.2.1-ttrei";
 
   src = fetchFromGitHub {
     owner = "letoram";
     repo = "arcan";
-    rev = finalAttrs.version;
-    hash = "sha256-7H3fVSsW5VANLqwhykY+Q53fPjz65utaGksh/OpZnJM=";
+    rev = "b3364d02f5f2e8eae9f918dcc09039dcafc6909e";
+    hash = "sha256-4oIB6PMbjxj0ndoNd+7wOSl2m+vhJw6hrNSYYSUpWJ0=";
   };
 
   nativeBuildInputs = [
@@ -119,9 +119,8 @@ stdenv.mkDerivation (finalAttrs: {
 
   patches = [
     # Nixpkgs-specific: redirect vendoring
-    ./000-openal.patch
-    ./001-luajit.patch
-    ./002-libuvc.patch
+    ./000-luajit.patch
+    ./001-libuvc.patch
   ];
 
   # Emulate external/git/clone.sh
