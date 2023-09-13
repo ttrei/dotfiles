@@ -118,9 +118,15 @@
       };
     };
 
-    templates.nix-direnv = {
-      path = ./nix/templates/nix-direnv;
-      description = "nix flake new -t github:ttrei/dotfiles#nix-direnv .";
+    templates = {
+      nix-direnv = {
+        path = ./nix/templates/nix-direnv;
+        description = "nix flake new -t github:ttrei/dotfiles#nix-direnv .";
+      };
+      arcan-dev = {
+        path = ./nix/templates/arcan-dev;
+        description = "nix flake new -t github:ttrei/dotfiles#arcan-dev .";
+      };
     };
   };
 }
