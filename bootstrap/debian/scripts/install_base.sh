@@ -26,7 +26,7 @@ diffstat \
 direnv \
 exuberant-ctags \
 fd-find \
-firmware-linux-nonfree \
+firmware-amd-graphics \
 firmware-realtek \
 fzf \
 git \
@@ -37,7 +37,6 @@ moreutils \
 neovim \
 ninja-build \
 pass \
-python2 \
 python3-i3ipc \
 python3-pip \
 python3-venv \
