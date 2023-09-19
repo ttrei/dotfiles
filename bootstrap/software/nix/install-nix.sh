@@ -8,4 +8,4 @@ if [ -x "$(command -v nix)" ]; then
 fi
 
 # https://nixos.org/download.html#download-nix
-sh <(curl -L https://nixos.org/nix/install) --daemon
+sh <(curl -L https://nixos.org/nix/install) < /dev/null --daemon

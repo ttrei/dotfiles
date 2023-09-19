@@ -67,7 +67,6 @@ sudo update-initramfs -u
 ~/dotfiles/bootstrap/software/nix/install-nix.sh || true
 . /etc/profile.d/nix.sh # Access nix without restarting shell
 ~/dotfiles/bootstrap/software/nix/install-home-manager.sh || true
-~/dotfiles/nix/bin/update-user.sh
 ~/dotfiles/nix/bin/apply-users.sh
 
 # TODO: My custom sudo configuration does not allow to set the DEBIAN_FRONTEND variable.
