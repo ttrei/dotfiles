@@ -23,6 +23,7 @@ clang-format \
 cmake \
 curl \
 diffstat \
+direnv \
 exuberant-ctags \
 fd-find \
 firmware-linux-nonfree \
