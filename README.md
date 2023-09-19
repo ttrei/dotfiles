@@ -19,6 +19,7 @@ It is my intention to gradually migrate all configuration to
 On non-NixOS, first install nix in multi-user mode:
 ``` shell
 sh <(curl -L https://nixos.org/nix/install) --daemon
+# sh <(curl -L https://nixos.org/nix/install) < /dev/null --daemon # unattended
 
 # Note 2023-07-25
 # On Ubuntu 22.04 LTS had to install older nix to avoid some breakage:
