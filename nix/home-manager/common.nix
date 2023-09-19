@@ -52,44 +52,25 @@
   home.packages = with pkgs; [
     alejandra
     comma
-    dbeaver
     unstable.delta
     # diffoscope
     direnv
-    emacs
     fd
     feh
     font-awesome
     fzf
     gron
     i3
-    jdt-language-server
-    jetbrains.idea-community
-    jetbrains.pycharm-community
-    kubectl
-    kubelogin-oidc
-    k9s
-    maven
     ncdu
     nethogs
-    nodejs-slim
-    nodePackages.pyright
-    nodePackages.typescript-language-server
     git
     git-crypt
     i3pyblocks
-    python310Packages.pgsanity
-    openjdk
     redshift
     ripgrep
     sd
-    signal-desktop
     starship
-    # teams # proprietary
-    teams-for-linux # open-source fork
-    whatsapp-for-linux
     zathura
-    unstable.zig
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
   ];
 
