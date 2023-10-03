@@ -7,10 +7,10 @@
   ...
 }: {
   imports = [
-    ../hardware-configurations/qemu.nix
-    ../packages/cli.nix
-    ../packages/gui.nix
-    ../users/reinis.nix
+    ./hardware-configurations/qemu.nix
+    ./packages/cli.nix
+    ./packages/gui.nix
+    ./users/reinis.nix
   ];
 
   boot.loader.grub.enable = true;
