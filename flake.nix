@@ -44,13 +44,30 @@
   in rec {
     inherit nixpkgs;
     inherit nixpkgs-unstable;
+
     # Your custom packages
-    # Acessible through 'nix build', 'nix shell', etc
+    # Acessible through 'nix build', 'nix shell', e.g.,
+    # nix shell /home/reinis/dotfiles#mypkgs.x86_64-linux.arcanPackages.arcan
     mypkgs = forAllSystems (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
       in
         import ./nix/pkgs {inherit pkgs;}
+    );
+    # nixpkgs with your modifications applied
+    # nix shell /home/reinis/dotfiles#modified-pkgs.x86_64-linux.arcanPackages.arcan
+    modified-pkgs = forAllSystems (
+      system:
+        import nixpkgs {
+          inherit system;
+          overlays = [overlays.modifications];
+        }
+    );
+    # Unmodified nixpkgs
+    # nix shell /home/reinis/dotfiles#unmodified-pkgs.x86_64-linux.arcanPackages.arcan
+    # Probably could have called this "pkgs", but I'm not sure if that could break something.
+    unmodified-pkgs = forAllSystems (
+      system: nixpkgs.legacyPackages.${system}
     );
     # Devshell for bootstrapping
     # Acessible through 'nix develop' or 'nix-shell' (legacy)

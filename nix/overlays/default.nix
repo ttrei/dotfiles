@@ -31,6 +31,21 @@
     # # Leaving it here for future reference.
     # neovim-unwrapped = final.unstable.neovim-unwrapped;
     # vimPlugins = final.unstable.vimPlugins;
+
+    arcanPackages = prev.arcanPackages.overrideScope' (finalScope: prevScope: {
+      arcan = prevScope.arcan.overrideAttrs (finalAttrs: prevAttrs: {
+        version = "85c8564bdbee8468a5716bea64daf1d78937ffbf";
+
+        src = final.fetchFromGitHub {
+          owner = "letoram";
+          repo = "arcan";
+          rev = "85c8564bdbee8468a5716bea64daf1d78937ffbf";
+          hash = "sha256-etmj1vpZTjxbmr4UiLBEK57WFJ1NeEnY5WfBYajX3ls=";
+        };
+
+        patches = [];
+      });
+    });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

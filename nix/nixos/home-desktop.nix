@@ -20,6 +20,7 @@
 
   environment.systemPackages = with pkgs; [
     qemu_kvm
+    arcanPackages.arcan
   ];
 
   # https://discourse.nixos.org/t/state-of-jackd-in-nixos/6007/14
