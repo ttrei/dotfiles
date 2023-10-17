@@ -4,3 +4,5 @@
 assign [class="Bitcoin"] 80:bitcoin
 assign [class="Steam"] 90:steam
 assign [class="factorio"] 91:factorio
+
+for_window [class="arcan_sdl"] floating enable
