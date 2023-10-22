@@ -34,13 +34,13 @@
 
     arcanPackages = prev.arcanPackages.overrideScope' (finalScope: prevScope: {
       arcan = prevScope.arcan.overrideAttrs (finalAttrs: prevAttrs: {
-        version = "85c8564bdbee8468a5716bea64daf1d78937ffbf";
+        version = "923acbe8a132903c978bd5a8d0a8ed5ff2bacbde";
 
         src = final.fetchFromGitHub {
           owner = "letoram";
           repo = "arcan";
-          rev = "85c8564bdbee8468a5716bea64daf1d78937ffbf";
-          hash = "sha256-etmj1vpZTjxbmr4UiLBEK57WFJ1NeEnY5WfBYajX3ls=";
+          rev = "923acbe8a132903c978bd5a8d0a8ed5ff2bacbde";
+          hash = "sha256-/buDAfonIJT2SRNqrYShDQVDXHdvKklyPSFXTAK/0NI=";
         };
 
         patches = [];
