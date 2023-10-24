@@ -35,15 +35,22 @@
     arcanPackages = prev.arcanPackages.overrideScope' (finalScope: prevScope: {
       arcan = prevScope.arcan.overrideAttrs (finalAttrs: prevAttrs: {
         version = "923acbe8a132903c978bd5a8d0a8ed5ff2bacbde";
-
         src = final.fetchFromGitHub {
           owner = "letoram";
           repo = "arcan";
           rev = "923acbe8a132903c978bd5a8d0a8ed5ff2bacbde";
           hash = "sha256-/buDAfonIJT2SRNqrYShDQVDXHdvKklyPSFXTAK/0NI=";
         };
-
         patches = [];
+      });
+      durden = prevScope.durden.overrideAttrs (finalAttrs: prevAttrs: {
+        version = "347dba6da011bbaa70c6edaf82a2d915f4057db3";
+        src = final.fetchFromGitHub {
+          owner = "letoram";
+          repo = "durden";
+          rev = "347dba6da011bbaa70c6edaf82a2d915f4057db3";
+          hash = "sha256-iNf7fOzz7mf1CXG5leCenkSTrdCc9/KL8VLw8gUIyKE=";
+        };
       });
     });
   };
