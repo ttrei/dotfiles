@@ -21,6 +21,7 @@
   environment.systemPackages = with pkgs; [
     qemu_kvm
     arcanPackages.arcan
+    # TODO: cannot launch durden because the nix store path contains "-" characters, arcan forbids those
     arcanPackages.durden
   ];
 
