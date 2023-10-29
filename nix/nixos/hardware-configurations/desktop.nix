@@ -31,6 +31,18 @@
     device = "/dev/disk/by-uuid/c7b00111-51f7-4c09-bf16-4239d25e72e1";
   };
 
+  fileSystems."/media/external-madara" = {
+    device = "/dev/disk/by-uuid/D2B0FEEBB0FED547";
+    fsType = "ntfs";
+    options = ["noauto" "nofail"];
+  };
+
+  fileSystems."/media/external-aija" = {
+    device = "/dev/disk/by-uuid/F292D98392D94CAB";
+    fsType = "ntfs";
+    options = ["noauto" "nofail"];
+  };
+
   fileSystems."/media/debian-work" = {
     device = "/dev/disk/by-uuid/3d855ec1-722c-48a1-b273-cd934d321527";
     options = ["noauto" "nofail"];
