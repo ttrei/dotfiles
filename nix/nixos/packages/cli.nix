@@ -7,6 +7,7 @@
 
   environment.systemPackages = with pkgs; [
     alejandra
+    beancount
     clang-tools
     diffoscope
     diffstat

@@ -48,6 +48,7 @@
         plugin = nvim-treesitter.withPlugins (plugins:
           with plugins; [
             bash
+            beancount
             c
             cpp
             dockerfile
@@ -75,6 +76,7 @@
       # vim-markdown
 
       ### other
+      vim-beancount
       fastfold
       fzf-lua
       # # I will go with fzf-lua for now - people say it has better performance than telescope.
