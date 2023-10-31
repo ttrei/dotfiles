@@ -82,8 +82,8 @@ bindcode $mod+Shift+46 move right
 # 42 = g, 55 = v
 bindcode $mod+Shift+42 split h
 bindcode $mod+Shift+55 split v
-# 38 = a
-bindcode $mod+38 fullscreen
+# 30 = u
+bindcode $mod+30 fullscreen
 # change container layout
 # 25 = w, 26 = e, 39 = s
 bindcode $mod+25 layout tabbed
@@ -112,27 +112,19 @@ bindcode $mod+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.txt
 bindcode $mod+Shift+32 exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.txt move
 
 ## switch to workspace
-# 30=u, 31=i
-# 33=p, 57=n
-# 58=m
-bindcode $mod+30 workspace 1
-bindcode $mod+31 workspace 2
-bindcode $mod+57 workspace next_on_output
-bindcode $mod+33 workspace prev_on_output
+# 31=i 57=n 58=m
+bindcode $mod+31 workspace next_on_output
+bindcode $mod+57 workspace prev_on_output
 bindcode $mod+58 workspace back_and_forth
 
 ## move focused container to workspace
-bindcode $mod+Shift+30 move container to workspace 1
-bindcode $mod+Shift+31 move container to workspace 2
-bindcode $mod+Shift+57 move container to workspace next_on_output
-bindcode $mod+Shift+33 move container to workspace prev_on_output
+bindcode $mod+Shift+31 move container to workspace next_on_output
+bindcode $mod+Shift+57 move container to workspace prev_on_output
 bindcode $mod+Shift+58 move container to workspace back_and_forth
 
 ## move focused container to workspace and switch to that workspace
-bindcode $mod+Shift+Ctrl+30 move container to workspace 1; workspace 1
-bindcode $mod+Shift+Ctrl+31 move container to workspace 2; workspace 2
-bindcode $mod+Shift+Ctrl+57 move container to workspace next; workspace next_on_output
-bindcode $mod+Shift+Ctrl+33 move container to workspace prev; workspace prev_on_output
+bindcode $mod+Shift+Ctrl+31 move container to workspace next; workspace next_on_output
+bindcode $mod+Shift+Ctrl+57 move container to workspace prev; workspace prev_on_output
 bindcode $mod+Shift+Ctrl+58 move container to workspace back_and_forth; workspace back_and_forth
 
 # Outputs (screens)
