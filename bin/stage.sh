@@ -152,6 +152,9 @@ if [ "$DISTRO" = "nixos" ]; then
 fi
 ln -s "$STAGINGDIR/.Xresources" "$STAGINGDIR/.Xdefaults"
 
+# XDG
+ln -s "$DOTFILES/xdg/user-dirs.conf" "$STAGINGDIR/.config/user-dirs.conf"
+
 # I3/SWAY
 mkdir -p "$STAGINGDIR/.config/i3"
 mkdir -p "$STAGINGDIR/.config/i3blocks"
