@@ -2,7 +2,6 @@ tags
 tags.lock
 tags.temp
 
-.idea
 .direnv
 __pycache__
 
