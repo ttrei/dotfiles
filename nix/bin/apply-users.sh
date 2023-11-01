@@ -8,12 +8,18 @@ fi
 # shellcheck source=/dev/null
 . "$ENVFILE"
 
-if [ "$DISTRO" = "nixos" ]; then
-    command="home-manager switch --flake $HOME/dotfiles#reinis@nixos"
-elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "work" ]; then
-    command="home-manager switch --flake $HOME/dotfiles#reinis@ubuntu-work"
+if [ "$CONTEXT" = "work" ]; then
+    if [ "$MACHINE" = "home-desktop" ]; then
+        command="home-manager switch --flake $HOME/dotfiles#reinis@work-ubuntu"
+    elif [ "$MACHINE" = "work-laptop" ] && [ "$EXECUTION_ENV" = "wsl" ]; then
+        command="home-manager switch --flake $HOME/dotfiles#reinis@work-debian-wsl"
+    fi
 else
-    command="home-manager switch --flake $HOME/dotfiles#reinis@non-nixos"
+    if [ "$DISTRO" = "nixos" ]; then
+        command="home-manager switch --flake $HOME/dotfiles#reinis@nixos"
+    else
+        command="home-manager switch --flake $HOME/dotfiles#reinis@non-nixos"
+    fi
 fi
 
 echo "$command"

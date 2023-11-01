@@ -123,21 +123,28 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/home-manager/home-nixos.nix
+          ./nix/home-manager/nixos.nix
         ];
       };
       "reinis@non-nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/home-manager/home-non-nixos.nix
+          ./nix/home-manager/non-nixos.nix
         ];
       };
-      "reinis@ubuntu-work" = home-manager.lib.homeManagerConfiguration {
+      "reinis@work-ubuntu" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/home-manager/home-ubuntu-work.nix
+          ./nix/home-manager/work-ubuntu.nix
+        ];
+      };
+      "reinis@work-debian-wsl" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nix/home-manager/work-debian-wsl.nix
         ];
       };
     };
