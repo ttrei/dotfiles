@@ -25,6 +25,8 @@
 
     comma = final.unstable.comma;
 
+    jetbrains = final.unstable.jetbrains;
+
     # # neovim 0.8.1 of nixpkgs-22.11 has some problems with the copilot plugin
     # # Update 2023-06-08:
     # # Disabled this modification after switching to next release (23.05).

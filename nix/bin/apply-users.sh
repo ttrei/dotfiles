@@ -10,6 +10,8 @@ fi
 
 if [ "$DISTRO" = "nixos" ]; then
     command="home-manager switch --flake $HOME/dotfiles#reinis@nixos"
+elif [ "$DISTRO" = "debian" ] && [ "$CONTEXT" = "work" ]; then
+    command="home-manager switch --flake $HOME/dotfiles#reinis@ubuntu-work"
 else
     command="home-manager switch --flake $HOME/dotfiles#reinis@non-nixos"
 fi
