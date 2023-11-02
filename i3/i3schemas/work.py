@@ -28,9 +28,9 @@ I3SCHEMA_INIT = {
         ],
     ],
     "31:dev": [
-        [f"exec-in-dir {HOME}/ips/core zutty", "zutty-dev", "zutty", ["move left"]],
+        [f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty", "zutty-dev", "zutty", ["move left"]],
         [
-            f"exec-in-dir {HOME}/ips/core zutty",
+            f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty",
             "zutty-dev",
             "zutty",
             ["split vertical", "layout stacking", "resize set width 70 ppt"],
