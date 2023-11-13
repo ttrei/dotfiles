@@ -55,15 +55,20 @@ I3SCHEMA_ALGORITHMS = {
 
 DIR = f"{HOME}/dev/learn/zig/handmade_pool"
 DIR2 = f"{HOME}/dev/learn/zig/zig_sdl_platform"
-VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/handmade-pool.code-workspace"
+# VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/handmade-pool.code-workspace"
 I3SCHEMA_HANDMADE_POOL = {
     "20:dev": [
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", None],
-        [f"exec-in-dir {DIR2} zutty", "zutty-pool", "zutty", None],
+        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {DIR2} zutty",
+            "zutty-dotfiles",
+            "zutty",
+            ["split vertical", "layout stacking", "resize set width 70 ppt"],
+        ],
     ],
-    "25:vscode": [
-        [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],
-    ],
+    # "25:vscode": [
+    #     [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],
+    # ],
 }
 
 
