@@ -23,6 +23,7 @@
     jmtpfs
     jq
     k9s
+    linuxPackages_latest.perf
     lua
     nodePackages.pyright
     nodePackages.typescript-language-server
