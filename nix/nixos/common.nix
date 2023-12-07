@@ -122,6 +122,8 @@
 
   programs.bash.enableCompletion = true;
 
+  programs.nix-ld.enable = true;
+
   services.openssh = {
     enable = true;
     settings = {
