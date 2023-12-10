@@ -14,7 +14,7 @@ bar {
 
 gaps inner 2px
 smart_gaps on
-default_border pixel 7
+default_border normal 7
 # smart_borders on
 # smart_borders no_gaps
 hide_edge_borders both
