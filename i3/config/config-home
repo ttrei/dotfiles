@@ -4,5 +4,7 @@
 assign [class="Bitcoin"] 80:bitcoin
 assign [class="Steam"] 90:steam
 assign [class="factorio"] 91:factorio
+assign [class="Mach"] 150:mach
 
 for_window [class="arcan_sdl"] floating enable
+for_window [class="Mach"] floating enable; workspace 150:mach
