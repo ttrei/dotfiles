@@ -30,8 +30,8 @@ while read -r output hex conn; do
 done < "$tmp1"
 rm "$tmp1"
 
-PRIMARY_DISPLAY=$(grep VG245 "$tmp2" | cut -d" " -f2)
-SECONDARY_DISPLAY=$(grep S23C650 "$tmp2" | cut -d" " -f2)
+PRIMARY_DISPLAY=$(grep "VG245" "$tmp2" | cut -d" " -f2)
+SECONDARY_DISPLAY=$(grep "PHL 223V5" "$tmp2" | cut -d" " -f3)
 export PRIMARY_DISPLAY
 export SECONDARY_DISPLAY
 
