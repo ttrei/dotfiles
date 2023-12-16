@@ -15,6 +15,11 @@
     "command": "manage-desktop-displays.sh two"
   },
   {
+    "name": "Two displays (landscape)",
+    "confirm": false,
+    "command": "manage-desktop-displays.sh two-landscape"
+  },
+  {
     "name": "Shutdown",
     "confirm": true,
     "command": "systemctl poweroff"

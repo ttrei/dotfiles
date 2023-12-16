@@ -18,6 +18,10 @@ elif [ "$1" = "two" ]; then
     xrandr --fb 3000x2220 \
         --output "$PRIMARY_DISPLAY" --primary --mode 1920x1080 --pos 0x300 --rotate normal \
         --output "$SECONDARY_DISPLAY" --mode 1920x1080 --pos 1920x0 --rotate left
+elif [ "$1" = "two-landscape" ]; then
+    xrandr --fb 3840x2160 \
+        --output "$PRIMARY_DISPLAY" --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+        --output "$SECONDARY_DISPLAY" --mode 1920x1080 --pos 1920x0 --rotate normal
 fi
 
 
