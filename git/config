@@ -86,6 +86,14 @@
     # reviewdiff = !REVIEW_BASE=HEAD git review
     # reviewdiffall = !REVIEW_BASE=HEAD git reviewall
 
-[include]
+[includeIf "hasconfig:remote.*.url:**/*github.com*/**"]
     path = ~/.config/git/config-home
+
+[includeIf "hasconfig:remote.*.url:**/*git.sr.ht*/**"]
+    path = ~/.config/git/config-home
+
+[includeIf "hasconfig:remote.*.url:**/*taukulis.lv*/**"]
+    path = ~/.config/git/config-home
+
+[includeIf "hasconfig:remote.*.url:**/*cvs.konts.lv*/**"]
     path = ~/.config/git/config-work

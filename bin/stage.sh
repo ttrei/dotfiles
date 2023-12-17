@@ -122,11 +122,8 @@ ln -s "$DOTFILES/git/bin/rerere-train.sh" "$STAGINGDIR/bin/rerere-train.sh"
 ln -s "$DOTFILES/git/config" "$STAGINGDIR/.config/git/config"
 ln -s "$DOTFILES/git/gitignore" "$STAGINGDIR/.gitignore"
 ln -s "$DOTFILES/git/gitk" "$STAGINGDIR/.config/git/gitk"
-if [ "$CONTEXT" = "work" ]; then
-    ln -s "$DOTFILES/git/config-work" "$STAGINGDIR/.config/git/config-work"
-elif [ "$CONTEXT" = "home" ]; then
-    ln -s "$DOTFILES/git/config-home" "$STAGINGDIR/.config/git/config-home"
-fi
+ln -s "$DOTFILES/git/config-work" "$STAGINGDIR/.config/git/config-work"
+ln -s "$DOTFILES/git/config-home" "$STAGINGDIR/.config/git/config-home"
 if [ "$DISTRO" = "nixos" ]; then
     ln -sf "$DOTFILES/git/gitk-nixos" "$STAGINGDIR/.config/git/gitk"
 fi
