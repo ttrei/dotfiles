@@ -23,103 +23,104 @@
   programs.neovim = {
     enable = true;
     plugins = let
-      vim-asciidoc-folding =  pkgs.vimUtils.buildVimPlugin {
-          name = "vim-asciidoc-folding";
-          src = builtins.fetchGit {
-            url = "https://github.com/matcatc/vim-asciidoc-folding.git";
-            rev = "7925af137f7c36bb54acaafc268643548f04e5e8";
-          };
+      vim-asciidoc-folding = pkgs.vimUtils.buildVimPlugin {
+        name = "vim-asciidoc-folding";
+        src = builtins.fetchGit {
+          url = "https://github.com/matcatc/vim-asciidoc-folding.git";
+          rev = "7925af137f7c36bb54acaafc268643548f04e5e8";
         };
-    in with pkgs.vimPlugins; [
-      # NOTE (2023-12-27)
-      # Explored if I want to use lazy.vim instead of packer.
-      # Now I'm thinking that I don't need to use a non-nix package manager at all.
-      # I used packer for some plugins that were not in nixpkgs.
-      # But it should be easy to package those plugins myself:
-      # In case I will try to use lazy together with nix:
-      # A workaround might be necessary for managing plugins with lazy.vim while managing config with home-manager:
-      # https://github.com/nix-community/home-manager/issues/257#issuecomment-831300021
-      # found it from here:
-      # https://www.reddit.com/r/NixOS/comments/108fwwh/tradeoffs_of_using_home_manager_for_neovim_plugins/j3sa16n/
-      # https://www.reddit.com/r/NixOS/comments/104l0w9/how_to_get_lua_files_in_neovim_on_hm/j362asl/?context=3
-      #
-      # lazy-nvim
+      };
+    in
+      with pkgs.vimPlugins; [
+        # NOTE (2023-12-27)
+        # Explored if I want to use lazy.vim instead of packer.
+        # Now I'm thinking that I don't need to use a non-nix package manager at all.
+        # I used packer for some plugins that were not in nixpkgs.
+        # But it should be easy to package those plugins myself:
+        # In case I will try to use lazy together with nix:
+        # A workaround might be necessary for managing plugins with lazy.vim while managing config with home-manager:
+        # https://github.com/nix-community/home-manager/issues/257#issuecomment-831300021
+        # found it from here:
+        # https://www.reddit.com/r/NixOS/comments/108fwwh/tradeoffs_of_using_home_manager_for_neovim_plugins/j3sa16n/
+        # https://www.reddit.com/r/NixOS/comments/104l0w9/how_to_get_lua_files_in_neovim_on_hm/j362asl/?context=3
+        #
+        # lazy-nvim
 
-      # TODO
-      # harpoon
+        # TODO
+        # harpoon
 
-      ### colors
-      # gruvbox
-      gruvbox-material
+        ### colors
+        # gruvbox
+        gruvbox-material
 
-      ### syntax, LSP
-      cmp-nvim-lsp
-      luasnip
-      cmp-buffer
-      cmp_luasnip
-      cmp-path
+        ### syntax, LSP
+        cmp-nvim-lsp
+        luasnip
+        cmp-buffer
+        cmp_luasnip
+        cmp-path
 
-      # Official plugin, written in vimscript (https://github.com/github/copilot.vim)
-      # copilot-vim
-      # Integration with nvim-cmp (looks unmaintained: https://github.com/hrsh7th/cmp-copilot)
-      # cmp-copilot
+        # Official plugin, written in vimscript (https://github.com/github/copilot.vim)
+        # copilot-vim
+        # Integration with nvim-cmp (looks unmaintained: https://github.com/hrsh7th/cmp-copilot)
+        # cmp-copilot
 
-      # # Rewrite of copilot-vim in lua
-      # # Seems a bit buggy for python: https://github.com/zbirenbaum/copilot-cmp/issues/10
-      # copilot-lua
-      # # Integration with nvim-cmp
-      # copilot-cmp
+        # # Rewrite of copilot-vim in lua
+        # # Seems a bit buggy for python: https://github.com/zbirenbaum/copilot-cmp/issues/10
+        # copilot-lua
+        # # Integration with nvim-cmp
+        # copilot-cmp
 
-      # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
-      neorg
+        # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
+        neorg
 
-      neomake
-      nvim-cmp
-      nvim-lspconfig
-      {
-        plugin = nvim-treesitter.withPlugins (plugins:
-          with plugins; [
-            bash
-            beancount
-            c
-            cpp
-            dockerfile
-            java
-            json
-            lua
-            make
-            markdown
-            nix
-            org
-            python
-            sql
-            vim
-            yaml
-            zig
-          ]);
-      }
-      # nvim-treesitter.withAllGrammars
-      nvim-treesitter-context
-      nvim-treesitter-textobjects
-      vim-nix
-      # # These should be handled by treesitter, right?
-      # xml.vim
-      # vim-javascript
-      # vim-markdown
+        neomake
+        nvim-cmp
+        nvim-lspconfig
+        {
+          plugin = nvim-treesitter.withPlugins (plugins:
+            with plugins; [
+              bash
+              beancount
+              c
+              cpp
+              dockerfile
+              java
+              json
+              lua
+              make
+              markdown
+              nix
+              org
+              python
+              sql
+              vim
+              yaml
+              zig
+            ]);
+        }
+        # nvim-treesitter.withAllGrammars
+        nvim-treesitter-context
+        nvim-treesitter-textobjects
+        vim-nix
+        # # These should be handled by treesitter, right?
+        # xml.vim
+        # vim-javascript
+        # vim-markdown
 
-      ### other
-      vim-beancount
-      fastfold
-      fzf-lua
-      # # I will go with fzf-lua for now - people say it has better performance than telescope.
-      # # But should re-visit this decision if I notice some telescope feature I really want.
-      # telescope-nvim
-      undotree
-      vim-fugitive
-      vim-table-mode
-      vim-visual-star-search
-      vim-asciidoc-folding
-    ];
+        ### other
+        vim-beancount
+        fastfold
+        fzf-lua
+        # # I will go with fzf-lua for now - people say it has better performance than telescope.
+        # # But should re-visit this decision if I notice some telescope feature I really want.
+        # telescope-nvim
+        undotree
+        vim-fugitive
+        vim-table-mode
+        vim-visual-star-search
+        vim-asciidoc-folding
+      ];
   };
 
   home.file = {

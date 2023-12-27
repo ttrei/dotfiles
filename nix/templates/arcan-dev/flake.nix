@@ -11,9 +11,8 @@
 
   outputs = {
     self,
-    ttrei
-  }:
-  let
+    ttrei,
+  }: let
     default_system = "x86_64-linux";
     pkgs = ttrei.nixpkgs.legacyPackages.${default_system};
   in {
@@ -32,7 +31,7 @@
         libusb
       ];
 
-      hardeningDisable = [ "all" ];
+      hardeningDisable = ["all"];
     };
   };
 }

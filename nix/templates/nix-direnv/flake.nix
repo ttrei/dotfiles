@@ -5,7 +5,11 @@
   # inputs.ttrei.url = "path:/home/reinis/dotfiles";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  outputs = { self, ttrei, flake-utils }:
+  outputs = {
+    self,
+    ttrei,
+    flake-utils,
+  }:
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = ttrei.nixpkgs.legacyPackages.${system};
       mypkgs = ttrei.mypkgs.${system};
@@ -17,7 +21,7 @@
         zutty = mypkgs.zutty;
       };
       devShells.default = pkgs.mkShell {
-        packages = [ pkgs.bashInteractive ] ++ pkgs.lib.attrsets.mapAttrsToList (name: value: value) packages;
+        packages = [pkgs.bashInteractive] ++ pkgs.lib.attrsets.mapAttrsToList (name: value: value) packages;
       };
     });
 }
