@@ -1,0 +1,5 @@
+- Move current line up or down (or move the whole visual selection? maybe overkill)
+- keybindings to resize window to some fixed useful fractions of the screen.
+- LSP
+  plugin for imroving lsp experience - https://github.com/glepnir/lspsaga.nvim.git
+  pictograms for completion items - https://github.com/onsails/lspkind.nvim

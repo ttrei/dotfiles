@@ -26,11 +26,3 @@ command! ReloadConfig lua ReloadConfig()
 " ThePrimeagen https://www.youtube.com/watch?v=DogKdiRx7ls
 "   https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim
 " Teej https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim
-
-" TODO
-" * Move current line up or down (or move the whole visual selection? maybe overkill)
-"   Should be somewhere here:
-"   https://github.com/ThePrimeagen/.dotfiles/blob/master/nvim/.config/nvim/after/plugin/keymap/init.lua
-" * LSP stuff
-"   lsp plugin - https://github.com/glepnir/lspsaga.nvim.git
-"   pictograms for completion items - https://github.com/onsails/lspkind.nvim
