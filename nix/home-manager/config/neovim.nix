@@ -6,22 +6,14 @@
   pkgs,
   ...
 }:
-
 # Manage Neovim plugins (and more!) with Nix and Home Manager
 # https://gist.github.com/nat-418/d76586da7a5d113ab90578ed56069509
+#
 # Advanced Neovim configuration with Nix and Home Manager
 # https://gist.github.com/nat-418/493d40b807132d2643a7058188bff1ca
-let
-  vimPluginFromGit = url: ver: rev: pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = ''${lib.strings.nameFromURL url "."}'';
-    version = ver;
-    src = builtins.fetchGit {
-      url = url;
-      rev = rev;
-    };
-  };
-in
-
+#
+# What if your favourite Vim plugin isn’t already packaged?
+# https://github.com/NixOS/nixpkgs/blob/5f64a12a728902226210bf01d25ec6cbb9d9265b/doc/languages-frameworks/vim.section.md#what-if-your-favourite-vim-plugin-isnt-already-packaged-what-if-your-favourite-vim-plugin-isnt-already-packaged
 {
   # Inspired by https://gitlab.com/LongerHV/nixos-configuration
   #
@@ -30,13 +22,20 @@ in
 
   programs.neovim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [
+    plugins = let
+      vim-asciidoc-folding =  pkgs.vimUtils.buildVimPlugin {
+          name = "vim-asciidoc-folding";
+          src = builtins.fetchGit {
+            url = "https://github.com/matcatc/vim-asciidoc-folding.git";
+            rev = "7925af137f7c36bb54acaafc268643548f04e5e8";
+          };
+        };
+    in with pkgs.vimPlugins; [
       # NOTE (2023-12-27)
       # Explored if I want to use lazy.vim instead of packer.
       # Now I'm thinking that I don't need to use a non-nix package manager at all.
       # I used packer for some plugins that were not in nixpkgs.
       # But it should be easy to package those plugins myself:
-      # https://github.com/NixOS/nixpkgs/blob/5f64a12a728902226210bf01d25ec6cbb9d9265b/doc/languages-frameworks/vim.section.md#what-if-your-favourite-vim-plugin-isnt-already-packaged-what-if-your-favourite-vim-plugin-isnt-already-packaged
       # In case I will try to use lazy together with nix:
       # A workaround might be necessary for managing plugins with lazy.vim while managing config with home-manager:
       # https://github.com/nix-community/home-manager/issues/257#issuecomment-831300021
@@ -119,7 +118,7 @@ in
       vim-fugitive
       vim-table-mode
       vim-visual-star-search
-      (vimPluginFromGit "https://github.com/matcatc/vim-asciidoc-folding.git" "2022-04-05" "7925af137f7c36bb54acaafc268643548f04e5e8")
+      vim-asciidoc-folding
     ];
   };
 
