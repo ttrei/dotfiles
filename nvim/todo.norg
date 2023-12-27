@@ -3,3 +3,5 @@
 - LSP
   plugin for imroving lsp experience - https://github.com/glepnir/lspsaga.nvim.git
   pictograms for completion items - https://github.com/onsails/lspkind.nvim
+- Consider modularizing my neovim nix config: https://gist.github.com/nat-418/493d40b807132d2643a7058188bff1ca
+  But consider also if I want to support systems on which I cannot run nix (what could those be?).
