@@ -10,6 +10,7 @@
   #
   # Overview of the nix neovim ecosystem:
   # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/doc/languages-frameworks/vim.section.md
+  # permalink: https://github.com/NixOS/nixpkgs/blob/5f64a12a728902226210bf01d25ec6cbb9d9265b/doc/languages-frameworks/vim.section.md
 
   programs.neovim = {
     enable = true;
