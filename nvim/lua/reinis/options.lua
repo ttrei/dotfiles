@@ -27,6 +27,10 @@ vim.opt.splitright = true
 -- Allow selecting past end of line in Visual Block mode
 vim.opt.virtualedit = "block"
 
+-- While composing a substitution command, show the resulting substitutions in a separate split instead of the buffer
+-- we are editing. Useful when the substitutions are all over a large file - can see more of them.
+vim.opt.inccommand = "split"
+
 vim.opt.diffopt = 'internal,filler,closeoff'
 
 vim.opt.foldmethod = 'expr'
