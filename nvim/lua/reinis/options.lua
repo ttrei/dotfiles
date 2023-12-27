@@ -18,6 +18,10 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undodir/"
 vim.opt.undofile = true
 
+-- Window management
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.opt.diffopt = 'internal,filler,closeoff'
 
 vim.opt.foldmethod = 'expr'
