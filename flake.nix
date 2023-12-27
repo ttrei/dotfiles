@@ -9,7 +9,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # home-manager release must be the same as the nixpkgs used in home-manager.
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     # You can change this to "nixpkgs-unstable" to use latest home-manager.
     # Then you also have to change nixpkgs to nixpkgs-unstable in homeConfigurations below.
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
