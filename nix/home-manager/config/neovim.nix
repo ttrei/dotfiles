@@ -5,16 +5,7 @@
   config,
   pkgs,
   ...
-}:
-# Manage Neovim plugins (and more!) with Nix and Home Manager
-# https://gist.github.com/nat-418/d76586da7a5d113ab90578ed56069509
-#
-# Advanced Neovim configuration with Nix and Home Manager
-# https://gist.github.com/nat-418/493d40b807132d2643a7058188bff1ca
-#
-# What if your favourite Vim plugin isn’t already packaged?
-# https://github.com/NixOS/nixpkgs/blob/5f64a12a728902226210bf01d25ec6cbb9d9265b/doc/languages-frameworks/vim.section.md#what-if-your-favourite-vim-plugin-isnt-already-packaged-what-if-your-favourite-vim-plugin-isnt-already-packaged
-{
+}: {
   # Inspired by https://gitlab.com/LongerHV/nixos-configuration
   #
   # Overview of the nix neovim ecosystem:
@@ -22,6 +13,12 @@
 
   programs.neovim = {
     enable = true;
+    # Manage Neovim plugins (and more!) with Nix and Home Manager
+    # https://gist.github.com/nat-418/d76586da7a5d113ab90578ed56069509
+    # Advanced Neovim configuration with Nix and Home Manager
+    # https://gist.github.com/nat-418/493d40b807132d2643a7058188bff1ca
+    # What if your favourite Vim plugin isn’t already packaged?
+    # https://github.com/NixOS/nixpkgs/blob/5f64a12a728902226210bf01d25ec6cbb9d9265b/doc/languages-frameworks/vim.section.md#what-if-your-favourite-vim-plugin-isnt-already-packaged-what-if-your-favourite-vim-plugin-isnt-already-packaged
     plugins = let
       vim-asciidoc-folding = pkgs.vimUtils.buildVimPlugin {
         name = "vim-asciidoc-folding";
@@ -30,8 +27,8 @@
           rev = "7925af137f7c36bb54acaafc268643548f04e5e8";
         };
       };
-      nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins:
-        with plugins; [
+      nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (treesitter-plugins:
+        with treesitter-plugins; [
           bash
           beancount
           c
