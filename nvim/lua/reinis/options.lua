@@ -22,6 +22,11 @@ vim.opt.undofile = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+-- Other
+
+-- Allow selecting past end of line in Visual Block mode
+vim.opt.virtualedit = "block"
+
 vim.opt.diffopt = 'internal,filler,closeoff'
 
 vim.opt.foldmethod = 'expr'
