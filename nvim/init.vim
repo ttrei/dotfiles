@@ -1,7 +1,4 @@
 lua << EOF
-require('plugins')
--- On first startup there will be errors due to missing plugins.
--- Not sure why, but the initial packer.sync() is defferred to later.
 require('reinis')
 EOF
 

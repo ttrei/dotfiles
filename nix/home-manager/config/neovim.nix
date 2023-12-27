@@ -5,13 +5,46 @@
   config,
   pkgs,
   ...
-}: {
+}:
+
+# Manage Neovim plugins (and more!) with Nix and Home Manager
+# https://gist.github.com/nat-418/d76586da7a5d113ab90578ed56069509
+# Advanced Neovim configuration with Nix and Home Manager
+# https://gist.github.com/nat-418/493d40b807132d2643a7058188bff1ca
+let
+  vimPluginFromGit = url: ver: rev: pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = ''${lib.strings.nameFromURL url "."}'';
+    version = ver;
+    src = builtins.fetchGit {
+      url = url;
+      rev = rev;
+    };
+  };
+in
+
+{
   # Inspired by https://gitlab.com/LongerHV/nixos-configuration
+  #
+  # Overview of the nix neovim ecosystem:
+  # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/doc/languages-frameworks/vim.section.md
 
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      packer-nvim
+      # NOTE (2023-12-27)
+      # Explored if I want to use lazy.vim instead of packer.
+      # Now I'm thinking that I don't need to use a non-nix package manager at all.
+      # I used packer for some plugins that were not in nixpkgs.
+      # But it should be easy to package those plugins myself:
+      # https://github.com/NixOS/nixpkgs/blob/5f64a12a728902226210bf01d25ec6cbb9d9265b/doc/languages-frameworks/vim.section.md#what-if-your-favourite-vim-plugin-isnt-already-packaged-what-if-your-favourite-vim-plugin-isnt-already-packaged
+      # In case I will try to use lazy together with nix:
+      # A workaround might be necessary for managing plugins with lazy.vim while managing config with home-manager:
+      # https://github.com/nix-community/home-manager/issues/257#issuecomment-831300021
+      # found it from here:
+      # https://www.reddit.com/r/NixOS/comments/108fwwh/tradeoffs_of_using_home_manager_for_neovim_plugins/j3sa16n/
+      # https://www.reddit.com/r/NixOS/comments/104l0w9/how_to_get_lua_files_in_neovim_on_hm/j362asl/?context=3
+      #
+      # lazy-nvim
 
       # TODO
       # harpoon
@@ -85,6 +118,8 @@
       undotree
       vim-fugitive
       vim-table-mode
+      vim-visual-star-search
+      (vimPluginFromGit "https://github.com/matcatc/vim-asciidoc-folding.git" "2022-04-05" "7925af137f7c36bb54acaafc268643548f04e5e8")
     ];
   };
 
