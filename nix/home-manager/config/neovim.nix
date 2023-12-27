@@ -30,17 +30,36 @@
           rev = "7925af137f7c36bb54acaafc268643548f04e5e8";
         };
       };
+      nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins:
+        with plugins; [
+          bash
+          beancount
+          c
+          cpp
+          dockerfile
+          java
+          json
+          lua
+          make
+          markdown
+          nix
+          org
+          python
+          sql
+          vim
+          yaml
+          zig
+        ]);
     in
       with pkgs.vimPlugins; [
         # NOTE (2023-12-27)
         # Explored if I want to use lazy.vim instead of packer.
         # Now I'm thinking that I don't need to use a non-nix package manager at all.
-        # I used packer for some plugins that were not in nixpkgs.
-        # But it should be easy to package those plugins myself:
-        # In case I will try to use lazy together with nix:
-        # A workaround might be necessary for managing plugins with lazy.vim while managing config with home-manager:
+        # Dropped packer.
+        # In case I will try to use lazy in addition to nix in the future, a workaround might be necessary for managing
+        # plugins with lazy.vim while managing config with home-manager:
         # https://github.com/nix-community/home-manager/issues/257#issuecomment-831300021
-        # found it from here:
+        # found that suggestion here:
         # https://www.reddit.com/r/NixOS/comments/108fwwh/tradeoffs_of_using_home_manager_for_neovim_plugins/j3sa16n/
         # https://www.reddit.com/r/NixOS/comments/104l0w9/how_to_get_lua_files_in_neovim_on_hm/j362asl/?context=3
         #
@@ -77,29 +96,7 @@
         neomake
         nvim-cmp
         nvim-lspconfig
-        {
-          plugin = nvim-treesitter.withPlugins (plugins:
-            with plugins; [
-              bash
-              beancount
-              c
-              cpp
-              dockerfile
-              java
-              json
-              lua
-              make
-              markdown
-              nix
-              org
-              python
-              sql
-              vim
-              yaml
-              zig
-            ]);
-        }
-        # nvim-treesitter.withAllGrammars
+        nvim-treesitter-with-plugins
         nvim-treesitter-context
         nvim-treesitter-textobjects
         vim-nix
