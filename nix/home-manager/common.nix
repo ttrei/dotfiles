@@ -81,6 +81,7 @@
     sd
     signal-desktop
     starship
+    stylua
     # whatsapp-for-linux
     zathura
     unstable.zig
