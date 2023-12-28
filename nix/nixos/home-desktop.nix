@@ -18,6 +18,10 @@
 
   networking.hostName = "home-desktop-nixos";
 
+  networking.firewall.allowedTCPPorts = [
+    24800 # barrier
+  ];
+
   environment.systemPackages = with pkgs; [
     qemu_kvm
     arcanPackages.arcan
