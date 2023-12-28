@@ -32,19 +32,21 @@
         with treesitter-plugins; [
           bash
           beancount
-          c
+          c # required by nvim-treesitter
           cpp
           dockerfile
           java
           json
-          lua
+          lua # required by nvim-treesitter
           make
           markdown
           nix
           org
+          query # required by nvim-treesitter
           python
           sql
-          vim
+          vim # required by nvim-treesitter
+          vimdoc # required by nvim-treesitter
           yaml
           zig
         ]);

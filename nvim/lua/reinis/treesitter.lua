@@ -1,5 +1,9 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter#modules
 require("nvim-treesitter.configs").setup({
+  -- These 5 modules are *required* (allegedly). I manage them in neovim.nix.
+  -- ensure_installed = {"c", "lua", "vim", "vimdoc", "query"},
+  auto_install = false,
+
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
