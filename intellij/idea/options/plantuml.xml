@@ -1,0 +1,10 @@
+<application>
+  <component name="PlantUmlSettingsNew">
+    <option name="PLANTUML_LIMIT_SIZE" value="" />
+    <option name="autoHide" value="false" />
+    <option name="customPlantumlJarPath" value="" />
+    <option name="dotExecutable" value="/usr/bin/dot" />
+    <option name="includedPaths" value="" />
+    <option name="lastBundledVersion" value="1.2023.11" />
+  </component>
+</application>

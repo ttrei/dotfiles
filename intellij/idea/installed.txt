@@ -1,0 +1,5 @@
+Docker
+IdeaVIM
+Lombook Plugin
+com.jetbrains.packagesearch.intellij-plugin
+PlantUML integration

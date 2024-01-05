@@ -1,0 +1,37 @@
+<application>
+  <component name="CodeVisionSettings">
+    <option name="codeVisionGroupToPosition">
+      <map>
+        <entry key="inheritors" value="Default" />
+        <entry key="problems" value="Default" />
+        <entry key="references" value="Default" />
+        <entry key="vcs.code.vision" value="Default" />
+      </map>
+    </option>
+    <option name="disabledCodeVisionProviderIds">
+      <set>
+        <option value="references" />
+        <option value="vcs.code.vision" />
+      </set>
+    </option>
+  </component>
+  <component name="EditorSettings">
+    <option name="USE_SOFT_WRAPS" value="CONSOLE" />
+  </component>
+  <component name="InlayHintsSettings">
+    <option name="disabledHintProviderIds">
+      <set>
+        <option value="kotlin.kotlin.lambdas.hints" />
+      </set>
+    </option>
+    <option name="lastViewedProviderKeyId" value=".references" />
+    <settingsMapElement>
+      <kotlin.kotlin.lambdas.hints>
+        <Settings>
+          <option name="implicitReceiversAndParams" value="false" />
+          <option name="returnExpressions" value="false" />
+        </Settings>
+      </kotlin.kotlin.lambdas.hints>
+    </settingsMapElement>
+  </component>
+</application>

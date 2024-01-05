@@ -1,0 +1,6 @@
+<code_scheme name="Default" version="173">
+  <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
+  <codeStyleSettings language="JAVA">
+    <option name="WRAP_LONG_LINES" value="true" />
+  </codeStyleSettings>
+</code_scheme>

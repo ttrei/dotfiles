@@ -1,0 +1,14 @@
+<application>
+  <component name="IgnoredPluginSuggestions">
+    <option name="pluginIds">
+      <list>
+        <option value="idea.plugin.protoeditor" />
+        <option value="com.haulmont.jpab" />
+        <option value="aws.toolkit" />
+        <option value="com.intellij.plugin.adernov.powershell" />
+        <option value="Lombook Plugin" />
+        <option value="Docker" />
+      </list>
+    </option>
+  </component>
+</application>
