@@ -1,0 +1,22 @@
+<application>
+  <component name="ProjectManager">
+    <defaultProject>
+      <component name="ProjectViewState">
+        <option name="hideEmptyMiddlePackages" value="true" />
+        <option name="showExcludedFiles" value="false" />
+        <option name="showLibraryContents" value="true" />
+      </component>
+      <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;/home/reinis/test-ruff&quot;
+  }
+}</component>
+      <component name="WindowStateProjectService">
+        <state x="745" y="265" width="438" height="510" key="FileChooserDialogImpl" timestamp="1699269896348">
+          <screen x="0" y="0" width="3000" height="2220" />
+        </state>
+        <state x="745" y="265" width="438" height="510" key="FileChooserDialogImpl/0.0.3000.2220" timestamp="1699269896348" />
+      </component>
+    </defaultProject>
+  </component>
+</application>

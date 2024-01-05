@@ -1,0 +1,3 @@
+IdeaVIM
+com.github.copilot
+com.koxudaxi.ruff

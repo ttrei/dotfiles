@@ -1,0 +1,15 @@
+<application>
+  <component name="CodeInsightSettings">
+    <option name="AUTO_POPUP_COMPLETION_LOOKUP" value="false" />
+    <option name="REFORMAT_ON_PASTE" value="1" />
+    <option name="INDENT_TO_CARET_ON_PASTE" value="true" />
+  </component>
+  <component name="CodeVisionSettings">
+    <option name="disabledCodeVisionProviderIds">
+      <set>
+        <option value="references" />
+        <option value="vcs.code.vision" />
+      </set>
+    </option>
+  </component>
+</application>

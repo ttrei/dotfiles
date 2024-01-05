@@ -1,0 +1,14 @@
+<application>
+  <component name="FindSettings">
+    <option name="customScope" value="Directory '~/dev/repos/ips/ips-core/test/ips_tests'" />
+    <option name="defaultScopeName" value="Directory '~/dev/repos/ips/ips-core/test/ips_tests'" />
+    <option name="regularExpressions" value="true" />
+    <option name="REGULAR_EXPRESSIONS" value="true" />
+    <option name="SEARCH_SCOPE" value="Directory '~/dev/repos/ips/ips-core/test/ips_tests'" />
+    <mask>*.css</mask>
+    <mask>*.html</mask>
+    <mask>*.xml</mask>
+    <mask>*.pyw</mask>
+    <mask>*.py</mask>
+  </component>
+</application>

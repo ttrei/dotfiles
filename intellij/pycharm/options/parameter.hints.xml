@@ -1,0 +1,12 @@
+<application>
+  <component name="ParameterNameHintsSettings">
+    <blacklists>
+      <blacklist language="Python">
+        <added pattern="str.replace(self,__old,__new,__count)" />
+      </blacklist>
+    </blacklists>
+    <disabledLanguages>
+      <language id="Python" />
+    </disabledLanguages>
+  </component>
+</application>
