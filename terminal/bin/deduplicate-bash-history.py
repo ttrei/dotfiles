@@ -17,6 +17,11 @@ deduplicated_file_path = history_file_path + "-deduplicated.tmp"
 
 with open(history_file_path, 'rb') as f:
     for line in reversed(f.readlines()):
+        # 2024-01-13: Somehow null bytes were inserted in multiple places in my history file.
+        # Don't know how that happened.
+        # It broke the history search, so better remove any null bytes.
+        # This is a convenient place to do it.
+        line = line.replace(b'\0', b'')
         if line not in unique_lines:
             unique_lines.add(line)
             output.append(line)
