@@ -91,6 +91,10 @@
   fonts.fontconfig.enable = true;
 
   programs.bash = {
+    # Unlimited history (there's also some config/code in .bashrc.legacy below)
+    # https://stackoverflow.com/a/12234989/9124671
+    historySize = -1;
+    historyFileSize = -1;
     # initExtra = ''
     #   # This is probably needed if we want to add extra env variables
     #   # https://discourse.nixos.org/t/home-manager-doesnt-seem-to-recognize-sessionvariables/8488/7
