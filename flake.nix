@@ -2,6 +2,10 @@
 {
   description = "NixOS and home-manager configuration";
 
+  # TODO: See if I can improve my configuration by following advice in this post:
+  #       "Flakes aren't real and cannot hurt you: a guide to using Nix flakes the non-flake way"
+  #       https://jade.fyi/blog/flakes-arent-real/
+
   inputs = {
     # In general, install packages from a release, not from master.
     # If there's a need, you can install a specific package from nixpkgs-unstable.
