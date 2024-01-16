@@ -226,6 +226,8 @@ ln -s "$DOTFILES/python/black" "$STAGINGDIR/.config/black"
 mkdir -p "$STAGINGDIR/.config/nix"
 mkdir -p "$STAGINGDIR/.config/nixpkgs"
 ln -s "$DOTFILES/nix/bin/apply-users.sh" "$STAGINGDIR/bin/apply-users.sh"
+ln -s "$DOTFILES/nix/bin/expire-users-generations.sh" "$STAGINGDIR/bin/expire-users-generations.sh"
+
 if [ "$DISTRO" = "nixos" ]; then
     ln -s "$DOTFILES/nix/bin/apply-system.sh" "$STAGINGDIR/bin/apply-system.sh"
     ln -s "$DOTFILES/nix/bin/cleanup-system.sh" "$STAGINGDIR/bin/cleanup-system.sh"
