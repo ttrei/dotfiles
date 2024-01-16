@@ -12,6 +12,7 @@
 51:kafka
 60:minilab
 65:wireshark
+69:anki
 80:daemons
 85:dotfiles
 90:audio

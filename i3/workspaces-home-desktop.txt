@@ -6,6 +6,7 @@
 25:vscode
 26:pycharm
 65:wireshark
+69:anki
 70:virt
 71:htpc-qemu
 72:windows-qemu
