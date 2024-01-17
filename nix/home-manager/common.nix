@@ -84,7 +84,6 @@
     stylua
     # whatsapp-for-linux
     zathura
-    unstable.zig
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
   ];
 
