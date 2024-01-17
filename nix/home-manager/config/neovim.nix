@@ -84,11 +84,11 @@
         # Integration with nvim-cmp (looks unmaintained: https://github.com/hrsh7th/cmp-copilot)
         # cmp-copilot
 
-        # # Rewrite of copilot-vim in lua
-        # # Seems a bit buggy for python: https://github.com/zbirenbaum/copilot-cmp/issues/10
-        # copilot-lua
-        # # Integration with nvim-cmp
-        # copilot-cmp
+        # Rewrite of copilot-vim in lua
+        # Seems a bit buggy for python: https://github.com/zbirenbaum/copilot-cmp/issues/10
+        copilot-lua
+        # Integration with nvim-cmp
+        copilot-cmp
 
         # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
         neorg

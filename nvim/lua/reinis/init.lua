@@ -8,5 +8,4 @@ require("reinis.neorg")
 require("reinis.treesitter")
 require("reinis.treesitter-context")
 require("reinis.cmp")
-
--- require ('reinis.copilot')
+require("reinis.copilot")
