@@ -3,4 +3,4 @@
 command="sudo nixos-rebuild switch --flake $HOME/dotfiles#$(hostname)"
 
 echo "$command"
-$command
+eval "$command"

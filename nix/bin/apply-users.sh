@@ -23,4 +23,4 @@ else
 fi
 
 echo "$command"
-$command
+eval "$command"
