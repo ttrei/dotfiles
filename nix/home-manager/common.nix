@@ -51,7 +51,6 @@
 
   home.packages = with pkgs; [
     alejandra
-    unstable.anki
     # https://github.com/debauchee/barrier
     # In the future I should use input-leap instead: https://github.com/input-leap/input-leap
     barrier

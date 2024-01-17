@@ -5,6 +5,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    unstable.anki
     chromium
     djview
     dmenu
