@@ -17,9 +17,3 @@ alias fvim='vim -p $(fzf -m)'
 
 # search file contents
 alias ff='rg --hidden . | fzf'
-
-# fzf enhancement for z.lua jump-around script
-function zf() {
-    local dir="$(z -l "$@"|fzf --nth 2.. --reverse --inline-info --tac +s --height 35%)"
-    [ -n "$dir" ] && cd "$(echo $dir | tr -s ' ' | cut -d ' ' -f 2)"
-}
