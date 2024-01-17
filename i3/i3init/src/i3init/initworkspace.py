@@ -15,24 +15,23 @@ class Program:
         self,
         index_in_workspace: int,
         workspace: str,
-        execstr: str,
+        exec_list: list,
         window_name: str,
         window_class: str,
         window_handling_commands: Optional[List[str]] = None,
     ):
         self.index_in_workspace = index_in_workspace
         self.workspace = workspace
-        self.exec_tuple = self._parse_exec_string(execstr, window_name)
+        self.exec_tuple = self._parse_exec_string(exec_list, window_name)
         self.window_name = window_name
         self.window_class = window_class
         self.window_handling_commands = window_handling_commands or []
         self.container: Any = None
 
     @staticmethod
-    def _parse_exec_string(execstr: str, window_name: str) -> Tuple[str, ...]:
-        binary = execstr.split()[0]
-        argstr: str = execstr.lstrip(binary).strip()
-        args = argstr.split()
+    def _parse_exec_string(exec_list: list, window_name: str) -> Tuple[str, ...]:
+        binary = exec_list[0]
+        args = exec_list[1:]
         if binary == "exec-in-dir":
             if len(args) < 2:
                 raise ValueError("exec-in-dir must have at least two arguments")
@@ -69,8 +68,8 @@ def construct_workspace_programs(workspace_program_config: dict):
     workspace_programs: Dict[str, List[Program]] = {}
     for workspace, program_args_list in workspace_program_config.items():
         program_list = []
-        for i, (execstr, window_name, window_class, window_handling_commands) in enumerate(program_args_list):
-            program = Program(i, workspace, execstr, window_name, window_class, window_handling_commands)
+        for i, (exec_list, window_name, window_class, window_handling_commands) in enumerate(program_args_list):
+            program = Program(i, workspace, exec_list, window_name, window_class, window_handling_commands)
             program_list.append(program)
         workspace_programs[workspace] = program_list
     return workspace_programs

@@ -12,42 +12,42 @@ DIR = f"{HOME}/dotfiles/bootstrap/nixos-qemu"
 CONFIG = {
     "kodi": {
         "05:kodi": [
-            # execstr, window_name, window_class, window_handling_commands
-            ["kodi", "kodi", "kodi", None],
+            # exec_list, window_name, window_class, window_handling_commands
+            ["kodi".split(), "kodi", "kodi", None],
         ],
     },
     "firefox": {
         "10:firefox": [
-            ["firefox", "mozilla firefox", "firefox", None],
+            ["firefox".split(), "mozilla firefox", "firefox", None],
         ],
     },
     "chromium": {
         "15:chrome": [
-            ["chromium", None, "chromium-browser", None],
+            ["chromium".split(), None, "chromium-browser", None],
         ],
     },
     # NOTE: Spotify doesn't set window class or name until after it's started.
     "spotify": {
         "50:spotify": [
-            ["spotify", "spotify", "spotify", None],
+            ["spotify".split(), "spotify", "spotify", None],
         ],
     },
     "steam": {
         "90:steam": [
-            [f"exec-in-dir {HOME} steam", "steam", "steam", None],
+            [f"exec-in-dir {HOME} steam".split(), "steam", "steam", None],
         ],
     },
     # NOTE: If we don't use "exec-in-dir", Lutris gets killed when this script exits.
     "lutris": {
         "91:lutris": [
-            [f"exec-in-dir {HOME} lutris", "lutris", "lutris", None],
+            [f"exec-in-dir {HOME} lutris".split(), "lutris", "lutris", None],
         ],
     },
     # TODO: Create a script for launching retroarch.
     # Previously I used this command: steam-offline -applaunch 1118310"
     # "retroarch": {
     #     "92:retroarch": [
-    #         ["retroarch", "retroarch", "retroarch", None],
+    #         ["retroarch".split(), "retroarch", "retroarch", None],
     #     ],
     # },
 }

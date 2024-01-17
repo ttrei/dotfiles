@@ -11,21 +11,21 @@ HOME = os.path.expanduser("~")
 
 I3SCHEMA_INIT = {
     "05:notes": [
-        # execstr, window_name, window_class, window_handling_commands
-        [f"exec-in-dir {HOME}/dev/notes zutty", "zutty-notes", "zutty", ["move left"]],
-        ["emacs", "emacs-notes", "emacs", ["resize set width 70 ppt"]],
+        # exec_list, window_name, window_class, window_handling_commands
+        [f"exec-in-dir {HOME}/dev/notes zutty".split(), "zutty-notes", "zutty", ["move left"]],
+        ["emacs".split(), "emacs-notes", "emacs", ["resize set width 70 ppt"]],
     ],
     "10:browser": [
-        ["firefox", "mozilla firefox", "firefox", None],
+        ["firefox".split(), "mozilla firefox", "firefox", None],
     ],
 }
 
 
 I3SCHEMA_DOTFILES = {
     "85:dotfiles": [
-        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", ["move left"]],
+        [f"exec-in-dir {HOME}/dotfiles zutty".split(), "zutty-dotfiles", "zutty", ["move left"]],
         [
-            f"exec-in-dir {HOME}/dotfiles zutty",
+            f"exec-in-dir {HOME}/dotfiles zutty".split(),
             "zutty-dotfiles",
             "zutty",
             ["split vertical", "layout stacking", "resize set width 70 ppt"],
@@ -40,15 +40,15 @@ BOOK = "/media/storage-new/Skiena-The_Algorithm_Design_Manual-2020.pdf"
 BOOK2 = "/media/storage-new/ORourke-Computational_Geometry_in_C_2nd_Edition-1998.pdf"
 I3SCHEMA_ALGORITHMS = {
     "15:doc": [
-        [f"zathura {BOOK}", "org.pwmt.zathura", "zathura", None],
-        [f"zathura {BOOK2}", "org.pwmt.zathura", "zathura", None],
+        [f"zathura {BOOK}".split(), "org.pwmt.zathura", "zathura", None],
+        [f"zathura {BOOK2}".split(), "org.pwmt.zathura", "zathura", None],
     ],
     "20:dev": [
-        [f"exec-in-dir {DEVDIR} zutty", "zutty-algorithms", "zutty", None],
-        [f"exec-in-dir {DEVDIR} zutty", "zutty-algorithms", "zutty", None],
+        [f"exec-in-dir {DEVDIR} zutty".split(), "zutty-algorithms", "zutty", None],
+        [f"exec-in-dir {DEVDIR} zutty".split(), "zutty-algorithms", "zutty", None],
     ],
     "25:vscode": [
-        [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],
+        [f"code {VSCODE_WORKSPACE}".split(), "visual studio code", "code", None],
     ],
 }
 
@@ -58,16 +58,16 @@ DIR2 = f"{HOME}/dev/learn/zig/zig_sdl_platform"
 # VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/handmade-pool.code-workspace"
 I3SCHEMA_HANDMADE_POOL = {
     "20:dev": [
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", ["move left"]],
+        [f"exec-in-dir {DIR} zutty".split(), "zutty-pool", "zutty", ["move left"]],
         [
-            f"exec-in-dir {DIR2} zutty",
+            f"exec-in-dir {DIR2} zutty".split(),
             "zutty-dotfiles",
             "zutty",
             ["split vertical", "layout stacking", "resize set width 70 ppt"],
         ],
     ],
     # "25:vscode": [
-    #     [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],
+    #     [f"code {VSCODE_WORKSPACE}".split(), "visual studio code", "code", None],
     # ],
 }
 
@@ -75,14 +75,14 @@ I3SCHEMA_HANDMADE_POOL = {
 DIR = f"{HOME}/dev/projects/foodbook"
 I3SCHEMA_FOODBOOK = {
     "20:dev": [
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", ["move left"]],
+        [f"exec-in-dir {DIR} zutty".split(), "zutty-pool", "zutty", ["move left"]],
         [
-            f"exec-in-dir {DIR} zutty",
+            f"exec-in-dir {DIR} zutty".split(),
             "zutty-pool",
             "zutty",
             ["move right", "move right", "split vertical", "layout stacking"],
         ],
-        [f"exec-in-dir {DIR} zutty", "zutty-pool", "zutty", ["move right", "resize set width 70 ppt"]],
+        [f"exec-in-dir {DIR} zutty".split(), "zutty-pool", "zutty", ["move right", "resize set width 70 ppt"]],
     ],
 }
 
@@ -92,15 +92,15 @@ BOOK = "/media/storage-new/Stevens-TCP_IP_Illustrated_Volume_1_The_Protocols_199
 BOOK2 = "/media/storage-new/books/LinuxProgrammingInterface.pdf"
 I3SCHEMA_TCP = {
     "15:doc": [
-        [f"zathura {BOOK}", "org.pwmt.zathura", "zathura", None],
-        [f"zathura {BOOK2}", "org.pwmt.zathura", "zathura", None],
+        [f"zathura {BOOK}", "org.pwmt.zathura".split(), "zathura", None],
+        [f"zathura {BOOK2}", "org.pwmt.zathura".split(), "zathura", None],
     ],
     "20:dev": [
-        [f"exec-in-dir {DEVDIR} zutty", "zutty-tcp", "zutty", None],
-        [f"exec-in-dir {DEVDIR} zutty", "zutty-tcp", "zutty", None],
+        [f"exec-in-dir {DEVDIR} zutty".split(), "zutty-tcp", "zutty", None],
+        [f"exec-in-dir {DEVDIR} zutty".split(), "zutty-tcp", "zutty", None],
     ],
     "65:wireshark": [
-        [f"wireshark", "the wireshark network analyzer", "wireshark", None],
+        [f"wireshark".split(), "the wireshark network analyzer", "wireshark", None],
     ],
 }
 
@@ -110,14 +110,14 @@ VSCODE_WORKSPACE_TLPI = f"{HOME}/.config/vscode-workspaces/linux_programming_int
 BOOK = "/media/storage-new/books/LinuxProgrammingInterface.pdf"
 I3SCHEMA_TLPI = {
     "15:doc": [
-        [f"zathura {BOOK}", "org.pwmt.zathura", "zathura", None],
+        [f"zathura {BOOK}".split(), "org.pwmt.zathura", "zathura", None],
     ],
     "20:dev": [
-        [f"exec-in-dir {DIR_TLPI} zutty", "zutty-tlpi", "zutty", None],
-        [f"exec-in-dir {DIR_TLPI} zutty", "zutty-tlpi", "zutty", None],
+        [f"exec-in-dir {DIR_TLPI} zutty".split(), "zutty-tlpi", "zutty", None],
+        [f"exec-in-dir {DIR_TLPI} zutty".split(), "zutty-tlpi", "zutty", None],
     ],
     "25:vscode": [
-        [f"code {VSCODE_WORKSPACE_TLPI}", "visual studio code", "code", None],
+        [f"code {VSCODE_WORKSPACE_TLPI}".split(), "visual studio code", "code", None],
     ],
 }
 
@@ -126,11 +126,11 @@ DIR = f"{HOME}/dev/projects/taukulis.lv"
 VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/taukulis.lv.code-workspace"
 I3SCHEMA_TAUKULIS_LV = {
     "20:dev": [
-        [f"exec-in-dir {DIR} zutty", "zutty-taukulis.lv", "zutty", None],
-        [f"exec-in-dir {DIR} zutty", "zutty-taukulis.lv", "zutty", None],
+        [f"exec-in-dir {DIR} zutty".split(), "zutty-taukulis.lv", "zutty", None],
+        [f"exec-in-dir {DIR} zutty".split(), "zutty-taukulis.lv", "zutty", None],
     ],
     "25:vscode": [
-        [f"code {VSCODE_WORKSPACE}", "visual studio code", "code", None],
+        [f"code {VSCODE_WORKSPACE}".split(), "visual studio code", "code", None],
     ],
 }
 
@@ -138,15 +138,15 @@ I3SCHEMA_TAUKULIS_LV = {
 DIR = f"{HOME}/dotfiles/bootstrap/nixos-qemu"
 I3SCHEMA_QEMU_HTPC = {
     "71:htpc-qemu": [
-        [f"exec-in-dir {DIR} zutty", "zutty-htpc-qemu", "zutty", None],
-        [f"{DIR}/boot-qemu.sh", "QEMU", "Qemu-system-x86_64", None],
+        [f"exec-in-dir {DIR} zutty".split(), "zutty-htpc-qemu", "zutty", None],
+        [f"{DIR}/boot-qemu.sh".split(), "QEMU", "Qemu-system-x86_64", None],
     ],
 }
 
 
 I3SCHEMA_UPGRADE = {
     "95:upgrade": [
-        ["zutty", "zutty-upgrade", "zutty", None],
+        ["zutty".split(), "zutty-upgrade", "zutty", None],
     ],
 }
 

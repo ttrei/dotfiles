@@ -8,51 +8,51 @@ TIMEOUT = 5.0
 
 HOME = os.path.expanduser("~")
 
-# execstr, window_name, window_class, window_handling_commands
+# exec_list, window_name, window_class, window_handling_commands
 I3SCHEMA_INIT = {
     "00:corp": [
         # TODO: The splash screen matches but then the main window gets created from scratch and
         # opens on current workspace.
-        ["microsoft-edge", None, "Microsoft-edge", None],
+        ["microsoft-edge".split(), None, "Microsoft-edge", None],
     ],
     "25:browser": [
-        ["firefox", "mozilla firefox", "firefox", None],
+        ["firefox".split(), "mozilla firefox", "firefox", None],
     ],
     "30:notes": [
-        [f"exec-in-dir {HOME}/dev/doc zutty", "zutty-notes", "zutty", ["move left"]],
+        [f"exec-in-dir {HOME}/dev/doc zutty".split(), "zutty-notes", "zutty", ["move left"]],
         [
-            f"exec-in-dir {HOME}/dev/doc/modules/ROOT zutty -e nvim -p pages/todo.adoc pages/log.adoc",
+            f"exec-in-dir {HOME}/dev/doc/modules/ROOT zutty -e nvim -p pages/todo.adoc pages/log.adoc".split(),
             "zutty-dotfiles",
             "zutty",
             ["resize set width 70 ppt"],
         ],
     ],
     "31:dev": [
-        [f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty", "zutty-dev", "zutty", ["move left"]],
+        [f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty".split(), "zutty-dev", "zutty", ["move left"]],
         [
-            f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty",
+            f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty".split(),
             "zutty-dev",
             "zutty",
             ["split vertical", "layout stacking", "resize set width 70 ppt"],
         ],
     ],
     "35:idea": [
-        ["idea-community nosplash", None, "jetbrains-idea-ce", None],
+        ["idea-community nosplash".split(), None, "jetbrains-idea-ce", None],
     ],
     "37:pycharm": [
-        ["pycharm-community nosplash", None, "jetbrains-pycharm-ce", None],
+        ["pycharm-community nosplash".split(), None, "jetbrains-pycharm-ce", None],
     ],
     "80:daemons": [
-        ["zutty -e sudo openvpn --config /etc/openvpn/client/work.conf", "zutty-openvpn", "zutty", None],
+        [[*"zutty -e tmux new -sdaemons".split(), "sudo openvpn --config /etc/openvpn/client/work.conf"], "zutty-openvpn", "zutty", None],
     ],
 }
 
 
 I3SCHEMA_DOTFILES = {
     "85:dotfiles": [
-        [f"exec-in-dir {HOME}/dotfiles zutty", "zutty-dotfiles", "zutty", ["move left"]],
+        [f"exec-in-dir {HOME}/dotfiles zutty".split(), "zutty-dotfiles", "zutty", ["move left"]],
         [
-            f"exec-in-dir {HOME}/dotfiles zutty",
+            f"exec-in-dir {HOME}/dotfiles zutty".split(),
             "zutty-dotfiles",
             "zutty",
             ["split vertical", "layout stacking", "resize set width 70 ppt"],
@@ -63,7 +63,7 @@ I3SCHEMA_DOTFILES = {
 
 I3SCHEMA_UPGRADE = {
     "95:upgrade": [
-        ["zutty", "zutty-upgrade", "zutty", None],
+        ["zutty".split(), "zutty-upgrade", "zutty", None],
     ],
 }
 
