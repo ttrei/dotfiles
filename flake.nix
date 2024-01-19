@@ -50,7 +50,7 @@
     inherit nixpkgs-unstable;
 
     # Your custom packages
-    # Acessible through 'nix build', 'nix shell', e.g.,
+    # Accessible through 'nix build', 'nix shell', e.g.,
     # nix shell /home/reinis/dotfiles#mypkgs.x86_64-linux.arcanPackages.arcan
     mypkgs = forAllSystems (
       system: let
@@ -74,7 +74,7 @@
       system: nixpkgs.legacyPackages.${system}
     );
     # Devshell for bootstrapping
-    # Acessible through 'nix develop' or 'nix-shell' (legacy)
+    # Acessible through 'nix develop'
     devShells = forAllSystems (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
