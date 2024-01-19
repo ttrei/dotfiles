@@ -137,14 +137,18 @@
   };
 
   systemd.user.services.deduplicate-bash-history = let
-    script-source = builtins.readFile ./bin/deduplicate-bash-history.py;
+    # TODO: Is there a better way to copy the script into nix store?
+    # `script = ./bin/deduplicate-bash-history.py` almost worked - nix calculates the store path but then doesn't copy
+    # the script to the path.
+    script = pkgs.writeText "deduplicate-bash-history.py" ''${builtins.readFile ./bin/deduplicate-bash-history.py}'';
   in {
     Unit = {
       Description = "De-duplicate bash history";
     };
     Service = {
-      # TODO: There should be a better way to copy the script into nix store.
-      ExecStart = "${pkgs.writeScript "dedupe-bash-history" ''${script-source}''} %h/.bash_eternal_history";
+      # Specify the python binary explicitly because in xserver-less NixOS the "#!/usr/ben/env python3" shebang failed.
+      # Alternative would be to set or modify the PATH variable.
+      ExecStart = "${pkgs.python3}/bin/python ${script} %h/.bash_eternal_history";
     };
   };
   systemd.user.timers.deduplicate-bash-history = {
