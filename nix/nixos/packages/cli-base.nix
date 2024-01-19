@@ -19,6 +19,7 @@
     nix-bash-completions
     p7zip
     pass
+    python3
     pwgen
     ripgrep
     rsync

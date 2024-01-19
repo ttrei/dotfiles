@@ -28,7 +28,6 @@
     nodePackages.pyright
     nodePackages.typescript-language-server
     pandoc
-    python3
     python3Packages.mutagen
     python3Packages.ipython
     stow
