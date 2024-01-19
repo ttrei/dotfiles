@@ -30,8 +30,3 @@ fi
 if [ -f "$TARGETDIR/.ssh/config" ]; then
     chmod 600 "$TARGETDIR/.ssh/config"
 fi
-
-if [ "$DISTRO" != "nixos" ]; then
-    systemctl --user daemon-reload
-    systemctl --user enable deduplicate-bash-history.timer
-fi

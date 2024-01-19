@@ -132,24 +132,6 @@
     };
   };
 
-  systemd.user.services.deduplicate-bash-history = let
-    deduplication-script = ./bin/deduplicate-bash-history.py;
-  in {
-    enable = true;
-    path = [pkgs.python3];
-    script = "${deduplication-script} ~/.bash_eternal_history";
-  };
-
-  systemd.user.timers.deduplicate-bash-history = {
-    enable = true;
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnBootSec = "5m";
-      OnUnitActiveSec = "5m";
-      Unit = "deduplicate-bash-history.service";
-    };
-  };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

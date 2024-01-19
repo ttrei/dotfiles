@@ -1,5 +1,0 @@
-[Unit]
-Description=De-duplicate bash history
-
-[Service]
-ExecStart=%h/bin/deduplicate-bash-history.py %h/.bash_eternal_history

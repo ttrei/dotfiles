@@ -1,9 +1,0 @@
-[Unit]
-Description=De-duplicate bash history
-
-[Timer]
-OnBootSec=5min
-OnUnitActiveSec=5min
-
-[Install]
-WantedBy=timers.target

@@ -136,6 +136,31 @@
     };
   };
 
+  systemd.user.services.deduplicate-bash-history = let
+    script-source = builtins.readFile ./bin/deduplicate-bash-history.py;
+  in {
+    Unit = {
+      Description = "De-duplicate bash history";
+    };
+    Service = {
+      # TODO: There should be a better way to copy the script into nix store.
+      ExecStart = "${pkgs.writeScript "dedupe-bash-history" ''${script-source}''} %h/.bash_eternal_history";
+    };
+  };
+  systemd.user.timers.deduplicate-bash-history = {
+    Unit = {
+      Description = "De-duplicate bash history";
+    };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
+    Timer = {
+      OnBootSec = "5min";
+      OnUnitActiveSec = "5min";
+    };
+  };
+
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

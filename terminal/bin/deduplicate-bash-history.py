@@ -12,7 +12,7 @@ if len(sys.argv) < 2:
 unique_lines = set()
 output = []
 
-history_file_path = sys.argv[1]
+history_file_path = os.path.expanduser(sys.argv[1])
 deduplicated_file_path = history_file_path + "-deduplicated.tmp"
 
 with open(history_file_path, 'rb') as f:
