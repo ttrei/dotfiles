@@ -73,6 +73,7 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      substituters = [ "http://192.168.8.180" ];
     };
   };
 
