@@ -7,6 +7,7 @@
   ...
 }: {
   imports = [
+    ./common.nix
     ./hardware-configurations/qemu.nix
     ./packages/cli-base.nix
     ./users/reinis.nix
