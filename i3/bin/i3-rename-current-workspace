@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: Consider deleting this script, I'm not using it anymore.
+
 WS_NAME=`python3 -c "import json; print(next(filter(lambda w: w['focused'], json.loads('$(i3-msg -t get_workspaces)')))['name'])"`
 
 if [ -x "$(command -v zenity)" ]

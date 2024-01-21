@@ -2,6 +2,8 @@
 
 # Inspiration: https://github.com/moustacheful/myrmidon
 
+# TODO: Merge the provided list of pre-defined workspaces with the list of currently open workspaces.
+
 [ -z "$1" ] && echo "Usage: i3-workspaces <workspaces.txt> [<mode>]" && exit 1
 
 workspaces=$(cat "$1")
