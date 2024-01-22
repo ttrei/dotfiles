@@ -19,7 +19,12 @@ I3SCHEMA_INIT = {
         ["firefox".split(), "mozilla firefox", "firefox", None],
     ],
     "30:notes": [
-        [f"exec-in-dir {HOME}/dev/doc zutty".split(), "zutty-notes", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dev/doc zutty".split(),
+            "zutty-notes",
+            "zutty",
+            ["move left"],
+        ],
         [
             f"exec-in-dir {HOME}/dev/doc/modules/ROOT zutty -e nvim -p pages/todo.adoc pages/log.adoc".split(),
             "zutty-dotfiles",
@@ -28,7 +33,12 @@ I3SCHEMA_INIT = {
         ],
     ],
     "31:dev": [
-        [f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty".split(), "zutty-dev", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty".split(),
+            "zutty-dev",
+            "zutty",
+            ["move left"],
+        ],
         [
             f"exec-in-dir {HOME}/dev/repos/ips/ips-core zutty".split(),
             "zutty-dev",
@@ -43,14 +53,27 @@ I3SCHEMA_INIT = {
         ["pycharm-community nosplash".split(), None, "jetbrains-pycharm-ce", None],
     ],
     "80:daemons": [
-        [[*"zutty -e tmux new -sdaemons".split(), "sudo openvpn --config /etc/openvpn/client/work.conf"], "zutty-openvpn", "zutty", None],
+        [
+            [
+                *"zutty -e tmux new -sdaemons".split(),
+                "sudo openvpn --config /etc/openvpn/client/work.conf",
+            ],
+            "zutty-openvpn",
+            "zutty",
+            None,
+        ],
     ],
 }
 
 
 I3SCHEMA_DOTFILES = {
     "85:dotfiles": [
-        [f"exec-in-dir {HOME}/dotfiles zutty".split(), "zutty-dotfiles", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dotfiles zutty".split(),
+            "zutty-dotfiles",
+            "zutty",
+            ["move left"],
+        ],
         [
             f"exec-in-dir {HOME}/dotfiles zutty".split(),
             "zutty-dotfiles",

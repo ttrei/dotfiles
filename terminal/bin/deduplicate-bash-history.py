@@ -15,17 +15,17 @@ output = []
 history_file_path = os.path.expanduser(sys.argv[1])
 deduplicated_file_path = history_file_path + "-deduplicated.tmp"
 
-with open(history_file_path, 'rb') as f:
+with open(history_file_path, "rb") as f:
     for line in reversed(f.readlines()):
         # 2024-01-13: Somehow null bytes were prepended to some random lines in my history file.
         # Don't know how that happened.
         # This is a convenient place to remove them.
-        line = line.replace(b'\0', b'')
+        line = line.replace(b"\0", b"")
         if line not in unique_lines:
             unique_lines.add(line)
             output.append(line)
 
-with open(deduplicated_file_path, 'wb') as f:
+with open(deduplicated_file_path, "wb") as f:
     f.writelines(reversed(output))
 
 os.replace(deduplicated_file_path, history_file_path)

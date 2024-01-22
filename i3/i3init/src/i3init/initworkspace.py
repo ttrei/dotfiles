@@ -68,8 +68,20 @@ def construct_workspace_programs(workspace_program_config: dict):
     workspace_programs: Dict[str, List[Program]] = {}
     for workspace, program_args_list in workspace_program_config.items():
         program_list = []
-        for i, (exec_list, window_name, window_class, window_handling_commands) in enumerate(program_args_list):
-            program = Program(i, workspace, exec_list, window_name, window_class, window_handling_commands)
+        for i, (
+            exec_list,
+            window_name,
+            window_class,
+            window_handling_commands,
+        ) in enumerate(program_args_list):
+            program = Program(
+                i,
+                workspace,
+                exec_list,
+                window_name,
+                window_class,
+                window_handling_commands,
+            )
             program_list.append(program)
         workspace_programs[workspace] = program_list
     return workspace_programs

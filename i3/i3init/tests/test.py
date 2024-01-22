@@ -11,7 +11,12 @@ WORKSPACE_PROGRAMS = {
     # workspace
     "100:test": [
         # exec_list, window_name, window_class, window_handling_commands
-        [f"exec-in-dir {HOME}/dotfiles zutty -e sleep 3".split(), "zutty-test", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dotfiles zutty -e sleep 3".split(),
+            "zutty-test",
+            "zutty",
+            ["move left"],
+        ],
         [
             f"exec-in-dir {HOME}/dotfiles zutty -e sleep 3".split(),
             "zutty-test",

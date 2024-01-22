@@ -12,7 +12,12 @@ HOME = os.path.expanduser("~")
 I3SCHEMA_INIT = {
     "05:notes": [
         # exec_list, window_name, window_class, window_handling_commands
-        [f"exec-in-dir {HOME}/dev/notes zutty".split(), "zutty-notes", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dev/notes zutty".split(),
+            "zutty-notes",
+            "zutty",
+            ["move left"],
+        ],
         ["emacs".split(), "emacs-notes", "emacs", ["resize set width 70 ppt"]],
     ],
     "10:browser": [
@@ -23,7 +28,12 @@ I3SCHEMA_INIT = {
 
 I3SCHEMA_DOTFILES = {
     "85:dotfiles": [
-        [f"exec-in-dir {HOME}/dotfiles zutty".split(), "zutty-dotfiles", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {HOME}/dotfiles zutty".split(),
+            "zutty-dotfiles",
+            "zutty",
+            ["move left"],
+        ],
         [
             f"exec-in-dir {HOME}/dotfiles zutty".split(),
             "zutty-dotfiles",
@@ -82,7 +92,12 @@ I3SCHEMA_FOODBOOK = {
             "zutty",
             ["move right", "move right", "split vertical", "layout stacking"],
         ],
-        [f"exec-in-dir {DIR} zutty".split(), "zutty-pool", "zutty", ["move right", "resize set width 70 ppt"]],
+        [
+            f"exec-in-dir {DIR} zutty".split(),
+            "zutty-pool",
+            "zutty",
+            ["move right", "resize set width 70 ppt"],
+        ],
     ],
 }
 
