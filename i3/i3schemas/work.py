@@ -55,7 +55,7 @@ I3SCHEMA_INIT = {
     "80:daemons": [
         [
             [
-                *"zutty -e tmux new -sdaemons".split(),
+                *"zutty -e tmux -f /home/reinis/.tmux.conf new -sdaemons".split(),
                 "sudo openvpn --config /etc/openvpn/client/work.conf",
             ],
             "zutty-openvpn",
