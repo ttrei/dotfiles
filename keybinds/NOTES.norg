@@ -1,0 +1,14 @@
+* TODO
+
+** Parse neovim and i3 keybinds
+
+   Python script to parse the keybinds into usable form.
+
+** Use rofi or fzf to search the keybinds
+
+   Two modes of operation:
+
+   - When I want to define a new keybind, I want to know that it is not taken yet.
+     In this case, search by the "lhs" of the keybind.
+
+   - When I want to remember how to do something, search by the "rhs" of the keybind.
