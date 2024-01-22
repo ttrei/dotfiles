@@ -1,0 +1,24 @@
+i  <Plug>(table-mode-tableize) * |<Esc>:call tablemode#TableizeInsertMode()<CR>a
+!  <Plug>luasnip-expand-repeat * <Lua 132: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:38>
+!  <Plug>luasnip-delete-check * <Lua 130: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:31>
+i  <Plug>luasnip-jump-prev * <Lua 128: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:24>
+i  <Plug>luasnip-jump-next * <Lua 127: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:21>
+i  <Plug>luasnip-prev-choice * <Lua 126: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:18>
+i  <Plug>luasnip-next-choice * <Lua 125: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:15>
+i  <Plug>luasnip-expand-snippet * <Lua 122: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:12>
+i  <Plug>luasnip-expand-or-jump * <Lua 100: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:9>
+i  <C-C>       * <Nop>
+i  <C-]>       * <Lua 99: /nix/store/...-vim-pack-dir/pack/myNeovimPackages/start/copilot.lua/lua/copilot/suggestion.lua:107>
+                 [copilot] dismiss suggestion
+i  <M-[>       * <Lua 98: /nix/store/...-vim-pack-dir/pack/myNeovimPackages/start/copilot.lua/lua/copilot/suggestion.lua:430>
+                 [copilot] prev suggestion
+i  <M-]>       * <Lua 97: /nix/store/...-vim-pack-dir/pack/myNeovimPackages/start/copilot.lua/lua/copilot/suggestion.lua:416>
+                 [copilot] next suggestion
+i  <M-l>       * <Lua 96: /nix/store/...-vim-pack-dir/pack/myNeovimPackages/start/copilot.lua/lua/copilot/suggestion.lua:445>
+                 [copilot] accept suggestion
+i  <M-CR>      * <Lua 94: /nix/store/...-vim-pack-dir/pack/myNeovimPackages/start/copilot.lua/lua/copilot/panel.lua:542>
+                 [copilot] (panel) open
+i  <C-W>       * <C-G>u<C-W>
+                 Nvim builtin
+i  <C-U>       * <C-G>u<C-U>
+                 Nvim builtin

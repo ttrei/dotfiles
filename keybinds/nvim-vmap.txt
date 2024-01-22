@@ -1,0 +1,32 @@
+v  <Space>*    * :<C-U>call VisualStarSearchSet('/')<CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'<CR>
+x  <Space>T      <Plug>(table-mode-tableize-delimiter)
+x  <Space>tt     <Plug>(table-mode-tableize)
+x  #           * :<C-U>call VisualStarSearchSet('?')<CR>?<C-R>=@/<CR><CR>
+x  %             <Plug>(MatchitVisualForward)
+x  *           * :<C-U>call VisualStarSearchSet('/')<CR>/<C-R>=@/<CR><CR>
+x  [z          * ':<C-U>call <SNR>36_UpdateWin()<CR>gv'.v:count.'[z'
+x  [%            <Plug>(MatchitVisualMultiBackward)
+x  ]z          * ':<C-U>call <SNR>36_UpdateWin()<CR>gv'.v:count.']z'
+x  ]%            <Plug>(MatchitVisualMultiForward)
+x  a%            <Plug>(MatchitVisualTextObject)
+x  gx            <Plug>NetrwBrowseXVis
+x  g%            <Plug>(MatchitVisualBackward)
+x  zk          * ':<C-U>call <SNR>36_UpdateWin()<CR>gv'.v:count.'zk'
+x  zj          * ':<C-U>call <SNR>36_UpdateWin()<CR>gv'.v:count.'zj'
+x  <Plug>(table-mode-cell-text-object-i) * :<C-U>call tablemode#spreadsheet#cell#TextObject(1)<CR>
+x  <Plug>(table-mode-cell-text-object-a) * :<C-U>call tablemode#spreadsheet#cell#TextObject(0)<CR>
+x  <Plug>(table-mode-tableize-delimiter) * :<C-U>call tablemode#TableizeByDelimiter()<CR>
+x  <Plug>(table-mode-tableize) * :Tableize<CR>
+s  <Plug>luasnip-jump-prev * <Lua 138: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:57>
+s  <Plug>luasnip-jump-next * <Lua 137: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:54>
+s  <Plug>luasnip-prev-choice * <Lua 136: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:51>
+s  <Plug>luasnip-next-choice * <Lua 135: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:48>
+s  <Plug>luasnip-expand-snippet * <Lua 134: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:45>
+s  <Plug>luasnip-expand-or-jump * <Lua 133: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:42>
+   <Plug>luasnip-expand-repeat * <Lua 131: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:35>
+x  <Plug>NetrwBrowseXVis * :<C-U>call netrw#BrowseXVis()<CR>
+x  <Plug>(MatchitVisualTextObject)   <Plug>(MatchitVisualMultiBackward)o<Plug>(MatchitVisualMultiForward)
+x  <Plug>(MatchitVisualMultiForward) * :<C-U>call matchit#MultiMatch("W",  "n")<CR>m'gv``
+x  <Plug>(MatchitVisualMultiBackward) * :<C-U>call matchit#MultiMatch("bW", "n")<CR>m'gv``
+x  <Plug>(MatchitVisualBackward) * :<C-U>call matchit#Match_wrapper('',0,'v')<CR>m'gv``
+x  <Plug>(MatchitVisualForward) * :<C-U>call matchit#Match_wrapper('',1,'v')<CR>:if col("''") != col("$") | exe ":normal! m'" | endif<CR>gv``

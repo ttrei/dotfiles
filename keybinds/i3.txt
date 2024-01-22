@@ -1,4 +1,3 @@
-# i3
 Super+Shift+c: reload i3 config
 Super+Shift+r: restart i3
 Super+Shift+q: exit i3

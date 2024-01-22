@@ -1,0 +1,79 @@
+n  <Space>*    * :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("<cword>"), '\'), '\n', '\\n', 'g') . '/ **'<CR>
+n  <Space>tt     <Plug>(table-mode-tableize)
+n  <Space>tm   * :<C-U>call tablemode#Toggle()<CR>
+n  <Space>s    * :%s/\s\+$//<CR>
+n  <Space>tw   * :call ToggleTextWidth()<CR>:set textwidth<CR>
+n  <Space>q    * <Lua 11: /nix/store/...-neovim-unwrapped-0.9.4/share/nvim/runtime/lua/vim/diagnostic.lua:1527>
+n  <Space>e    * <Lua 8: /nix/store/...-neovim-unwrapped-0.9.4/share/nvim/runtime/lua/vim/diagnostic.lua:1272>
+n  <Space>fh   * <Lua 7: /nix/store/...-vim-pack-dir/pack/myNeovimPackages/start/fzf-lua/lua/fzf-lua/init.lua:265>
+n  <Space>,    * <Lua 6: /nix/store/...-vim-pack-dir/pack/myNeovimPackages/start/fzf-lua/lua/fzf-lua/init.lua:265>
+n  <Space>tn   * :tabnew<CR>
+n  <Space>w    * <Lua 4: ~/.config/nvim/lua/reinis/remaps.lua:25>
+n  <Space>u    * :UndotreeToggle<CR>
+n  <Space>i    * <Lua 3: ~/.config/nvim/lua/reinis/remaps.lua:21>
+n  <Space>h    * :nohlsearch<CR>
+n  <Space>bd   * :bdelete<CR>
+n  <Space>rd   * :set runtimepath^=~/dotfiles/nvim<CR>:ReloadConfig<CR>:source ~/dotfiles/nvim/init.vim<CR>
+n  <Space>rr   * :set runtimepath-=~/dotfiles/nvim<CR>:ReloadConfig<CR>:source $MYVIMRC<CR>
+n  %             <Plug>(MatchitNormalForward)
+n  &           * :&&<CR>
+                 Nvim builtin
+n  Y           * y$
+                 Nvim builtin
+n  [z          * ':<C-U>call <SNR>36_UpdateWin()<CR>'.v:count.'[z'
+n  [%            <Plug>(MatchitNormalMultiBackward)
+n  [d          * <Lua 9: /nix/store/...-neovim-unwrapped-0.9.4/share/nvim/runtime/lua/vim/diagnostic.lua:807>
+n  ]z          * ':<C-U>call <SNR>36_UpdateWin()<CR>'.v:count.']z'
+n  ]%            <Plug>(MatchitNormalMultiForward)
+n  ]d          * <Lua 10: /nix/store/...-neovim-unwrapped-0.9.4/share/nvim/runtime/lua/vim/diagnostic.lua:853>
+n  gx            <Plug>NetrwBrowseX
+n  g%            <Plug>(MatchitNormalBackward)
+n  y<C-G>      & :<C-U>call setreg(v:register, fugitive#Object(@%))<CR>
+n  zk          * ':<C-U>call <SNR>36_UpdateWin()<CR>'.v:count.'zk'
+n  zj          * ':<C-U>call <SNR>36_UpdateWin()<CR>'.v:count.'zj'
+n  zC          * :<C-U>call <SNR>36_UpdateWin()<CR>zC
+n  zc          * :<C-U>call <SNR>36_UpdateWin()<CR>zc
+n  zO          * :<C-U>call <SNR>36_UpdateWin()<CR>zO
+n  zo          * :<C-U>call <SNR>36_UpdateWin()<CR>zo
+n  zA          * :<C-U>call <SNR>36_UpdateWin()<CR>zA
+n  za          * :<C-U>call <SNR>36_UpdateWin()<CR>za
+n  zX          * :<C-U>call <SNR>36_UpdateWin()<CR>zX
+n  zx          * :<C-U>call <SNR>36_UpdateWin()<CR>zx
+n  zuz           <Plug>(FastFoldUpdate)
+n  <Plug>(table-mode-sort) * :call tablemode#spreadsheet#Sort('')<CR>
+n  <Plug>(table-mode-echo-cell) * :call tablemode#spreadsheet#EchoCell()<CR>
+n  <Plug>(table-mode-eval-formula) * :call tablemode#spreadsheet#formula#EvaluateFormulaLine()<CR>
+n  <Plug>(table-mode-add-formula) * :call tablemode#spreadsheet#formula#Add()<CR>
+n  <Plug>(table-mode-insert-column-after) * :<C-U>call tablemode#spreadsheet#InsertColumn(1)<CR>
+n  <Plug>(table-mode-insert-column-before) * :<C-U>call tablemode#spreadsheet#InsertColumn(0)<CR>
+n  <Plug>(table-mode-delete-column) * :<C-U>call tablemode#spreadsheet#DeleteColumn()<CR>
+n  <Plug>(table-mode-delete-row) * :<C-U>call tablemode#spreadsheet#DeleteRow()<CR>
+n  <Plug>(table-mode-motion-right) * :<C-U>call tablemode#spreadsheet#cell#Motion('l')<CR>
+n  <Plug>(table-mode-motion-left) * :<C-U>call tablemode#spreadsheet#cell#Motion('h')<CR>
+n  <Plug>(table-mode-motion-down) * :<C-U>call tablemode#spreadsheet#cell#Motion('j')<CR>
+n  <Plug>(table-mode-motion-up) * :<C-U>call tablemode#spreadsheet#cell#Motion('k')<CR>
+n  <Plug>(table-mode-realign) * :call tablemode#table#Realign('.')<CR>
+n  <Plug>(table-mode-tableize) * :Tableize<CR>
+n  <Plug>fugitive: & <Nop>
+n  <Plug>fugitive:y<C-G> & :<C-U>call setreg(v:register, fugitive#Object(@%))<CR>
+n  <Plug>PlenaryTestFile * :lua require('plenary.test_harness').test_file(vim.fn.expand("%:p"))<CR>
+   <Plug>luasnip-expand-repeat * <Lua 131: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:35>
+n  <Plug>luasnip-delete-check * <Lua 129: /nix/store/...-vimplugin-luasnip-2023-11-13/plugin/luasnip.lua:28>
+n  <Plug>(FastFoldUpdate) * :<C-U>FastFoldUpdate!<CR>
+n  <Plug>NetrwBrowseX * :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))<CR>
+n  <Plug>(MatchitNormalMultiForward) * :<C-U>call matchit#MultiMatch("W",  "n")<CR>
+n  <Plug>(MatchitNormalMultiBackward) * :<C-U>call matchit#MultiMatch("bW", "n")<CR>
+n  <Plug>(MatchitNormalBackward) * :<C-U>call matchit#Match_wrapper('',0,'n')<CR>
+n  <Plug>(MatchitNormalForward) * :<C-U>call matchit#Match_wrapper('',1,'n')<CR>
+n  <Plug>(fzf-normal) * <Nop>
+n  <Plug>(fzf-insert) * i
+n  <C-N>       * :call NumberToggle()<CR>
+n  <F5>        * :Neomake<CR>
+n  <F10>       * <Esc>:syntax sync minlines=200<CR>
+n  <F9>        * <Esc>:syntax sync fromstart<CR>
+n  <C-S-H>     * :tabmove-1<CR>
+n  <C-S-L>     * :tabmove+1<CR>
+n  <C-H>       * :tabprevious<CR>
+n  <C-P>       * <Lua 5: /nix/store/...-vim-pack-dir/pack/myNeovimPackages/start/fzf-lua/lua/fzf-lua/init.lua:265>
+                 Find files using fzf
+n  <C-L>       * :tabnext<CR>
