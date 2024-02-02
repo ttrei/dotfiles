@@ -35,4 +35,4 @@ Super+[: focus output left
 Super+]: focus output right
 Super+Shift+[: move workspace to output left
 Super+Shift+]: move workspace to output right
-Super+Escape exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
+Super+Escape: exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
