@@ -70,17 +70,17 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 # split horizontally/vertically
-bindsym $mod+Shift+g split h
-bindsym $mod+Shift+v split v
+bindsym $mod+comma split h
+bindsym $mod+period split v
 bindsym $mod+u fullscreen
 # change container layout
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout default
-bindsym $mod+s layout stacking
+bindsym $mod+9 layout tabbed
+bindsym $mod+0 layout default
+bindsym $mod+8 layout stacking
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+y floating toggle
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+y focus mode_toggle
 # TODO: Remap to different key. Easy to accidentally press $mod+Shift+q (exit X session).
 bindsym $mod+q focus parent
 #bindsym $mod+d focus child
