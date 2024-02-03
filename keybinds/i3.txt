@@ -22,7 +22,7 @@ Super+e: default layout
 Super+s: stacking layout
 Super+Shift+space: toggle current window between tiled and floating layout
 Super+space: toggle focus between tiled and floating windows
-Super+q: toggle focus between tiled and floating windows
+Super+q: focus parent
 Super+o: switch to workspace
 Super+Shift+o: move focused container to workspace and switch to it
 Super+i: workspace next_on_output
