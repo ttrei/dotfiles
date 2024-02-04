@@ -1,9 +1,5 @@
 * TODO
 
-** Parse neovim keybinds
-
-   Python script to parse the keybinds into usable form.
-
 ** Extract i3 keybinds from the i3 config file
 
 ** Use rofi or fzf to search the keybinds
