@@ -32,10 +32,17 @@ client.background       #ffffff
 
 # Keybindings
 
-# Modifier, Mod4 == Super (Windows) key
+# Mod4 == Super (Windows) key
 set $mod Mod4
-
 set $alt Mod1
+
+# reload this configuration file
+bindsym $mod+Control+Shift+c reload
+# restart i3
+bindsym $mod+Control+Shift+r restart
+# exit i3 (ends X session)
+bindsym $mod+Control+Shift+e exit
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -44,55 +51,46 @@ floating_modifier $mod
 # https://build.i3wm.org/docs/userguide.html#config_tiling_drag
 tiling_drag modifier
 
-# reload this configuration file
-bindsym $mod+Shift+c reload
-# restart i3
-bindsym $mod+Shift+r restart
-# exit i3 (ends X session)
-bindsym $mod+Shift+q exit
-bindsym $mod+Return exec --no-startup-id samecwd-terminal.sh
-bindsym $mod+Shift+Return exec --no-startup-id zutty
-# sound
-bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec amixer -q sset Master toggle && pkill -RTMIN+10 i3blocks
-bindsym $alt+F4 kill
-bindsym $mod+r exec --no-startup-id dmenu_run
+bindsym $mod+Return exec --no-startup-id zutty
+bindsym $mod+Shift+Return exec --no-startup-id samecwd-terminal.sh
 bindsym $mod+7 exec --no-startup-id rofi -show run
+bindsym $alt+F4 kill
+# Execute predefined tasks
+bindsym $mod+8 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
+
+# Containers (windows)
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-# move focused window
+# move focused container
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 # split horizontally/vertically
-bindsym $mod+comma split h
-bindsym $mod+period split v
-bindsym $mod+u fullscreen
+bindsym $mod+g split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen
 # change container layout
-bindsym $mod+9 layout tabbed
-bindsym $mod+0 layout default
-bindsym $mod+8 layout stacking
-# toggle tiling / floating
-bindsym $mod+Shift+y floating toggle
-# change focus between tiling / floating windows
-bindsym $mod+y focus mode_toggle
-# TODO: Remap to different key. Easy to accidentally press $mod+Shift+q (exit X session).
+bindsym $mod+r layout default
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout stacking
+bindsym $mod+Shift+c floating toggle
+# change focus between tiling / floating containers
+bindsym $mod+c focus mode_toggle
 bindsym $mod+q focus parent
-#bindsym $mod+d focus child
+bindsym $mod+a focus child
 
-
+# Sound
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+ && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec amixer -q sset Master toggle && pkill -RTMIN+10 i3blocks
 
 # Workspaces
-
-# switch to a predefined workspace / create new workspace
 bindsym $mod+o exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.txt
 bindsym $mod+Shift+o exec --no-startup-id i3-workspaces ~/.config/i3/workspaces.txt move
-
 bindsym $mod+i workspace next_on_output
 bindsym $mod+n workspace prev_on_output
 bindsym $mod+m workspace back_and_forth
@@ -107,15 +105,6 @@ bindsym $mod+bracketright focus output right
 # move workspace to output
 bindsym $mod+Shift+bracketleft move workspace to output left
 bindsym $mod+Shift+bracketright move workspace to output right
-
-
-# Execute predefined tasks
-bindsym $mod+Escape exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
-
-
-# Startup
-
-# Assign programs to specific workspaces
 
 # Floating windows
 for_window [class="Anki"] floating enable

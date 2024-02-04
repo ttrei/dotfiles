@@ -64,6 +64,7 @@
     feh
     font-awesome
     fzf
+    gnumeric
     gron
     i3
     jdt-language-server
