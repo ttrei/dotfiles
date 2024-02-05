@@ -8,5 +8,7 @@
 
    - When I want to define a new keybind, I want to know that it is not taken yet.
      In this case, search by the "lhs" of the keybind.
+     NOTE: I may have to use fzf, since it has the "--nth" option, which I suppose lets you match against some subset
+     of the input string. Looks like rofi doesn't have such feature.
 
    - When I want to remember how to do something, search by the "rhs" of the keybind.
