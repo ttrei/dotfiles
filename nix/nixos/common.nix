@@ -76,7 +76,7 @@
       # NOTE (2024-01-21): The substituter logic currently has a bug that is being worked on
       # https://github.com/NixOS/nix/issues/6901
       # https://github.com/NixOS/nix/pull/8983
-      substituters = ["http://192.168.8.201"];
+      substituters = ["http://rpi.local"];
     };
   };
 
