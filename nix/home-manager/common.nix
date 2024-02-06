@@ -157,14 +157,13 @@
       Description = "De-duplicate bash history";
     };
     Install = {
-      WantedBy = [ "timers.target" ];
+      WantedBy = ["timers.target"];
     };
     Timer = {
       OnBootSec = "5min";
       OnUnitActiveSec = "5min";
     };
   };
-
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

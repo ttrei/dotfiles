@@ -76,12 +76,9 @@
       # NOTE (2024-01-21): The substituter logic currently has a bug that is being worked on
       # https://github.com/NixOS/nix/issues/6901
       # https://github.com/NixOS/nix/pull/8983
-      substituters = [ "http://192.168.8.201" ];
+      substituters = ["http://192.168.8.201"];
     };
   };
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Riga";
 
@@ -135,6 +132,17 @@
       PermitRootLogin = "prohibit-password";
     };
   };
+
+  networking.networkmanager.enable = true;
+  # Connect to a wireless connection:
+  # $ nmcli device wifi connect <your SSID> password <your password>
+  # TODO: Manage wireless connections declaratively
+
+  # Enable discovery on local network by hostname.
+  # https://github.com/NixOS/nixpkgs/issues/98050#issuecomment-1471678276
+  services.resolved.enable = true;
+  networking.networkmanager.connectionConfig."connection.mdns" = 2;
+  services.avahi.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
