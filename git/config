@@ -1,5 +1,6 @@
 [user]
     name = Reinis Taukulis
+    email = reinis.taukulis@gmail.com
 [core]
     editor = /usr/bin/env nvim
     whitespace = cr-at-eol
