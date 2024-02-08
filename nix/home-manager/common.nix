@@ -75,6 +75,7 @@
     nodePackages.typescript-language-server
     git
     git-crypt
+    git-when-merged
     i3pyblocks
     openjdk
     redshift
