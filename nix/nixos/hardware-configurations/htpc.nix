@@ -10,9 +10,9 @@
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.kernelModules = [ "8821cu" ];
   boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -50,4 +50,7 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.pulseaudio.enable = true;
+
+  # To automatically switch USB WiFi receiver from CDROM mode to wifi mode
+  hardware.usb-modeswitch.enable = true;
 }
