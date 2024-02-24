@@ -54,6 +54,7 @@
     # https://github.com/debauchee/barrier
     # In the future I should use input-leap instead: https://github.com/input-leap/input-leap
     barrier
+    bat
     comma
     dbeaver
     unstable.delta
@@ -80,6 +81,7 @@
     openjdk
     redshift
     ripgrep
+    unstable.ripgrep-all
     sd
     signal-desktop
     starship
