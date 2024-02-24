@@ -71,12 +71,6 @@
     # choose a branch on which to rebase
     rebase-fzf-branch = "!f() { git rebase -i $(git for-each-ref --format='%(refname)' refs/ | fzf --ansi --reverse --height=40%) ; }; f"
 
-    # Find the merge commit that introduced a commit into current branch.
-    # Doesn't work correctly if there is no merge commit.
-    # https://stackoverflow.com/a/30998048/9124671
-    find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
-    show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
-
     # # (From https://blog.jez.io/cli-code-review/)
     # # list changes since REVIEW_BASE (defaults to 'master' in my bashrc)
     # files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
