@@ -63,6 +63,7 @@ alias grf='git rebase-fzf-commit'
 alias grb='git rebase-fzf-branch'
 alias gf='git fetch --all --prune'
 alias gst='git status'
+alias gaf='git fza'
 alias gs='git show'
 
 __git_complete go _git_checkout
