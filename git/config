@@ -58,6 +58,9 @@
     # Show root dir of the parent. Returns nothing if this repo is not a submodule.
     rootsuper = rev-parse --show-superproject-working-tree
 
+    # https://stackoverflow.com/questions/65837109/when-should-i-use-git-push-force-if-includes
+    fpush = push --force-with-lease --force-if-includes
+
     # show a commit in difftool (see http://stackoverflow.com/a/27963038)
     showtool = "!showci () { rev=${1:-HEAD}; git difftool -d $rev~1 $rev; }; showci $1"
 
