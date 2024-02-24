@@ -69,6 +69,10 @@
     # don't show merges
     lgm = lg --first-parent -i --grep=merge --invert-grep
 
+    # interactive "git add"
+    # https://news.ycombinator.com/item?id=38473517
+    fza = "!git ls-files -m -o --exclude-standard | fzf -m --print0 --reverse --preview 'if git ls-files --error-unmatch {1} >/dev/null 2>&1; then git diff --color=always {1}; else cat {1}; fi' | xargs -0 git add"
+
     # choose a commit on which to rebase
     rebase-fzf-commit = "!f() { git rebase -i $(git log --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cd%Cblue %an%Creset' --color=always | fzf --ansi --reverse --height=40% | cut -d ' ' -f1)^ ; }; f"
     # choose a branch on which to rebase
