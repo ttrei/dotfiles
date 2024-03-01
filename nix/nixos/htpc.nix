@@ -154,6 +154,70 @@
     }
   ];
 
+  services.samba = {
+    # NOTE: Need to set up SAMBA username/password with
+    #       sudo smbpasswd -a reinis
+    enable = true;
+    securityType = "user";
+    openFirewall = true;
+    extraConfig = ''
+      workgroup = WORKGROUP
+      server string = smbnix
+      netbios name = smbnix
+      security = user 
+      #use sendfile = yes
+      #max protocol = smb2
+      # note: localhost is the ipv6 localhost ::1
+      hosts allow = 192.168.8. 127.0.0.1 localhost
+      hosts deny = 0.0.0.0/0
+      guest account = nobody
+      map to guest = bad user
+    '';
+    shares = {
+      tvshows = {
+        path = "/media/Storage/tvshows";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "reinis";
+        "force group" = "users";
+      };
+      tvshows2 = {
+        path = "/media/Lielais/tvshows";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "reinis";
+        "force group" = "users";
+      };
+      movies = {
+        path = "/media/Lielais/movies";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "reinis";
+        "force group" = "users";
+      };
+      movies2 = {
+        path = "/media/Lielais/movies-radarr";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "reinis";
+        "force group" = "users";
+      };
+    };
+  };
+  networking.firewall.allowPing = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
