@@ -131,6 +131,10 @@
       PasswordAuthentication = false;
       PermitRootLogin = "prohibit-password";
     };
+    extraConfig = "
+      TrustedUserCAKeys /etc/ssh/trusted_ca_keys.pub
+      HostCertificate /etc/ssh/ssh_host_rsa_key-cert.pub
+    ";
   };
 
   networking.networkmanager.enable = true;
