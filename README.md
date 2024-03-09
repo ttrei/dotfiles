@@ -62,3 +62,38 @@ EXECUTION_ENV
 * qemu
 * wsl
 * digitalocean
+
+## Hostnames
+
+jupiter: Desktop workstation (NixOS)
+jupiter-work: Desktop workstation (Ubuntu)
+saturn: HTPC (NixOS)
+mercury: Work laptop (Debian WSL)
+pluto: Raspberry Pi 4
+eris: Raspberry Pi 1 (CA server)
+charon: Android phone
+neptune: Digitalocean VPS
+
+Available names:
+
+venus
+earth
+mars
+uranus
+
+ganymede
+titan
+callisto
+io
+moon
+europa
+triton
+titania
+rhea
+oberon
+iapetus
+umbriel
+ariel
+dione
+tethys
+dysnomia
