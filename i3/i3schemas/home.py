@@ -151,9 +151,9 @@ I3SCHEMA_TAUKULIS_LV = {
 
 
 DIR = f"{HOME}/dotfiles/bootstrap/nixos-qemu"
-I3SCHEMA_QEMU_HTPC = {
-    "71:htpc-qemu": [
-        [f"exec-in-dir {DIR} zutty".split(), "zutty-htpc-qemu", "zutty", None],
+I3SCHEMA_SATURN_QEMU = {
+    "71:saturn-qemu": [
+        [f"exec-in-dir {DIR} zutty".split(), "zutty-saturn-qemu", "zutty", None],
         [f"{DIR}/boot-qemu.sh".split(), "QEMU", "Qemu-system-x86_64", None],
     ],
 }
@@ -175,7 +175,7 @@ I3SCHEMAS = {
     "linux-programming-interface": I3SCHEMA_TLPI,
     "tcp": I3SCHEMA_TCP,
     "taukulis.lv": I3SCHEMA_TAUKULIS_LV,
-    "qemu-htpc": I3SCHEMA_QEMU_HTPC,
+    "saturn-qemu": I3SCHEMA_SATURN_QEMU,
     "upgrade": I3SCHEMA_UPGRADE,
 }
 

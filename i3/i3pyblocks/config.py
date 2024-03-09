@@ -278,7 +278,7 @@ async def main():
     # Summary of remote machines
     if hostname == "home-desktop-debian":
         await runner.register_block(RemoteSummaryBlock(hostname="mazais", path="/var/tmp/remote-summary.json"))
-        await runner.register_block(RemoteSummaryBlock(hostname="kodi", path="/var/tmp/remote-summary.json"))
+        await runner.register_block(RemoteSummaryBlock(hostname="saturn", path="/var/tmp/remote-summary.json"))
 
     # Current network speed for either en* (ethernet) or wl* devices.
     await runner.register_block(
@@ -289,7 +289,7 @@ async def main():
         )
     )
 
-    if hostname in {"kodi", "htpc", "htpc-qemu"}:
+    if hostname in {"saturn", "saturn-qemu"}:
         # VPN status
         await runner.register_block(WireguardBlock(interface="wg-mullvad"))
 

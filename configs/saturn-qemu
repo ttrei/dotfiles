@@ -1,4 +1,4 @@
 export DISTRO=nixos
 export CONTEXT=home
-export MACHINE=htpc
+export MACHINE=saturn
 export EXECUTION_ENV=qemu

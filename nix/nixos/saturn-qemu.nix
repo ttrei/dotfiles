@@ -12,13 +12,13 @@
     ./packages/cli.nix
     ./packages/games.nix
     ./packages/gui.nix
-    ./packages/htpc.nix
+    ./packages/saturn.nix
     ./users/reinis.nix
   ];
 
   services.xserver.displayManager.autoLogin.enable = lib.mkForce false;
 
-  networking.hostName = "htpc-qemu";
+  networking.hostName = "saturn-qemu";
 
   networking.wg-quick.interfaces = {
     wg-mullvad = {

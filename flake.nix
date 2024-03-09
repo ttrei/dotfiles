@@ -100,16 +100,16 @@
           ./nix/nixos/home-desktop.nix
         ];
       };
-      kodi = nixpkgs.lib.nixosSystem {
+      saturn = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/nixos/htpc.nix
+          ./nix/nixos/saturn.nix
         ];
       };
-      htpc-qemu = nixpkgs.lib.nixosSystem {
+      saturn-qemu = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/nixos/htpc-qemu.nix
+          ./nix/nixos/saturn-qemu.nix
         ];
       };
       nixos-qemu = nixpkgs.lib.nixosSystem {

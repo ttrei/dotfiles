@@ -53,7 +53,7 @@ MACHINE
 
 * home-desktop
 * work-laptop
-* htpc
+* saturn
 * taukulis.lv
 
 EXECUTION_ENV
@@ -65,12 +65,14 @@ EXECUTION_ENV
 
 ## Hostnames
 
+pluto: Raspberry Pi 4
+eris: Raspberry Pi 1 (CA server)
+
+Still need to change hostname:
 jupiter: Desktop workstation (NixOS)
 jupiter-work: Desktop workstation (Ubuntu)
 saturn: HTPC (NixOS)
 mercury: Work laptop (Debian WSL)
-pluto: Raspberry Pi 4
-eris: Raspberry Pi 1 (CA server)
 charon: Android phone
 neptune: Digitalocean VPS
 

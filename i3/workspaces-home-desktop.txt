@@ -8,7 +8,7 @@
 65:wireshark
 69:anki
 70:virt
-71:htpc-qemu
+71:saturn-qemu
 72:windows-qemu
 73:ubuntu-qemu
 85:dotfiles

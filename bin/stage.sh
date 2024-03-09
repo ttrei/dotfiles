@@ -128,10 +128,10 @@ ln -s "$DOTFILES/xorg/xmodmaprc-kinesis-advantage" "$STAGINGDIR/.xmodmaprc"
 ln -s "$DOTFILES/xorg/xprofile" "$STAGINGDIR/.xprofile"
 ln -s "$DOTFILES/xorg/Xresources" "$STAGINGDIR/.Xresources"
 ln -s "$DOTFILES/xorg/xsessionrc" "$STAGINGDIR/.xsessionrc"
-if [ "$MACHINE" = "htpc" ]; then
-    ln -sf "$DOTFILES/xorg/xsessionrc-kodi" "$STAGINGDIR/.xsessionrc"
+if [ "$MACHINE" = "saturn" ]; then
+    ln -sf "$DOTFILES/xorg/xsessionrc-htpc" "$STAGINGDIR/.xsessionrc"
     if [ "$EXECUTION_ENV" = "baremetal" ]; then
-        ln -sf "$DOTFILES/xorg/xmodmaprc-standard-keyboards-kodi" "$STAGINGDIR/.xmodmaprc"
+        ln -sf "$DOTFILES/xorg/xmodmaprc-standard-keyboards-htpc" "$STAGINGDIR/.xmodmaprc"
     fi
 fi
 if [ "$DISTRO" = "nixos" ]; then
@@ -171,12 +171,12 @@ if [ "$MACHINE" = "home-desktop" ]; then
     fi
 elif [ "$MACHINE" = "work-laptop" ]; then
     ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
-elif [ "$MACHINE" = "htpc" ]; then
-    ln -s "$DOTFILES/i3/workspaces-htpc.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
-    ln -s "$DOTFILES/i3/sway/config-kodi" "$STAGINGDIR/.config/sway/config-kodi"
-    cat "$DOTFILES/i3/config/config-kodi" >> "$STAGINGDIR/.config/i3/config"
-    ln -sf "$DOTFILES/i3/i3blocks/config-kodi" "$STAGINGDIR/.config/i3blocks/config"
-    ln -sf "$DOTFILES/i3/commands-htpc.json" "$STAGINGDIR/.config/i3/commands.json"
+elif [ "$MACHINE" = "saturn" ]; then
+    ln -s "$DOTFILES/i3/workspaces-saturn.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+    ln -s "$DOTFILES/i3/sway/config-htpc" "$STAGINGDIR/.config/sway/config-htpc"
+    cat "$DOTFILES/i3/config/config-htpc" >> "$STAGINGDIR/.config/i3/config"
+    ln -sf "$DOTFILES/i3/i3blocks/config-htpc" "$STAGINGDIR/.config/i3blocks/config"
+    ln -sf "$DOTFILES/i3/commands-saturn.json" "$STAGINGDIR/.config/i3/commands.json"
 fi
 if [ "$EXECUTION_ENV" = "qemu" ]; then
     ln -sf "$DOTFILES/i3/i3blocks/config-qemu" "$STAGINGDIR/.config/i3blocks/config"
@@ -251,7 +251,7 @@ ln -s "$DOTFILES/web/userChrome.css" "$STAGINGDIR/.config/userChrome.css"
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"
 
 # NETWORKING
-if [ "$MACHINE" = "htpc" ]; then
+if [ "$MACHINE" = "saturn" ]; then
     ln -s "$DOTFILES/net/bin/vpn-start.sh" "$STAGINGDIR/bin/vpn-start.sh"
     ln -s "$DOTFILES/net/bin/vpn-stop.sh" "$STAGINGDIR/bin/vpn-stop.sh"
     ln -s "$DOTFILES/net/bin/vpn-switch.sh" "$STAGINGDIR/bin/vpn-switch.sh"

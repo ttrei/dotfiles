@@ -8,15 +8,15 @@
 }: {
   imports = [
     ./common.nix
-    ./hardware-configurations/htpc.nix
+    ./hardware-configurations/saturn.nix
     ./packages/cli.nix
     ./packages/games.nix
     ./packages/gui.nix
-    ./packages/htpc.nix
+    ./packages/saturn.nix
     ./users/reinis.nix
   ];
 
-  networking.hostName = "kodi";
+  networking.hostName = "saturn";
 
   networking.wg-quick.interfaces = {
     wg-mullvad = {

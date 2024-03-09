@@ -9,8 +9,8 @@ SCHEMA_DIR="$HOME/.config/i3schemas"
 if [ "$CONTEXT" = "home" ]; then
     if [ "$MACHINE" = "home-desktop" ]; then
         schemas_config="$SCHEMA_DIR/home.py"
-    elif [ "$MACHINE" = "htpc" ]; then
-        schemas_config="$SCHEMA_DIR/htpc.py"
+    elif [ "$MACHINE" = "saturn" ]; then
+        schemas_config="$SCHEMA_DIR/saturn.py"
     fi
 elif [ "$CONTEXT" = "work" ]; then
     schemas_config="$SCHEMA_DIR/work.py"
