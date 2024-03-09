@@ -8,7 +8,7 @@ import subprocess
 from datetime import datetime, timezone
 
 HOSTS = {
-    "taukulis.lv": {"user": "reinis", "port": 22},
+    "mazais": {"user": "reinis", "port": 22},
     "kodi": {"user": "user", "port": 22},
 }
 
