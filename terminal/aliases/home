@@ -1,6 +1,0 @@
-# ssh
-alias htpc='ssh user@kodi'
-alias mazais='ssh reinis@mazais'
-alias pi='ssh -p 1046 reinis@reinis-pi'
-alias router='ssh root@router'
-alias work='ssh reinis@work-centos'
