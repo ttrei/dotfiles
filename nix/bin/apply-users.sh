@@ -9,10 +9,10 @@ fi
 . "$ENVFILE"
 
 if [ "$CONTEXT" = "work" ]; then
-    if [ "$MACHINE" = "home-desktop" ]; then
-        command="home-manager switch --flake $HOME/dotfiles#reinis@work-ubuntu"
-    elif [ "$MACHINE" = "work-laptop" ] && [ "$EXECUTION_ENV" = "wsl" ]; then
-        command="home-manager switch --flake $HOME/dotfiles#reinis@work-debian-wsl"
+    if [ "$MACHINE" = "jupiter" ]; then
+        command="home-manager switch --flake $HOME/dotfiles#reinis@jupiter-work"
+    elif [ "$MACHINE" = "mercury" ] && [ "$EXECUTION_ENV" = "wsl" ]; then
+        command="home-manager switch --flake $HOME/dotfiles#reinis@mercury"
     fi
 else
     if [ "$DISTRO" = "nixos" ]; then

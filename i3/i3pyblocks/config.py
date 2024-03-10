@@ -276,8 +276,8 @@ async def main():
     )
 
     # Summary of remote machines
-    if hostname == "home-desktop-debian":
-        await runner.register_block(RemoteSummaryBlock(hostname="mazais", path="/var/tmp/remote-summary.json"))
+    if hostname == "jupiter":
+        await runner.register_block(RemoteSummaryBlock(hostname="neptune", path="/var/tmp/remote-summary.json"))
         await runner.register_block(RemoteSummaryBlock(hostname="saturn", path="/var/tmp/remote-summary.json"))
 
     # Current network speed for either en* (ethernet) or wl* devices.

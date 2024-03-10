@@ -94,10 +94,10 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild switch --flake .#your-hostname'
     nixosConfigurations = {
-      home-desktop-nixos = nixpkgs.lib.nixosSystem {
+      jupiter = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/nixos/home-desktop.nix
+          ./nix/nixos/jupiter.nix
         ];
       };
       saturn = nixpkgs.lib.nixosSystem {
@@ -137,18 +137,18 @@
           ./nix/home-manager/non-nixos.nix
         ];
       };
-      "reinis@work-ubuntu" = home-manager.lib.homeManagerConfiguration {
+      "reinis@jupiter-work" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/home-manager/work-ubuntu.nix
+          ./nix/home-manager/jupiter-work.nix
         ];
       };
-      "reinis@work-debian-wsl" = home-manager.lib.homeManagerConfiguration {
+      "reinis@mercury" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/home-manager/work-debian-wsl.nix
+          ./nix/home-manager/mercury.nix
         ];
       };
     };

@@ -7,8 +7,8 @@ PYTHON="$HOME/.virtualenvs/misc/bin/python"
 SCHEMA_DIR="$HOME/.config/i3schemas"
 
 if [ "$CONTEXT" = "home" ]; then
-    if [ "$MACHINE" = "home-desktop" ]; then
-        schemas_config="$SCHEMA_DIR/home.py"
+    if [ "$MACHINE" = "jupiter" ]; then
+        schemas_config="$SCHEMA_DIR/jupiter.py"
     elif [ "$MACHINE" = "saturn" ]; then
         schemas_config="$SCHEMA_DIR/saturn.py"
     fi

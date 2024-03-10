@@ -1,4 +1,4 @@
 export DISTRO=debian
 export CONTEXT=work
-export MACHINE=home-desktop
+export MACHINE=jupiter
 export EXECUTION_ENV=baremetal

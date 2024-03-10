@@ -161,15 +161,15 @@ ln -s "$DOTFILES/i3/bin/i3-rename-current-workspace" "$STAGINGDIR/bin/i3/i3-rena
 ln -s "$DOTFILES/i3/bin/i3-schema-select" "$STAGINGDIR/bin/i3/i3-schema-select"
 ln -s "$DOTFILES/i3/bin/i3-start" "$STAGINGDIR/bin/i3/i3-start"
 ln -s "$DOTFILES/i3/bin/i3-workspaces" "$STAGINGDIR/bin/i3/i3-workspaces"
-if [ "$MACHINE" = "home-desktop" ]; then
+if [ "$MACHINE" = "jupiter" ]; then
     if [ "$CONTEXT" = "home" ]; then
-        ln -s "$DOTFILES/i3/workspaces-home-desktop.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+        ln -s "$DOTFILES/i3/workspaces-jupiter.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
         ln -s "$DOTFILES/i3/sway/config-home" "$STAGINGDIR/.config/sway/config-home"
         cat "$DOTFILES/i3/config/config-home" >> "$STAGINGDIR/.config/i3/config"
     elif [ "$CONTEXT" = "work" ]; then
         ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
     fi
-elif [ "$MACHINE" = "work-laptop" ]; then
+elif [ "$MACHINE" = "mercury" ]; then
     ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
 elif [ "$MACHINE" = "saturn" ]; then
     ln -s "$DOTFILES/i3/workspaces-saturn.txt" "$STAGINGDIR/.config/i3/workspaces.txt"

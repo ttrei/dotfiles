@@ -1,4 +1,4 @@
 export DISTRO=debian
 export CONTEXT=work
-export MACHINE=work-laptop
+export MACHINE=mercury
 export EXECUTION_ENV=wsl

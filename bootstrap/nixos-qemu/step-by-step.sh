@@ -65,7 +65,7 @@ ENDSSH
 ssh -o StrictHostKeyChecking=no reinis@localhost -p "$QEMU_GUEST_PORT" <<'ENDSSH'
 nix-shell '<home-manager>' -A install
 git clone https://github.com/ttrei/dotfiles.git
-cp ~/dotfiles/configs/home-desktop-nixos-qemu ~/.dotfiles-env
+cp ~/dotfiles/configs/jupiter-qemu ~/.dotfiles-env
 ~/dotfiles/bin/deploy.sh
 ~/bin/update-user.sh
 ~/bin/apply-users.sh

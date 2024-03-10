@@ -8,7 +8,7 @@
 }: {
   imports = [
     ./common.nix
-    ./hardware-configurations/desktop.nix
+    ./hardware-configurations/jupiter.nix
     ./packages/audio.nix
     ./packages/cli.nix
     ./packages/games.nix
@@ -16,7 +16,7 @@
     ./users/reinis.nix
   ];
 
-  networking.hostName = "home-desktop-nixos";
+  networking.hostName = "jupiter";
 
   networking.firewall.allowedTCPPorts = [
     24800 # barrier
