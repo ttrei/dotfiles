@@ -58,18 +58,16 @@ EXECUTION_ENV
 * wsl
 * digitalocean
 
-## Hostnames
+## Hosts
 
-pluto: Raspberry Pi 4
-eris: Raspberry Pi 1 (CA server)
-mercury: Work laptop (Debian WSL)
-saturn: HTPC (NixOS)
+charon: Android phone (the actual hostname is different, didn't try to change it)
+eris: Raspberry Pi 1 (CA server), 192.168.8.42
 jupiter: Desktop workstation (NixOS)
 jupiter-work: Desktop workstation (Ubuntu)
-
-Still need to change hostname:
-charon: Android phone
-neptune: Digitalocean VPS
+mercury: Work laptop (Debian WSL)
+neptune: Digitalocean VPS, 159.65.84.88
+pluto: Raspberry Pi 4, 192.168.8.201
+saturn: HTPC (NixOS), 192.168.8.205
 
 ### Available hostnames
 
