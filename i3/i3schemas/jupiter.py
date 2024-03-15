@@ -44,6 +44,24 @@ I3SCHEMA_DOTFILES = {
 }
 
 
+I3SCHEMA_HOMELAB = {
+    "20:dev": [
+        [
+            f"exec-in-dir {HOME}/dev/projects/homelab zutty".split(),
+            "zutty-homelab",
+            "zutty",
+            ["move left"],
+        ],
+        [
+            f"exec-in-dir {HOME}/dev/projects/homelab zutty".split(),
+            "zutty-homelab",
+            "zutty",
+            ["split vertical", "layout stacking", "resize set width 70 ppt"],
+        ],
+    ],
+}
+
+
 DEVDIR = f"{HOME}/dev/learn/zig/algorithms"
 VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/algorithms.code-workspace"
 BOOK = "/media/storage-new/Skiena-The_Algorithm_Design_Manual-2020.pdf"
@@ -169,6 +187,7 @@ I3SCHEMA_UPGRADE = {
 I3SCHEMAS = {
     "init": I3SCHEMA_INIT,
     "dotfiles": I3SCHEMA_DOTFILES,
+    "homelab": I3SCHEMA_HOMELAB,
     "algorithms": I3SCHEMA_ALGORITHMS,
     "handmade-pool": I3SCHEMA_HANDMADE_POOL,
     "foodbook": I3SCHEMA_FOODBOOK,
