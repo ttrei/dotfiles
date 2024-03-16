@@ -29,10 +29,7 @@
     arcanPackages.durden
   ];
 
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  virtualisation.docker.enable = true;
 
   # https://discourse.nixos.org/t/state-of-jackd-in-nixos/6007/14
   services.pipewire = {
