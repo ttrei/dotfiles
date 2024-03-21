@@ -1,16 +1,12 @@
 # Complete unambiguously on first tab, then show completions
 set show-all-if-unmodified on
 
-# use vi mode
-set editing-mode vi
+# set editing-mode vi
 
 # some custom mappings for vi mode
 $if mode=vi
-
 set keymap vi-command
 Control-l: clear-screen
-
 set keymap vi-insert
 Control-l: clear-screen
-
 $endif

@@ -75,8 +75,9 @@ anyjobs() { [[ "$1" != 0 ]] && echo "[$1]"; }
 # shellcheck disable=SC2016
 jobs='$(anyjobs \j)'
 
-prompt="$Bld$Blu\$$RCol"
 
+# This is a fallback for missing starship
+prompt="$Bld$Blu\$$RCol"
 PS1="$user_host$git_branch$jobs$prompt "
 
 if [ -n "$START_CWD" ]; then
@@ -224,3 +225,9 @@ if [ -x "$(command -v zoxide)" ]; then
     eval "$(zoxide init bash)"
 fi
 
+# Toggle between emacs and vi modes with Alt-e or 'Esc e'
+# https://stackoverflow.com/a/2641535
+set -o vi
+bind '"\ee": emacs-editing-mode'
+set -o emacs
+bind '"\ee": vi-editing-mode'
