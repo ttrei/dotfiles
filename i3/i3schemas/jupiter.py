@@ -168,6 +168,13 @@ I3SCHEMA_TAUKULIS_LV = {
 }
 
 
+I3SCHEMA_ANKI = {
+    "69:anki": [
+        [["anki"], "anki", "anki", None],
+    ],
+}
+
+
 DIR = f"{HOME}/dotfiles/bootstrap/nixos-qemu"
 I3SCHEMA_SATURN_QEMU = {
     "71:saturn-qemu": [
@@ -194,6 +201,7 @@ I3SCHEMAS = {
     "linux-programming-interface": I3SCHEMA_TLPI,
     "tcp": I3SCHEMA_TCP,
     "taukulis.lv": I3SCHEMA_TAUKULIS_LV,
+    "anki": I3SCHEMA_ANKI,
     "saturn-qemu": I3SCHEMA_SATURN_QEMU,
     "upgrade": I3SCHEMA_UPGRADE,
 }
