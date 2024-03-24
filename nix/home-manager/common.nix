@@ -58,6 +58,7 @@
     comma
     dbeaver
     unstable.delta
+    unstable.devenv
     # diffoscope
     direnv
     emacs
