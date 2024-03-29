@@ -10,9 +10,8 @@
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [ "8821cu" ];
+  boot.initrd.kernelModules = [ "mt7921u" ];
   boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821cu ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -53,4 +52,8 @@
 
   # To automatically switch USB WiFi receiver from CDROM mode to wifi mode
   hardware.usb-modeswitch.enable = true;
+
+  environment.systemPackages = [
+    pkgs.linux-firmware
+  ];
 }
