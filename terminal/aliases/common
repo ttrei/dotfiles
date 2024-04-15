@@ -57,6 +57,7 @@ alias gd="git diff"
 alias gdc="git diff --cached"
 alias gdd='git difftool -d'
 
+alias gm='git merge'
 alias gr='git rebase -i'
 alias grc='git rebase --continue'
 alias grf='git rebase-fzf-commit'
@@ -84,6 +85,7 @@ __git_complete gl50 _git_log
 __git_complete gd _git_diff
 __git_complete gdc _git_diff
 __git_complete gdd _git_difftool
+__git_complete gm _git_merge
 __git_complete gr _git_rebase
 __git_complete gst _git_status
 __git_complete gs _git_show
