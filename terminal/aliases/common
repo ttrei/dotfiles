@@ -58,8 +58,7 @@ alias gdc="git diff --cached"
 alias gdd='git difftool -d'
 
 alias gm='git merge'
-alias gr='git rebase -i'
-alias grc='git rebase --continue'
+alias gr='git rebase'
 alias grf='git rebase-fzf-commit'
 alias grb='git rebase-fzf-branch'
 alias gf='git fetch --all --prune'
