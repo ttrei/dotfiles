@@ -91,7 +91,10 @@
         copilot-cmp
 
         # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
-        neorg
+        # NOTE(2024-05-10): disable because it fails with "missing lua-utils-nvim"
+        # This didn't help https://github.com/nvim-neorg/neorg/issues/1342#issuecomment-2052507275.
+        # lua-utils-nvim is available in unstable, so probably just have to wait for 24.05 release.
+        # neorg
 
         neomake
         nvim-cmp
