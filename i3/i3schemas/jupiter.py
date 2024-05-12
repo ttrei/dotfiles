@@ -120,6 +120,26 @@ I3SCHEMA_FOODBOOK = {
 }
 
 
+DIR = f"{HOME}/dev"
+I3SCHEMA_DEV = {
+    "20:dev": [
+        [f"exec-in-dir {DIR} zutty".split(), "zutty-dev", "zutty", ["move left"]],
+        [
+            f"exec-in-dir {DIR} zutty".split(),
+            "zutty-dev",
+            "zutty",
+            ["move right", "move right", "split vertical", "layout stacking"],
+        ],
+        [
+            f"exec-in-dir {DIR} zutty".split(),
+            "zutty-dev",
+            "zutty",
+            ["move right", "resize set width 70 ppt"],
+        ],
+    ],
+}
+
+
 DEVDIR = f"{HOME}/dev/learn/tcp"
 BOOK = "/media/storage-new/Stevens-TCP_IP_Illustrated_Volume_1_The_Protocols_1994.pdf"
 BOOK2 = "/media/storage-new/books/LinuxProgrammingInterface.pdf"
@@ -198,6 +218,7 @@ I3SCHEMAS = {
     "algorithms": I3SCHEMA_ALGORITHMS,
     "handmade-pool": I3SCHEMA_HANDMADE_POOL,
     "foodbook": I3SCHEMA_FOODBOOK,
+    "dev": I3SCHEMA_DEV,
     "linux-programming-interface": I3SCHEMA_TLPI,
     "tcp": I3SCHEMA_TCP,
     "taukulis.lv": I3SCHEMA_TAUKULIS_LV,
