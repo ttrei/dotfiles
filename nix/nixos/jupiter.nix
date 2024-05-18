@@ -28,7 +28,6 @@
     arcanPackages.arcan
     # TODO: cannot launch durden because the nix store path contains "-" characters, arcan forbids those
     arcanPackages.durden
-    vscode-fhs
   ];
 
   virtualisation.docker.enable = true;
