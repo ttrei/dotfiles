@@ -140,7 +140,7 @@ I3SCHEMA_DEV = {
 }
 
 
-DIR = f"{HOME}/dev"
+DIR = f"{HOME}/dev/learn/godot"
 I3SCHEMA_GAMEDEV = {
     "20:dev": [
         [f"exec-in-dir {DIR} zutty".split(), "zutty-gamedev", "zutty", ["move left"]],
