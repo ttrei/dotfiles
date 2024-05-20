@@ -1,14 +1,30 @@
 {
     "window.restoreWindows": "none",
     "window.title": "${rootName}${separator}${appName}",
-    "workbench.colorTheme": "Gruvbox Light Hard",
+    "workbench.colorTheme": "Default Light Modern",
     "workbench.startupEditor": "none",
     "workbench.tree.indent": 24,
+    "files.insertFinalNewline": true,
+    "editor.renderFinalNewline": "off",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "git.openRepositoryInParentFolders": "never",
+    "java.project.importOnFirstTimeStartup": "interactive",
+    "editor.fontFamily": "'Cascadia Mono', monospace",
+    "editor.fontSize": 16,
+    "editor.rulers": [
+        120
+    ],
+    "remote.autoForwardPortsSource": "hybrid",
+    "java.project.importHint": false
     "[zig]": {
         "editor.defaultFormatter": "tiehuis.zig",
         "editor.formatOnSave": true,
     },
     "zig.buildOnSave": true,
     "zls.path": "/home/reinis/.config/Code/User/globalStorage/augusterame.zls-vscode/zls_install/zls",
-    "files.insertFinalNewline": true,
 }
