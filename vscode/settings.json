@@ -20,11 +20,12 @@
         120
     ],
     "remote.autoForwardPortsSource": "hybrid",
-    "java.project.importHint": false
+    "java.project.importHint": false,
     "[zig]": {
         "editor.defaultFormatter": "tiehuis.zig",
         "editor.formatOnSave": true,
     },
     "zig.buildOnSave": true,
     "zls.path": "/home/reinis/.config/Code/User/globalStorage/augusterame.zls-vscode/zls_install/zls",
+    "vim.foldfix": true
 }
