@@ -3,7 +3,8 @@ hatch
 i3ipc
 ipython
 isort
-pip-tools
 python-rofi
+ruff
 youtube-dl
 yt-dlp
+uv
