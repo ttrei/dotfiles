@@ -1,0 +1,7 @@
+<application>
+  <component name="AcceptedLanguageLevels">
+    <explicitly-accepted>
+      <name>JDK_X</name>
+    </explicitly-accepted>
+  </component>
+</application>

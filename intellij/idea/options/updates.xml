@@ -1,12 +1,12 @@
 <application>
   <component name="UpdatesConfigurable">
     <ignoredBuildNumbers>
-      <item value="231.9392.1" />
+      <item value="" />
     </ignoredBuildNumbers>
-    <option name="LAST_BUILD_CHECKED" value="IC-232.9921.47" />
-    <option name="LAST_TIME_CHECKED" value="1704436786887" />
+    <option name="LAST_BUILD_CHECKED" value="IC-241.18034.62" />
+    <option name="LAST_TIME_CHECKED" value="1719858572612" />
     <option name="OBSOLETE_CUSTOM_REPOSITORIES_CLEAN_NEEDED" value="false" />
     <option name="THIRD_PARTY_PLUGINS_ALLOWED" value="true" />
-    <option name="WHATS_NEW_SHOWN_FOR" value="232" />
+    <option name="WHATS_NEW_SHOWN_FOR" value="241" />
   </component>
 </application>

@@ -8,12 +8,16 @@
         <entry key="vcs.code.vision" value="Default" />
       </map>
     </option>
+    <option name="defaultPosition" value="Right" />
     <option name="disabledCodeVisionProviderIds">
       <set>
         <option value="references" />
         <option value="vcs.code.vision" />
       </set>
     </option>
+  </component>
+  <component name="DaemonCodeAnalyzerSettings">
+    <option name="AUTOREPARSE_DELAY" value="0" />
   </component>
   <component name="EditorSettings">
     <option name="USE_SOFT_WRAPS" value="CONSOLE" />

@@ -1,8 +1,12 @@
 <application>
+  <component name="UsageFilteringRuleState">
+    <option value="com.intellij.usages.impl.rules.UsageInGeneratedCodeFilteringRule" />
+    <option value="com.intellij.usages.impl.rules.ImportUsageFilteringRule" />
+  </component>
   <component name="UsageViewSettings">
     <option name="IS_EXPANDED" value="true" />
     <option name="GROUP_BY_PACKAGE" value="false" />
     <option name="GROUP_BY_SCOPE" value="true" />
-    <option name="PREVIEW_USAGES_SPLITTER_PROPORTIONS" value="0.576699" />
+    <option name="PREVIEW_USAGES_SPLITTER_PROPORTIONS" value="0.37287205" />
   </component>
 </application>

@@ -1,5 +1,6 @@
 Docker
 IdeaVIM
 Lombook Plugin
-com.jetbrains.packagesearch.intellij-plugin
+com.intellij.plugin.adernov.powershell
 PlantUML integration
+com.github.copilot
