@@ -71,7 +71,7 @@ git_branch='$(__git_ps1 " %s ")'
 git_branch="$Bld$Pur$git_branch$RCol"
 
 # https://unix.stackexchange.com/a/446149/260131
-anyjobs() { [[ "$1" != 0 ]] && echo "[$1]"; }
+function anyjobs() { [[ "$1" != 0 ]] && echo "[$1]"; }
 # shellcheck disable=SC2016
 jobs='$(anyjobs \j)'
 
@@ -147,7 +147,7 @@ PROMPT_COMMAND="log_previous_command; history -a; $PROMPT_COMMAND"
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # Inspired by https://github.com/nix-community/nix-direnv/wiki/Shell-integration
-flakify() {
+function flakify() {
   nix flake new -t github:nix-community/nix-direnv .
   rc=$?
   if [ $rc -eq 0 ]; then
@@ -155,7 +155,7 @@ flakify() {
     ${EDITOR:-vim} flake.nix
   fi
 }
-flakify-ttrei() {
+function flakify-ttrei() {
   nix flake new --template github:ttrei/dotfiles#nix-direnv .
   rc=$?
   if [ $rc -eq 0 ]; then
@@ -164,7 +164,7 @@ flakify-ttrei() {
   fi
 }
 
-nodeify() {
+function nodeify() {
   if [ -e ./.envrc ]; then
     echo "Abort! .envrc exists"
     return
