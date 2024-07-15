@@ -231,3 +231,19 @@ set -o vi
 bind '"\ee": emacs-editing-mode'
 set -o emacs
 bind '"\ee": vi-editing-mode'
+
+function x509_decode_base64() {
+    if [ -f "$1" ]; then
+        cat "$1" | base64 -d | openssl x509 -noout -text
+    else
+        echo "$1" | base64 -d | openssl x509 -noout -text
+    fi
+}
+
+function x509_decode() {
+    if [ -f "$1" ]; then
+        cat "$1" | openssl x509 -noout -text
+    else
+        echo "$1" | openssl x509 -noout -text
+    fi
+}
