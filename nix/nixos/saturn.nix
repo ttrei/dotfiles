@@ -106,7 +106,7 @@
   };
 
   services.bazarr = {
-    enable = true;
+    enable = false;
     group = "users";
     user = "reinis";
     openFirewall = true;
