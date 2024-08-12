@@ -27,12 +27,9 @@
 
     jetbrains = final.unstable.jetbrains;
 
-    # # neovim 0.8.1 of nixpkgs-22.11 has some problems with the copilot plugin
-    # # Update 2023-06-08:
-    # # Disabled this modification after switching to next release (23.05).
-    # # Leaving it here for future reference.
-    # neovim-unwrapped = final.unstable.neovim-unwrapped;
-    # vimPlugins = final.unstable.vimPlugins;
+    # need neovim 0.10 for neorg, nixpkgs-24.05 has 0.9
+    neovim-unwrapped = final.unstable.neovim-unwrapped;
+    vimPlugins = final.unstable.vimPlugins;
 
     arcanPackages = prev.arcanPackages.overrideScope' (finalScope: prevScope: {
       arcan = prevScope.arcan.overrideAttrs (finalAttrs: prevAttrs: {
