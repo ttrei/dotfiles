@@ -56,7 +56,7 @@
     barrier
     bat
     comma
-    dbeaver
+    dbeaver-bin
     unstable.delta
     unstable.devenv
     # diffoscope
