@@ -37,18 +37,21 @@
 
   services.xserver = {
     enable = true;
-    layout = "lv";
-    xkbVariant = "apostrophe";
+    xkb.layout = "lv";
+    xkb.variant = "apostrophe";
 
     displayManager = {
-      autoLogin.enable = true;
-      autoLogin.user = "reinis";
       lightdm.enable = true;
     };
 
     windowManager.i3.enable = true;
     # windowManager.i3.package = pkgs.unstable.i3;
-    displayManager.defaultSession = "none+i3";
+  };
+
+  services.displayManager = {
+    defaultSession = "none+i3";
+    autoLogin.enable = true;
+    autoLogin.user = "reinis";
   };
 
   services.xserver.config = ''
@@ -61,7 +64,7 @@
     EndSection
   '';
   # Enable touchpad support
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   location = {
     latitude = 56.948889;
