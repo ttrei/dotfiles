@@ -1,6 +1,11 @@
-# https://github.com/derailed/k9s/blob/master/skins/gruvbox-light.yml
+# https://raw.githubusercontent.com/derailed/k9s/master/skins/gruvbox-light.yaml
 #
-# K9s Gruvbox Light Skin Contributed by [@indiebrain](https://github.com/indiebrain)
+# -----------------------------------------------------------------------------
+# K9s Gruvbox Light Skin
+# Author: [@indiebrain](https://github.com/indiebrain)
+# -----------------------------------------------------------------------------
+
+# Styles...
 foreground: &foreground "#3c3735"
 background: &background "#fbf1c7"
 current_line: &current_line "#ebdbb2"
@@ -100,3 +105,5 @@ k9s:
       indicator:
         fgColor: *foreground
         bgColor: *background
+        toggleOnColor: *magenta
+        toggleOffColor: *blue

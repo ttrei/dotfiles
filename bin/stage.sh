@@ -228,8 +228,8 @@ ln -s "$DOTFILES/nix/nixpkgs/config.nix" "$STAGINGDIR/.config/nixpkgs/config.nix
 
 
 # K8S
-mkdir -p "$STAGINGDIR/.config/k9s"
-ln -s "$DOTFILES/k8s/k9s-skin-gruvbox-light.yml" "$STAGINGDIR/.config/k9s/skin.yml"
+ln -s "$DOTFILES/k8s/k9s" "$STAGINGDIR/.config/k9s"
+
 
 # MUSIC
 mkdir -p "$STAGINGDIR/.config/beets"
