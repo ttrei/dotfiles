@@ -1,18 +1,5 @@
 -- https://github.com/neovim/nvim-lspconfig/tree/d4eb971db353ccf78cefb3be1b05483b69ec1e69#suggested-configuration
 
---[[ TODO
-
-* Java language server
-https://zignar.net/2019/11/21/setup-neovim-for-java-development/
-https://zignar.net/2020/10/17/setup-neovim-for-java-development-2/
-https://github.com/eclipse/eclipse.jdt.ls
-
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#jdtls
-Note: language server fails to start (Client 1 quit with exit code 13 and signal 0)
-There is also the nvim-jdtls plugin - I tried it and it had the same problem.
-
---]]
-
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -54,11 +41,6 @@ local lsp_flags = {
 require("lspconfig").clangd.setup({
   on_attach = on_attach,
   flags = lsp_flags,
-})
-require("lspconfig").jdtls.setup({
-  on_attach = on_attach,
-  flags = lsp_flags,
-  cmd = { "jdt-language-server" },
 })
 require("lspconfig").pyright.setup({
   on_attach = on_attach,

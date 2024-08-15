@@ -69,7 +69,6 @@
     gnumeric
     gron
     i3
-    jdt-language-server
     ncdu
     nethogs
     nodejs-slim
