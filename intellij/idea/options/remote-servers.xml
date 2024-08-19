@@ -1,0 +1,12 @@
+<application>
+  <component name="RemoteServers">
+    <remote-server name="Docker" type="docker">
+      <configuration>
+        <option name="apiUrl" value="npipe:////./pipe/docker_engine" />
+        <option name="certificatesPath" />
+        <option name="connected" value="true" />
+        <option name="customConfiguratorId" value="DockerDefaultConnectionConfigurator" />
+      </configuration>
+    </remote-server>
+  </component>
+</application>

@@ -1,0 +1,35 @@
+<application>
+  <component name="DimensionService">
+    <location key="find.popup.0.0.1920.1080" x="724" y="127" />
+    <size key="GridCell.Tab.0.left.0.0.1920.1080" width="1854" height="473" />
+    <size key="GridCell.Tab.0.center.0.0.1920.1080" width="1854" height="473" />
+    <size key="GridCell.Tab.0.right.0.0.1920.1080" width="1854" height="473" />
+    <size key="GridCell.Tab.0.bottom.0.0.1920.1080" width="1854" height="473" />
+    <size key="GridCell.Tab.1.left.0.0.1920.1080" width="1854" height="577" />
+    <size key="GridCell.Tab.1.center.0.0.1920.1080" width="1854" height="577" />
+    <size key="GridCell.Tab.1.right.0.0.1920.1080" width="1854" height="577" />
+    <size key="GridCell.Tab.1.bottom.0.0.1920.1080" width="1854" height="577" />
+    <size key="find.popup.0.0.1920.1080" width="978" height="818" />
+  </component>
+  <component name="WindowManager">
+    <frame x="-8" y="-8" width="1936" height="1048" extendedState="6" />
+  </component>
+  <component name="WindowStateApplicationService">
+    <state x="740" y="199" key="FileChooserDialogImpl" timestamp="1719864296373">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="740" y="199" key="FileChooserDialogImpl/0.0.1920.1032" timestamp="1719864296373" />
+    <state width="784" height="142" key="ShowUsagesActions.dimensionServiceKey" timestamp="1723822693543">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="784" height="142" key="ShowUsagesActions.dimensionServiceKey/0.0.1920.1032" timestamp="1723822693543" />
+    <state x="960" y="452" width="800" height="650" key="WELCOME_SCREEN" timestamp="1724059228164">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="960" y="452" width="800" height="650" key="WELCOME_SCREEN/0.0.1920.1032" timestamp="1724059228164" />
+    <state width="300" height="518" key="manage.recent.projects.popup" timestamp="1719999144022">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="300" height="518" key="manage.recent.projects.popup/0.0.1920.1032" timestamp="1719999144022" />
+  </component>
+</application>
