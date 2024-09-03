@@ -37,15 +37,68 @@
       # TODO: Try to package avante.nvim for nix.
       # codesnap-nvim build seems similar to what we need:
       # https://github.com/NixOS/nixpkgs/blob/a5317c333836e433cb10547fe907c402ec77c77e/pkgs/applications/editors/vim/plugins/overrides.nix#L432
-      avante-nvim = pkgs.vimUtils.buildVimPlugin {
-          name = "avante-nvim";
+
+      # avante-nvim = pkgs.vimUtils.buildVimPlugin {
+      #     name = "avante-nvim";
+      #     src = pkgs.fetchFromGitHub {
+      #         owner = "yetone";
+      #         repo = "avante.nvim";
+      #         rev = "713cb403d0e3c3b9b8b9cacb1ca0ff5d6fc35a7d";
+      #         hash = "sha256-AQX2uDKEWfrHXSte6/DcIBeRBd+6Maj/QOYNeFS1+I4=";
+      #     };
+      # };
+
+      avante-nvim =
+        let
+          version = "0.0.1-reinis";
           src = pkgs.fetchFromGitHub {
-              owner = "yetone";
-              repo = "avante.nvim";
-              rev = "713cb403d0e3c3b9b8b9cacb1ca0ff5d6fc35a7d";
-              hash = "sha256-AQX2uDKEWfrHXSte6/DcIBeRBd+6Maj/QOYNeFS1+I4=";
+            owner = "yetone";
+            repo = "avante.nvim";
+            rev = "713cb403d0e3c3b9b8b9cacb1ca0ff5d6fc35a7d";
+            hash = "sha256-AQX2uDKEWfrHXSte6/DcIBeRBd+6Maj/QOYNeFS1+I4=";
           };
-      };
+          avante-lib = pkgs.unstable.rustPlatform.buildRustPackage rec {
+            pname = "avante-lib";
+            inherit version src;
+            sourceRoot = "${src.name}";
+            # cargoHash = "";
+            # cargoDeps = pkgs.unstable.rustPlatform.importCargoLock { lockFile = ./Cargo.lock; };
+            cargoLock = {
+              lockFile = ./avante.nvim-Cargo.lock;
+              outputHashes = {
+                 "mlua-0.10.0-beta.1" = "sha256-ZEZFATVldwj0pmlmi0s5VT0eABA15qKhgjmganrhGBY=";
+              };
+            };
+
+            nativeBuildInputs = [
+              pkgs.pkg-config
+              pkgs.unstable.rustPlatform.bindgenHook
+            ];
+            # buildInputs = [
+            #   libuv.dev
+            # ] ++ lib.optionals stdenv.isDarwin [
+            #   darwin.apple_sdk.frameworks.AppKit
+            # ];
+          };
+        in
+        pkgs.vimUtils.buildVimPlugin {
+          pname = "avante.nvim";
+          inherit version src;
+
+          postInstall = ''
+            cp -r ${avante-lib}/build $out
+          '';
+
+          # doInstallCheck = true;
+          # nvimRequireCheck = "codesnap";
+
+          # meta = {
+          #   homepage = "https://github.com/mistricky/codesnap.nvim/";
+          #   changelog = "https://github.com/mistricky/codesnap.nvim/releases/tag/v${version}";
+          # };
+        };
+
+
       nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (treesitter-plugins:
         with treesitter-plugins; [
           bash

@@ -33,11 +33,11 @@ vim.keymap.set({ 'n', 'v' }, '<leader>ii', anthropic_replace, { desc = 'llm anth
 
 ------ https://github.com/yetone/avante.nvim
 
--- require('img-clip').setup ({})
--- require('copilot').setup ({})
--- -- require('render-markdown').setup ({})
--- require('avante_lib').load()
--- require('avante').setup ({
+require('img-clip').setup ({})
+require('copilot').setup ({})
+-- require('render-markdown').setup ({})
+require('avante_lib').load()
+require('avante').setup ({})
 -- --   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
 -- --   provider = "claude", -- Recommend using Claude
 -- --   claude = {
