@@ -34,6 +34,9 @@
       # avante-nvim seems to expect that the build is executed in the plugin directory, but that's not possible if the
       # plugin is located in the nix store.
       # TODO: Check out if nixvim will get the avante plugin: https://github.com/nix-community/nixvim/issues/2096
+      # TODO: Try to package avante.nvim for nix.
+      # codesnap-nvim build seems similar to what we need:
+      # https://github.com/NixOS/nixpkgs/blob/a5317c333836e433cb10547fe907c402ec77c77e/pkgs/applications/editors/vim/plugins/overrides.nix#L432
       avante-nvim = pkgs.vimUtils.buildVimPlugin {
           name = "avante-nvim";
           src = pkgs.fetchFromGitHub {
