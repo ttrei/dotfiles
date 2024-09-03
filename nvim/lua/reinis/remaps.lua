@@ -37,3 +37,6 @@ vim.keymap.set("n", "<c-s-h>", ":tabmove-1<cr>")
 
 vim.keymap.set("n", "<leader>,", require("fzf-lua").buffers)
 vim.keymap.set("n", "<leader>fh", require("fzf-lua").command_history)
+
+-- List loaded plugins
+vim.keymap.set('n', '<Leader>p', "[[:new<CR>:put =execute('scriptnames')<CR>]]", { noremap = true, silent = true })
