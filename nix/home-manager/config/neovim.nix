@@ -46,16 +46,6 @@
               hash = "sha256-AQX2uDKEWfrHXSte6/DcIBeRBd+6Maj/QOYNeFS1+I4=";
           };
       };
-      img-clip-nvim = pkgs.vimUtils.buildVimPlugin {
-        pname = "img-clip.nvim";
-        version = "2024-06-05";
-        src = pkgs.fetchFromGitHub {
-          owner = "HakonHarnes";
-          repo = "img-clip.nvim";
-          rev = "1924e20ab19afec9779109d083b6e5f8bee8fb17";
-          sha256 = "0q4bv6bca8bhkc98gc4lmlp3b2nrh6bj7yyb99bk3lnccr0jmj6g";
-        };
-      };
       nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (treesitter-plugins:
         with treesitter-plugins; [
           bash
@@ -92,6 +82,11 @@
         # https://www.reddit.com/r/NixOS/comments/104l0w9/how_to_get_lua_files_in_neovim_on_hm/j362asl/?context=3
         #
         # lazy-nvim
+
+
+        # Take a plugin from unstable packages
+        # NOTE(2024-09-03): neovim and all vimPlugins come from unstable for now (see overlays/default.nix)
+        # pkgs.unstable.vimPlugins.img-clip-nvim
 
         # TODO
         # harpoon
@@ -149,8 +144,8 @@
         vim-visual-star-search
         vim-asciidoc-folding
 
-        # img-clip-nvim
-        # avante-nvim
+        img-clip-nvim
+        avante-nvim
       ];
   };
 
