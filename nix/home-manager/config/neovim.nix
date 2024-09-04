@@ -54,15 +54,13 @@
           src = pkgs.fetchFromGitHub {
             owner = "yetone";
             repo = "avante.nvim";
-            rev = "713cb403d0e3c3b9b8b9cacb1ca0ff5d6fc35a7d";
-            hash = "sha256-AQX2uDKEWfrHXSte6/DcIBeRBd+6Maj/QOYNeFS1+I4=";
+            rev = "19a7d84d1e2d294fc071840bf1cc27e0a0b10c78";
+            hash = "sha256-gOd+1uHtHGlNOiVl2lx2t+75GYfYFxcQapA7i6xy+OQ=";
           };
           avante-lib = pkgs.unstable.rustPlatform.buildRustPackage rec {
             pname = "avante-lib";
             inherit version src;
             sourceRoot = "${src.name}";
-            # cargoHash = "";
-            # cargoDeps = pkgs.unstable.rustPlatform.importCargoLock { lockFile = ./Cargo.lock; };
             cargoLock = {
               lockFile = ./avante.nvim-Cargo.lock;
               outputHashes = {
@@ -72,13 +70,27 @@
 
             nativeBuildInputs = [
               pkgs.pkg-config
-              pkgs.unstable.rustPlatform.bindgenHook
+              pkgs.openssl
             ];
-            # buildInputs = [
-            #   libuv.dev
-            # ] ++ lib.optionals stdenv.isDarwin [
-            #   darwin.apple_sdk.frameworks.AppKit
-            # ];
+
+            # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md#custom-buildinstall-procedures-custom-buildinstall-procedures
+            # permalink: https://github.com/NixOS/nixpkgs/blob/caf129c3c44620b07d88b09399b3745ba08e9caa/doc/languages-frameworks/rust.section.md#custom-buildinstall-procedures-custom-buildinstall-procedures
+
+            buildPhase = ''
+              # export HOME=$(pwd)
+              export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:$PKG_CONFIG_PATH"
+              make BUILD_FROM_SOURCE=true
+              # export HOME=$(pwd)
+              # export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:$PKG_CONFIG_PATH"
+              # cargo build --release --features=luajit -p avante-tokenizers
+            '';
+
+            installPhase = ''
+              mkdir -p $out
+              cp -r build $out
+            '';
+
+            doCheck = false;
           };
         in
         pkgs.vimUtils.buildVimPlugin {
@@ -86,16 +98,9 @@
           inherit version src;
 
           postInstall = ''
+            mkdir -p $out
             cp -r ${avante-lib}/build $out
           '';
-
-          # doInstallCheck = true;
-          # nvimRequireCheck = "codesnap";
-
-          # meta = {
-          #   homepage = "https://github.com/mistricky/codesnap.nvim/";
-          #   changelog = "https://github.com/mistricky/codesnap.nvim/releases/tag/v${version}";
-          # };
         };
 
 
