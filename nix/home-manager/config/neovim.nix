@@ -35,63 +35,6 @@
       # plugin is located in the nix store.
       # TODO: Check out if nixvim will get the avante plugin: https://github.com/nix-community/nixvim/issues/2096
 
-      # TODO: Move to a separate file
-      avante-nvim =
-        let
-          version = "0.0.1-reinis";
-          src = pkgs.fetchFromGitHub {
-            owner = "yetone";
-            repo = "avante.nvim";
-            rev = "19a7d84d1e2d294fc071840bf1cc27e0a0b10c78";
-            hash = "sha256-gOd+1uHtHGlNOiVl2lx2t+75GYfYFxcQapA7i6xy+OQ=";
-          };
-          avante-lib = pkgs.unstable.rustPlatform.buildRustPackage rec {
-            pname = "avante-lib";
-            inherit version src;
-            sourceRoot = "${src.name}";
-            cargoLock = {
-              lockFile = ./avante.nvim-Cargo.lock;
-              outputHashes = {
-                 "mlua-0.10.0-beta.1" = "sha256-ZEZFATVldwj0pmlmi0s5VT0eABA15qKhgjmganrhGBY=";
-              };
-            };
-
-            nativeBuildInputs = [
-              pkgs.pkg-config
-              pkgs.openssl
-            ];
-
-            # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/rust.section.md#custom-buildinstall-procedures-custom-buildinstall-procedures
-            # permalink: https://github.com/NixOS/nixpkgs/blob/caf129c3c44620b07d88b09399b3745ba08e9caa/doc/languages-frameworks/rust.section.md#custom-buildinstall-procedures-custom-buildinstall-procedures
-
-            buildPhase = ''
-              # export HOME=$(pwd)
-              export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:$PKG_CONFIG_PATH"
-              make BUILD_FROM_SOURCE=true
-              # export HOME=$(pwd)
-              # export PKG_CONFIG_PATH="${pkgs.openssl.dev}/lib/pkgconfig:$PKG_CONFIG_PATH"
-              # cargo build --release --features=luajit -p avante-tokenizers
-            '';
-
-            installPhase = ''
-              mkdir -p $out
-              cp -r build $out
-            '';
-
-            doCheck = false;
-          };
-        in
-        pkgs.vimUtils.buildVimPlugin {
-          pname = "avante.nvim";
-          inherit version src;
-
-          postInstall = ''
-            mkdir -p $out
-            cp -r ${avante-lib}/build $out
-          '';
-        };
-
-
       nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (treesitter-plugins:
         with treesitter-plugins; [
           bash

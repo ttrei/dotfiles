@@ -10,7 +10,7 @@
     # In general, install packages from a release, not from master.
     # If there's a need, you can install a specific package from nixpkgs-unstable.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:ttrei/nixpkgs/nixos-unstable";
 
     # home-manager release must be the same as the nixpkgs used in home-manager.
     home-manager.url = "github:nix-community/home-manager/release-24.05";
