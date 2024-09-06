@@ -28,13 +28,6 @@
           rev = "7925af137f7c36bb54acaafc268643548f04e5e8";
         };
       };
-      # NOTE(2024-09-03): avante.nvim needs to build some stuff with :AvanteBuild
-      # I patched the source to build it in a tmp directory but that didn't help.
-      # Had to install cargo, pkg-config, openssl and export PKG_CONFIG_PATH=/nix/store/...-openssl-3.0.14-dev/lib/pkgconfig
-      # avante-nvim seems to expect that the build is executed in the plugin directory, but that's not possible if the
-      # plugin is located in the nix store.
-      # TODO: Check out if nixvim will get the avante plugin: https://github.com/nix-community/nixvim/issues/2096
-
       nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (treesitter-plugins:
         with treesitter-plugins; [
           bash
@@ -133,7 +126,6 @@
         vim-visual-star-search
         vim-asciidoc-folding
 
-        img-clip-nvim
         avante-nvim
       ];
   };
