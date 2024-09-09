@@ -110,9 +110,6 @@
         # vim-javascript
         # vim-markdown
 
-        # dingllm
-        plenary-nvim
-
         ### other
         vim-beancount
         fastfold
