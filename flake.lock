@@ -208,16 +208,16 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1725867557,
-        "narHash": "sha256-bbkpVRRM/8uUO1U/TauEkox7m3y4xCURx74h09fKjS4=",
+        "lastModified": 1725911456,
+        "narHash": "sha256-rTCz1sXFY3Dfkvx4bkQAb1lQbd1duzsAvtKD0q2IKEo=",
         "owner": "ttrei",
         "repo": "nixpkgs",
-        "rev": "bbbb76bef2bfb14cfd9bb762ae89c31bb793e55e",
+        "rev": "b94e0b2b3bf08c88bb03a6720d6add0cc99655ec",
         "type": "github"
       },
       "original": {
         "owner": "ttrei",
-        "ref": "avante-nvim",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }

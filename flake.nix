@@ -11,8 +11,8 @@
     # If there's a need, you can install a specific package from nixpkgs-unstable.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "github:ttrei/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:ttrei/nixpkgs/avante-nvim";
+    nixpkgs-unstable.url = "github:ttrei/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "github:ttrei/nixpkgs/avante-nvim";
     # nixpkgs-unstable.url = "git+file:///home/reinis/nixpkgs?shallow=1";
 
     # home-manager release must be the same as the nixpkgs used in home-manager.
