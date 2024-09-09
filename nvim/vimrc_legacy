@@ -101,6 +101,8 @@ let g:loaded_matchparen = 1
 
 " Remove trailing whitespace
 nnoremap <Leader>s :%s/\s\+$//<CR>
+" Remove carriage return at end of line
+nnoremap <Leader>r :%s/\r$//<CR>
 
 " Execute linter
 nnoremap <F5> :Neomake<CR>
