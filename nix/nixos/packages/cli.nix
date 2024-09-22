@@ -23,7 +23,8 @@
     jmtpfs
     jq
     k9s
-    linuxPackages_latest.perf
+    # 2024-09-22: build failed
+    # linuxPackages_latest.perf
     lua
     nodePackages.pyright
     nodePackages.typescript-language-server
