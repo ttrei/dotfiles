@@ -116,6 +116,12 @@
     "application/x-extension-xht" = "firefox.desktop";
   };
 
+  documentation = {
+    enable = true;
+    man.enable = true;
+    dev.enable = true;
+  };
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
