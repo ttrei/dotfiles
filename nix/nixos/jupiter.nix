@@ -43,7 +43,8 @@
   # Printing (Brother HL-L2340DW)
   # http://localhost:631/admin -> Find New Printers -> Add This Printer -> Continue -> Make = Generic -> Continue ->
   # Model = IPP Everywhere -> Add Printer
-  services.printing.enable = true;
+  # 2024-09-26: Disabled to avoid https://www.evilsocket.net/2024/09/26/Attacking-UNIX-systems-via-CUPS-Part-I/
+  # services.printing.enable = true;
   services.avahi = {
     enable = true;
     nssmdns4 = true;
