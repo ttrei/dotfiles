@@ -208,16 +208,16 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1726755586,
-        "narHash": "sha256-PmUr/2GQGvFTIJ6/Tvsins7Q43KTMvMFhvG6oaYK+Wk=",
-        "owner": "NixOS",
+        "lastModified": 1727470154,
+        "narHash": "sha256-oHIMO9oIXqcQ10Q2uoYW57I/UOFIv+mXPfAJ/uEvpcY=",
+        "owner": "ttrei",
         "repo": "nixpkgs",
-        "rev": "c04d5652cfa9742b1d519688f65d1bbccea9eb7e",
+        "rev": "f6930dcff6ee05074a1b360a0c6ce2707f2f9191",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "owner": "ttrei",
+        "ref": "avante-nvim-update",
         "repo": "nixpkgs",
         "type": "github"
       }
