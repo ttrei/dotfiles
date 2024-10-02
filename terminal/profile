@@ -29,6 +29,11 @@ then
     . "$HOME/.anthropic-api-key"
 fi
 
+if [ -e "$HOME/.openexchangerates-app-id" ]
+then
+    . "$HOME/.openexchangerates-app-id"
+fi
+
 if [ -d "$HOME/.nix-defexpr" ]
 then
     # Necessary according to
