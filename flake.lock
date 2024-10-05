@@ -208,11 +208,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1727992058,
-        "narHash": "sha256-sGO5foGEXojb4pnuQnNYDSePRWJIS+gkUK+LqTXDID8=",
+        "lastModified": 1728159288,
+        "narHash": "sha256-DHtMT1hjs9JjwmhWt6u62oihD3D2lOUCeQD9JKhxWt8=",
         "owner": "ttrei",
         "repo": "nixpkgs",
-        "rev": "93fa879dd4d3ca8f37f4e783fa01764579e9131e",
+        "rev": "e6304ca4a5080b395f7233d95f5ed83a9609c3f9",
         "type": "github"
       },
       "original": {
