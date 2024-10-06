@@ -100,9 +100,9 @@ let g:table_mode_header_fillchar = '='
 let g:loaded_matchparen = 1
 
 " Remove trailing whitespace
-nnoremap <Leader>s :%s/\s\+$//<CR>
+nnoremap <Leader>ss :%s/\s\+$//<CR>
 " Remove carriage return at end of line
-nnoremap <Leader>r :%s/\r$//<CR>
+nnoremap <Leader>rr :%s/\r$//<CR>
 
 " Execute linter
 nnoremap <F5> :Neomake<CR>
