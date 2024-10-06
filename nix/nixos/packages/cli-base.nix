@@ -29,7 +29,6 @@
     tmux
     traceroute
     tree
-    tre-command
     usbutils
     wget
   ];

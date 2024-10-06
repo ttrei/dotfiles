@@ -14,6 +14,7 @@
     diffstat
     emacs
     encfs
+    eza
     feh
     ffmpeg
     gitAndTools.gitFull
