@@ -86,6 +86,7 @@
     signal-desktop
     starship
     stylua
+    tre-command
     # whatsapp-for-linux
     zathura
     zoxide
