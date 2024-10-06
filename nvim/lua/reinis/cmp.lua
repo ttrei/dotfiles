@@ -25,8 +25,3 @@ cmp.setup({
     end,
   },
 })
-
--- https://github.com/hrsh7th/cmp-nvim-lsp/#setup
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig").pyright.setup({ capabilities = capabilities })
-require("lspconfig").zls.setup({ capabilities = capabilities })

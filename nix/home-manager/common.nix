@@ -80,6 +80,8 @@
     git-when-merged
     i3pyblocks
     openjdk
+    python3Packages.python-lsp-server
+    python3Packages.pylsp-rope
     redshift
     ripgrep
     unstable.ripgrep-all

@@ -98,6 +98,10 @@
         # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
         neorg
 
+        # Better quick-fix window
+        # https://github.com/kevinhwang91/nvim-bqf
+        nvim-bqf
+
         neomake
         nvim-cmp
         nvim-lspconfig
