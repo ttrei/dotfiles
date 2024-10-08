@@ -208,18 +208,18 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1728159288,
-        "narHash": "sha256-DHtMT1hjs9JjwmhWt6u62oihD3D2lOUCeQD9JKhxWt8=",
-        "owner": "ttrei",
-        "repo": "nixpkgs",
-        "rev": "e6304ca4a5080b395f7233d95f5ed83a9609c3f9",
-        "type": "github"
+        "lastModified": 1728415797,
+        "narHash": "sha256-iJgaiBc4C3zo7qEmyw3Mtl2EKLKAezd5QUBDxRf+vZo=",
+        "ref": "refs/heads/avante-nvim-update",
+        "rev": "211fa9742bc8aec69f0c757794122eae76aab432",
+        "shallow": true,
+        "type": "git",
+        "url": "file:///media/storage-new/nixpkgs"
       },
       "original": {
-        "owner": "ttrei",
-        "ref": "avante-nvim-update-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "file:///media/storage-new/nixpkgs"
       }
     },
     "nixpkgs_2": {
