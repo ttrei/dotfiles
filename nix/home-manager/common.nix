@@ -89,6 +89,7 @@
     signal-desktop
     starship
     stylua
+    unstable.superhtml
     # whatsapp-for-linux
     zathura
     zoxide
