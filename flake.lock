@@ -208,10 +208,10 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1728415797,
-        "narHash": "sha256-iJgaiBc4C3zo7qEmyw3Mtl2EKLKAezd5QUBDxRf+vZo=",
+        "lastModified": 1728766073,
+        "narHash": "sha256-ylZkJ2C9dv9MSJFfIeApxsogNUIQRsojgCjWZhs/EC4=",
         "ref": "refs/heads/avante-nvim-update",
-        "rev": "211fa9742bc8aec69f0c757794122eae76aab432",
+        "rev": "947d2b94a7818f42656d336f558b3467e8718e64",
         "shallow": true,
         "type": "git",
         "url": "file:///media/storage-new/nixpkgs"
