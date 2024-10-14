@@ -210,16 +210,16 @@
       "locked": {
         "lastModified": 1728766073,
         "narHash": "sha256-ylZkJ2C9dv9MSJFfIeApxsogNUIQRsojgCjWZhs/EC4=",
-        "ref": "refs/heads/avante-nvim-update",
+        "owner": "ttrei",
+        "repo": "nixpkgs",
         "rev": "947d2b94a7818f42656d336f558b3467e8718e64",
-        "shallow": true,
-        "type": "git",
-        "url": "file:///media/storage-new/nixpkgs"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "file:///media/storage-new/nixpkgs"
+        "owner": "ttrei",
+        "ref": "avante-nvim-update",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs_2": {
