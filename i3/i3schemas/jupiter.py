@@ -200,14 +200,20 @@ I3SCHEMA_TLPI = {
 
 
 DIR = f"{HOME}/dev/projects/taukulis.lv"
-VSCODE_WORKSPACE = f"{HOME}/.config/vscode-workspaces/taukulis.lv.code-workspace"
 I3SCHEMA_TAUKULIS_LV = {
     "20:dev": [
-        [f"exec-in-dir {DIR} zutty".split(), "zutty-taukulis.lv", "zutty", None],
-        [f"exec-in-dir {DIR} zutty".split(), "zutty-taukulis.lv", "zutty", None],
-    ],
-    "25:vscode": [
-        [f"code {VSCODE_WORKSPACE}".split(), "visual studio code", "code", None],
+        [
+            f"exec-in-dir {DIR} zutty".split(),
+            "zutty-taukulis.lv",
+            "zutty",
+            ["move left"],
+        ],
+        [
+            f"exec-in-dir {DIR} zutty".split(),
+            "zutty-taukulis.lv",
+            "zutty",
+            ["split vertical", "layout stacking", "resize set width 70 ppt"],
+        ],
     ],
 }
 
