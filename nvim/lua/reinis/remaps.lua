@@ -5,6 +5,8 @@ require("reinis.utils")
 -- remap is actually used, improving startup.
 -- vim.keymap.set('n', '<C-p>', require('fzf-lua').files)
 -- vim.keymap.set('n', '<C-p>', function() require('fzf-lua').files() end)
+-- you can pass arguments to methods, and add description:
+-- vim.keymap.set("n", "<c-P>", function() require('fzf-lua').files({ ... }) end, { desc = "Fzf Files" })
 
 -- Reload configuration from the default location.
 vim.keymap.set("n", "<leader>cr", ":set runtimepath-=~/dotfiles/nvim<cr>:ReloadConfig<cr>:source $MYVIMRC<cr>")
@@ -26,7 +28,7 @@ vim.keymap.set("n", "<leader>w", function()
   vim_opt_toggle("wrap", true, false)
 end)
 
-vim.keymap.set("n", "<c-p>", require("fzf-lua").files, { desc = "Find files using fzf" })
+vim.keymap.set("n", "<c-p>", function() require('fzf-lua').files({ git_icons = false }) end, { desc = "Find files using fzf" })
 
 -- Navigation
 vim.keymap.set("n", "<leader>tn", ":tabnew<cr>")
