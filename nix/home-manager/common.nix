@@ -90,6 +90,7 @@
     starship
     stylua
     unstable.superhtml
+    unstable.uv
     # whatsapp-for-linux
     zathura
     zoxide
