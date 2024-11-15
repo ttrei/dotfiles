@@ -20,7 +20,7 @@
     pavucontrol
     # picard
     python3Packages.i3ipc
-    qbittorrent
+    unstable.qbittorrent
     rofi
     st
     vlc
