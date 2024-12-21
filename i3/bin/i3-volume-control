@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+case "$1" in
+    "up")
+        vol=$(amixer get Master | grep -Po "[0-9]+(?=%)" | head -n1)
+        if [ "$vol" -lt 39 ]; then
+            amixer -q sset Master 2%+
+        fi
+        ;;
+    "down")
+        amixer -q sset Master 2%-
+        ;;
+    "mute")
+        amixer -q sset Master toggle
+        ;;
+    "set")
+        if [ -n "$2" ]; then
+            amixer -q sset Master "$2"%
+        fi
+        ;;
+    *)
+        echo "Usage: $0 [up|down|mute|set PERCENTAGE]"
+        exit 1
+        ;;
+esac
+
+pkill -RTMIN+10 i3blocks

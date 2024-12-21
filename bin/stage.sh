@@ -161,6 +161,7 @@ ln -s "$DOTFILES/i3/bin/i3-rename-current-workspace" "$STAGINGDIR/bin/i3/i3-rena
 ln -s "$DOTFILES/i3/bin/i3-schema-select" "$STAGINGDIR/bin/i3/i3-schema-select"
 ln -s "$DOTFILES/i3/bin/i3-start" "$STAGINGDIR/bin/i3/i3-start"
 ln -s "$DOTFILES/i3/bin/i3-workspaces" "$STAGINGDIR/bin/i3/i3-workspaces"
+ln -s "$DOTFILES/i3/bin/i3-volume-control" "$STAGINGDIR/bin/i3/i3-volume-control"
 if [ "$MACHINE" = "jupiter" ]; then
     if [ "$CONTEXT" = "home" ]; then
         ln -s "$DOTFILES/i3/workspaces-jupiter.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
