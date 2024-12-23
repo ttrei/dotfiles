@@ -28,9 +28,9 @@
     # 2024-09-22: build failed
     # linuxPackages_latest.perf
     lua
-    nodePackages.pyright
     nodePackages.typescript-language-server
     pandoc
+    pyright
     python3Packages.mutagen
     python3Packages.ipython
     stow

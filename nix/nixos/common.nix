@@ -85,8 +85,6 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  sound.enable = true;
-
   users.mutableUsers = false;
 
   # https://github.com/NixOS/nixpkgs/issues/160923
@@ -127,7 +125,7 @@
     enableSSHSupport = true;
   };
 
-  programs.bash.enableCompletion = true;
+  programs.bash.completion.enable = true;
 
   programs.nix-ld.enable = true;
 

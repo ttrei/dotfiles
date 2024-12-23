@@ -73,13 +73,13 @@
     ncdu
     nethogs
     nodejs-slim
-    nodePackages.pyright
     nodePackages.typescript-language-server
     git
     git-crypt
     git-when-merged
     i3pyblocks
     openjdk
+    pyright
     python3Packages.python-lsp-server
     python3Packages.pylsp-rope
     redshift
