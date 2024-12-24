@@ -49,6 +49,7 @@
   };
 
   services.transmission.enable = true;
+  services.transmission.package = pkgs.transmission_4;
   services.transmission.settings = {
     # https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
     dht-enabled = true;
@@ -158,22 +159,21 @@
     # NOTE: Need to set up SAMBA username/password with
     #       sudo smbpasswd -a reinis
     enable = true;
-    securityType = "user";
     openFirewall = true;
-    extraConfig = ''
-      workgroup = WORKGROUP
-      server string = smbnix
-      netbios name = smbnix
-      security = user 
-      #use sendfile = yes
-      #max protocol = smb2
-      # note: localhost is the ipv6 localhost ::1
-      hosts allow = 192.168.8. 127.0.0.1 localhost
-      hosts deny = 0.0.0.0/0
-      guest account = nobody
-      map to guest = bad user
-    '';
-    shares = {
+    settings = {
+      global = {
+        security = "user";
+        workgroup = "WORKGROUP";
+        "server string" = "smbnix";
+        "netbios name" = "smbnix";
+        #use sendfile = yes
+        #max protocol = smb2
+        # note: localhost is the ipv6 localhost ::1
+        "hosts allow" = [ "192.168.8." "127.0.0.1" "localhost" ];
+        "hosts deny" = [ "0.0.0.0/0" ];
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
       tvshows = {
         path = "/media/Storage/tvshows";
         browseable = "yes";

@@ -16,7 +16,7 @@
     ./users/reinis.nix
   ];
 
-  services.xserver.displayManager.autoLogin.enable = lib.mkForce false;
+  services.displayManager.autoLogin.enable = lib.mkForce false;
 
   networking.hostName = "saturn-qemu";
 
@@ -38,6 +38,7 @@
   };
 
   services.transmission.enable = true;
+  services.transmission.package = pkgs.transmission_4;
   services.transmission.settings = {
     dht-enabled = true;
     download-queue-enabled = true;
@@ -137,6 +138,69 @@
       ];
     }
   ];
+
+  services.samba = {
+    # NOTE: Need to set up SAMBA username/password with
+    #       sudo smbpasswd -a reinis
+    enable = true;
+    openFirewall = true;
+    settings = {
+      global = {
+        security = "user";
+        workgroup = "WORKGROUP";
+        "server string" = "smbnix";
+        "netbios name" = "smbnix";
+        #use sendfile = yes
+        #max protocol = smb2
+        # note: localhost is the ipv6 localhost ::1
+        "hosts allow" = [ "192.168.8." "127.0.0.1" "localhost" ];
+        "hosts deny" = [ "0.0.0.0/0" ];
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
+      tvshows = {
+        path = "/media/Storage/tvshows";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "reinis";
+        "force group" = "users";
+      };
+      tvshows2 = {
+        path = "/media/Lielais/tvshows";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "reinis";
+        "force group" = "users";
+      };
+      movies = {
+        path = "/media/Lielais/movies";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "reinis";
+        "force group" = "users";
+      };
+      movies2 = {
+        path = "/media/Lielais/movies-radarr";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        "force user" = "reinis";
+        "force group" = "users";
+      };
+    };
+  };
+  networking.firewall.allowPing = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

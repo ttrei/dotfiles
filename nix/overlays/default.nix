@@ -60,6 +60,16 @@
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;
       config.allowUnfree = true;
+
+      # https://github.com/NixOS/nixpkgs/issues/360592#issuecomment-2513490613
+      # TODO: Remove when https://github.com/NixOS/nixpkgs/issues/360592 fixed
+      config.permittedInsecurePackages = [
+        "aspnetcore-runtime-6.0.36"
+        "aspnetcore-runtime-wrapped-6.0.36"
+        "dotnet-sdk-6.0.428"
+        "dotnet-sdk-wrapped-6.0.428"
+      ];
+
     };
   };
 }

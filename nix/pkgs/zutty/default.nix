@@ -6,7 +6,7 @@
   pkg-config,
   freetype,
   python3,
-  glew-egl,
+  glew,
   xorg,
 }:
 stdenv.mkDerivation rec {
@@ -27,7 +27,7 @@ stdenv.mkDerivation rec {
     pkg-config
     freetype
     python3
-    glew-egl
+    glew
     xorg.libXmu
     xorg.libX11
     xorg.libXft
