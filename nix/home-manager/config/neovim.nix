@@ -116,7 +116,10 @@
 
         ### other
         vim-beancount
-        fastfold
+
+        # # 2024-12-25: Disabled fastfold because it caused duplicate avante sidebar panels
+        # fastfold
+
         fzf-lua
         # # I will go with fzf-lua for now - people say it has better performance than telescope.
         # # But should re-visit this decision if I notice some telescope feature I really want.
