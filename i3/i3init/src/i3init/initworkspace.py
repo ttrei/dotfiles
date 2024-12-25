@@ -95,7 +95,7 @@ async def on_new_window(i3: AioConnection, e: WindowEvent):
     global WORKSPACE_PROGRAMS_STARTED
 
     try:
-        workspace, matched_program = match_program(e)
+        workspace, matched_program = await match_program(e)
     except UnmatchedProgramError:
         print("WARNING: Unmatched program")
         return
@@ -107,31 +107,32 @@ async def on_new_window(i3: AioConnection, e: WindowEvent):
     programs_started = WORKSPACE_PROGRAMS_STARTED.setdefault(workspace, set())
     matched_program.container = e.container
     programs_started.add(matched_program)
-    STARTING_PROGRAMS[workspace].remove(matched_program)
-    if len(STARTING_PROGRAMS[workspace]) == 0:
-        print(f"All programs in {workspace=} started")
-        for program in sorted(programs_started, key=lambda p: p.index_in_workspace):
-            print(f"Executing window handling commands for {program.window_name}")
-            for command in program.window_handling_commands:
-                print(f"{command =}")
-                await program.container.command(command)
-        print(f"Removing {workspace} from STARTING_PROGRAMS")
-        STARTING_PROGRAMS.pop(workspace)
+    async with STARTING_PROGRAMS_LOCK:
+        STARTING_PROGRAMS[workspace].remove(matched_program)
+        if len(STARTING_PROGRAMS[workspace]) == 0:
+            print(f"All programs in {workspace=} started")
+            for program in sorted(programs_started, key=lambda p: p.index_in_workspace):
+                print(f"Executing window handling commands for {program.window_name}")
+                for command in program.window_handling_commands:
+                    print(f"{command =}")
+                    await program.container.command(command)
+            print(f"Removing {workspace} from STARTING_PROGRAMS")
+            STARTING_PROGRAMS.pop(workspace)
+        if len(STARTING_PROGRAMS) == 0:
+            i3.main_quit()
 
-    if len(STARTING_PROGRAMS) == 0:
-        i3.main_quit()
 
-
-def match_program(e: WindowEvent):
+async def match_program(e: WindowEvent):
     global STARTING_PROGRAMS
     window_name = e.container.name
     window_class = e.container.window_class
-    for workspace, programs in STARTING_PROGRAMS.items():
-        for program in programs:
-            print(f"Matching {window_name=}, {window_class=} against {program.window_name}, {program.window_class}")
-            if program.match(window_name, window_class):
-                print("Matched")
-                return workspace, program
+    async with STARTING_PROGRAMS_LOCK:
+        for workspace, programs in STARTING_PROGRAMS.items():
+            for program in programs:
+                print(f"Matching {window_name=}, {window_class=} against {program.window_name}, {program.window_class}")
+                if program.match(window_name, window_class):
+                    print("Matched")
+                    return workspace, program
     raise UnmatchedProgramError
 
 
@@ -139,6 +140,7 @@ class UnmatchedProgramError(Exception):
     pass
 
 
+STARTING_PROGRAMS_LOCK = asyncio.Lock()
 STARTING_PROGRAMS: Dict[str, Set["Program"]] = {}
 WORKSPACE_PROGRAMS_STARTED: Dict[str, Set["Program"]] = {}
 
@@ -160,11 +162,13 @@ async def main(workspace_program_config, timeout):
             except FileNotFoundError as e:
                 logging.error(f"Couldn't execute {program.exec_tuple}: {e}")
                 continue
-            programs = STARTING_PROGRAMS.setdefault(workspace, set())
-            programs.add(program)
+            async with STARTING_PROGRAMS_LOCK:
+                programs = STARTING_PROGRAMS.setdefault(workspace, set())
+                programs.add(program)
 
-    if len(STARTING_PROGRAMS) == 0:
-        return
+    async with STARTING_PROGRAMS_LOCK:
+        if len(STARTING_PROGRAMS) == 0:
+            return
 
     i3.on(Event.WINDOW_NEW, on_new_window)  # type: ignore
 
@@ -172,7 +176,7 @@ async def main(workspace_program_config, timeout):
 
 
 def run(workspace_program_config, timeout):
-    asyncio.run(main(workspace_program_config, timeout))
+    asyncio.get_event_loop().run_until_complete(main(workspace_program_config, timeout))
 
 
 def run_command(command: str):
