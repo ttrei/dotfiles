@@ -1,3 +1,6 @@
+# Python
+src/i3init.egg-info/
+
 # Devenv
 .devenv*
 devenv.local.nix
