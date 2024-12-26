@@ -14,9 +14,8 @@ in
     enable = true;
     uv.enable = true;
     uv.package = pkgs-unstable.uv;
-    # uv.sync.enable = true;
+    uv.sync.enable = true;
     venv.enable = true;
-    venv.requirements = ./requirements.txt;
     libraries = [];
   };
 
