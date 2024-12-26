@@ -1,5 +1,9 @@
 * TODO
 
+** Add more structure to the schema definition
+
+   Dataclasses would help, i think.
+
 ** More readable workspace configuration files
 
    I don't like configuring them in python, would like to use a declarative config format.
