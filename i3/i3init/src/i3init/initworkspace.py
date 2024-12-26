@@ -7,8 +7,6 @@ from i3ipc import Con, Connection, Event, WindowEvent
 from i3ipc.aio import Con as AioCon
 from i3ipc.aio import Connection as AioConnection
 
-TIMEOUT = 5.0
-
 
 class Program:
     def __init__(
