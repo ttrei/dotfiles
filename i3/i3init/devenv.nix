@@ -1,5 +1,7 @@
 { pkgs, lib, config, inputs, ... }:
-
+let
+  pkgs-unstable = import inputs.nixpkgs-unstable { system = pkgs.stdenv.system; };
+in
 {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
@@ -8,7 +10,15 @@
   packages = [ pkgs.git ];
 
   # https://devenv.sh/languages/
-  # languages.rust.enable = true;
+  languages.python = {
+    enable = true;
+    uv.enable = true;
+    uv.package = pkgs-unstable.uv;
+    # uv.sync.enable = true;
+    venv.enable = true;
+    venv.requirements = ./requirements.txt;
+    libraries = [];
+  };
 
   # https://devenv.sh/processes/
   # processes.cargo-watch.exec = "cargo-watch";
