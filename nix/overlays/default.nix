@@ -25,6 +25,8 @@
 
     comma = final.unstable.comma;
 
+    ghostty = inputs.ghostty.packages."x86_64-linux".default;
+
     jetbrains = final.unstable.jetbrains;
 
     # need neovim 0.10 for neorg, nixpkgs-24.05 has 0.9

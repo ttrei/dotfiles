@@ -128,7 +128,7 @@
 
   programs.bash.completion.enable = true;
 
-  programs.nix-ld.enable = true;
+  # programs.nix-ld.enable = true;
 
   services.openssh = {
     enable = true;
