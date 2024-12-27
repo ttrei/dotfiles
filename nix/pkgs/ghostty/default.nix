@@ -82,7 +82,7 @@ stdenv.mkDerivation (finalAttrs: {
   # doCheck is set to false because unit tests currently fail inside the Nix sandbox.
   doCheck = false;
   doInstallCheck = true;
-
+  
   deps = callPackage ./deps.nix { name = "${finalAttrs.pname}-cache-${finalAttrs.version}"; };
 
   zigBuildFlags = [
@@ -120,7 +120,7 @@ stdenv.mkDerivation (finalAttrs: {
   NIX_LDFLAGS = [ "-lX11" ];
 
   nativeInstallCheckInputs = [
-    versionCheckHook
+      versionCheckHook
   ];
 
   versionCheckProgramArg = [ "--version" ];
