@@ -1,13 +1,28 @@
 #!/usr/bin/env bash
 
-# Small script that tries to determine the PWD of the focused terminal and pass
-# it to the newly spawned one.
+if command -v ghostty >/dev/null 2>&1; then
+    TERMINAL_CMD="ghostty"
+elif command -v zutty >/dev/null 2>&1; then
+    TERMINAL_CMD="zutty"
+elif command -v st >/dev/null 2>&1; then
+    TERMINAL_CMD="st"
+else
+    TERMINAL_CMD="xterm"
+fi
 
+if [ "$1" != "--samecwd" ]; then
+    $TERMINAL_CMD "$@" &
+    exit 0
+fi
+
+# Remove the first argument ("samecwd")
+shift
+
+# Try to determine the PWD of the focused terminal and pass it to the newly spawned one.
 # Adapted from a similar script that works on sway (attached at the end).
 # https://blog.freesources.org//posts/2019/12/switch_to_sway/
 # i3-msg -t get_tree doesn't report PIDs, so we used xprop instead.
 
-TERMINAL_CMD="ghostty"
 export START_CWD="$HOME"
 
 function get_child_pid() {
