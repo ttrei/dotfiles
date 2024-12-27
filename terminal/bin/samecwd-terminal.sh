@@ -7,7 +7,7 @@
 # https://blog.freesources.org//posts/2019/12/switch_to_sway/
 # i3-msg -t get_tree doesn't report PIDs, so we used xprop instead.
 
-TERMINAL_CMD="zutty"
+TERMINAL_CMD="ghostty"
 export START_CWD="$HOME"
 
 function get_child_pid() {
@@ -32,7 +32,7 @@ WMCLASS=""
 if [ -n "$WINDOWID" ]; then
     WMCLASS=$(xprop -id "$WINDOWID" | awk -F'"' '/WM_CLASS\(STRING\)/{print $2}')
 fi
-if [ "$WMCLASS" != "Zutty" ] && [ "$WMCLASS" != "xterm-256color" ]; then
+if [ "$WMCLASS" != "Zutty" ] &&[ "$WMCLASS" != "ghostty" ] && [ "$WMCLASS" != "xterm-256color" ]; then
     # Focused window is not a terminal. Start at default CWD.
     $TERMINAL_CMD "$@" &
     exit 0
