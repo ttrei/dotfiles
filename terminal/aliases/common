@@ -58,7 +58,7 @@ alias gl50="git lg -50"
 
 alias gd="git diff"
 alias gdc="git diff --cached"
-alias gdd='git difftool -d'
+# alias gdd='git difftool -d'
 
 alias gm='git merge'
 alias gr='git rebase'
