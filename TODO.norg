@@ -12,6 +12,11 @@
    And two shortcuts to actually do the navigation.
    Idea taken from matklad: https://www.twitch.tv/videos/2336452629
 
+** (neovim) Setup for Java development
+
+   https://ptrtojoel.dev/posts/so-you-want-to-write-java-in-neovim/
+   https://news.ycombinator.com/item?id=42530991
+
 * Other
 
 ** Don't deploy python __pycache__ directories
