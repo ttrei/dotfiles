@@ -30,6 +30,7 @@
     xfce.xfce4-terminal
     xorg.xev
     xorg.xmodmap
+    xorg.xwininfo
     xsel
     zathura
     zutty
