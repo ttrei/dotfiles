@@ -1,171 +1,94 @@
-#!/usr/bin/env python3
 import asyncio
 import logging
-from typing import Any, Dict, List, Optional, Set, Tuple
+import os
+import subprocess
 
-from i3ipc import Con, Connection, Event, WindowEvent
+from i3ipc import Event, WindowEvent
 from i3ipc.aio import Con as AioCon
 from i3ipc.aio import Connection as AioConnection
 
+from .entities import Workspace
 
-class Program:
-    def __init__(
-        self,
-        index_in_workspace: int,
-        workspace: str,
-        exec_list: list,
-        window_name: str,
-        window_class: str,
-        window_handling_commands: Optional[List[str]] = None,
-    ):
-        self.index_in_workspace = index_in_workspace
-        self.workspace = workspace
-        self.exec_tuple = self._parse_exec_string(exec_list, window_name)
-        self.window_name = window_name
-        self.window_class = window_class
-        self.window_handling_commands = window_handling_commands or []
-        self.container: Any = None
-
-    @staticmethod
-    def _parse_exec_string(exec_list: list, window_name: str) -> Tuple[str, ...]:
-        binary = exec_list[0]
-        args = exec_list[1:]
-        if binary == "exec-in-dir":
-            if len(args) < 2:
-                raise ValueError("exec-in-dir must have at least two arguments")
-            directory, executable = args[0], args[1]
-            args = args[2:]
-            if executable == "zutty":
-                args = ["-t", window_name] + args
-            return binary, directory, executable, *args
-        elif binary == "zutty":
-            return binary, "-t", window_name, *args
-        elif binary == "emacs":
-            return binary, f"--title={window_name}", *args
-        else:
-            return binary, *args
-
-    def match(self, window_name: str, window_class: str):
-        if self.window_name is None:
-            return self.equals_case_insensitive(self.window_class, window_class)
-        if self.window_class is None:
-            return self.equals_case_insensitive(self.window_name, window_name)
-        return self.equals_case_insensitive(self.window_class, window_class) and self.equals_case_insensitive(
-            self.window_name, window_name
-        )
-
-    @staticmethod
-    def equals_case_insensitive(left: str, right: str):
-        if left is None or right is None:
-            return False
-        return left.lower() == right.lower()
+lock = asyncio.Lock()
 
 
-def construct_workspace_programs(workspace_program_config: dict):
-    # Convert from configuration dict to Program objects
-    workspace_programs: Dict[str, List[Program]] = {}
-    for workspace, program_args_list in workspace_program_config.items():
-        program_list = []
-        for i, (
-            exec_list,
-            window_name,
-            window_class,
-            window_handling_commands,
-        ) in enumerate(program_args_list):
-            program = Program(
-                i,
-                workspace,
-                exec_list,
-                window_name,
-                window_class,
-                window_handling_commands,
-            )
-            program_list.append(program)
-        workspace_programs[workspace] = program_list
-    return workspace_programs
+WORKSPACES: list[Workspace] = []
 
 
 async def on_new_window(i3: AioConnection, e: WindowEvent):
+    global WORKSPACES
+
     _ = i3
-    print(f"on_new_window: window_name={e.container.name}, window_class={e.container.window_class}")
+    window_name = e.container.name
+    window_class = e.container.window_class
+    window_id: int | None = e.container.window
+    if window_id is None:
+        raise ValueError("Window id is None")
+    window_pid = int(subprocess.Popen(["xwinpid", str(window_id)], stdout=subprocess.PIPE).stdout.read())
+    window_pgid = os.getpgid(window_pid)
+    # print(f"on_new_window: {window_name=} {window_class=} {window_id=} {window_pid=} {window_pgid=}")
 
-    global STARTING_PROGRAMS
-    global WORKSPACE_PROGRAMS_STARTED
-
-    try:
-        workspace, matched_program = await match_program(e)
-    except UnmatchedProgramError:
-        print("WARNING: Unmatched program")
+    matched_program = None
+    async with lock:
+        for w in WORKSPACES:
+            for p in w.programs:
+                if p.pgid == window_pgid:
+                    matched_program = p
+    if matched_program is None:
+        logging.warning(f"Unexpected window: {window_name=}, {window_class=}, {window_id=}, {window_pid=}")
         return
 
-    print(f"Moving {matched_program.window_name}, {matched_program.window_class} " f"to {matched_program.workspace}")
-    print(f"{matched_program.window_handling_commands=}")
-    await e.container.command(f"move to workspace {matched_program.workspace}")
+    workspace = matched_program.workspace
 
-    programs_started = WORKSPACE_PROGRAMS_STARTED.setdefault(workspace, set())
-    matched_program.container = e.container
-    programs_started.add(matched_program)
-    async with STARTING_PROGRAMS_LOCK:
-        STARTING_PROGRAMS[workspace].remove(matched_program)
-        if len(STARTING_PROGRAMS[workspace]) == 0:
-            print(f"All programs in {workspace=} started")
-            for program in sorted(programs_started, key=lambda p: p.index_in_workspace):
-                print(f"Executing window handling commands for {program.window_name}")
-                for command in program.window_handling_commands:
-                    print(f"{command =}")
-                    await program.container.command(command)
-            print(f"Removing {workspace} from STARTING_PROGRAMS")
-            STARTING_PROGRAMS.pop(workspace)
-        if len(STARTING_PROGRAMS) == 0:
+    command = f"move to workspace {workspace.name}"
+    print(f"{matched_program.id} {command}")
+    await e.container.command(command)
+    matched_program.containers.append(e.container)
+
+    async with lock:
+        matched_program.done = True
+        if all(program.done for program in workspace.programs):
+            print(f"All programs in workspace {workspace.name} started")
+            for program in workspace.programs:
+                if program.window_handling_commands is not None:
+                    for command in program.window_handling_commands:
+                        print(f"{program.id} {command}")
+                        await program.containers[0].command(command)
+        if all(workspace.all_programs_done() for workspace in WORKSPACES):
             i3.main_quit()
 
 
-async def match_program(e: WindowEvent):
-    global STARTING_PROGRAMS
-    window_name = e.container.name
-    window_class = e.container.window_class
-    async with STARTING_PROGRAMS_LOCK:
-        for workspace, programs in STARTING_PROGRAMS.items():
-            for program in programs:
-                print(f"Matching {window_name=}, {window_class=} against {program.window_name}, {program.window_class}")
-                if program.match(window_name, window_class):
-                    print("Matched")
-                    return workspace, program
-    raise UnmatchedProgramError
-
-
-class UnmatchedProgramError(Exception):
-    pass
-
-
-STARTING_PROGRAMS_LOCK = asyncio.Lock()
-STARTING_PROGRAMS: Dict[str, Set["Program"]] = {}
-WORKSPACE_PROGRAMS_STARTED: Dict[str, Set["Program"]] = {}
-
-
-async def main(workspace_program_config, timeout):
-    global STARTING_PROGRAMS
-
+async def spawn_programs(workspaces: list[Workspace], timeout: float):
     i3 = await AioConnection(auto_reconnect=True).connect()
+
+    global WORKSPACES
+
+    async with lock:
+        WORKSPACES.extend(workspaces)
 
     # We will not touch already existing workspaces containing something
     nonempty_workspaces = get_nonempty_workspaces(await i3.get_tree())
 
-    for workspace, programs in construct_workspace_programs(workspace_program_config).items():
-        if workspace in nonempty_workspaces:
+    for workspace in workspaces:
+        if workspace.name in nonempty_workspaces:
+            print(f"Workspace {workspace.name=} exists")
+            for program in workspace.programs:
+                print(f"{program.id} skip exec_cmd='{program.exec_cmd}'")
+                program.done = True
             continue
-        for program in programs:
+        for program in workspace.programs:
             try:
-                await asyncio.create_subprocess_exec(*program.exec_tuple)
+                proc = await asyncio.create_subprocess_shell(
+                    program.exec_cmd, process_group=0, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
+                )
+                program.pgid = os.getpgid(proc.pid)
+                print(f"{program.id} pid={proc.pid} pgid={program.pgid} exec_cmd='{program.exec_cmd}'")
             except FileNotFoundError as e:
-                logging.error(f"Couldn't execute {program.exec_tuple}: {e}")
+                logging.error(f"{program.exec_cmd}: {e}")
                 continue
-            async with STARTING_PROGRAMS_LOCK:
-                programs = STARTING_PROGRAMS.setdefault(workspace, set())
-                programs.add(program)
 
-    async with STARTING_PROGRAMS_LOCK:
-        if len(STARTING_PROGRAMS) == 0:
+    async with lock:
+        if all(workspace.all_programs_done() for workspace in workspaces):
             return
 
     i3.on(Event.WINDOW_NEW, on_new_window)  # type: ignore
@@ -173,13 +96,8 @@ async def main(workspace_program_config, timeout):
     await asyncio.wait_for(i3.main(), timeout=timeout)
 
 
-def run(workspace_program_config, timeout):
-    asyncio.get_event_loop().run_until_complete(main(workspace_program_config, timeout))
-
-
-def run_command(command: str):
-    i3 = Connection()
-    i3.command(command)
+def run(workspaces: list[Workspace], *, timeout: float):
+    asyncio.get_event_loop().run_until_complete(spawn_programs(workspaces, timeout))
 
 
 def get_nonempty_workspaces(tree: AioCon):
@@ -199,9 +117,3 @@ def get_nonempty_workspaces(tree: AioCon):
             if len(node.nodes) > 0:
                 nonempty_workspaces.add(node.name)
     return nonempty_workspaces
-
-
-def print_i3_nodes(node: Con, depth=0):
-    print(f"{'  ' * depth}[{node.type}] {node.name}")
-    for child_node in node.nodes:
-        print_i3_nodes(child_node, depth + 1)

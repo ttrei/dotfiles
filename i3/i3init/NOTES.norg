@@ -1,8 +1,34 @@
 * TODO
 
-** Add more structure to the schema definition
+** Reliable identification of windows
 
-   Dataclasses would help, i think.
+   . (done) Write a tool for getting the pid from a window id
+   . (done) Check if the i3ipc on_new_window event contains the X11 window id. It does!
+   . (done) Store the pids of the applications we launch
+   . (done) Match windows to applications by pid instead of window name and class
+   . (done) Simplify tracking of starting programs
+
+   What if the launched application spawns another process that will actually display the window?
+   E.g., my exec-in-dir script
+   Use psutil.Process(pid).ppid() to traverse the pid tree. If subject pid found, we have a match.
+   But it's also possible that the parent process has exited and the window process has been re-parented to pid 1, right?
+   To avoid such problems, let's use the process group id instead.
+   -To create a new process group for each program, we have to execute them with shell=True.-
+   No, it doesn't actually create a new process group.
+   How can i force it? With specifying process_group=0 to the supbrocess call.
+
+** Handle multiple windows spawned by the same process
+
+   E.g., when firefox restores the previous session.
+   In this case each window has the same pid.
+
+   Need ability to specify timeout (per program) after which we no longer wait for extra windows to spawn.
+
+** Rewrite all schemas to the new config format
+
+** Extract the xwinpid tool into a separate repository
+
+   Add a flake.nix so i can specify it in my dotfiles/flake.nix.
 
 ** More readable workspace configuration files
 
@@ -18,3 +44,22 @@
 
    Would be nice to declare only the final layout, and then i3init would generate the necessary i3 commands.
    Is this feasible?
+
+* Useful snippets
+
+  @code
+  from i3ipc import Con
+
+  def print_i3_nodes(node: Con, depth=0):
+      print(f"{'  ' * depth}[{node.type}] {node.name}")
+      for child_node in node.nodes:
+          print_i3_nodes(child_node, depth + 1)
+  @end
+
+  @code
+  from i3ipc import Connection
+
+  def run_command(command: str):
+      i3 = Connection()
+      i3.command(command)
+  @end
