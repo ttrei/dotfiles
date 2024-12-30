@@ -1,6 +1,53 @@
 * TODO
 
-** Reliable identification of windows
+** Rewrite all schemas to the new config format
+
+** Extract the xwinpid tool into a separate repository
+
+   Add a flake.nix so i can specify it in my dotfiles/flake.nix.
+
+** (on hold) Why aren't all firefox windows moved to their workspaces?
+
+   The correct i3 commands were issued:
+   @code
+   67daf164-e968-4c63-98f6-93eafc8883cc pid=37301 pgid=37301 exec_cmd='firefox'
+   on_new_window: e.container.id=441892752 hex(e.container.id)='0x1a56bf90' window_id=33554453 hex(window_id)='0x2000015' window_name='Mozilla Firefox' window_class='firefox' window_pid=37301 window_pgid=37301
+   67daf164-e968-4c63-98f6-93eafc8883cc matched window_name='Mozilla Firefox' window_class='firefox' window_id=33554453 window_pid=37301 window_pgid=37301
+   67daf164-e968-4c63-98f6-93eafc8883cc e.container.id=441892752 hex(e.container.id)='0x1a56bf90' window_id=33554453 hex(window_id)='0x2000015' move to workspace 300:firefox0
+   on_new_window: e.container.id=441388496 hex(e.container.id)='0x1a4f0dd0' window_id=33554493 hex(window_id)='0x200003d' window_name='Mozilla Firefox' window_class='firefox' window_pid=37301 window_pgid=37301
+   on_new_window: e.container.id=441106720 hex(e.container.id)='0x1a4ac120' window_id=33554504 hex(window_id)='0x2000048' window_name='Mozilla Firefox' window_class='firefox' window_pid=37301 window_pgid=37301
+   67daf164-e968-4c63-98f6-93eafc8883cc matched window_name='Mozilla Firefox' window_class='firefox' window_id=33554493 window_pid=37301 window_pgid=37301
+   67daf164-e968-4c63-98f6-93eafc8883cc e.container.id=441388496 hex(e.container.id)='0x1a4f0dd0' window_id=33554493 hex(window_id)='0x200003d' move to workspace 300:firefox1
+   on_new_window: e.container.id=441496480 hex(e.container.id)='0x1a50b3a0' window_id=33554515 hex(window_id)='0x2000053' window_name='Mozilla Firefox' window_class='firefox' window_pid=37301 window_pgid=37301
+   67daf164-e968-4c63-98f6-93eafc8883cc matched window_name='Mozilla Firefox' window_class='firefox' window_id=33554504 window_pid=37301 window_pgid=37301
+   67daf164-e968-4c63-98f6-93eafc8883cc e.container.id=441106720 hex(e.container.id)='0x1a4ac120' window_id=33554504 hex(window_id)='0x2000048' move to workspace 300:firefox2
+   67daf164-e968-4c63-98f6-93eafc8883cc matched window_name='Mozilla Firefox' window_class='firefox' window_id=33554515 window_pid=37301 window_pgid=37301
+   67daf164-e968-4c63-98f6-93eafc8883cc e.container.id=441496480 hex(e.container.id)='0x1a50b3a0' window_id=33554515 hex(window_id)='0x2000053' move to workspace 300:firefox3
+   @end
+   But one container was not moved to 300:firefox0, it stayed in the workspace where i called i3init.
+
+   How to debug:
+   https://i3wm.org/docs/debugging.html
+   i3-msg 'debuglog on; shmlog on; reload'
+   DISPLAY=:0 i3-dump-log > i3.log
+
+   Update: cannot reproduce it anymore
+
+** (done) Handle multiple windows spawned by the same process
+
+   E.g., when firefox restores the previous session.
+   In this case each window has the same pid.
+
+   Need ability to specify timeout (per program) after which we no longer wait for extra windows to spawn.
+   In this case it is harder to know when a program has started.
+   Probably need to poll periodically to see if the timeout has expired.
+   This should also be the place where we check if all programs have started.
+   Can we do the polling in an async method that will run together with i3.main()?
+
+   For some programs we could also specify the expected number of windows.
+   The timeout and expected number of windows should be mutually exclusive attributes.
+
+** (done) Reliable identification of windows
 
    . (done) Write a tool for getting the pid from a window id
    . (done) Check if the i3ipc on_new_window event contains the X11 window id. It does!
@@ -17,27 +64,12 @@
    No, it doesn't actually create a new process group.
    How can i force it? With specifying process_group=0 to the supbrocess call.
 
-** Handle multiple windows spawned by the same process
-
-   E.g., when firefox restores the previous session.
-   In this case each window has the same pid.
-
-   Need ability to specify timeout (per program) after which we no longer wait for extra windows to spawn.
-
-** Rewrite all schemas to the new config format
-
-** Extract the xwinpid tool into a separate repository
-
-   Add a flake.nix so i can specify it in my dotfiles/flake.nix.
-
-** More readable workspace configuration files
+** (maybe) Declarative config
 
    I don't like configuring them in python, would like to use a declarative config format.
 
    But with python configuration there is a potential feature where one could specify an arbitrary callback function to
    modify the workspace layout after windows have been created.
-
-** Declarative layouts
 
    Currently it's possible to define consistent layouts by specifying i3 commands to be executed after all windows of a
    workspace have been created.
