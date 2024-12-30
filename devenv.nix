@@ -5,7 +5,7 @@
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  packages = [ pkgs.git pkgs.ruff ];
 
   # https://devenv.sh/languages/
   # languages.rust.enable = true;
@@ -42,8 +42,9 @@
   pre-commit.hooks = {
     shellcheck.enable = true;
     # lint+format Python code
-    ruff.enable = true;
-    ruff-format.enable = true;
+    # TODO: Find out a way to make the hook use our ruff.toml
+    # ruff.enable = true;
+    # ruff-format.enable = true;
   };
 
   # See full reference at https://devenv.sh/reference/options/

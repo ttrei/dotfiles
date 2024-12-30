@@ -6,6 +6,10 @@
 
    Add a flake.nix so i can specify it in my dotfiles/flake.nix.
 
+** Ability to match by window class and/or window name
+
+   VSCode creates a new process group on its own, so we can't match the window to the process group created by i3init.
+
 ** (on hold) Why aren't all firefox windows moved to their workspaces?
 
    The correct i3 commands were issued:

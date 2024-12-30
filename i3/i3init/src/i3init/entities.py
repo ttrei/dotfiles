@@ -44,6 +44,7 @@ class Program:
 class Workspace:
     name: str
     programs: list[Program] = field(default_factory=list)
+    commands_done: bool = False
 
     def with_programs(self, *programs: Program):
         for program in programs:
@@ -51,5 +52,5 @@ class Workspace:
         self.programs.extend(programs)
         return self
 
-    def done(self):
+    def programs_done(self):
         return all(program.done for program in self.programs)
