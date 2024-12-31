@@ -83,6 +83,7 @@
     pyright
     python3Packages.python-lsp-server
     python3Packages.pylsp-rope
+    qutebrowser
     redshift
     ripgrep
     unstable.ripgrep-all
