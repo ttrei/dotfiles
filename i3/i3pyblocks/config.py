@@ -15,7 +15,6 @@ from pathlib import Path
 from typing import Optional, Tuple
 
 import psutil
-
 from i3pyblocks import Runner, blocks, types, utils
 from i3pyblocks._internal import misc
 from i3pyblocks.blocks import datetime as datetime_block
@@ -85,7 +84,7 @@ class RemoteSummaryBlock(blocks.PollingBlock):
         if low_space:
             low_space = " ".join(low_space)
             full_text += f" space({low_space})"
-            short_text += f" space"
+            short_text += " space"
             color = types.Color.WARN
 
         memtotal = memory["total"]
@@ -95,11 +94,11 @@ class RemoteSummaryBlock(blocks.PollingBlock):
         percent = memavail / memtotal * 100
         if percent < 5:
             full_text += f" memory({memavail}M/{memtotal}M)"
-            short_text += f" mem"
+            short_text += " mem"
             color = types.Color.WARN
         if swaptotal > 0 and swaptotal - swapfree > 1024:
             full_text += f" swapping({swaptotal - swapfree}M)"
-            short_text += f" swap"
+            short_text += " swap"
             color = types.Color.WARN
 
         mtime = datetime.fromisoformat(host_data["mtime"])
@@ -267,13 +266,14 @@ async def main():
 
     hostname = socket.gethostname()
 
-    # Upgrade count
-    await runner.register_block(
-        UpgradeCountBlock(
-            hostname=hostname,
-            path="/var/tmp/upgrade_counts.json",
-        )
-    )
+    # # FIXME
+    # # Upgrade count
+    # await runner.register_block(
+    #     UpgradeCountBlock(
+    #         hostname=hostname,
+    #         path="/var/tmp/upgrade_counts.json",
+    #     )
+    # )
 
     # Summary of remote machines
     if hostname == "jupiter":
