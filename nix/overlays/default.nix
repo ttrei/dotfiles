@@ -12,7 +12,7 @@
   # https://github.com/Misterio77/nix-config/blob/d39c4bfa163ab6ecccf2affded0a3e5ad4b8cc7b/overlays/default.nix
   modifications = final: prev: {
     bazarr = final.unstable.bazarr;
-    jackett = final.unstable.jackett;
+    # jackett = final.unstable.jackett;
     navidrome = final.unstable.navidrome;
     sonarr = final.unstable.sonarr;
     radarr = final.unstable.radarr.overrideAttrs (oldAttrs: rec {
