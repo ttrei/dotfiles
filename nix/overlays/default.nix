@@ -15,13 +15,14 @@
     # jackett = final.unstable.jackett;
     navidrome = final.unstable.navidrome;
     sonarr = final.unstable.sonarr;
-    radarr = final.unstable.radarr.overrideAttrs (oldAttrs: rec {
-      version = "4.4.2.6956";
-      src = prev.fetchurl {
-        url = "https://github.com/Radarr/Radarr/releases/download/v${version}/Radarr.develop.${version}.linux-core-x64.tar.gz";
-        sha256 = "sha256-DVVBJC7gGjlF9S3KI0+9kh4EzDEoWsC2jJxD8khbN2c=";
-      };
-    });
+    radarr = final.unstable.radarr;
+    # radarr = final.unstable.radarr.overrideAttrs (oldAttrs: rec {
+    #   version = "4.4.2.6956";
+    #   src = prev.fetchurl {
+    #     url = "https://github.com/Radarr/Radarr/releases/download/v${version}/Radarr.develop.${version}.linux-core-x64.tar.gz";
+    #     sha256 = "sha256-DVVBJC7gGjlF9S3KI0+9kh4EzDEoWsC2jJxD8khbN2c=";
+    #   };
+    # });
 
     comma = final.unstable.comma;
 
