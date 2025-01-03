@@ -12,6 +12,7 @@
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [ "mt7921u" ];
   boot.kernelModules = ["kvm-amd"];
+  boot.extraModulePackages = [ pkgs.mt7921-kernel-module ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

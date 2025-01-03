@@ -1,0 +1,34 @@
+--- a/drivers/net/wireless/mediatek/mt76/usb.c
++++ b/drivers/net/wireless/mediatek/mt76/usb.c
+@@ -772,6 +772,7 @@
+ 		if (!q)
+ 			continue;
+
++		spin_lock(&q->lock);
+ 		while (q->queued > 0) {
+ 			if (!q->entry[q->tail].done)
+ 				break;
+@@ -779,11 +780,13 @@
+ 			entry = q->entry[q->tail];
+ 			q->entry[q->tail].done = false;
+
++			spin_unlock(&q->lock);
+ 			mt76_queue_tx_complete(dev, q, &entry);
++			spin_lock(&q->lock);
+ 		}
+-
+ 		if (!q->queued)
+ 			wake_up(&dev->tx_wait);
++		spin_unlock(&q->lock);
+
+ 		mt76_worker_schedule(&dev->tx_worker);
+ 	}
+@@ -923,7 +926,7 @@
+ 		return lmac_queue_map[ac];
+ 	}
+
+-	return mt76_ac_to_hwq(ac);
++	return mt76_chip(dev) == 0x7961 ? 0 : mt76_ac_to_hwq(ac);
+ }
+
+ static int mt76u_alloc_tx(struct mt76_dev *dev)
