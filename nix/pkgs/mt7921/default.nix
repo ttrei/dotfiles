@@ -31,6 +31,7 @@ pkgs.stdenv.mkDerivation {
       modules_install
   '';
 
+  # https://github.com/morrownr/USB-WiFi/issues/410
   patches = [ ./spinlock-fix.patch ];
 
   meta = {
