@@ -67,7 +67,6 @@
     feh
     font-awesome
     fzf
-    ghostty
     gnumeric
     gron
     i3

@@ -12,6 +12,7 @@
     evince
     firefox
     font-awesome
+    ghostty
     glxinfo
     i3pyblocks
     # inkscape
