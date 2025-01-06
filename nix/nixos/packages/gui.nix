@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     unstable.anki
     chromium
+    dbeaver-bin
     djview
     dmenu
     evince
@@ -14,6 +15,7 @@
     font-awesome
     ghostty
     glxinfo
+    gnumeric
     i3pyblocks
     # inkscape
     kdiff3
@@ -22,10 +24,13 @@
     # picard
     python3Packages.i3ipc
     unstable.qbittorrent
+    qutebrowser
+    redshift
     rofi
     signal-desktop
     st
     vlc
+    # whatsapp-for-linux
     xbindkeys
     xdotool
     xfce.thunar

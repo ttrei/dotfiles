@@ -56,7 +56,6 @@
     barrier
     bat
     comma
-    dbeaver-bin
     unstable.delta
     unstable.devenv
     # diffoscope
@@ -67,7 +66,6 @@
     feh
     font-awesome
     fzf
-    gnumeric
     gron
     htop
     i3
@@ -85,8 +83,6 @@
     pyright
     python3Packages.python-lsp-server
     python3Packages.pylsp-rope
-    qutebrowser
-    redshift
     ripgrep
     unstable.ripgrep-all
     sd
@@ -95,7 +91,6 @@
     stylua
     unstable.superhtml
     unstable.uv
-    # whatsapp-for-linux
     zathura
     zoxide
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
