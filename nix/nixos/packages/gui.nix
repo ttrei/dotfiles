@@ -23,6 +23,7 @@
     python3Packages.i3ipc
     unstable.qbittorrent
     rofi
+    signal-desktop
     st
     vlc
     xbindkeys

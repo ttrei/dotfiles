@@ -69,7 +69,9 @@
     fzf
     gnumeric
     gron
+    htop
     i3
+    moreutils
     ncdu
     nethogs
     nodejs-slim
@@ -88,7 +90,7 @@
     ripgrep
     unstable.ripgrep-all
     sd
-    signal-desktop
+    shellcheck
     starship
     stylua
     unstable.superhtml
