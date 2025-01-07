@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# https://github.com/microsoft/wslg/issues/1244#issuecomment-2111712565
+ln -sf  /mnt/wslg/runtime-dir/wayland-* "$XDG_RUNTIME_DIR/"
+ghostty

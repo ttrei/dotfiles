@@ -76,9 +76,11 @@ ln -s "$DOTFILES/terminal/starship2.toml" "$STAGINGDIR/.config/starship2.toml"
 ln -s "$DOTFILES/terminal/starship.toml" "$STAGINGDIR/.config/starship.toml"
 ln -s "$DOTFILES/terminal/tmux.conf" "$STAGINGDIR/.tmux.conf"
 ln -s "$DOTFILES/terminal/xfce4terminalrc" "$STAGINGDIR/.config/xfce4/terminal/terminalrc"
-ln -s "$DOTFILES/terminal/ghostty" "$STAGINGDIR/.config/ghostty/config"
 if [ "$EXECUTION_ENV" = "wsl" ]; then
-    ln -sf "$DOTFILES/terminal/ghostty-wsl" "$STAGINGDIR/.config/ghostty/config"
+    ln -s "$DOTFILES/terminal/ghostty-wsl" "$STAGINGDIR/.config/ghostty/config"
+    ln -s "$DOTFILES/terminal/bin/ghostty-wrapped" "$STAGINGDIR/bin/ghostty-wrapped"
+else
+    ln -s "$DOTFILES/terminal/ghostty" "$STAGINGDIR/.config/ghostty/config"
 fi
 
 mkdir -p "$STAGINGDIR/.bash_aliases"
