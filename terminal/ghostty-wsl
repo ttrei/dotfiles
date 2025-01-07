@@ -70,4 +70,4 @@ palette = 14=#689d69
 palette = 15=#7c6f64
 font-size = 11
 font-feature = -calt
-gtk-titlebar = false
+gtk-titlebar = true
