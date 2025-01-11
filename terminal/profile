@@ -29,6 +29,11 @@ then
     . "$HOME/.anthropic-api-key"
 fi
 
+if [ -e "$HOME/.deepseek-api-key" ]
+then
+    . "$HOME/.deepseek-api-key"
+fi
+
 if [ -e "$HOME/.openexchangerates-app-id" ]
 then
     . "$HOME/.openexchangerates-app-id"
