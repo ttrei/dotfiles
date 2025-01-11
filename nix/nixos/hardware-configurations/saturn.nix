@@ -9,10 +9,13 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # Use newer kernel to fix issues mt7921u driver.
+  # https://github.com/morrownr/USB-WiFi/issues/410#issuecomment-2603169056
+  # TODO: Remove when switching to nixos 25.05
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
+
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [ "mt7921u" ];
   boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [ pkgs.mt7921-kernel-module ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
