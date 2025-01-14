@@ -1,5 +1,6 @@
 # Python
 src/i3init.egg-info/
+build/
 
 # Devenv
 .devenv*

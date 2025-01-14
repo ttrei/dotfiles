@@ -1,0 +1,4 @@
+- model_id: deepseek
+  model_name: deepseek-coder
+  api_base: "https://api.deepseek.com"
+  api_key_name: deepseek

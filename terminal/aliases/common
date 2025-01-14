@@ -7,6 +7,9 @@ fi
 
 alias e='describe-environment.sh $?'
 
+# llm
+alias llmd='llm -m deepseek --key $DEEPSEEK_API_KEY'
+
 # Safe rm
 alias rm='rm --preserve-root'
 
