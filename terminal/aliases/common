@@ -8,6 +8,7 @@ fi
 alias e='describe-environment.sh $?'
 
 # llm
+alias llm='llm -m deepseek --key $DEEPSEEK_API_KEY'
 alias llmd='llm -m deepseek --key $DEEPSEEK_API_KEY'
 
 # Safe rm
