@@ -4,8 +4,6 @@ anyio==4.4.0
     # via httpx
 asttokens==2.4.1
     # via stack-data
-backports-tarfile==1.2.0
-    # via jaraco-context
 black==24.4.2
     # via -r requirements.in
 brotli==1.1.0
@@ -55,8 +53,6 @@ idna==3.7
     #   httpx
     #   hyperlink
     #   requests
-importlib-metadata==7.1.0
-    # via keyring
 ipython==8.25.0
     # via -r requirements.in
 isort==5.13.2
@@ -159,8 +155,6 @@ traitlets==5.14.3
     #   matplotlib-inline
 trove-classifiers==2024.5.22
     # via hatchling
-typing-extensions==4.12.2
-    # via ipython
 urllib3==2.2.1
     # via
     #   requests
@@ -168,9 +162,7 @@ urllib3==2.2.1
 userpath==1.9.2
     # via hatch
 uv==0.2.11
-    # via
-    #   -r requirements.in
-    #   hatch
+    # via hatch
 virtualenv==20.26.2
     # via hatch
 wcwidth==0.2.13
@@ -181,7 +173,5 @@ youtube-dl==2021.12.17
     # via -r requirements.in
 yt-dlp==2024.5.27
     # via -r requirements.in
-zipp==3.19.2
-    # via importlib-metadata
 zstandard==0.22.0
     # via hatch
