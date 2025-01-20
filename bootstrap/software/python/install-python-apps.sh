@@ -19,3 +19,9 @@ uv pip install -r "$SCRIPT_DIR/requirements.txt"
 uv pip install --editable ~/dotfiles/i3/i3init
 
 uv tool install llm
+
+if ! [ -d /tmp/chimeracat ]; then
+    git clone https://github.com/scottvr/chimeracat.git /tmp/chimeracat
+fi
+uv tool install /tmp/chimeracat
+
