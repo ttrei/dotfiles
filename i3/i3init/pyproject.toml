@@ -20,19 +20,23 @@ classifiers = [
 ]
 dependencies = [
   "i3ipc",
+  "python-rofi-phfn",
 ]
-version = "0.0.2"
+version = "0.0.3-dev"
 
 [license]
 file = "LICENSE.txt"
 
-# [project.scripts]
-# i3init = "i3init.cli:main_cli"
+[project.scripts]
+i3init = "i3init.cli:main_cli"
 
 # [project.urls]
 # Documentation = "https://github.com/unknown/i3init#readme"
 # Issues = "https://github.com/unknown/i3init/issues"
 # Source = "https://github.com/unknown/i3init"
+
+[tool.uv]
+package = true
 
 [tool.pyright]
 include = ["src", "tests"]

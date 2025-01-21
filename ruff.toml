@@ -1,5 +1,9 @@
 # https://docs.astral.sh/ruff/configuration/
 
+exclude = [
+    "web/qutebrowser",
+]
+
 line-length = 120
 
 [lint]

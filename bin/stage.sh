@@ -253,6 +253,8 @@ ln -s "$DOTFILES/language-servers/clangd/config.yaml" "$STAGINGDIR/.config/clang
 
 # WEB
 ln -s "$DOTFILES/web/userChrome.css" "$STAGINGDIR/.config/userChrome.css"
+mkdir -p "$STAGINGDIR/.config/qutebrowser"
+ln -s "$DOTFILES/web/qutebrowser/config-dev-home-site.py" "$STAGINGDIR/.config/qutebrowser/config-dev-home-site.py"
 
 # CLANG-FORMAT
 ln -s "$DOTFILES/clang-format/clang-format" "$STAGINGDIR/.clang-format"

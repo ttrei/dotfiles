@@ -54,7 +54,7 @@ pycryptodomex==3.20.0
     # via yt-dlp
 pygments==2.18.0
     # via ipython
-python-rofi==1.0.1
+python-rofi-phfn==1.0.3
     # via -r requirements.in
 python-xlib==0.33
     # via i3ipc
@@ -72,8 +72,6 @@ traitlets==5.14.3
     # via
     #   ipython
     #   matplotlib-inline
-typing-extensions==4.12.2
-    # via ipython
 urllib3==2.2.1
     # via
     #   requests

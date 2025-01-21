@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 import os
 
-import click
-import i3init
-
 TIMEOUT = 5.0
 
 HOME = os.path.expanduser("~")
@@ -51,17 +48,3 @@ CONFIG = {
     #     ],
     # },
 }
-
-
-@click.command()
-@click.argument("program")
-def main(program: str):
-    if program not in CONFIG:
-        raise ValueError(f"{program=} not found in config.")
-    workspace = list(CONFIG[program].keys())[0]
-    i3init.run_command(f"workspace {workspace}")
-    i3init.run(CONFIG[program], TIMEOUT)
-
-
-if __name__ == "__main__":
-    main()

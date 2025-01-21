@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 import os
 
-import i3init
-from rofi import Rofi
-
 TIMEOUT = 5.0
 
 HOME = os.path.expanduser("~")
@@ -96,21 +93,3 @@ I3SCHEMAS = {
     "dotfiles": I3SCHEMA_DOTFILES,
     "upgrade": I3SCHEMA_UPGRADE,
 }
-
-
-def main(i3schemas):
-    rofi = Rofi()
-    options = list(i3schemas.keys())
-    index, key = rofi.select("Select workspace configuration", options)
-    if key == -1:  # Selection canceled
-        return
-    config_key = options[index]
-    i3schemas = i3schemas[config_key]
-
-    workspace = list(i3schemas.keys())[0]
-    i3init.run_command(f"workspace {workspace}")
-    i3init.run(i3schemas, TIMEOUT)
-
-
-if __name__ == "__main__":
-    main(I3SCHEMAS)

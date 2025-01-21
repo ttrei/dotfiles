@@ -47,9 +47,10 @@ async def on_new_window(i3: AioConnection, e: WindowEvent):
         matched_program.containers.append(e.container)
 
 
-async def spawn_programs(workspaces: list[Workspace], timeout: float):
+async def spawn_programs(workspaces: list[Workspace], timeout: float, debug: bool):
     i3 = await AioConnection(auto_reconnect=True).connect()
     i3.on(Event.WINDOW_NEW, on_new_window)  # type: ignore
+    await i3.command(f"workspace {workspaces[0].name}")
 
     future_check_done = asyncio.ensure_future(check_done(workspaces, i3))
 
@@ -70,9 +71,12 @@ async def spawn_programs(workspaces: list[Workspace], timeout: float):
         for program in workspace.programs:
             async with lock:
                 try:
-                    proc = await asyncio.create_subprocess_shell(
-                        program.cmd, process_group=0, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
-                    )
+                    if debug:
+                        proc = await asyncio.create_subprocess_shell(program.cmd, process_group=0)
+                    else:
+                        proc = await asyncio.create_subprocess_shell(
+                            program.cmd, process_group=0, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL
+                        )
                     program.pgid = os.getpgid(proc.pid)
                     print(f"{program.id} created pid={proc.pid} pgid={program.pgid} cmd='{program.cmd}'")
                 except FileNotFoundError as e:
@@ -80,7 +84,7 @@ async def spawn_programs(workspaces: list[Workspace], timeout: float):
                     continue
 
     async with lock:
-        if all(workspace.done() for workspace in workspaces):
+        if all(workspace.programs_done() for workspace in workspaces):
             future_check_done.cancel()
             return
 
@@ -95,7 +99,7 @@ async def check_done(workspaces: list[Workspace], i3: AioConnection):
             for program in PROGRAMS:
                 program.check_done()
             for workspace in workspaces:
-                if not workspace.done():
+                if not workspace.programs_done() or workspace.commands_done:
                     continue
                 print(f"All programs in workspace {workspace.name} started")
                 for program in workspace.programs:
@@ -104,14 +108,19 @@ async def check_done(workspaces: list[Workspace], i3: AioConnection):
                             continue
                         print(f"{program.id} {command}")
                         await program.containers[0].command(command)
-            if all(workspace.done() for workspace in workspaces):
+                workspace.commands_done = True
+            if all(workspace.programs_done() and workspace.commands_done for workspace in workspaces):
                 print("All programs done, exiting")
                 i3.main_quit()
                 return
 
 
-def run(workspaces: list[Workspace], *, timeout: float):
-    asyncio.run(spawn_programs(workspaces, timeout))
+def run(workspaces: list[Workspace], *, timeout: float, debug: bool = False):
+    # Using asyncio.run() or asyncio.new_event_loop().run_until_complete() prevents firefox from starting ("Exiting due to channel error.")
+    # Not sure what's going on.
+    # asyncio.get_event_loop() should log deprecation warning if event loop doesn't exist.
+    # But i don't get any warning, so probably i3ipc has created the loop already?
+    asyncio.get_event_loop().run_until_complete(spawn_programs(workspaces, timeout, debug))
 
 
 def get_nonempty_workspaces(tree: AioCon):

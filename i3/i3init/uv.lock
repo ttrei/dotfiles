@@ -3,14 +3,18 @@ requires-python = ">=3.10"
 
 [[package]]
 name = "i3init"
-version = "0.0.2"
-source = { virtual = "." }
+version = "0.0.3.dev0"
+source = { editable = "." }
 dependencies = [
     { name = "i3ipc" },
+    { name = "python-rofi-phfn" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "i3ipc" }]
+requires-dist = [
+    { name = "i3ipc" },
+    { name = "python-rofi-phfn" },
+]
 
 [[package]]
 name = "i3ipc"
@@ -22,6 +26,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/61/f3/dfab70c888d85d3e933ff4d6b351aaed0ae137a29c896e03e364de3bec94/i3ipc-2.2.1.tar.gz", hash = "sha256:e880d7d7147959ead5cb34764f08b97b41385b36eb8256e8af1ce163dbcccce8", size = 47760 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/de/30/294b07ddeccb58855c890c3ef3a951c3b0c1e2d089666d548b6a9edc39fb/i3ipc-2.2.1-py3-none-any.whl", hash = "sha256:c0b898223d50d42c90c818deb5033d1304c582755547dee7d15df3e3781bc690", size = 26591 },
+]
+
+[[package]]
+name = "python-rofi-phfn"
+version = "1.0.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f3/53/135df465dea013b97edf726dbec6ab553f032a11e649a540998e9c34256f/python-rofi-phfn-1.0.3.tar.gz", hash = "sha256:8f3a169d97773458c4780977e37be45e74a70b0dd26d3f1f25265b3799af8bed", size = 14064 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f1/fe/1163be138b2eb71cdb21a738e1ddc177416ab7d478e92a5fd1f50a83ebb5/python_rofi_phfn-1.0.3-py2.py3-none-any.whl", hash = "sha256:c6d18cb047295b4fb1f0051ddfbffc3a03f01b72ef146fa35a506fb6d0485ecb", size = 12452 },
 ]
 
 [[package]]
