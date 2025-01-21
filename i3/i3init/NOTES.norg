@@ -1,17 +1,5 @@
 * TODO
 
-** Create an executable python script
-
-   I want to install i3init with `uv tool install`.
-
-   Have to invert the calling convention - the i3init script will call the schema (currently the schema calls i3init
-   library).
-
-** Check if there are better / more maintained python rofi wrappers
-
-   https://github.com/miphreal/python-rofi-menu
-   https://github.com/astynax/pyrofi
-
 ** Rewrite all schemas to the new config format
 
 ** Extract the xwinpid tool into a separate repository
@@ -21,6 +9,11 @@
 ** Ability to match by window class and/or window name
 
    VSCode creates a new process group on its own, so we can't match the window to the process group created by i3init.
+
+** Check if there are better / more maintained python rofi wrappers
+
+   https://github.com/miphreal/python-rofi-menu
+   https://github.com/astynax/pyrofi
 
 ** (on hold) Why aren't all firefox windows moved to their workspaces?
 
@@ -48,6 +41,13 @@
    DISPLAY=:0 i3-dump-log > i3.log
 
    Update: cannot reproduce it anymore
+
+** (done) Create an executable python script
+
+   I want to install i3init with `uv tool install`.
+
+   Have to invert the calling convention - the i3init script will call the schema (currently the schema calls i3init
+   library).
 
 ** (done) Handle multiple windows spawned by the same process
 
