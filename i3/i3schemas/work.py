@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+# NOTE(2025-01-22)
+# Didn't update this script after refactoring i3init because i currently run linux at work.
+
 import os
 
 TIMEOUT = 5.0

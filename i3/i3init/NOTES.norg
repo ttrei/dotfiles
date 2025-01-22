@@ -1,7 +1,5 @@
 * TODO
 
-** Rewrite all schemas to the new config format
-
 ** Extract the xwinpid tool into a separate repository
 
    Add a flake.nix so i can specify it in my dotfiles/flake.nix.
@@ -14,6 +12,10 @@
 
    https://github.com/miphreal/python-rofi-menu
    https://github.com/astynax/pyrofi
+
+** (done) Rewrite all schemas to the new config format
+
+   Skipped work.py as i don't use it currently.
 
 ** (on hold) Why aren't all firefox windows moved to their workspaces?
 

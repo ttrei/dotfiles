@@ -1,50 +1,34 @@
 #!/usr/bin/env python3
 import os
 
+from i3init import Program, Workspace
+
 TIMEOUT = 5.0
 
 HOME = os.path.expanduser("~")
-DIR = f"{HOME}/dotfiles/bootstrap/nixos-qemu"
 
-CONFIG = {
-    "kodi": {
-        "05:kodi": [
-            # exec_list, window_name, window_class, window_handling_commands
-            ["kodi".split(), "kodi", "kodi", None],
-        ],
-    },
-    "firefox": {
-        "10:firefox": [
-            ["firefox".split(), "mozilla firefox", "firefox", None],
-        ],
-    },
-    "chromium": {
-        "15:chrome": [
-            ["chromium".split(), None, "chromium-browser", None],
-        ],
-    },
-    # NOTE: Spotify doesn't set window class or name until after it's started.
-    "spotify": {
-        "50:spotify": [
-            ["spotify".split(), "spotify", "spotify", None],
-        ],
-    },
-    "steam": {
-        "90:steam": [
-            [f"exec-in-dir {HOME} steam".split(), "steam", "steam", None],
-        ],
-    },
-    # NOTE: If we don't use "exec-in-dir", Lutris gets killed when this script exits.
-    "lutris": {
-        "91:lutris": [
-            [f"exec-in-dir {HOME} lutris".split(), "lutris", "lutris", None],
-        ],
-    },
+I3SCHEMAS = {
+    "kodi": [Workspace("05:kodi").with_programs(Program("kodi"))],
+    "firefox": [
+        Workspace("10:firefox").with_programs(Program("firefox", commands=["layout tabbed"], timeout_extra_windows=2)),
+    ],
+    "chromium": [
+        Workspace("15:chrome").with_programs(Program("chromium", commands=["layout tabbed"], timeout_extra_windows=2)),
+    ],
+    "spotify": [
+        Workspace("50:spotify").with_programs(Program("spotify")),
+    ],
+    "steam": [
+        Workspace("90:steam").with_programs(Program("exec-in-dir {HOME} steam")),
+    ],
+    "lutris": [
+        # NOTE: If we don't use "exec-in-dir", Lutris gets killed when this script exits.
+        # TODO(2025-01-22): Check if still true after the refactor.
+        Workspace("91:lutris").with_programs(Program("exec-in-dir {HOME} lutris")),
+    ],
     # TODO: Create a script for launching retroarch.
     # Previously I used this command: steam-offline -applaunch 1118310"
-    # "retroarch": {
-    #     "92:retroarch": [
-    #         ["retroarch".split(), "retroarch", "retroarch", None],
-    #     ],
-    # },
+    "retroarch": [
+        Workspace("92:retroarch").with_programs(Program("retroarch")),
+    ],
 }

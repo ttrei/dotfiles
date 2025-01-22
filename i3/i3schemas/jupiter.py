@@ -75,155 +75,80 @@ I3SCHEMAS = {
             ),
         ),
     ],
-
-
-    # "foodbook": I3SCHEMA_FOODBOOK,
-    # "dev": I3SCHEMA_DEV,
-    # "gamedev": I3SCHEMA_GAMEDEV,
-    # "linux-programming-interface": I3SCHEMA_TLPI,
-    # "tcp": I3SCHEMA_TCP,
-    # "taukulis.lv": I3SCHEMA_TAUKULIS_LV,
-    # "anki": I3SCHEMA_ANKI,
-    # "saturn-qemu": I3SCHEMA_SATURN_QEMU,
-    # "upgrade": I3SCHEMA_UPGRADE,
+    "foodbook": [
+        Workspace("20:dev").with_programs(
+            Program(f"exec-in-dir {HOME}/dev/projects/foodbook ghostty", commands=["move left"]),
+            Program(
+                f"exec-in-dir {HOME}/dev/projects/foodbook ghostty",
+                commands=["move right", "move right", "split vertical", "layout stacking"],
+            ),
+            Program(
+                f"exec-in-dir {HOME}/dev/projects/foodbook ghostty", commands=["move right", "resize set width 70 ppt"]
+            ),
+        ),
+    ],
+    "dev": [
+        Workspace("20:dev").with_programs(
+            Program(f"exec-in-dir {HOME}/dev ghostty", commands=["move left"]),
+            Program(
+                f"exec-in-dir {HOME}/dev ghostty",
+                commands=["move right", "move right", "split vertical", "layout stacking"],
+            ),
+            Program(f"exec-in-dir {HOME}/dev ghostty", commands=["move right", "resize set width 70 ppt"]),
+        ),
+    ],
+    "gamedev": [
+        Workspace("20:dev").with_programs(
+            Program(f"exec-in-dir {HOME}/dev/learn/godot ghostty", commands=["move left"]),
+            Program(
+                f"exec-in-dir {HOME}/dev/learn/godot ghostty",
+                commands=["move right", "move right", "split vertical", "layout stacking"],
+            ),
+            Program(f"exec-in-dir {HOME}/dev/learn/godot ghostty", commands=["move right", "resize set width 70 ppt"]),
+        ),
+        Workspace("22:godot").with_programs(
+            Program("godot4", commands=["floating toggle", "layout tabbed"]), Program("firefox")
+        ),
+    ],
+    "linux-programming-interface": [
+        Workspace("15:doc").with_programs(Program("zathura /media/storage-new/books/LinuxProgrammingInterface.pdf")),
+        Workspace("20:dev").with_programs(
+            Program(f"exec-in-dir {HOME}/dev/learn/zig/linux_programming_interface ghostty"),
+            Program(f"exec-in-dir {HOME}/dev/learn/zig/linux_programming_interface ghostty"),
+        ),
+        Workspace("25:vscode").with_programs(
+            Program(f"code {HOME}/.config/vscode-workspaces/linux_programming_interface.code-workspace")
+        ),
+    ],
+    "tcp": [
+        Workspace("15:doc").with_programs(
+            Program("zathura /media/storage-new/Stevens-TCP_IP_Illustrated_Volume_1_The_Protocols_1994.pdf"),
+            Program("zathura /media/storage-new/books/LinuxProgrammingInterface.pdf"),
+        ),
+        Workspace("20:dev").with_programs(
+            Program(f"exec-in-dir {HOME}/dev/learn/tcp ghostty"), Program(f"exec-in-dir {HOME}/dev/learn/tcp ghostty")
+        ),
+        Workspace("65:wireshark").with_programs(Program("wireshark")),
+    ],
+    "taukulis.lv": [
+        Workspace("20:dev").with_programs(
+            Program(f"exec-in-dir {HOME}/dev/projects/taukulis.lv ghostty", commands=["move left"]),
+            Program(
+                f"exec-in-dir {HOME}/dev/projects/taukulis.lv ghostty",
+                commands=["split vertical", "layout stacking", "resize set width 70 ppt"],
+            ),
+        ),
+    ],
+    "anki": [
+        Workspace("69:anki").with_programs(Program("anki")),
+    ],
+    "saturn-qemu": [
+        Workspace("71:saturn-qemu").with_programs(
+            Program(f"exec-in-dir {HOME}/dotfiles/bootstrap/nixos-qemu ghostty"),
+            Program(f"{HOME}/dotfiles/bootstrap/nixos-qemu/boot-qemu.sh"),
+        ),
+    ],
+    "upgrade": [
+        Workspace("95:upgrade").with_programs(Program("ghostty")),
+    ],
 }
-
-# DIR = f"{HOME}/dev/projects/foodbook"
-# I3SCHEMA_FOODBOOK = {
-#     "20:dev": [
-#         [f"exec-in-dir {DIR} zutty".split(), "zutty-pool", "zutty", ["move left"]],
-#         [
-#             f"exec-in-dir {DIR} zutty".split(),
-#             "zutty-pool",
-#             "zutty",
-#             ["move right", "move right", "split vertical", "layout stacking"],
-#         ],
-#         [
-#             f"exec-in-dir {DIR} zutty".split(),
-#             "zutty-pool",
-#             "zutty",
-#             ["move right", "resize set width 70 ppt"],
-#         ],
-#     ],
-# }
-#
-#
-# DIR = f"{HOME}/dev"
-# I3SCHEMA_DEV = {
-#     "20:dev": [
-#         [f"exec-in-dir {DIR} zutty".split(), "zutty-dev", "zutty", ["move left"]],
-#         [
-#             f"exec-in-dir {DIR} zutty".split(),
-#             "zutty-dev",
-#             "zutty",
-#             ["move right", "move right", "split vertical", "layout stacking"],
-#         ],
-#         [
-#             f"exec-in-dir {DIR} zutty".split(),
-#             "zutty-dev",
-#             "zutty",
-#             ["move right", "resize set width 70 ppt"],
-#         ],
-#     ],
-# }
-#
-#
-# DIR = f"{HOME}/dev/learn/godot"
-# I3SCHEMA_GAMEDEV = {
-#     "20:dev": [
-#         [f"exec-in-dir {DIR} zutty".split(), "zutty-gamedev", "zutty", ["move left"]],
-#         [
-#             f"exec-in-dir {DIR} zutty".split(),
-#             "zutty-gamedev",
-#             "zutty",
-#             ["move right", "move right", "split vertical", "layout stacking"],
-#         ],
-#         [
-#             f"exec-in-dir {DIR} zutty".split(),
-#             "zutty-gamedev",
-#             "zutty",
-#             ["move right", "resize set width 70 ppt"],
-#         ],
-#     ],
-#     "22:godot": [
-#         ["godot4".split(), "godot", "godot_engine", ["floating toggle", "layout tabbed"]],
-#         ["firefox".split(), "mozilla firefox", "firefox", None],
-#     ],
-# }
-#
-#
-# DEVDIR = f"{HOME}/dev/learn/tcp"
-# BOOK = "/media/storage-new/Stevens-TCP_IP_Illustrated_Volume_1_The_Protocols_1994.pdf"
-# BOOK2 = "/media/storage-new/books/LinuxProgrammingInterface.pdf"
-# I3SCHEMA_TCP = {
-#     "15:doc": [
-#         [f"zathura {BOOK}", "org.pwmt.zathura".split(), "zathura", None],
-#         [f"zathura {BOOK2}", "org.pwmt.zathura".split(), "zathura", None],
-#     ],
-#     "20:dev": [
-#         [f"exec-in-dir {DEVDIR} zutty".split(), "zutty-tcp", "zutty", None],
-#         [f"exec-in-dir {DEVDIR} zutty".split(), "zutty-tcp", "zutty", None],
-#     ],
-#     "65:wireshark": [
-#         [f"wireshark".split(), "the wireshark network analyzer", "wireshark", None],
-#     ],
-# }
-#
-#
-# DIR_TLPI = f"{HOME}/dev/learn/zig/linux_programming_interface"
-# VSCODE_WORKSPACE_TLPI = f"{HOME}/.config/vscode-workspaces/linux_programming_interface.code-workspace"
-# BOOK = "/media/storage-new/books/LinuxProgrammingInterface.pdf"
-# I3SCHEMA_TLPI = {
-#     "15:doc": [
-#         [f"zathura {BOOK}".split(), "org.pwmt.zathura", "zathura", None],
-#     ],
-#     "20:dev": [
-#         [f"exec-in-dir {DIR_TLPI} zutty".split(), "zutty-tlpi", "zutty", None],
-#         [f"exec-in-dir {DIR_TLPI} zutty".split(), "zutty-tlpi", "zutty", None],
-#     ],
-#     "25:vscode": [
-#         [f"code {VSCODE_WORKSPACE_TLPI}".split(), "visual studio code", "code", None],
-#     ],
-# }
-#
-#
-# DIR = f"{HOME}/dev/projects/taukulis.lv"
-# I3SCHEMA_TAUKULIS_LV = {
-#     "20:dev": [
-#         [
-#             f"exec-in-dir {DIR} zutty".split(),
-#             "zutty-taukulis.lv",
-#             "zutty",
-#             ["move left"],
-#         ],
-#         [
-#             f"exec-in-dir {DIR} zutty".split(),
-#             "zutty-taukulis.lv",
-#             "zutty",
-#             ["split vertical", "layout stacking", "resize set width 70 ppt"],
-#         ],
-#     ],
-# }
-#
-#
-# I3SCHEMA_ANKI = {
-#     "69:anki": [
-#         [["anki"], "anki", "anki", None],
-#     ],
-# }
-#
-#
-# DIR = f"{HOME}/dotfiles/bootstrap/nixos-qemu"
-# I3SCHEMA_SATURN_QEMU = {
-#     "71:saturn-qemu": [
-#         [f"exec-in-dir {DIR} zutty".split(), "zutty-saturn-qemu", "zutty", None],
-#         [f"{DIR}/boot-qemu.sh".split(), "QEMU", "Qemu-system-x86_64", None],
-#     ],
-# }
-#
-#
-# I3SCHEMA_UPGRADE = {
-#     "95:upgrade": [
-#         ["zutty".split(), "zutty-upgrade", "zutty", None],
-#     ],
-# }
