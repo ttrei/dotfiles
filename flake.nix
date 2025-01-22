@@ -24,7 +24,7 @@
 
     i3pyblocks.url = "github:thiagokokada/i3pyblocks";
 
-    ghostty.url = "github:ghostty-org/ghostty";
+    # ghostty.url = "github:ghostty-org/ghostty";
 
     # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
     neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
