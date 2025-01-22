@@ -3,17 +3,16 @@
 # shellcheck source=/dev/null
 . "$HOME/.dotfiles-env"
 
-PYTHON="$HOME/.virtualenvs/misc/bin/python"
 SCHEMA_DIR="$HOME/.config/i3schemas"
 
 if [ "$CONTEXT" = "home" ]; then
     if [ "$MACHINE" = "jupiter" ]; then
-        schemas_config="$SCHEMA_DIR/jupiter.py"
+        schema="$SCHEMA_DIR/jupiter.py"
     elif [ "$MACHINE" = "saturn" ]; then
-        schemas_config="$SCHEMA_DIR/saturn.py"
+        schema="$SCHEMA_DIR/saturn.py"
     fi
 elif [ "$CONTEXT" = "work" ]; then
-    schemas_config="$SCHEMA_DIR/work.py"
+    schema="$SCHEMA_DIR/work.py"
 fi
 
-$PYTHON "$schemas_config" "$@"
+i3init "$schema" "$@"

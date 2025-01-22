@@ -170,16 +170,16 @@ ln -s "$DOTFILES/i3/bin/i3-workspaces" "$STAGINGDIR/bin/i3/i3-workspaces"
 ln -s "$DOTFILES/i3/bin/i3-volume-control" "$STAGINGDIR/bin/i3/i3-volume-control"
 if [ "$MACHINE" = "jupiter" ]; then
     if [ "$CONTEXT" = "home" ]; then
-        ln -s "$DOTFILES/i3/workspaces-jupiter.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+        ln -s "$DOTFILES/i3/workspaces/jupiter.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
         ln -s "$DOTFILES/i3/sway/config-home" "$STAGINGDIR/.config/sway/config-home"
         cat "$DOTFILES/i3/config/config-home" >> "$STAGINGDIR/.config/i3/config"
     elif [ "$CONTEXT" = "work" ]; then
-        ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+        ln -s "$DOTFILES/i3/workspaces/work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
     fi
 elif [ "$MACHINE" = "mercury" ]; then
-    ln -s "$DOTFILES/i3/workspaces-work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+    ln -s "$DOTFILES/i3/workspaces/work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
 elif [ "$MACHINE" = "saturn" ]; then
-    ln -s "$DOTFILES/i3/workspaces-saturn.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
+    ln -s "$DOTFILES/i3/workspaces/saturn.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
     ln -s "$DOTFILES/i3/sway/config-htpc" "$STAGINGDIR/.config/sway/config-htpc"
     cat "$DOTFILES/i3/config/config-htpc" >> "$STAGINGDIR/.config/i3/config"
     ln -sf "$DOTFILES/i3/i3blocks/config-htpc" "$STAGINGDIR/.config/i3blocks/config"
