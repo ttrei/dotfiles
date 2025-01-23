@@ -1,6 +1,0 @@
-# https://llm.datasette.io/en/stable/openai-models.html#adding-more-openai-models
-# https://llm.datasette.io/en/stable/other-models.html#openai-compatible-models
-- model_id: deepseek
-  model_name: deepseek-coder
-  api_base: "https://api.deepseek.com"
-  api_key_name: deepseek

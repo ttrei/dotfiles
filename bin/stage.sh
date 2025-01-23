@@ -272,7 +272,8 @@ ln -s "$DOTFILES/texmacs/my-init-texmacs.scm" "$STAGINGDIR/.config/texmacs/progs
 
 # LLM
 mkdir -p "$STAGINGDIR/.config/io.datasette.llm"
-ln -s "$DOTFILES/llm/io.datasette.llm/extra-openai-models.yaml" "$STAGINGDIR/.config/io.datasette.llm/extra-openai-models.yaml"
+ln -s "$DOTFILES/llm/io.datasette.llm/default_model.txt" "$STAGINGDIR/.config/io.datasette.llm/default_model.txt"
+
 
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"

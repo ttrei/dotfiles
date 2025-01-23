@@ -17,7 +17,10 @@ uv venv ~/.virtualenvs/misc
 uv tool install --upgrade ~/dotfiles/i3/i3init
 uv tool install --upgrade yt-dlp
 uv tool install --upgrade llm
-llm install llm-cmd
+# https://llm.datasette.io/en/stable/plugins/directory.html
+llm install --upgrade llm-cmd
+llm install --upgrade llm-deepseek
+llm install --upgrade llm-claude-3
 
 if ! [ -d /tmp/chimeracat ]; then
     git clone https://github.com/scottvr/chimeracat.git /tmp/chimeracat

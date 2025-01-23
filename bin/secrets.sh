@@ -8,3 +8,5 @@ pass os-secrets/anthropic-api-key > "$HOME"/.anthropic-api-key
 pass os-secrets/deepseek-api-key > "$HOME"/.deepseek-api-key
 pass os-secrets/openexchangerates-app-id > "$HOME"/.openexchangerates-app-id
 
+mkdir -p "$HOME"/.config/io.datasette.llm
+pass other/llm-keys.json > "$HOME"/.config/io.datasette.llm/keys.json
