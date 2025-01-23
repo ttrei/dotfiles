@@ -273,6 +273,7 @@ ln -s "$DOTFILES/texmacs/my-init-texmacs.scm" "$STAGINGDIR/.config/texmacs/progs
 # LLM
 mkdir -p "$STAGINGDIR/.config/io.datasette.llm"
 ln -s "$DOTFILES/llm/io.datasette.llm/default_model.txt" "$STAGINGDIR/.config/io.datasette.llm/default_model.txt"
+ln -s "$DOTFILES/llm/io.datasette.llm/aliases.json" "$STAGINGDIR/.config/io.datasette.llm/aliases.json"
 
 
 # OTHER
