@@ -22,6 +22,26 @@ vim.opt.undofile = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+
+-- Clipboard
+if vim.fn.has('wsl') == 1 then
+    vim.g.clipboard = {
+        name = 'WslClipboard',
+        copy = {
+            ['+'] = 'clip.exe',
+            ['*'] = 'clip.exe',
+        },
+        -- TODO: I don't want to override the paste behavior, the default is good enough, and powershell approach is slow.
+        --       Commenting this section out doesn't work.
+        paste = {
+            ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        },
+        cache_enabled = 0,
+    }
+end
+
+
 -- Other
 
 -- Allow selecting past end of line in Visual Block mode
