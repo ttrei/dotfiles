@@ -13,6 +13,9 @@
   modifications = final: prev: {
     bazarr = final.unstable.bazarr;
     # jackett = final.unstable.jackett;
+    # Disable jackett tests to avoid build failure
+    # https://github.com/NixOS/nixpkgs/issues/371837#issuecomment-2590885641
+    jackett = prev.jackett.overrideAttrs { doCheck = false; };
     navidrome = final.unstable.navidrome;
     sonarr = final.unstable.sonarr;
     radarr = final.unstable.radarr;
