@@ -10,8 +10,8 @@
     # In general, install packages from a release, not from master.
     # If there's a need, you can install a specific package from nixpkgs-unstable.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "github:ttrei/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:ttrei/nixpkgs/nixos-unstable";
     # nixpkgs-unstable.url = "github:ttrei/nixpkgs/avante-nvim-update";
     # nixpkgs-unstable.url = "git+file:///media/storage-new/nixpkgs?shallow=1";
     # nixpkgs-unstable.url = "git+file:///home/reinis/nixpkgs?shallow=1";
