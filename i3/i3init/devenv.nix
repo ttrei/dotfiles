@@ -7,7 +7,7 @@ in
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  packages = [ pkgs.git pkgs.ruff ];
 
   # https://devenv.sh/languages/
   languages.python = {

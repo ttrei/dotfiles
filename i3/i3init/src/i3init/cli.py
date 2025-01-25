@@ -16,7 +16,16 @@ def import_python_module(path: Path):
     return module
 
 
-def run(config):
+def choose_schema(schemas):
+    rofi = Rofi()
+    options = list(schemas)
+    index, key = rofi.select("Select workspace configuration", options)
+    if key == -1:  # Selection canceled
+        return
+    return options[index]
+
+
+def run(config, schema_name=None):
     if not hasattr(config, "I3SCHEMAS"):
         print("Error: the schema script must define I3SCHEMAS variable")
         return
@@ -24,22 +33,18 @@ def run(config):
     i3schemas = config.I3SCHEMAS
     timeout = getattr(config, "TIMEOUT", 5)
 
-    rofi = Rofi()
-    options = list(i3schemas.keys())
-    index, key = rofi.select("Select workspace configuration", options)
-    if key == -1:  # Selection canceled
-        return
-    config_key = options[index]
-    workspaces = i3schemas[config_key]
+    if schema_name is None:
+        schema_name = choose_schema(i3schemas.keys())
+    workspaces = i3schemas[schema_name]
 
-    # i3init.run_command(f"workspace {workspace}")
     i3init.run(workspaces, timeout=timeout)
 
 
 def main_cli():
-    parser = argparse.ArgumentParser(description="i3init workspace selector")
-    parser.add_argument("config", type=str, help="Path to Python config file")
+    parser = argparse.ArgumentParser(description="Select and run i3init schema")
+    parser.add_argument("config", type=str, help="Path to schemas config file")
+    parser.add_argument("schema", type=str, nargs="?", help="Schema name (optional)")
     args = parser.parse_args()
 
     config = import_python_module(Path(args.config))
-    run(config)
+    run(config, args.schema)
