@@ -65,5 +65,4 @@ sudo cp "$BOOTSTRAP_BASEDIR/files/01-lightdm-autologin.conf" /etc/lightdm/lightd
 # See my org notes for more info.
 sudo systemctl --global disable dunst.service
 
-~/dotfiles/bootstrap/software/install-zutty.sh
 ~/dotfiles/bootstrap/software/install-i3blocks.sh
