@@ -23,6 +23,8 @@
 
 ** Printing on NixOS
 
+   I attempted it before, unsuccessfully, see attic/0001-wip-printing-no-luck-yet.patch
+
 ** Don't deploy python __pycache__ directories
 
    Either "git clean -fd" them or copy only specific files instead of directories.

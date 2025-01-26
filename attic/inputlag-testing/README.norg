@@ -1,0 +1,7 @@
+* Attempt at comparing inputlag of Sway and Xorg
+
+  Deleted the branch - it was ancient and i couldn't use it anyway.
+  Stored the code as a patch file for future reference.
+
+  The patch should apply cleanly on the following commit:
+  46ff918ee298bb35498c036dad9ce617db27962c

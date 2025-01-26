@@ -1,0 +1,183 @@
+From d8a2ed486c67d2b41665082a3b62354e445b60d0 Mon Sep 17 00:00:00 2001
+From: Reinis Taukulis <reinis.taukulis@gmail.com>
+Date: Sun, 25 Apr 2021 12:52:00 +0300
+Subject: [PATCH] inputlag testing
+
+---
+ i3/config               |  4 ++-
+ i3/doubleblind.sh       | 74 +++++++++++++++++++++++++++++++++++++++++
+ i3/setup-testing-env.sh | 43 ++++++++++++++++++++++++
+ i3/sway/config          |  1 +
+ i3/sway/config-home     |  2 +-
+ 5 files changed, 122 insertions(+), 2 deletions(-)
+ create mode 100755 i3/doubleblind.sh
+ create mode 100755 i3/setup-testing-env.sh
+
+diff --git a/i3/config b/i3/config
+index 0c71056..2c7b3c5 100644
+--- a/i3/config
++++ b/i3/config
+@@ -137,7 +137,9 @@ bindcode $mod+67 exec --no-startup-id myrmidon.sh ~/.config/i3/commands.json
+ 
+ 
+ # Startup
+-exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
++#exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
++
++exec --no-startup-id i3-msg 'workspace 99:doubleblind; exec zutty -e /home/reinis/dotfiles/i3/setup-testing-env.sh'
+ 
+ # Assign programs to specific workspaces
+ assign [class="Bitcoin"] 80:bitcoin
+diff --git a/i3/doubleblind.sh b/i3/doubleblind.sh
+new file mode 100755
+index 0000000..9d1b338
+--- /dev/null
++++ b/i3/doubleblind.sh
+@@ -0,0 +1,74 @@
++#!/usr/bin/env bash
++
++N=8
++SETUP_TIME=2 # seconds
++
++# https://freesound.org/people/thisusernameis/sounds/426888/
++beep1="$HOME/Downloads/beep1.wav"
++# https://freesound.org/people/Eponn/sounds/528867/
++# beep2="$HOME/Downloads/beep2.wav"
++# https://freesound.org/people/florianreichelt/sounds/459992/
++beep3="$HOME/Downloads/beep3.wav"
++
++
++RESULTS_FILE=/var/tmp/doubleblind-results.txt
++SEQUENCE_FILE=/var/tmp/doubleblind-sequence.txt
++SETUP_TIMESTAMP_FILE=/tmp/doubleblind-testcase-timestamp.txt
++
++# Generate the testing sequence
++rm -f "$SEQUENCE_FILE.tmp"
++# at least one of each type
++echo "i3" >> "$SEQUENCE_FILE.tmp"
++echo "sway" >> "$SEQUENCE_FILE.tmp"
++# for a total of N+2 entries
++for i in $(seq 1 $N)
++do
++    echo "$i" > /dev/null # Shut up shellcheck
++    if [[ $((RANDOM % 2)) -eq 0 ]]; then
++        echo "i3" >> "$SEQUENCE_FILE.tmp"
++    else
++        echo "sway" >> "$SEQUENCE_FILE.tmp"
++    fi
++done
++shuf "$SEQUENCE_FILE.tmp" > "$SEQUENCE_FILE"
++
++# Perform testing
++rm -f "$RESULTS_FILE"
++while read -r line; do
++    read -rp "Turn display off, press ENTER, wait for beep, turn display on" </dev/tty
++
++    setup_finish_target_time=$(echo "$(date +%s%3N) + $SETUP_TIME*1000" | bc) # milliseconds since epoch
++    echo "$setup_finish_target_time" > "$SETUP_TIMESTAMP_FILE"
++
++    echo "$line" >> "$RESULTS_FILE"
++
++    # setup-testing-env.sh will be executed on startup
++    # (configured in i3 and sway configs)
++    if [ "i3" == "$line" ]; then
++        startx -- vt1 2>/dev/null
++    elif [ "sway" == "$line" ]; then
++        sway 1>/dev/null 2>&1
++    fi
++
++    teardown_finish_target_time=$(cat $SETUP_TIMESTAMP_FILE)
++    currenttime=$(date +%s%3N)
++    timediff=$(echo "$teardown_finish_target_time - $currenttime" | bc) # milliseconds
++    if [[ "$timediff" -gt 0 ]]; then
++        sleeptime=$(echo "scale=3; $timediff/1000" | bc -l) # seconds
++        sleep "$sleeptime"
++    fi
++
++    aplay -q "$beep3" &
++    while true; do
++        read -rp "Your guess (1=i3, 2=sway): " guess </dev/tty
++        case $guess in
++            1 ) echo "  guess: i3" >> "$RESULTS_FILE"; break;;
++            2 ) echo "  guess: sway" >> "$RESULTS_FILE"; break;;
++            * ) echo "Please answer 1 or 2";;
++        esac
++    done
++    aplay -q "$beep1" &
++done <"$SEQUENCE_FILE"
++
++echo "Results are stored in $RESULTS_FILE:"
++cat "$RESULTS_FILE"
+diff --git a/i3/setup-testing-env.sh b/i3/setup-testing-env.sh
+new file mode 100755
+index 0000000..777d5c6
+--- /dev/null
++++ b/i3/setup-testing-env.sh
+@@ -0,0 +1,43 @@
++#!/usr/bin/env bash
++
++wm=$1
++
++SETUP_TIMESTAMP_FILE=/tmp/doubleblind-testcase-timestamp.txt
++TEARDOWN_TIME=2 # seconds
++
++# https://freesound.org/people/florianreichelt/sounds/459992/
++beep3="$HOME/Downloads/beep3.wav"
++
++if [ "$wm" == "sway" ]; then
++    # center the cursor
++    #
++    # I built ydotool manually because the version available in Debian didn't
++    # support absolute positioning
++    # https://github.com/ReimuNotMoe/ydotool
++    #
++    # make sure that ydotoold is running
++    #
++    # not sure why but it moves the cursor to (2x, 2y) coordinates instead of (x, y)
++    ydotool mousemove --absolute 480 270 >/dev/null 2>&1
++fi
++
++setup_finish_target_time=$(cat $SETUP_TIMESTAMP_FILE)
++currenttime=$(date +%s%3N)
++timediff=$(echo "$setup_finish_target_time - $currenttime" | bc) # milliseconds
++if [[ "$timediff" -gt 0 ]]; then
++    sleeptime=$(echo "scale=3; $timediff/1000" | bc -l) # seconds
++    sleep "$sleeptime"
++fi
++
++windowid=$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/{print $NF}')
++winid="$(printf "%u\n" "$windowid" 2>/dev/null)"
++i3-msg -q [id="$winid"] "focus; fullscreen"
++
++aplay -q "$beep3" &
++
++read -rp "Turn display off and press ENTER to end test" </dev/tty
++
++teardown_finish_target_time=$(echo "$(date +%s%3N) + $TEARDOWN_TIME*1000" | bc) # milliseconds since epoch
++echo "$teardown_finish_target_time" > "$SETUP_TIMESTAMP_FILE"
++
++i3-msg exit
+diff --git a/i3/sway/config b/i3/sway/config
+index f6ca979..0fae9e6 100644
+--- a/i3/sway/config
++++ b/i3/sway/config
+@@ -158,5 +158,6 @@ input type:pointer {
+     pointer_accel "1.0"
+ }
+ 
++exec --no-startup-id i3-msg 'workspace 99:doubleblind; exec zutty -e /home/reinis/dotfiles/i3/setup-testing-env.sh sway'
+ 
+ include config-home
+diff --git a/i3/sway/config-home b/i3/sway/config-home
+index e572ac5..25258ca 100644
+--- a/i3/sway/config-home
++++ b/i3/sway/config-home
+@@ -1,4 +1,4 @@
+-exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
++#exec --no-startup-id i3-msg 'workspace 10:web; exec firefox'
+ 
+ assign [class="Bitcoin"] 80:bitcoin
+ assign [class="Steam"] 90:steam
+-- 
+2.47.0
+
