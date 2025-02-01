@@ -25,6 +25,7 @@
 
   environment.systemPackages = with pkgs; [
     qemu_kvm
+    jetbrains.idea-community
   ];
 
   virtualisation.docker.enable = true;
