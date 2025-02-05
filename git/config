@@ -13,6 +13,7 @@
     conflictstyle = diff3
 [rerere]
     enabled = true
+    autoUpdate = true
 [push]
     default = upstream
 [diff]
