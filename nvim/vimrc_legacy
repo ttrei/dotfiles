@@ -32,16 +32,17 @@ set nrformats=
 set textwidth=120
 " Toggle textwidth between 80 and 120 and report the new value.
 " Useful when handling files with different conventions of where to break lines.
-nnoremap <silent> <Leader>tw :call ToggleTextWidth()<cr>:set textwidth<cr>
-    function! ToggleTextWidth()
-      if(&textwidth == 80)
-        set textwidth=120
-      elseif(&textwidth == 120)
-        set textwidth=80
-      else
-        set textwidth=80
-      endif
-    endfunc
+function! ToggleTextWidth()
+  if(&textwidth == 80)
+    set textwidth=120
+  elseif(&textwidth == 120)
+    set textwidth=80
+  else
+    set textwidth=80
+  endif
+  set textwidth  " Report selected value
+endfunc
+command! ToggleTextWidth call ToggleTextWidth()
 
 filetype plugin on
 filetype indent on

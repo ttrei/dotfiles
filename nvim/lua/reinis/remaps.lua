@@ -31,11 +31,17 @@ end)
 vim.keymap.set("n", "<c-p>", function() require('fzf-lua').files({ git_icons = false }) end, { desc = "Find files using fzf" })
 
 -- Navigation
-vim.keymap.set("n", "<leader>tn", ":tabnew<cr>")
 vim.keymap.set("n", "<c-l>", ":tabnext<cr>")
 vim.keymap.set("n", "<c-h>", ":tabprevious<cr>")
 vim.keymap.set("n", "<c-s-l>", ":tabmove+1<cr>")
 vim.keymap.set("n", "<c-s-h>", ":tabmove-1<cr>")
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "norg",
+  callback = function()
+    vim.keymap.set("n", "<leader>nt", ":Neorg toggle-concealer<cr>", { buffer = true })
+  end
+})
 
 vim.keymap.set("n", "<leader>,", require("fzf-lua").buffers)
 vim.keymap.set("n", "<leader>fh", require("fzf-lua").command_history)
