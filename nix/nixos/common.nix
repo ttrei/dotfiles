@@ -52,6 +52,9 @@
     config = {
       allowUnfree = true;
 
+      # https://github.com/NixOS/nix/issues/2982#issuecomment-2477618346
+      nix.channel.enable = false;
+
       # NOTE: I think this was needed only for home-manager-based firefox.
       # packageOverrides = pkgs: {
       #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
