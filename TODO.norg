@@ -1,3 +1,17 @@
+* Annoyances
+
+** (neorg) Indentation jumps around
+
+   ~ Create new heading
+   ~ press enter, indentation is at correct level
+   ~ press enter again -> no more indentation (may have to press enter multiple times to get the effect)
+
+   After entering text and pressing escape, the text gets indented correctly.
+
+   Maybe configure format_on_enter=false?
+   https://github.com/nvim-neorg/neorg/wiki/Indent#format_on_enter
+   I think the behavior will be more consistent if it formats only on exiting insert mode.
+
 * Developer tooling
 
   Advice from matklad https://www.twitch.tv/videos/2336452629:
