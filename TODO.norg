@@ -12,6 +12,11 @@
    https://github.com/nvim-neorg/neorg/wiki/Indent#format_on_enter
    I think the behavior will be more consistent if it formats only on exiting insert mode.
 
+** Don't deploy python __pycache__ directories
+
+   Either "git clean -fd" them or copy only specific files instead of directories.
+   Encountered while developing workspace init scripts (dotfiles/i3/workspace-scripts).
+
 * Developer tooling
 
   Advice from matklad https://www.twitch.tv/videos/2336452629:
@@ -31,15 +36,9 @@
    https://ptrtojoel.dev/posts/so-you-want-to-write-java-in-neovim/
    https://news.ycombinator.com/item?id=42530991
 
-* Applications
-
 * Other
 
 ** Printing on NixOS
 
    I attempted it before, unsuccessfully, see attic/0001-wip-printing-no-luck-yet.patch
 
-** Don't deploy python __pycache__ directories
-
-   Either "git clean -fd" them or copy only specific files instead of directories.
-   Encountered while developing workspace init scripts (dotfiles/i3/workspace-scripts).
