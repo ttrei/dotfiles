@@ -2,8 +2,9 @@
 
 require('avante_lib').load()
 require('avante').setup ({
+  provider = "claude",
   -- https://github.com/yetone/avante.nvim/wiki/Custom-providers#deepseek
-  provider = "deepseek",
+  -- provider = "deepseek",
   vendors = {
     deepseek = {
       __inherited_from = "openai",
