@@ -15,6 +15,7 @@
     # nixpkgs-unstable.url = "github:ttrei/nixpkgs/avante-nvim-update";
     # nixpkgs-unstable.url = "git+file:///media/storage-new/nixpkgs?shallow=1";
     # nixpkgs-unstable.url = "git+file:///home/reinis/nixpkgs?shallow=1";
+    gallery-project.url = "git+file:///home/reinis/dev/projects/taukulis.lv?shallow=1";
 
     # home-manager release must be the same as the nixpkgs used in home-manager.
     home-manager.url = "github:nix-community/home-manager/release-24.11";

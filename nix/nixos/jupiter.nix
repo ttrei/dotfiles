@@ -15,6 +15,7 @@
     ./packages/games.nix
     ./packages/gui.nix
     ./users/reinis.nix
+    inputs.gallery-project.nixosModules.gallery-project
   ];
 
   networking.hostName = "jupiter";
@@ -65,6 +66,11 @@
   #   ''
   #     159.65.84.88 foodbook.taukulis.lv
   #   '';
+
+  services.gallery-project = {
+    enable = true;
+    # Other configuration options...
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
