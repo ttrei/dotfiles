@@ -102,48 +102,6 @@ if ! [ -x "$(command -v delta)" ]; then
     export GIT_PAGER=less
 fi
 
-# Eternal bash history
-# Inspired by:
-# http://stackoverflow.com/questions/9457233/unlimited-bash-history
-# https://superuser.com/a/1436733
-#
-# Features:
-# - Writes the executed command immediately to ~/.bash_eternal_history.
-#   Therefore, newly created shell has access to the history of currently open shells, as it was at
-#   the moment the new shell was created.
-#   When shells run in parallel, commands executed in them won't cross-pollute.
-# - ~/.bash_eternal_history is periodically de-duplicated by external python script.
-# - Doesn't use default history location because bash may truncate it upon close:
-#   http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
-# - logs the session to ~/.bash_eternal_history_log for future reference.
-# TODO:
-# - Check out https://github.com/atuinsh/atuin
-# - Upload the session logs to a central server, merge into one file
-# - Make it easy to download the merged session log and fuzzy-find commands in it
-# - How to log a command that immediately exits the shell? e.g. systemctl poweroff
-export HISTFILE=~/.bash_eternal_history
-# Unlimited size
-export HISTFILESIZE=-1
-export HISTSIZE=-1
-
-session_id=$(tr -dc 'a-f0-9' < /dev/urandom 2>/dev/null | head -c16)
-session_history_log="$HOME/.bash_eternal_history_log"
-
-last_logged_command_number=""
-function log_previous_command() {
-    # Have to remember last logged command number to avoid repeatedly logging the same command
-    # when entering blank command.
-    previous_command_numbered=$(history 1 | sed -E 's/^[[:space:]]*//')
-    previous_command=$(echo "$previous_command_numbered" | sed -E 's/^[[:digit:]]+[[:space:]]+//')
-    previous_command_number=$(echo "$previous_command_numbered" | cut -d' ' -f1)
-    if [ "$last_logged_command_number" != "$previous_command_number" ]; then
-        echo "# [$(date '+%Y-%m-%d %H:%M')][$(hostname)][$session_id]" >> "$session_history_log"
-        echo "$previous_command" >> "$session_history_log"
-        last_logged_command_number="$previous_command_number"
-    fi
-}
-PROMPT_COMMAND="log_previous_command; history -a; $PROMPT_COMMAND"
-
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # Inspired by https://github.com/nix-community/nix-direnv/wiki/Shell-integration
