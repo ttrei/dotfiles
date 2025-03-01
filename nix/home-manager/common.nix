@@ -120,7 +120,7 @@
   programs.direnv = {
     enable = true;
     stdlib = builtins.readFile includes/direnvrc;
-    enableBashIntegration = true; # see note on other shells below
+    enableBashIntegration = true;
     nix-direnv.enable = true;
   };
 
