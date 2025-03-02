@@ -118,6 +118,7 @@
 
   programs.atuin = {
     enable = true;
+    package = pkgs.unstable.atuin;
     enableBashIntegration = true;
     enableNushellIntegration = true;
   };
