@@ -1,8 +1,9 @@
 if [ -x "$(command -v fzf-share)" ]; then
     # shellcheck source=/dev/null
     source "$(fzf-share)/completion.bash"
+    # 2025-03-02: disabled, as i don't seem to use any of these bindings
     # shellcheck source=/dev/null
-    source "$(fzf-share)/key-bindings.bash"
+    # source "$(fzf-share)/key-bindings.bash"
 fi
 
 export FZF_CTRL_R_OPTS='--sort'
