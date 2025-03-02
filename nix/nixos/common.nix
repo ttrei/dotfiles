@@ -12,6 +12,12 @@
     "services/misc/jackett.nix"
     "services/misc/radarr.nix"
     "services/misc/sonarr.nix"
+    # TODO
+    # As of 2025-03-02, in nixpkgs master the modules have been moved.
+    # Replace the two lines above with these when deployment starts failing with errors like
+    # error: The option `services.sonarr.enable' in .../sonarr.nix is already declared in .../sonarr.nix'.
+    # "services/misc/servarr/radarr.nix"
+    # "services/misc/servarr/sonarr.nix"
   ];
 
   imports = [
@@ -25,8 +31,8 @@
     "${inputs.nixpkgs-unstable}/nixos/modules/services/audio/navidrome.nix"
     "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/bazarr.nix"
     "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/jackett.nix"
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/radarr.nix"
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/sonarr.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/servarr/radarr.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/servarr/sonarr.nix"
   ];
 
   nixpkgs = {
