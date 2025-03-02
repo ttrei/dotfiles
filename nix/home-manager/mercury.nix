@@ -17,5 +17,5 @@
     python310Packages.pgsanity
   ];
 
-  programs.bash.enable = false;
+  programs.bash.enable = true;
 }
