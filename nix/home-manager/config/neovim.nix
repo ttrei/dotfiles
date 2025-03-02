@@ -41,7 +41,6 @@
           make
           markdown
           nix
-          org
           query # required by nvim-treesitter
           python
           sql
