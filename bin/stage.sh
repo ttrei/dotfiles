@@ -48,6 +48,7 @@ mkdir -p "$STAGINGDIR/.config/htop"
 mkdir -p "$STAGINGDIR/.config/xfce4/terminal"
 mkdir -p "$STAGINGDIR/.config/ncdu"
 mkdir -p "$STAGINGDIR/.config/ghostty"
+mkdir -p "$STAGINGDIR/.config/atuin"
 if [ "$DISTRO" = "nixos" ] || [ "$MACHINE" == "mercury" ]; then
     ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc.legacy"
     ln -s "$DOTFILES/terminal/bash_nixos" "$STAGINGDIR/.bash_nixos"
@@ -57,6 +58,7 @@ else
     ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc"
     ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile"
 fi
+ln -s "$DOTFILES/terminal/atuin/config.toml" "$STAGINGDIR/.config/atuin/config.toml"
 ln -s "$DOTFILES/terminal/bash_fzf" "$STAGINGDIR/.bash_fzf"
 ln -s "$DOTFILES/terminal/bin/describe-environment.sh" "$STAGINGDIR/bin/describe-environment.sh"
 ln -s "$DOTFILES/terminal/bin/fzf-search-contents.sh" "$STAGINGDIR/bin/fzf-search-contents.sh"
