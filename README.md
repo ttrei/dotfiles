@@ -39,6 +39,13 @@ rm -rf ~/.config/home-manager
 apply-users.sh
 ```
 
+Set up shell history:
+``` shell
+pass other/atuin.sh
+atuin login
+atuin sync
+```
+
 ## Deployment target configuration variables
 
 DISTRO
