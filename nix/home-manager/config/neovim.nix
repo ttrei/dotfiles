@@ -129,6 +129,7 @@
         vim-visual-star-search
         vim-asciidoc-folding
 
+        img-clip-nvim
         avante-nvim
       ];
   };
