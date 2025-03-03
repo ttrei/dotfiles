@@ -119,6 +119,9 @@
   programs.atuin = {
     enable = true;
     package = pkgs.unstable.atuin;
+    flags = [
+      "--disable-up-arrow"
+    ];
     enableBashIntegration = true;
     enableNushellIntegration = true;
   };
