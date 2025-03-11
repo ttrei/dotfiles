@@ -113,9 +113,6 @@
         # vim-javascript
         # vim-markdown
 
-        ### other
-        vim-beancount
-
         # # 2024-12-25: Disabled fastfold because it caused duplicate avante sidebar panels
         # fastfold
 
