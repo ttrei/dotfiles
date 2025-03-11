@@ -125,6 +125,7 @@
         vim-table-mode
         vim-visual-star-search
         vim-asciidoc-folding
+        nvim-surround
 
         img-clip-nvim
         avante-nvim

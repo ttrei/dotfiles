@@ -1,3 +1,4 @@
+require("reinis.editing")
 require("reinis.options")
 require("reinis.colors")
 require("reinis.filetype")
