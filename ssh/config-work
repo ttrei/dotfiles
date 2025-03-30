@@ -2,6 +2,11 @@
 #    RemoteForward 127.0.0.1:3333 127.0.0.1:3333
 #
 
+# Fix ghostty
+# https://ghostty.org/docs/help/terminfo#configure-ssh-to-fall-back-to-a-known-terminfo-entry
+Host *
+  SetEnv TERM=xterm-256color
+
 # https://www.openssh.com/txt/release-8.8
 # See "Potentially-incompatible changes".
 # The alternative to this config is to use a key with different algorithm, e.g.,
