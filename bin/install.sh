@@ -5,6 +5,7 @@ set -o errexit
 uv tool install --reinstall ~/dotfiles/i3/i3init
 uv tool install --upgrade yt-dlp
 uv tool install --upgrade llm
+uv tool install --upgrade files-to-prompt
 
 if ! [ -d /tmp/chimeracat ]; then
     git clone https://github.com/scottvr/chimeracat.git /tmp/chimeracat
