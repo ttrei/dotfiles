@@ -18,3 +18,5 @@ uv tool install --reinstall /tmp/chimeracat
 
 # https://llm.datasette.io/en/stable/plugins/directory.html
 llm install --force-reinstall llm-cmd llm-deepseek llm-claude-3
+
+uv tool install --upgrade --python python3.12 aider-chat
