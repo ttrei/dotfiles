@@ -34,17 +34,17 @@ I3SCHEMAS = {
             ),
         ),
     ],
-    "home-site": [
+    "home.taukulis.lv": [
         Workspace("200:home-site-dev").with_programs(
-            Program(f"exec-in-dir {HOME}/dev/projects/homelab/home_site ghostty", commands=["move left"]),
+            Program(f"exec-in-dir {HOME}/dev/projects/home.taukulis.lv ghostty", commands=["move left"]),
             Program(
-                f"exec-in-dir {HOME}/dev/projects/homelab/home_site ghostty",
+                f"exec-in-dir {HOME}/dev/projects/home.taukulis.lv ghostty",
                 commands=["split vertical", "layout stacking", "resize set width 70 ppt"],
             ),
         ),
-        Workspace("201:home-site-browser").with_programs(
-            Program(f"qutebrowser --config-py {HOME}/.config/qutebrowser/config-dev-home-site.py"),
-        ),
+        # Workspace("201:home-site-browser").with_programs(
+        #     Program(f"qutebrowser --config-py {HOME}/.config/qutebrowser/config-dev-home-site.py"),
+        # ),
     ],
     "algorithms": [
         Workspace("210:algorithms-doc").with_programs(
