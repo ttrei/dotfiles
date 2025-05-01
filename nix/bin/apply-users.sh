@@ -11,7 +11,7 @@ fi
 if [ "$CONTEXT" = "work" ]; then
     if [ "$MACHINE" = "jupiter" ]; then
         command="home-manager switch --flake $HOME/dotfiles#reinis@jupiter-work"
-    elif [ "$MACHINE" = "mercury" ] && [ "$EXECUTION_ENV" = "wsl" ]; then
+    elif [ "$MACHINE" = "mercury" ]; then
         command="home-manager switch --flake $HOME/dotfiles#reinis@mercury"
     fi
 else

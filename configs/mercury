@@ -1,4 +1,4 @@
-export DISTRO=debian
+export DISTRO=ubuntu
 export CONTEXT=work
 export MACHINE=mercury
-export EXECUTION_ENV=wsl
+export EXECUTION_ENV=baremetal
