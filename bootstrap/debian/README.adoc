@@ -65,7 +65,7 @@ git clone ssh://reinis@taukulis.lv/home/reinis/gitrepos/dotfiles.git
 
 ....
 cd ~
-git clone ssh://reinis@taukulis.lv:/home/reinis/.password-store.git
+git clone git@taukulis.lv:pass.git ~/.password-store
 ....
 
 Export Passwords key from another machine
