@@ -11,14 +11,12 @@
   ];
 
   home.packages = with pkgs; [
-    jetbrains.idea-community
-    jetbrains.pycharm-community
+    jetbrains.idea-community-bin
+    jetbrains.pycharm-community-bin
     kubectl
     kubelogin-oidc
     k9s
     python310Packages.pgsanity
-    # teams # proprietary
-    teams-for-linux # open-source fork
   ];
 
   programs.bash.enable = false;

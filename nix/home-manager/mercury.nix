@@ -11,6 +11,8 @@
   ];
 
   home.packages = with pkgs; [
+    jetbrains.idea-community-bin
+    jetbrains.pycharm-community-bin
     kubectl
     kubelogin-oidc
     k9s
