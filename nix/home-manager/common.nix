@@ -92,6 +92,7 @@
     stylua
     unstable.superhtml
     unstable.uv
+    xclip
     zathura
     zoxide
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
