@@ -50,7 +50,8 @@
   };
 
   home.packages = with pkgs; [
-    unstable.aider-chat-full
+    # TODO: re-enable when bug fixed: https://github.com/NixOS/nixpkgs/issues/402089
+    # unstable.aider-chat-full
     alejandra
     # https://github.com/debauchee/barrier
     # In the future I should use input-leap instead: https://github.com/input-leap/input-leap
