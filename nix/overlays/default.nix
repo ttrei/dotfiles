@@ -34,9 +34,8 @@
 
     jetbrains = final.unstable.jetbrains;
 
-    # need neovim 0.10 for neorg, nixpkgs-24.05 has 0.9
-    neovim-unwrapped = final.unstable.neovim-unwrapped;
-    vimPlugins = final.unstable.vimPlugins;
+    # neovim-unwrapped = final.unstable.neovim-unwrapped;
+    # vimPlugins = final.unstable.vimPlugins;
 
     # arcanPackages = prev.arcanPackages.overrideScope' (finalScope: prevScope: {
     #   arcan = prevScope.arcan.overrideAttrs (finalAttrs: prevAttrs: {
