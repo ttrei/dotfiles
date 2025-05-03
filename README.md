@@ -71,15 +71,15 @@ EXECUTION_ENV
 ## Hosts
 
 charon: Android phone (the actual hostname is different, didn't try to change it)
-eris: Raspberry Pi 1 (CA server), (static dhcp ip 192.168.8.42, mac B8:27:EB:CB:3A:E6)
+eris: Raspberry Pi 1 (CA server), (static dhcp ip 192.168.1.42, mac B8:27:EB:CB:3A:E6)
 jupiter: Desktop workstation (NixOS)
 jupiter-work: Desktop workstation (Ubuntu)
 mercury: Work laptop (Debian WSL)
 neptune: Digitalocean VPS, taukulis.lv, 142.93.226.85 (previously 159.65.84.88)
-pluto: Raspberry Pi 4, (static dhcp ip 192.168.8.201, mac D8:3A:DD:AF:8F:B9)
-saturn: HTPC (NixOS), (static dhcp ip 192.168.8.205, mac 90:DE:80:02:B4:07)
+pluto: Raspberry Pi 4, (static dhcp ip 192.168.1.201, mac D8:3A:DD:AF:8F:B9)
+saturn: HTPC (NixOS), (static dhcp ip 192.168.1.205, mac 90:DE:80:02:B4:07)
 
-printer-brother (static dhcp ip 192.168.8.215, mac A8:6B:AD:18:5A:5D)
+printer-brother (static dhcp ip 192.168.1.215, mac A8:6B:AD:18:5A:5D)
 router: 192.168.1.254
 
 ### Available hostnames
