@@ -30,7 +30,7 @@ curl -L https://releases.nixos.org/nix/nix-2.13.0/install | sh -s -- --daemon
 Install home-manager:
 ``` shell
 # TODO: Check if these instructions work on NixOS.
-echo "192.168.1.201   pluto.local" | sudo tee -a /etc/hosts
+echo "192.168.8.201   pluto.local" | sudo tee -a /etc/hosts
 echo "trusted-users = reinis" | sudo tee -a /etc/nix/nix.conf
 sudo systemctl restart nix-daemon.service
 mkdir -p ~/.local/state/nix/profiles
