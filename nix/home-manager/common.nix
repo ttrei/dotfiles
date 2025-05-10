@@ -95,6 +95,7 @@
     unstable.uv
     xclip
     zathura
+    zed-editor
     zoxide
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
   ];
