@@ -9,7 +9,6 @@ $git_branch\
 $git_commit\
 $container\
 $memory_usage\
-$sudo\
 $line_break\
 $jobs\
 $character"""
@@ -49,11 +48,6 @@ threshold = 95
 # symbol = ""
 style = "bold dimmed red"
 format = "[${ram}( | ${swap})]($style) "
-
-[sudo]
-style = "bold blue"
-disabled = false
-format = "[sudo]($style)"
 
 [jobs]
 number_threshold = 1
