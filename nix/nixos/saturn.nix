@@ -24,7 +24,7 @@
       # https://mullvad.net/en/account/wireguard-config
       # Put the private key in a file at the privateKeyFile path.
       # Put the "wireguard key" in publicKey.
-      autostart = true;
+      autostart = false;
       address = ["10.65.121.209/32"];
       dns = ["10.64.0.1"];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
@@ -52,7 +52,28 @@
       ]);
   };
 
-  services.transmission.enable = true;
+  # https://wiki.nixos.org/w/index.php?title=Rtorrent&oldid=19406
+  services.rtorrent = {
+    enable = true;
+    port = 51412;
+    # currently (2024-12-30) rtorrent 0.15.0 in nixpkgs unstable is incompatible with flood, this is why a fork is used
+    package = pkgs.jesec-rtorrent;
+    openFirewall = true;
+  };
+  services.flood = {
+    enable = true;
+    package = pkgs.unstable.flood;
+    host = "0.0.0.0";
+    port = 8112;
+    openFirewall = true;
+    # NOTE: This didn't work, had to specify the socket (/run/rtorrent/rpc.sock) in ui.
+    extraArgs = ["--rtsocket=${config.services.rtorrent.rpcSocket}"];
+  };
+  # allow access to the socket by putting it in the same group as rtorrent service
+  # the socket will have g+w permissions
+  systemd.services.flood.serviceConfig.SupplementaryGroups = [ config.services.rtorrent.group ];
+
+  services.transmission.enable = false;
   services.transmission.package = pkgs.transmission_4;
   services.transmission.settings = {
     # https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
