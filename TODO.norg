@@ -1,5 +1,20 @@
 * Annoyances
 
+** Migrate from transmission to rtorrent/flood
+
+   Used this as example:
+   https://wiki.nixos.org/wiki/Rtorrent
+
+   Registered a user in the flood ui.
+   Specified socket /run/rtorrent/rpc.sock.
+
+   Connected radarr to flood.
+   https://github.com/jesec/flood/wiki/List-of-unofficial-API-integrations
+
+   Radarr sends something to flood but it doesn't start downloading.
+   Maybe because vpn not enabled?
+   Have to solve the dns issues when vpn enabled.
+
 ** (neorg) Indentation jumps around
 
    ~ Create new heading
