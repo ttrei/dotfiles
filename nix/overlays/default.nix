@@ -16,7 +16,7 @@
     # Disable jackett tests to avoid build failure
     # https://github.com/NixOS/nixpkgs/issues/371837#issuecomment-2590885641
     jackett = prev.jackett.overrideAttrs { doCheck = false; };
-    navidrome = final.unstable.navidrome;
+    # navidrome = final.unstable.navidrome;
     sonarr = final.unstable.sonarr;
     radarr = final.unstable.radarr;
     # radarr = final.unstable.radarr.overrideAttrs (oldAttrs: rec {

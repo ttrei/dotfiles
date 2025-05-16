@@ -118,15 +118,15 @@
     listenPort = 6767;
   };
 
-  services.navidrome = {
-    enable = true;
-    settings = {
-      # https://www.navidrome.org/docs/usage/configuration-options/
-      Address = "0.0.0.0";
-      Port = 4533;
-      MusicFolder = "/media/Storage/music";
-    };
-  };
+  # services.navidrome = {
+  #   enable = true;
+  #   settings = {
+  #     # https://www.navidrome.org/docs/usage/configuration-options/
+  #     Address = "0.0.0.0";
+  #     Port = 4533;
+  #     MusicFolder = "/media/Storage/music";
+  #   };
+  # };
 
   networking.firewall.allowedTCPPorts = [
     4533 # navidrome

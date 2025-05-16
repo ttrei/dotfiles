@@ -7,7 +7,7 @@
   ...
 }: {
   disabledModules = [
-    "services/audio/navidrome.nix"
+    # "services/audio/navidrome.nix"
     "services/misc/bazarr.nix"
     "services/misc/jackett.nix"
     "services/misc/radarr.nix"
@@ -28,7 +28,7 @@
     # inputs.hardware.nixosModules.common-cpu-amd
     # inputs.hardware.nixosModules.common-ssd
 
-    "${inputs.nixpkgs-unstable}/nixos/modules/services/audio/navidrome.nix"
+    # "${inputs.nixpkgs-unstable}/nixos/modules/services/audio/navidrome.nix"
     "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/bazarr.nix"
     "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/jackett.nix"
     "${inputs.nixpkgs-unstable}/nixos/modules/services/misc/servarr/radarr.nix"
