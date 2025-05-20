@@ -12,6 +12,7 @@
 
   home.packages = with pkgs; [
     dbeaver-bin
+    docker-compose
     jetbrains.idea-community-bin
     jetbrains.pycharm-community-bin
     kubectl
