@@ -27,3 +27,8 @@ nnoremap <silent> <C-n> :call NumberToggle()<cr>
         set number
       endif
     endfunc
+
+" Disable the bell sound
+" https://superuser.com/a/677312
+set visualbell
+set noerrorbells
