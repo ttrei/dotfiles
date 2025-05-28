@@ -19,21 +19,21 @@
   networking.hostName = "saturn";
 
   networking.wg-quick.interfaces = {
+    # Mullvad device "robust tiger"
     wg-mullvad = {
       # Generate config here:
       # https://mullvad.net/en/account/wireguard-config
       # Put the private key in a file at the privateKeyFile path.
       # Put the "wireguard key" in publicKey.
       autostart = false;
-      address = ["10.65.121.209/32"];
+      address = ["10.73.249.174/32"];
       dns = ["10.64.0.1"];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
       peers = [
         {
-          publicKey = "kdBRXq4EKEBfdYkfjbuiZ8Jxd7bp8pFY9D6UFNDKUWk=";
+          publicKey = "94qIvXgF0OXZ4IcquoS7AO57OV6JswUFgdONgGiq+jo=";
           allowedIPs = ["0.0.0.0/0"];
-          # se21-wireguard
-          endpoint = "45.83.220.68:51820";
+          endpoint = "185.65.135.69:51820";
         }
       ];
     };
