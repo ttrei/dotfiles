@@ -21,7 +21,12 @@
   networking.hostName = "saturn-qemu";
 
   networking.wg-quick.interfaces = {
+    # Mullvad device ??? (deleted)
     wg-mullvad = {
+      # Generate config here:
+      # https://mullvad.net/en/account/wireguard-config
+      # Put the private key in a file at the privateKeyFile path.
+      # Put the "wireguard key" in publicKey.
       autostart = true;
       address = ["10.66.33.143/32"];
       dns = ["10.64.0.1"];
@@ -30,7 +35,6 @@
         {
           publicKey = "XscA5gebj51nmhAr6o+aUCnMHWGjbS1Gvvd0tuLRiFE=";
           allowedIPs = ["0.0.0.0/0"];
-          # se23-wireguard
           endpoint = "45.83.220.70:51820";
         }
       ];

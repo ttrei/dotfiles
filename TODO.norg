@@ -14,6 +14,8 @@
    Radarr sends something to flood but it doesn't start downloading.
    Maybe because vpn not enabled?
    Have to solve the dns issues when vpn enabled.
+   Update: Re-generated the wireguard config here https://mullvad.net/en/account/wireguard-config.
+   Now dns seems to work.
 
 ** (neorg) Indentation jumps around
 
