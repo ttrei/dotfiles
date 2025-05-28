@@ -44,6 +44,7 @@
   services.transmission.enable = true;
   services.transmission.package = pkgs.transmission_4;
   services.transmission.settings = {
+    # https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
     dht-enabled = true;
     download-queue-enabled = true;
     download-queue-size = 20;
@@ -57,6 +58,7 @@
     prefetch-enabled = true;
     ratio-limit = 3;
     ratio-limit-enabled = true;
+    rename-partial-files = true;
     rpc-authentication-required = true;
     rpc-bind-address = "0.0.0.0";
     rpc-enabled = true;
@@ -106,7 +108,7 @@
   #   enable = true;
   #   settings = {
   #     # https://www.navidrome.org/docs/usage/configuration-options/
-  #     Address = "127.0.0.1";
+  #     Address = "0.0.0.0";
   #     Port = 4533;
   #     MusicFolder = "/home/reinis/music";
   #   };
@@ -205,6 +207,9 @@
     };
   };
   networking.firewall.allowPing = true;
+
+  # i3-volume-control expects pulseaudio
+  services.pipewire.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -1,22 +1,5 @@
 * Annoyances
 
-** Migrate from transmission to rtorrent/flood
-
-   Used this as example:
-   https://wiki.nixos.org/wiki/Rtorrent
-
-   Registered a user in the flood ui.
-   Specified socket /run/rtorrent/rpc.sock.
-
-   Connected radarr to flood.
-   https://github.com/jesec/flood/wiki/List-of-unofficial-API-integrations
-
-   Radarr sends something to flood but it doesn't start downloading.
-   Maybe because vpn not enabled?
-   Have to solve the dns issues when vpn enabled.
-   Update: Re-generated the wireguard config here https://mullvad.net/en/account/wireguard-config.
-   Now dns seems to work.
-
 ** (neorg) Indentation jumps around
 
    ~ Create new heading
@@ -33,6 +16,82 @@
 
    Either "git clean -fd" them or copy only specific files instead of directories.
    Encountered while developing workspace init scripts (dotfiles/i3/workspace-scripts).
+
+** (skip) Migrate from transmission to rtorrent
+
+   Used this as example on how to integrate with the flood ui:
+   https://wiki.nixos.org/wiki/Rtorrent
+
+   Registered a user in the flood ui.
+   Specified socket /run/rtorrent/rpc.sock.
+
+   Connected radarr to flood.
+   https://github.com/jesec/flood/wiki/List-of-unofficial-API-integrations
+
+   Radarr sends something to flood but it doesn't start downloading.
+   Maybe because vpn not enabled?
+   Have to solve the dns issues when vpn enabled.
+   Update: Re-generated the wireguard config here https://mullvad.net/en/account/wireguard-config.
+   Now dns seems to work.
+
+   Maybe flood is not the way to go.
+   Seems too complex and unmaintained.
+   Will try to go with rutorrent https://github.com/Novik/ruTorrent.
+
+   Managed to bring it up (port 9292).
+   Left to do:
+   - Connect kodi with rtorrent/rutorrent.
+   - Resolve any filesystem permission issues between rtorrent and rutorrent.
+
+   Update:
+   Ran into some problems connecting kodi to rtorrent.
+   The downloads also didn't start consistently.
+
+   This was my config that barely worked:
+   @code
+   services.rtorrent = {
+     enable = true;
+     user = "reinis";
+     group = "users";
+     port = 51412;
+     package = pkgs.jesec-rtorrent;
+     openFirewall = true;
+     downloadDir = "/media/Storage/rtorrent";
+     configText = ''log.add_output = "debug", "log"'';
+   };
+
+   services.nginx = {
+     enable = true;
+     virtualHosts."myrutorrent" = {
+       enableACME = false;
+       addSSL = false;
+       listen = [
+         {
+           addr = "0.0.0.0";
+           port = 9292;
+         }
+       ];
+     };
+   };
+
+   services.rutorrent = {
+     enable = true;
+     hostName = "myrutorrent";
+     nginx.enable = true;
+   };
+
+   networking.firewall.allowedTCPPorts = [
+     9292 # rutorrent UI
+   ];
+   networking.firewall.allowedUDPPorts = [
+     6881 # rutorrent DHT
+   ];
+   @end
+
+   Went back to transmission, seems to be working fine.
+   Now i don't remember why i wanted to ditch transmission.
+
+
 
 * Developer tooling
 
