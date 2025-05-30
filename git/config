@@ -100,3 +100,6 @@
 
 [includeIf "hasconfig:remote.*.url:**/*cvs.konts.lv*/**"]
     path = ~/.config/git/config-work
+
+[includeIf "hasconfig:remote.*.url:**/*bitbucket.irpc.int.tietoevry.com*/**"]
+    path = ~/.config/git/config-work
