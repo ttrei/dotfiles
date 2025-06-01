@@ -10,10 +10,10 @@ HOME = os.path.expanduser("~")
 
 I3SCHEMAS = {
     "init": [
-        Workspace("05:notes").with_programs(
-            Program(f"exec-in-dir {HOME}/dev/notes ghostty", commands=["move left"]),
-            Program("emacs &", commands=["resize set width 70 ppt"]),
-        ),
+        # Workspace("05:notes").with_programs(
+        #     Program(f"exec-in-dir {HOME}/dev/notes ghostty", commands=["move left"]),
+        #     Program("emacs &", commands=["resize set width 70 ppt"]),
+        # ),
         Workspace("10:browser").with_programs(Program("firefox", commands=["layout tabbed"], timeout_extra_windows=2)),
     ],
     "dotfiles": [
