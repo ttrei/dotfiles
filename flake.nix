@@ -30,7 +30,6 @@
     # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
     neorg-overlay = {
       url = "github:nvim-neorg/nixpkgs-neorg-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
