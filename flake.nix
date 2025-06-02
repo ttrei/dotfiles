@@ -26,7 +26,6 @@
     };
     i3pyblocks = {
       url = "github:thiagokokada/i3pyblocks";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
     neorg-overlay = {
