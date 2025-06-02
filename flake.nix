@@ -10,30 +10,29 @@
     # In general, install packages from a release, not from master.
     # If there's a need, you can install a specific package from nixpkgs-unstable.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "github:ttrei/nixpkgs/nixos-unstable";
-    # nixpkgs-unstable.url = "github:ttrei/nixpkgs/avante-nvim-update";
-    # nixpkgs-unstable.url = "git+file:///media/storage-new/nixpkgs?shallow=1";
-    # nixpkgs-unstable.url = "git+file:///home/reinis/nixpkgs?shallow=1";
-
-    # home-manager release must be the same as the nixpkgs used in home-manager.
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    # You can change this to "nixpkgs-unstable" to use latest home-manager.
-    # Then you also have to change nixpkgs to nixpkgs-unstable in homeConfigurations below.
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    i3pyblocks.url = "github:thiagokokada/i3pyblocks";
-
-    # ghostty.url = "github:ghostty-org/ghostty";
-
+    nixpkgs-unstable = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+      # url = "github:ttrei/nixpkgs/nixos-unstable";
+      # url = "github:ttrei/nixpkgs/avante-nvim-update";
+      # url = "git+file:///media/storage-new/nixpkgs?shallow=1";
+      # url = "git+file:///home/reinis/nixpkgs?shallow=1";
+    };
+    home-manager = {
+      # home-manager release must be the same as the nixpkgs used in home-manager.
+      url = "github:nix-community/home-manager/release-24.11";
+      # You can change this to "nixpkgs-unstable" to use latest home-manager.
+      # Then you also have to change nixpkgs to nixpkgs-unstable in homeConfigurations below.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    i3pyblocks = {
+      url = "github:thiagokokada/i3pyblocks";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
-    neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
-
-    # hardware.url = "github:nixos/nixos-hardware";
-
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
+    neorg-overlay = {
+      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
