@@ -24,13 +24,9 @@
       # Then you also have to change nixpkgs to nixpkgs-unstable in homeConfigurations below.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    i3pyblocks = {
-      url = "github:thiagokokada/i3pyblocks";
-    };
+    i3pyblocks.url = "github:thiagokokada/i3pyblocks";
     # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
-    neorg-overlay = {
-      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
-    };
+    neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
 
   outputs = {
