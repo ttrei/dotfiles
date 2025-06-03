@@ -59,6 +59,7 @@
     bat
     comma
     unstable.delta
+    unstable.difftastic
     unstable.devenv
     # diffoscope
     direnv
