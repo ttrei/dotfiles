@@ -35,14 +35,14 @@ I3SCHEMAS = {
         ),
     ],
     "home.taukulis.lv": [
-        Workspace("200:home-site-dev").with_programs(
+        Workspace("200:home.taukulis.lv-dev").with_programs(
             Program(f"exec-in-dir {HOME}/dev/projects/home.taukulis.lv ghostty", commands=["move left"]),
             Program(
                 f"exec-in-dir {HOME}/dev/projects/home.taukulis.lv ghostty",
                 commands=["split vertical", "layout stacking", "resize set width 70 ppt"],
             ),
         ),
-        # Workspace("201:home-site-browser").with_programs(
+        # Workspace("201:home.taukulis.lv-browser").with_programs(
         #     Program(f"qutebrowser --config-py {HOME}/.config/qutebrowser/config-dev-home-site.py"),
         # ),
     ],
@@ -131,7 +131,7 @@ I3SCHEMAS = {
         Workspace("65:wireshark").with_programs(Program("wireshark")),
     ],
     "taukulis.lv": [
-        Workspace("20:dev").with_programs(
+        Workspace("210:taukulis.lv-dev").with_programs(
             Program(f"exec-in-dir {HOME}/dev/projects/taukulis.lv ghostty", commands=["move left"]),
             Program(
                 f"exec-in-dir {HOME}/dev/projects/taukulis.lv ghostty",
