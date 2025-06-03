@@ -101,6 +101,16 @@
   - When using a tool, figure out how the authors *meant* it to be used, see if it works for you
   - For writing useful little scripts for yourself, the main enemy is *activation energy*
 
+** (git) Try out mergiraf
+
+   https://mergiraf.org/introduction.html
+   https://codeberg.org/mergiraf/mergiraf
+
+** (git) Try out difftastic
+
+   https://difftastic.wilfred.me.uk/
+   https://github.com/Wilfred/difftastic
+
 ** (neovim) One shortcut to navigate many kinds of lists
 
    There should be a way to select which list to navigate (errors, search results, uncommitted changes, conflicts, etc.)
