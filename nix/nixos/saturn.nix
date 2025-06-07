@@ -223,6 +223,7 @@
   networking.firewall.allowPing = true;
 
   # i3-volume-control expects pulseaudio
+  services.pulseaudio.enable = true;
   services.pipewire.enable = false;
 
   # This value determines the NixOS release from which the default

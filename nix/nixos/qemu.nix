@@ -16,6 +16,8 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
 
+  services.pulseaudio.enable = false;
+
   networking.hostName = "nixos-qemu";
 
   # This value determines the NixOS release from which the default

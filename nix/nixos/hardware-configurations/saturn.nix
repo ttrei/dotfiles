@@ -52,8 +52,6 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  hardware.pulseaudio.enable = true;
-
   # To automatically switch USB WiFi receiver from CDROM mode to wifi mode
   hardware.usb-modeswitch.enable = true;
 
