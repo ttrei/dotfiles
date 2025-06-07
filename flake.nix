@@ -96,7 +96,10 @@
         in
         {
           default = nixpkgs.legacyPackages.${system}.mkShell {
-            inherit (self.checks.${system}.pre-commit-check) shellHook;
+            shellHook = ''
+              ${self.checks.${system}.pre-commit-check.shellHook}
+              git config --local blame.ignoreRevsFile .git-blame-ignore-revs
+            '';
             buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
             nativeBuildInputs = with pkgs; [
               nix
