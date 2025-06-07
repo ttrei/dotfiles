@@ -85,6 +85,8 @@
           src = ./.;
           hooks = {
             nixfmt-rfc-style.enable = true;
+            ruff-format.enable = true;
+            ruff.enable = true;
           };
         };
       });

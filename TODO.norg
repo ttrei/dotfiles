@@ -101,9 +101,23 @@
   - When using a tool, figure out how the authors *meant* it to be used, see if it works for you
   - For writing useful little scripts for yourself, the main enemy is *activation energy*
 
-** Add some pre-commit hooks
+** (pre-commit) Exclude some python files from the ruff hooks
 
-   https://github.com/cachix/git-hooks.nix
+   I'm using https://github.com/cachix/git-hooks.nix to get pre-commit hooks.
+   Here's the implementation of the ruff hook:
+   https://github.com/cachix/git-hooks.nix/blob/80479b6ec16fefd9c1db3ea13aeb038c60530f46/modules/hooks.nix#L3666
+
+   There's an official pre-commit plugin for ruff:
+   https://github.com/astral-sh/ruff-pre-commit
+   It uses the --force-exclude flag for ruff commands.
+   @code
+   --force-exclude
+          Enforce exclusions, even for paths passed to Ruff directly on the command-line. Use `--no-force-exclude` to disable
+   @end
+   Looks like this is what i want.
+
+   TODO: Try to create a custom hook or modify the one from git-hooks.nix - add the --force-exclude option.
+   If it works as expected, create a PR in git-hooks.nix repo.
 
 ** (git) Try out mergiraf
 
@@ -125,6 +139,10 @@
 
    https://ptrtojoel.dev/posts/so-you-want-to-write-java-in-neovim/
    https://news.ycombinator.com/item?id=42530991
+
+** (done) Add some pre-commit hooks
+
+   https://github.com/cachix/git-hooks.nix
 
 * Other
 
