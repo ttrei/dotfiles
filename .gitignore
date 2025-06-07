@@ -4,9 +4,6 @@ xfce4terminal/terminal/accels.scm
 
 .direnv/
 .staging/
-# Devenv
-.devenv*
-devenv.local.nix
 
 # direnv
 .direnv
