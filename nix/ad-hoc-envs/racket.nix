@@ -1,4 +1,5 @@
-with import <nixpkgs> {}; {
+with import <nixpkgs> { };
+{
   sdlEnv = stdenv.mkDerivation {
     name = "racket";
     buildInputs = [

@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./common.nix
     ./hardware-configurations/qemu.nix
@@ -28,13 +29,13 @@
       # Put the private key in a file at the privateKeyFile path.
       # Put the "wireguard key" in publicKey.
       autostart = true;
-      address = ["10.66.33.143/32"];
-      dns = ["10.64.0.1"];
+      address = [ "10.66.33.143/32" ];
+      dns = [ "10.64.0.1" ];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
       peers = [
         {
           publicKey = "XscA5gebj51nmhAr6o+aUCnMHWGjbS1Gvvd0tuLRiFE=";
-          allowedIPs = ["0.0.0.0/0"];
+          allowedIPs = [ "0.0.0.0/0" ];
           endpoint = "45.83.220.70:51820";
         }
       ];
@@ -123,23 +124,35 @@
 
   security.sudo.extraRules = [
     {
-      users = ["reinis"];
+      users = [ "reinis" ];
       commands = [
         {
           command = "/run/current-system/sw/bin/systemctl start wg-quick-wg-mullvad.service";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
         {
           command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg-mullvad.service";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
         {
           command = "/run/current-system/sw/bin/systemctl start transmission.service";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
         {
           command = "/run/current-system/sw/bin/systemctl stop transmission.service";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
       ];
     }
@@ -159,7 +172,11 @@
         #use sendfile = yes
         #max protocol = smb2
         # note: localhost is the ipv6 localhost ::1
-        "hosts allow" = [ "192.168.8." "127.0.0.1" "localhost" ];
+        "hosts allow" = [
+          "192.168.8."
+          "127.0.0.1"
+          "localhost"
+        ];
         "hosts deny" = [ "0.0.0.0/0" ];
         "guest account" = "nobody";
         "map to guest" = "bad user";

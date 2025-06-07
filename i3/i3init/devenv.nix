@@ -1,4 +1,10 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 let
   pkgs-unstable = import inputs.nixpkgs-unstable { system = pkgs.stdenv.system; };
 in
@@ -7,7 +13,10 @@ in
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git pkgs.ruff ];
+  packages = [
+    pkgs.git
+    pkgs.ruff
+  ];
 
   # https://devenv.sh/languages/
   languages.python = {
@@ -15,7 +24,7 @@ in
     uv.enable = true;
     uv.package = pkgs-unstable.uv;
     venv.enable = true;
-    libraries = [];
+    libraries = [ ];
   };
 
   # https://devenv.sh/processes/

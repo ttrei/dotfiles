@@ -1,7 +1,11 @@
-with import <nixpkgs> {}; {
+with import <nixpkgs> { };
+{
   myEnv = stdenv.mkDerivation {
     name = "clang";
-    buildInputs = [stdenv clang];
-    hardeningDisable = ["all"];
+    buildInputs = [
+      stdenv
+      clang
+    ];
+    hardeningDisable = [ "all" ];
   };
 }

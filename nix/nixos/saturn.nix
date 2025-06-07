@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./common.nix
     ./hardware-configurations/saturn.nix
@@ -26,13 +27,13 @@
       # Put the private key in a file at the privateKeyFile path.
       # Put the "wireguard key" in publicKey.
       autostart = true;
-      address = ["10.73.249.174/32"];
-      dns = ["10.64.0.1"];
+      address = [ "10.73.249.174/32" ];
+      dns = [ "10.64.0.1" ];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
       peers = [
         {
           publicKey = "94qIvXgF0OXZ4IcquoS7AO57OV6JswUFgdONgGiq+jo=";
-          allowedIPs = ["0.0.0.0/0"];
+          allowedIPs = [ "0.0.0.0/0" ];
           endpoint = "185.65.135.69:51820";
         }
       ];
@@ -41,15 +42,16 @@
 
   services.xserver.desktopManager.kodi = {
     enable = true;
-    package = pkgs.kodi.withPackages (pkgs:
-      with pkgs; [
+    package = pkgs.kodi.withPackages (
+      pkgs: with pkgs; [
         inputstream-adaptive
         inputstream-ffmpegdirect
         inputstreamhelper
         inputstream-rtmp
         trakt
         youtube
-      ]);
+      ]
+    );
   };
 
   services.transmission.enable = true;
@@ -137,23 +139,35 @@
 
   security.sudo.extraRules = [
     {
-      users = ["reinis"];
+      users = [ "reinis" ];
       commands = [
         {
           command = "/run/current-system/sw/bin/systemctl start wg-quick-wg-mullvad.service";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
         {
           command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg-mullvad.service";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
         {
           command = "/run/current-system/sw/bin/systemctl start transmission.service";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
         {
           command = "/run/current-system/sw/bin/systemctl stop transmission.service";
-          options = ["SETENV" "NOPASSWD"];
+          options = [
+            "SETENV"
+            "NOPASSWD"
+          ];
         }
       ];
     }
@@ -173,7 +187,11 @@
         #use sendfile = yes
         #max protocol = smb2
         # note: localhost is the ipv6 localhost ::1
-        "hosts allow" = [ "192.168.8." "127.0.0.1" "localhost" ];
+        "hosts allow" = [
+          "192.168.8."
+          "127.0.0.1"
+          "localhost"
+        ];
         "hosts deny" = [ "0.0.0.0/0" ];
         "guest account" = "nobody";
         "map to guest" = "bad user";

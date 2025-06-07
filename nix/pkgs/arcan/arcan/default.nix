@@ -1,60 +1,61 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, fetchgit
-, SDL2
-, cmake
-, espeak
-, ffmpeg
-, file
-, freetype
-, glib
-, gumbo
-, harfbuzz
-, jbig2dec
-, leptonica
-, libGL
-, libX11
-, libXau
-, libXcomposite
-, libXdmcp
-, libXfixes
-, libdrm
-, libffi
-, libusb1
-, libuvc
-, libvlc
-, libvncserver
-, libxcb
-, libxkbcommon
-, lua5_1
-, luajit
-, makeWrapper
-, mesa
-, mupdf
-, openal
-, openjpeg
-, pcre
-, pkg-config
-, sqlite
-, tesseract
-, valgrind
-, wayland
-, wayland-protocols
-, xcbutil
-, xcbutilwm
-, xz
-, buildManPages ? true, ruby
-, useBuiltinLua ? true
-, useStaticFreetype ? false
-, useStaticLibuvc ? false
-, useStaticOpenAL ? true
-, useStaticSqlite ? false
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  fetchgit,
+  SDL2,
+  cmake,
+  espeak,
+  ffmpeg,
+  file,
+  freetype,
+  glib,
+  gumbo,
+  harfbuzz,
+  jbig2dec,
+  leptonica,
+  libGL,
+  libX11,
+  libXau,
+  libXcomposite,
+  libXdmcp,
+  libXfixes,
+  libdrm,
+  libffi,
+  libusb1,
+  libuvc,
+  libvlc,
+  libvncserver,
+  libxcb,
+  libxkbcommon,
+  lua5_1,
+  luajit,
+  makeWrapper,
+  mesa,
+  mupdf,
+  openal,
+  openjpeg,
+  pcre,
+  pkg-config,
+  sqlite,
+  tesseract,
+  valgrind,
+  wayland,
+  wayland-protocols,
+  xcbutil,
+  xcbutilwm,
+  xz,
+  buildManPages ? true,
+  ruby,
+  useBuiltinLua ? true,
+  useStaticFreetype ? false,
+  useStaticLibuvc ? false,
+  useStaticOpenAL ? true,
+  useStaticSqlite ? false,
 }:
 
 let
-  cmakeFeatureFlag = feature: flag:
-    "-D${feature}=${if flag then "on" else "off"}";
+  cmakeFeatureFlag = feature: flag: "-D${feature}=${if flag then "on" else "off"}";
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "arcan" + lib.optionalString useStaticOpenAL "-static-openal";
@@ -67,13 +68,15 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-4oIB6PMbjxj0ndoNd+7wOSl2m+vhJw6hrNSYYSUpWJ0=";
   };
 
-  nativeBuildInputs = [
-    cmake
-    makeWrapper
-    pkg-config
-  ] ++ lib.optionals buildManPages [
-    ruby
-  ];
+  nativeBuildInputs =
+    [
+      cmake
+      makeWrapper
+      pkg-config
+    ]
+    ++ lib.optionals buildManPages [
+      ruby
+    ];
 
   buildInputs = [
     SDL2
@@ -124,10 +127,15 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   # Emulate external/git/clone.sh
-  postUnpack = let
-    inherit (import ./clone-sources.nix { inherit fetchFromGitHub fetchgit; })
-      letoram-openal-src freetype-src libuvc-src luajit-src;
-  in
+  postUnpack =
+    let
+      inherit (import ./clone-sources.nix { inherit fetchFromGitHub fetchgit; })
+        letoram-openal-src
+        freetype-src
+        libuvc-src
+        luajit-src
+        ;
+    in
     ''
       pushd $sourceRoot/external/git/
     ''
@@ -146,8 +154,8 @@ stdenv.mkDerivation (finalAttrs: {
     + (lib.optionalString useBuiltinLua ''
       cp -a ${luajit-src}/ luajit
       chmod --recursive 744 luajit
-    '') +
-    ''
+    '')
+    + ''
       popd
     '';
 
@@ -195,7 +203,11 @@ stdenv.mkDerivation (finalAttrs: {
       e.g. game development, real-time streaming video, monitoring and
       surveillance, up to and including desktop compositors and window managers.
     '';
-    license = with licenses; [ bsd3 gpl2Plus lgpl2Plus ];
+    license = with licenses; [
+      bsd3
+      gpl2Plus
+      lgpl2Plus
+    ];
     maintainers = with maintainers; [ AndersonTorres ];
     platforms = platforms.unix;
   };

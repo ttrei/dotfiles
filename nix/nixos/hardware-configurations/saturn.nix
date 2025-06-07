@@ -4,7 +4,8 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -14,8 +15,14 @@
   # TODO: Remove when switching to nixos 25.05
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.kernelModules = ["kvm-amd"];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.kernelModules = [ "kvm-amd" ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -44,7 +51,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/e875bd93-8013-427c-a7b5-838d6811ba88";}
+    { device = "/dev/disk/by-uuid/e875bd93-8013-427c-a7b5-838d6811ba88"; }
   ];
 
   networking.useDHCP = lib.mkDefault true;

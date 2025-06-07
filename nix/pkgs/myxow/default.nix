@@ -42,14 +42,14 @@ stdenv.mkDerivation rec {
   '';
 
   enableParallelBuilding = true;
-  nativeBuildInputs = [cabextract];
-  buildInputs = [mylibusb1];
+  nativeBuildInputs = [ cabextract ];
+  buildInputs = [ mylibusb1 ];
 
   meta = with lib; {
     homepage = "https://github.com/medusalix/xow";
     description = "Linux driver for the Xbox One wireless dongle";
     license = licenses.gpl2Plus;
-    maintainers = [maintainers.jansol];
+    maintainers = [ maintainers.jansol ];
     platforms = platforms.linux;
   };
 }

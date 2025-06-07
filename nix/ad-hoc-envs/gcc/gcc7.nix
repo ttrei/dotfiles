@@ -1,6 +1,10 @@
-with import <nixpkgs> {}; {
+with import <nixpkgs> { };
+{
   myEnv = stdenv.mkDerivation {
     name = "gcc";
-    buildInputs = [stdenv gcc7];
+    buildInputs = [
+      stdenv
+      gcc7
+    ];
   };
 }

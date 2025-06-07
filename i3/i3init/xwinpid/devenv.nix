@@ -1,11 +1,21 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 
 {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git pkgs.xorg.libxcb pkgs.zig ];
+  packages = [
+    pkgs.git
+    pkgs.xorg.libxcb
+    pkgs.zig
+  ];
 
   # https://devenv.sh/languages/
   # languages.rust.enable = true;

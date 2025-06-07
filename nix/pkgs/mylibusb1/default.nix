@@ -20,9 +20,15 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-9ha22rlHFCrWYvcYKYAUlMC4aWMElDAgUPMxKePzPJA=";
   };
 
-  outputs = ["out" "dev"];
+  outputs = [
+    "out"
+    "dev"
+  ];
 
-  nativeBuildInputs = [pkg-config autoreconfHook];
+  nativeBuildInputs = [
+    pkg-config
+    autoreconfHook
+  ];
   propagatedBuildInputs = lib.optional enableUdev udev;
 
   dontDisableStatic = withStatic;
@@ -42,6 +48,6 @@ stdenv.mkDerivation rec {
     '';
     platforms = platforms.all;
     license = licenses.lgpl21Plus;
-    maintainers = with maintainers; [prusnak];
+    maintainers = with maintainers; [ prusnak ];
   };
 }

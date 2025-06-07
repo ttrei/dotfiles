@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   disabledModules = [
     # "services/audio/navidrome.nix"
     "services/misc/bazarr.nix"
@@ -68,7 +69,7 @@
   nix = {
     # This will add each flake input as a registry
     # To make nix commands consistent with your flake
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
 
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
@@ -80,8 +81,11 @@
       # NOTE (2024-01-21): The substituter logic currently has a bug that is being worked on
       # https://github.com/NixOS/nix/issues/6901
       # https://github.com/NixOS/nix/pull/8983
-      substituters = ["http://pluto.local:8088" "https://devenv.cachix.org"];
-      trusted-users = ["reinis"];
+      substituters = [
+        "http://pluto.local:8088"
+        "https://devenv.cachix.org"
+      ];
+      trusted-users = [ "reinis" ];
     };
   };
 

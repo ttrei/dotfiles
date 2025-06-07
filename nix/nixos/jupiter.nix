@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ./common.nix
     ./hardware-configurations/jupiter.nix

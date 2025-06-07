@@ -2,8 +2,9 @@
   config,
   pkgs,
   ...
-}: {
-  imports = [./cli-base.nix];
+}:
+{
+  imports = [ ./cli-base.nix ];
 
   environment.systemPackages = with pkgs; [
     alejandra

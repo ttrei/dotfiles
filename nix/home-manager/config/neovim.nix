@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # Inspired by https://gitlab.com/LongerHV/nixos-configuration
   #
   # Overview of the nix neovim ecosystem:
@@ -20,37 +21,40 @@
     # https://gist.github.com/nat-418/493d40b807132d2643a7058188bff1ca
     # What if your favourite Vim plugin isn’t already packaged?
     # https://github.com/NixOS/nixpkgs/blob/5f64a12a728902226210bf01d25ec6cbb9d9265b/doc/languages-frameworks/vim.section.md#what-if-your-favourite-vim-plugin-isnt-already-packaged-what-if-your-favourite-vim-plugin-isnt-already-packaged
-    plugins = let
-      vim-asciidoc-folding = pkgs.vimUtils.buildVimPlugin {
-        name = "vim-asciidoc-folding";
-        src = builtins.fetchGit {
-          url = "https://github.com/matcatc/vim-asciidoc-folding.git";
-          rev = "7925af137f7c36bb54acaafc268643548f04e5e8";
+    plugins =
+      let
+        vim-asciidoc-folding = pkgs.vimUtils.buildVimPlugin {
+          name = "vim-asciidoc-folding";
+          src = builtins.fetchGit {
+            url = "https://github.com/matcatc/vim-asciidoc-folding.git";
+            rev = "7925af137f7c36bb54acaafc268643548f04e5e8";
+          };
         };
-      };
-      nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (treesitter-plugins:
-        with treesitter-plugins; [
-          bash
-          beancount
-          c # required by nvim-treesitter
-          cpp
-          dockerfile
-          java
-          json
-          lua # required by nvim-treesitter
-          make
-          markdown
-          nix
-          query # required by nvim-treesitter
-          python
-          sql
-          vim # required by nvim-treesitter
-          vimdoc # required by nvim-treesitter
-          yaml
-          zig
-        ]);
-    in
-      with pkgs.vimPlugins; [
+        nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (
+          treesitter-plugins: with treesitter-plugins; [
+            bash
+            beancount
+            c # required by nvim-treesitter
+            cpp
+            dockerfile
+            java
+            json
+            lua # required by nvim-treesitter
+            make
+            markdown
+            nix
+            query # required by nvim-treesitter
+            python
+            sql
+            vim # required by nvim-treesitter
+            vimdoc # required by nvim-treesitter
+            yaml
+            zig
+          ]
+        );
+      in
+      with pkgs.vimPlugins;
+      [
         # NOTE (2023-12-27)
         # Explored if I want to use lazy.vim instead of packer.
         # Now I'm thinking that I don't need to use a non-nix package manager at all.
@@ -63,7 +67,6 @@
         # https://www.reddit.com/r/NixOS/comments/104l0w9/how_to_get_lua_files_in_neovim_on_hm/j362asl/?context=3
         #
         # lazy-nvim
-
 
         # Take a plugin from unstable packages
         # NOTE(2024-09-03): neovim and all vimPlugins come from unstable for now (see overlays/default.nix)
