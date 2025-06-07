@@ -98,10 +98,6 @@
           default = nixpkgs.legacyPackages.${system}.mkShell {
             inherit (self.checks.${system}.pre-commit-check) shellHook;
             buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-
-            # Enable experimental features without having to specify the argument
-            NIX_CONFIG = "experimental-features = nix-command flakes";
-            # nativeBuildInputs = with nixpkgs.legacyPackages.${system}; [nix home-manager git];
             nativeBuildInputs = with pkgs; [
               nix
               git
