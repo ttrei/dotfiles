@@ -91,7 +91,6 @@
     homeManagerModules = import ./nix/modules/home-manager;
 
     # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild switch --flake .#your-hostname'
     nixosConfigurations = {
       jupiter = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
@@ -119,28 +118,13 @@
       };
     };
 
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager switch --flake .#reinis@nixos'
+    # home-manager configuration entrypoints
     homeConfigurations = {
-      "reinis@nixos" = home-manager.lib.homeManagerConfiguration {
+      "reinis@jupiter" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./nix/home-manager/nixos.nix
-        ];
-      };
-      "reinis@non-nixos" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nix/home-manager/non-nixos.nix
-        ];
-      };
-      "reinis@jupiter-work" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nix/home-manager/jupiter-work.nix
+          ./nix/home-manager/jupiter.nix
         ];
       };
       "reinis@mercury" = home-manager.lib.homeManagerConfiguration {

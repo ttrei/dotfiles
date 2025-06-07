@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    ./common.nix
+    ./without-nixos.nix
   ];
 
   home.packages = with pkgs; [
@@ -20,6 +20,4 @@
     python310Packages.pgsanity
     stern
   ];
-
-  programs.bash.enable = true;
 }
