@@ -27,124 +27,153 @@
     i3pyblocks.url = "github:thiagokokada/i3pyblocks";
     # https://github.com/nvim-neorg/nixpkgs-neorg-overlay
     neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-  in rec {
-    inherit nixpkgs;
-    inherit nixpkgs-unstable;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "aarch64-linux"
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+    in
+    rec {
+      inherit nixpkgs;
+      inherit nixpkgs-unstable;
 
-    # Your custom packages
-    # Accessible through 'nix build', 'nix shell', e.g.,
-    # nix shell /home/reinis/dotfiles#mypkgs.x86_64-linux.arcanPackages.arcan
-    mypkgs = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./nix/pkgs {inherit pkgs;}
-    );
-    # nixpkgs with your modifications applied
-    # nix shell /home/reinis/dotfiles#modified-pkgs.x86_64-linux.arcanPackages.arcan
-    modified-pkgs = forAllSystems (
-      system:
+      # Your custom packages
+      # Accessible through 'nix build', 'nix shell', e.g.,
+      # nix shell /home/reinis/dotfiles#mypkgs.x86_64-linux.arcanPackages.arcan
+      mypkgs = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        import ./nix/pkgs { inherit pkgs; }
+      );
+      # nixpkgs with your modifications applied
+      # nix shell /home/reinis/dotfiles#modified-pkgs.x86_64-linux.arcanPackages.arcan
+      modified-pkgs = forAllSystems (
+        system:
         import nixpkgs {
           inherit system;
-          overlays = [overlays.modifications];
+          overlays = [ overlays.modifications ];
         }
-    );
-    # Unmodified nixpkgs
-    # nix shell /home/reinis/dotfiles#unmodified-pkgs.x86_64-linux.arcanPackages.arcan
-    # Probably could have called this "pkgs", but I'm not sure if that could break something.
-    unmodified-pkgs = forAllSystems (
-      system: nixpkgs.legacyPackages.${system}
-    );
-    # Devshell for bootstrapping
-    # Acessible through 'nix develop'
-    devShells = forAllSystems (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-        import ./nix/shell.nix {inherit pkgs;}
-    );
+      );
+      # Unmodified nixpkgs
+      # nix shell /home/reinis/dotfiles#unmodified-pkgs.x86_64-linux.arcanPackages.arcan
+      # Probably could have called this "pkgs", but I'm not sure if that could break something.
+      unmodified-pkgs = forAllSystems (system: nixpkgs.legacyPackages.${system});
 
-    # Your custom packages and modifications, exported as overlays
-    overlays = import ./nix/overlays {inherit inputs;};
-    # Reusable nixos modules you might want to export
-    # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./nix/modules/nixos;
-    # Reusable home-manager modules you might want to export
-    # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./nix/modules/home-manager;
+      checks = forAllSystems (system: {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixfmt-rfc-style.enable = true;
+          };
+        };
+      });
 
-    # NixOS configuration entrypoint
-    nixosConfigurations = {
-      jupiter = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nix/nixos/jupiter.nix
-        ];
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = nixpkgs.legacyPackages.${system}.mkShell {
+            inherit (self.checks.${system}.pre-commit-check) shellHook;
+            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+
+            # Enable experimental features without having to specify the argument
+            NIX_CONFIG = "experimental-features = nix-command flakes";
+            # nativeBuildInputs = with nixpkgs.legacyPackages.${system}; [nix home-manager git];
+            nativeBuildInputs = with pkgs; [
+              nix
+              git
+            ];
+          };
+        }
+      );
+
+      # Your custom packages and modifications, exported as overlays
+      overlays = import ./nix/overlays { inherit inputs; };
+      # Reusable nixos modules you might want to export
+      # These are usually stuff you would upstream into nixpkgs
+      nixosModules = import ./nix/modules/nixos;
+      # Reusable home-manager modules you might want to export
+      # These are usually stuff you would upstream into home-manager
+      homeManagerModules = import ./nix/modules/home-manager;
+
+      # NixOS configuration entrypoint
+      nixosConfigurations = {
+        jupiter = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/nixos/jupiter.nix
+          ];
+        };
+        saturn = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/nixos/saturn.nix
+          ];
+        };
+        saturn-qemu = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/nixos/saturn-qemu.nix
+          ];
+        };
+        nixos-qemu = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/nixos/qemu-base.nix
+          ];
+        };
       };
-      saturn = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nix/nixos/saturn.nix
-        ];
+
+      # home-manager configuration entrypoints
+      homeConfigurations = {
+        "reinis@jupiter" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/home-manager/jupiter.nix
+          ];
+        };
+        "reinis@mercury" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/home-manager/mercury.nix
+          ];
+        };
       };
-      saturn-qemu = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nix/nixos/saturn-qemu.nix
-        ];
-      };
-      nixos-qemu = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nix/nixos/qemu-base.nix
-        ];
+
+      templates = {
+        nix-direnv = {
+          path = ./nix/templates/nix-direnv;
+          description = "nix flake new -t github:ttrei/dotfiles#nix-direnv .";
+        };
+        arcan-dev = {
+          path = ./nix/templates/arcan-dev;
+          description = "nix flake new -t github:ttrei/dotfiles#arcan-dev .";
+        };
       };
     };
-
-    # home-manager configuration entrypoints
-    homeConfigurations = {
-      "reinis@jupiter" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nix/home-manager/jupiter.nix
-        ];
-      };
-      "reinis@mercury" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./nix/home-manager/mercury.nix
-        ];
-      };
-    };
-
-    templates = {
-      nix-direnv = {
-        path = ./nix/templates/nix-direnv;
-        description = "nix flake new -t github:ttrei/dotfiles#nix-direnv .";
-      };
-      arcan-dev = {
-        path = ./nix/templates/arcan-dev;
-        description = "nix flake new -t github:ttrei/dotfiles#arcan-dev .";
-      };
-    };
-  };
 }
