@@ -1,3 +1,7 @@
+* Try out Determinate Nix
+
+   https://docs.determinate.systems/guides/advanced-installation/#nixos
+
 * Annoyances
 
 ** (neorg) Indentation jumps around
@@ -90,8 +94,6 @@
 
    Went back to transmission, seems to be working fine.
    Now i don't remember why i wanted to ditch transmission.
-
-
 
 * Developer tooling
 
