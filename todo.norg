@@ -4,6 +4,8 @@
 
 * Annoyances
 
+** (terminal) Garbage characters after taking command from atuin history
+
 ** (neorg) Indentation jumps around
 
    ~ Create new heading
