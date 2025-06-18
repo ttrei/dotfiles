@@ -9,6 +9,18 @@
    Registered a bug:
    https://github.com/atuinsh/atuin/issues/2789
 
+   The problem is probably related to the interactive history search.
+   This leads to garbage characters:
+   ctrl-r -> esc -> ls
+
+   With enter_accept=true there are no garbage characters on command execution.
+   But they appear afterwards, after executing a manually-entered command.
+
+   TODO:
+   Find how to print all commands sent to ghostty.
+   Probably need to compile ghostty debug build?
+   Need a refresher on terminal emulator <-> shell <-> application communication.
+
 ** (neorg) Indentation jumps around
 
    ~ Create new heading
