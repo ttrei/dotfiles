@@ -16,10 +16,18 @@
    With enter_accept=true there are no garbage characters on command execution.
    But they appear afterwards, after executing a manually-entered command.
 
-   TODO:
    Find how to print all commands sent to ghostty.
    Probably need to compile ghostty debug build?
    Need a refresher on terminal emulator <-> shell <-> application communication.
+
+   Got atuin running in the vm from ghostty repo.
+   Reproduced the issue.
+   Run ghostty (debug build) from a terminal to record the communication with shell:
+   @code
+   ghostty 2>&1 | tee ghostty.log
+   @end
+
+   TODO: Try to build ghostty on my nixos, debugging in vm is not convenient.
 
 ** (neorg) Indentation jumps around
 
