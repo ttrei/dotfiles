@@ -98,31 +98,36 @@
    @code
    shell-integration = none
    @end
-
    Debug output for comparison:
    @code
-debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 18, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
-debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
-debug(io_handler): pushing kitty keyboard mode: terminal.kitty.key.Flags{ .disambiguate = true, .report_events = false, .report_alternates = true, .report_all = true, .report_associated = false }
-debug(app): mailbox message=surface_message
-debug(surface): changing mouse shape: terminal.mouse_shape.MouseShape.default
-debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 27, 91, 49, 59, 49, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, .len = 6 } }
-debug(gtk_x11): X11: found extra XkbStateNotify event w/lookup_mods: 0
-info(grid): reallocating GPU buffer old=27 new=543
-debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
-debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
-debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 27, 91, 50, 55, 117, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 5 } }
-debug(app): mailbox message=surface_message
-debug(surface): changing mouse shape: terminal.mouse_shape.MouseShape.text
-debug(io_handler): popping kitty keyboard mode n=1
-debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 108, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
-debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
-debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 115, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
-debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 13, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
-debug(app): mailbox message=surface_message
-debug(surface): changing title "reinis@jupiter:/var/tmp/ghostty"
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 18, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(io_handler): pushing kitty keyboard mode: terminal.kitty.key.Flags{ .disambiguate = true, .report_events = false, .report_alternates = true, .report_all = true, .report_associated = false }
+   debug(app): mailbox message=surface_message
+   debug(surface): changing mouse shape: terminal.mouse_shape.MouseShape.default
+
+   # This escape code is different now that shell-integration is disabled
+   # now:    27, 91, 49, 59, 49, 82
+   # before: 27, 91, 54, 59, 49, 82
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 27, 91, 49, 59, 49, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, .len = 6 } }
+
+   debug(gtk_x11): X11: found extra XkbStateNotify event w/lookup_mods: 0
+   info(grid): reallocating GPU buffer old=27 new=543
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 27, 91, 50, 55, 117, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 5 } }
+   debug(app): mailbox message=surface_message
+   debug(surface): changing mouse shape: terminal.mouse_shape.MouseShape.text
+   debug(io_handler): popping kitty keyboard mode n=1
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 108, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 115, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 13, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(app): mailbox message=surface_message
+   debug(surface): changing title "reinis@jupiter:/var/tmp/ghostty"
    @end
 
+   TODO: find out what exactly in shell integration interacts with atuin.
 
 ** (neorg) Indentation jumps around
 
