@@ -6,8 +6,10 @@
 
 ** (terminal) Garbage characters after taking command from atuin history
 
-   Registered a bug:
+   Registered a bug against atuin:
    https://github.com/atuinsh/atuin/issues/2789
+   And ghostty:
+   https://github.com/ghostty-org/ghostty/discussions/7639
 
    Other problems with atuin in ghostty:
    https://github.com/ghostty-org/ghostty/discussions/6860
@@ -127,7 +129,14 @@
    debug(surface): changing title "reinis@jupiter:/var/tmp/ghostty"
    @end
 
-   TODO: find out what exactly in shell integration interacts with atuin.
+   Something here triggers the bug:
+   https://github.com/ghostty-org/ghostty/blob/f55c77bc817f0d28992e34db54408da388b172a6/src/shell-integration/bash/ghostty.bash#L101-L172
+   This is how i tested changes to the shell-integration:
+   @code
+   zig build && cp src/shell-integration/bash/* zig-out/share/ghostty/shell-integration/bash/ && zig build run
+   @end
+
+   TODO: Check if atuin itself has some bash preexec commands.
 
 ** (neorg) Indentation jumps around
 
