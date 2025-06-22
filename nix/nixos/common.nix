@@ -83,7 +83,6 @@
       # https://github.com/NixOS/nix/pull/8983
       substituters = [
         # "http://pluto.local:8088"
-        "https://cache.nixos.org"
         "https://devenv.cachix.org"
       ];
       trusted-users = [ "reinis" ];
