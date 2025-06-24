@@ -44,6 +44,10 @@
     zutty
   ];
 
+  nixpkgs.config.chromium = {
+    enableWideVine = true;
+  };
+
   services.xserver = {
     enable = true;
     xkb.layout = "lv";
