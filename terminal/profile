@@ -24,6 +24,11 @@ then
     . "$HOME/.anthropic-api-key"
 fi
 
+if [ -e "$HOME/.openrouter-api-key" ]
+then
+    . "$HOME/.openrouter-api-key"
+fi
+
 if [ -e "$HOME/.deepseek-api-key" ]
 then
     . "$HOME/.deepseek-api-key"
