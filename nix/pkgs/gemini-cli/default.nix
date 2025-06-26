@@ -3,21 +3,19 @@
   lib,
   buildNpmPackage,
   fetchFromGitHub,
+  fetchNpmDeps,
   writeShellApplication,
   cacert,
-  common-updater-scripts,
   curl,
   gnused,
   jq,
+  nix-prefetch-github,
   prefetch-npm-deps,
 }:
 
-let
+buildNpmPackage (finalAttrs: {
   pname = "gemini-cli";
   version = "0.1.5";
-in
-buildNpmPackage {
-  inherit pname version;
 
   src = fetchFromGitHub {
     owner = "google-gemini";
@@ -27,41 +25,64 @@ buildNpmPackage {
     hash = "sha256-2w28N6Fhm6k3wdTYtKH4uLPBIOdELd/aRFDs8UMWMmU=";
   };
 
-  npmDepsHash = "sha256-yoUAOo8OwUWG0gyI5AdwfRFzSZvSCd3HYzzpJRvdbiM=";
+  npmDeps = fetchNpmDeps {
+    inherit (finalAttrs) src;
+    hash = "sha256-yoUAOo8OwUWG0gyI5AdwfRFzSZvSCd3HYzzpJRvdbiM=";
+  };
 
-  fixupPhase = ''
-    runHook preFixup
+  preConfigure = ''
+    mkdir -p packages/generated
+    echo "export const GIT_COMMIT_INFO = { commitHash: '${finalAttrs.src.rev}' };" > packages/generated/git-commit.ts
+  '';
 
-    # Remove broken symlinks
-    find $out -type l -exec test ! -e {} \; -delete 2>/dev/null || true
+  installPhase = ''
+    runHook preInstall
+
+    mkdir -p "$out/lib"
+
+    cp -r node_modules "$out/lib/"
+
+    rm -f "$out/lib/node_modules/@google/gemini-cli"
+    rm -f "$out/lib/node_modules/@google/gemini-cli-core"
+
+    cp -r packages/cli "$out/lib/node_modules/@google/gemini-cli"
+    cp -r packages/core "$out/lib/node_modules/@google/gemini-cli-core"
 
     mkdir -p "$out/bin"
-    ln -sf "$out/lib/node_modules/@google/gemini-cli/bundle/gemini.js" "$out/bin/gemini"
+    ln -s ../lib/node_modules/@google/gemini-cli/dist/index.js "$out/bin/gemini"
 
-    patchShebangs "$out/bin" "$out/lib/node_modules/@google/gemini-cli/bundle/"
+    runHook postInstall
+  '';
 
-    runHook postFixup
+  postInstall = ''
+    chmod +x "$out/bin/gemini"
   '';
 
   passthru.updateScript = lib.getExe (writeShellApplication {
     name = "gemini-cli-update-script";
     runtimeInputs = [
       cacert
-      common-updater-scripts
       curl
       gnused
       jq
+      nix-prefetch-github
       prefetch-npm-deps
     ];
     text = ''
       latest_version=$(curl -s "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/package-lock.json" | jq -r '.version')
-      update-source-version gemini-cli "$latest_version" --rev="$latest_rev"
+      latest_rev=$(curl -s "https://api.github.com/repos/google-gemini/gemini-cli/commits/main" | jq -r '.sha')
+
+      src_hash=$(nix-prefetch-github google-gemini gemini-cli --rev "$latest_rev" | jq -r '.hash')
 
       temp_dir=$(mktemp -d)
-      curl -s "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/package-lock.json" > "$temp_dir/package-lock.json"
+      curl -s "https://raw.githubusercontent.com/google-gemini/gemini-cli/$latest_rev/package-lock.json" > "$temp_dir/package-lock.json"
       npm_deps_hash=$(prefetch-npm-deps "$temp_dir/package-lock.json")
-      sed -i "s|npmDepsHash = \".*\";|npmDepsHash = \"$npm_deps_hash\";|" "pkgs/by-name/ge/gemini-cli/package.nix"
       rm -rf "$temp_dir"
+
+      sed -i "s|version = \".*\";|version = \"$latest_version\";|" "pkgs/by-name/ge/gemini-cli/package.nix"
+      sed -i "s|rev = \".*\";|rev = \"$latest_rev\";|" "pkgs/by-name/ge/gemini-cli/package.nix"
+      sed -i "/src = fetchFromGitHub/,/};/s|hash = \".*\";|hash = \"$src_hash\";|" "pkgs/by-name/ge/gemini-cli/package.nix"
+      sed -i "/npmDeps = fetchNpmDeps/,/};/s|hash = \".*\";|hash = \"$npm_deps_hash\";|" "pkgs/by-name/ge/gemini-cli/package.nix"
     '';
   });
 
@@ -73,4 +94,4 @@ buildNpmPackage {
     platforms = lib.platforms.all;
     mainProgram = "gemini";
   };
-}
+})
