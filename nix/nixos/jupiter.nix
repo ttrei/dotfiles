@@ -28,6 +28,13 @@
     qemu_kvm
     # jetbrains.idea-community
     gemini-cli
+
+    (wrapOBS {
+      plugins = with obs-studio-plugins; [
+        advanced-scene-switcher
+      ];
+    })
+
   ];
 
   virtualisation.docker.enable = true;
