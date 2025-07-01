@@ -74,6 +74,7 @@
     moreutils
     ncdu
     nethogs
+    nload
     nodejs-slim
     nodePackages.typescript-language-server
     git
