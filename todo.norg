@@ -4,6 +4,140 @@
 
 * Annoyances
 
+** (terminal) Garbage characters after taking command from atuin history
+
+   Registered a bug against atuin:
+   https://github.com/atuinsh/atuin/issues/2789
+   And ghostty:
+   https://github.com/ghostty-org/ghostty/discussions/7639
+
+   Other problems with atuin in ghostty:
+   https://github.com/ghostty-org/ghostty/discussions/6860
+
+   The problem is probably related to the interactive history search.
+   This leads to garbage characters:
+   ctrl-r -> esc -> ls
+
+   With enter_accept=true there are no garbage characters on command execution.
+   But they appear afterwards, after executing a manually-entered command.
+
+   Find how to print all commands sent to ghostty.
+   Probably need to compile ghostty debug build?
+   Need a refresher on terminal emulator <-> shell <-> application communication.
+
+   Got atuin running in the vm from ghostty repo.
+   Reproduced the issue.
+   Run ghostty (debug build) from a terminal to record the communication with shell:
+   @code
+   ghostty 2>&1 | tee ghostty.log
+   @end
+
+   Built ghostty on my nixos ("zig build" just worked).
+
+   Debug output while reproducing the bug (ctrl-r -> esc -> ls).
+   @code
+   # ctrl-r
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 18, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+
+   debug(app): mailbox message=surface_message
+   debug(surface): changing title "ls"
+
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+
+   # suspicious
+   debug(io_handler): pushing kitty keyboard mode: terminal.kitty.key.Flags{ .disambiguate = true, .report_events = false, .report_alternates = true, .report_all = true, .report_associated = false }
+
+   debug(app): mailbox message=surface_message
+   debug(surface): changing mouse shape: terminal.mouse_shape.MouseShape.default
+
+   # what's the meaning of this escape code?
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 27, 91, 54, 59, 49, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, .len = 6 } }
+
+   info(grid): reallocating GPU buffer old=817 new=1087
+   debug(gtk_x11): X11: found extra XkbStateNotify event w/lookup_mods: 0
+
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+
+   # esc
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 27, 91, 50, 55, 117, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 5 } }
+
+   debug(app): mailbox message=surface_message
+   debug(surface): changing mouse shape: terminal.mouse_shape.MouseShape.text
+
+   debug(io_handler): popping kitty keyboard mode n=1
+
+   # ls + ret
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 108, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 115, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 13, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+
+   # suspicious
+   debug(terminal): c=35A grapheme attach to left=1 primary_cp=20
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   warning(stream): invalid C0 character, ignoring: 0x6
+
+   # maybe irrelevant - happens on each enter keypress, even when not using atuin
+   warning(stream): unimplemented OSC callback: terminal.osc.Command{ .end_of_command = terminal.osc.Command__struct_155326{ .exit_code = 0 } }
+   warning(stream): unimplemented OSC command: end_of_command
+
+   debug(app): mailbox message=surface_message
+   debug(surface): changing title "reinis@jupiter:/var/tmp/ghostty"
+   debug(font_codepoint_resolver): searching for a fallback font for cp=35A
+   info(font_codepoint_resolver): found codepoint 0x35A in fallback face=FreeMono
+   @end
+
+   Seems kitty protocol was enabled in atuin here:
+   https://github.com/atuinsh/atuin/pull/1505/commits/a0e9cbae5420eb65a6a625342a9100b5d6c41f8e
+
+   Found a workaround - disable ghostty shell integration (https://ghostty.org/docs/features/shell-integration):
+   @code
+   shell-integration = none
+   @end
+   Debug output for comparison:
+   @code
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 18, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(io_handler): pushing kitty keyboard mode: terminal.kitty.key.Flags{ .disambiguate = true, .report_events = false, .report_alternates = true, .report_all = true, .report_associated = false }
+   debug(app): mailbox message=surface_message
+   debug(surface): changing mouse shape: terminal.mouse_shape.MouseShape.default
+
+   # This escape code is different now that shell-integration is disabled
+   # now:    27, 91, 49, 59, 49, 82
+   # before: 27, 91, 54, 59, 49, 82
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 27, 91, 49, 59, 49, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, .len = 6 } }
+
+   debug(gtk_x11): X11: found extra XkbStateNotify event w/lookup_mods: 0
+   info(grid): reallocating GPU buffer old=27 new=543
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 27, 91, 50, 55, 117, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 5 } }
+   debug(app): mailbox message=surface_message
+   debug(surface): changing mouse shape: terminal.mouse_shape.MouseShape.text
+   debug(io_handler): popping kitty keyboard mode n=1
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 108, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(renderer_thread): mailbox message=renderer.message.Message{ .reset_cursor_blink = void }
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 115, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(io_thread): mailbox message=termio.message.Message{ .write_small = termio.message.MessageData(u8,38).Small{ .data = { 13, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170, 170 }, .len = 1 } }
+   debug(app): mailbox message=surface_message
+   debug(surface): changing title "reinis@jupiter:/var/tmp/ghostty"
+   @end
+
+   Something here triggers the bug:
+   https://github.com/ghostty-org/ghostty/blob/f55c77bc817f0d28992e34db54408da388b172a6/src/shell-integration/bash/ghostty.bash#L101-L172
+   This is how i tested changes to the shell-integration:
+   @code
+   zig build && cp src/shell-integration/bash/* zig-out/share/ghostty/shell-integration/bash/ && zig build run
+   @end
+
+   TODO: Check if atuin itself has some bash preexec commands.
+
 ** (neorg) Indentation jumps around
 
    ~ Create new heading
