@@ -48,4 +48,4 @@ gtk-titlebar = false
 window-decoration = server
 
 # https://github.com/atuinsh/atuin/issues/2789#issuecomment-2993355824
-shell-integration = none
+# shell-integration = none
