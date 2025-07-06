@@ -139,7 +139,8 @@
    First it seemed that https://github.com/ghostty-org/ghostty/issues/7802 fixed the problem
    (failed to repro using these steps: https://github.com/ghostty-org/ghostty/discussions/7639)
    But after installing ghostty via flake (1.1.4-d772b2c-nix) on my nixos machine i still get garbage characters.
-   TODO: Try to repro again (also with these steps: https://github.com/atuinsh/atuin/issues/2789)
+   Let's try to repro again (also with these steps: https://github.com/atuinsh/atuin/issues/2789).
+   Update: after restarting my nixos machine the problem is gone.
 
 ** (neorg) Indentation jumps around
 
