@@ -29,6 +29,8 @@
     # jetbrains.idea-community
     gemini-cli
 
+    kdePackages.kdenlive
+
     (wrapOBS {
       plugins = with obs-studio-plugins; [
         advanced-scene-switcher
