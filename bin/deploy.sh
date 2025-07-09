@@ -30,3 +30,8 @@ fi
 if [ -f "$TARGETDIR/.ssh/config" ]; then
     chmod 600 "$TARGETDIR/.ssh/config"
 fi
+
+if [ "$DISTRO" != "nixos" ]; then
+    echo -e "\nAdd the following hosts manually to /etc/hosts:"
+    cat "$DOTFILES/net/hosts"
+fi
