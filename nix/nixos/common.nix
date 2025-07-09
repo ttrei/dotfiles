@@ -154,11 +154,7 @@
   # $ nmcli device wifi connect <your SSID> password <your password>
   # TODO: Manage wireless connections declaratively
 
-  # Enable discovery on local network by hostname.
-  # https://github.com/NixOS/nixpkgs/issues/98050#issuecomment-1471678276
-  services.resolved.enable = true;
-  networking.networkmanager.connectionConfig."connection.mdns" = 2;
-  services.avahi.enable = true;
+  networking.extraHosts = builtins.readFile ./hosts;
 
   networking.firewall.enable = true;
   # Open ports in the firewall.
