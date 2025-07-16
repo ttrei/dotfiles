@@ -26,7 +26,7 @@
 
   environment.systemPackages = with pkgs; [
     qemu_kvm
-    # jetbrains.idea-community
+    # jetbrains.idea-community-bin
     gemini-cli
 
     kdePackages.kdenlive

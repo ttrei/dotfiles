@@ -13,7 +13,6 @@
 
   home.packages = with pkgs; [
     unstable.aider-chat-full
-    jetbrains.idea-community-bin
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
