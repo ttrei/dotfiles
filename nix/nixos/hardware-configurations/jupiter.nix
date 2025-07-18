@@ -33,6 +33,8 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.useOSProber = true;
 
+  boot.supportedFilesystems = [ "nfs" ];
+
   fileSystems = {
     "/boot/efi" = {
       device = "/dev/disk/by-uuid/6EB0-DFE9";
@@ -77,6 +79,19 @@
         "nofail"
       ];
     };
+
+    # NFS
+    "/mnt/movies" = {
+      device = "pluto:/movies";
+      fsType = "nfs";
+      options = [
+        "x-systemd.automount"
+        "x-systemd.idle-timeout=600"
+        "noauto"
+        "nofail"
+      ];
+    };
+
   };
 
   swapDevices = [ ];
