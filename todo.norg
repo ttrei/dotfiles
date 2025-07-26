@@ -1,3 +1,10 @@
+* Move neovim configuration to nixvim
+
+  https://github.com/nix-community/nixvim
+
+  Check out this config for useful things:
+  https://github.com/LGUG2Z/JeezyVim
+
 * Try out Determinate Nix
 
    https://docs.determinate.systems/guides/advanced-installation/#nixos
