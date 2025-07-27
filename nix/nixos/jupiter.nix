@@ -37,6 +37,16 @@
       ];
     })
 
+    (kodi.withPackages (
+      kodiPackages: with kodiPackages; [
+        inputstream-adaptive
+        inputstream-ffmpegdirect
+        inputstreamhelper
+        inputstream-rtmp
+        jellyfin
+      ]
+    ))
+
   ];
 
   virtualisation.docker.enable = true;
