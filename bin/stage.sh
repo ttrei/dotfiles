@@ -218,9 +218,10 @@ ln -s "$DOTFILES/emacs/doom/packages.el" "$STAGINGDIR/.config/doom/packages.el"
 # PYTHON
 mkdir -p "$STAGINGDIR/.config/pip"
 mkdir -p "$STAGINGDIR/.config/hatch"
+mkdir -p "$STAGINGDIR/.config/ruff"
 ln -s "$DOTFILES/python/pip.conf" "$STAGINGDIR/.config/pip/pip.conf"
 ln -s "$DOTFILES/python/hatch/config.toml" "$STAGINGDIR/.config/hatch/config.toml"
-ln -s "$DOTFILES/python/black" "$STAGINGDIR/.config/black"
+ln -s "$DOTFILES/python/ruff.toml" "$STAGINGDIR/.config/ruff/ruff.toml"
 
 # NIX
 mkdir -p "$STAGINGDIR/.config/nix"

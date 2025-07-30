@@ -1,0 +1,8 @@
+# https://docs.astral.sh/ruff/configuration/
+
+line-length = 120
+
+# Default rules + import sorting
+# https://docs.astral.sh/ruff/rules
+[lint]
+select = ["E4", "E7", "E9", "F", "I"]
