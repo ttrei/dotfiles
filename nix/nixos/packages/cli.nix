@@ -34,6 +34,7 @@
     pyright
     python3Packages.mutagen
     python3Packages.ipython
+    ruff
     stow
     universal-ctags
     unzip
