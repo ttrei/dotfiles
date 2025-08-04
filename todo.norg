@@ -110,6 +110,20 @@
   - When using a tool, figure out how the authors *meant* it to be used, see if it works for you
   - For writing useful little scripts for yourself, the main enemy is *activation energy*
 
+** Try out other database clients than dbeaver
+
+   This was prompted by inability to find the dbeaver.ini settings file.
+
+   Universal clients:
+   - DbVisualizer (https://www.dbvis.com/)
+   - JetBrains DataGrip (https://www.jetbrains.com/datagrip/)
+   - TablePlus (https://github.com/TablePlus/TablePlus)
+   - https://squirrel-sql.sourceforge.io/
+
+   db-specific clients:
+   - pgAdmin
+   - MySQL Workbench
+
 ** (pre-commit) Exclude some python files from the ruff hooks
 
    I'm using https://github.com/cachix/git-hooks.nix to get pre-commit hooks.
