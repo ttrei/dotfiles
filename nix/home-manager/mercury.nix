@@ -18,6 +18,7 @@
     kubectl
     kubelogin-oidc
     k9s
+    postgresql
     python310Packages.pgsanity
     stern
   ];
