@@ -4,8 +4,6 @@ xset dpms 0 0 600 & # monitor power saving timeouts:
 
 xmodmap $HOME/.xmodmaprc &
 
-redshift &
-
 xsetroot -solid "#000000" &
 
 if [ -x "$(command -v /usr/bin/dunst)" ]; then

@@ -64,6 +64,14 @@
     pulse.enable = true;
   };
 
+  services.redshift.enable = true;
+  location = {
+    provider = "manual";
+    # Sigulda
+    latitude = 57.15;
+    longitude = 24.86;
+  };
+
   # Printing (Brother HL-L2340DW)
   # http://localhost:631/admin -> Find New Printers -> Add This Printer -> Continue -> Make = Generic -> Continue ->
   # Model = IPP Everywhere -> Add Printer

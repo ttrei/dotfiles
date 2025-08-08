@@ -26,7 +26,6 @@
     python3Packages.i3ipc
     unstable.qbittorrent
     qutebrowser
-    redshift
     rofi
     signal-desktop
     st
@@ -78,19 +77,6 @@
   '';
   # Enable touchpad support
   services.libinput.enable = true;
-
-  location = {
-    latitude = 56.948889;
-    longitude = 24.106389;
-  };
-
-  # services.redshift = {
-  #     enable = true;
-  #     temperature = {
-  #         day = 5500;
-  #         night = 3700;
-  #     };
-  # };
 
   # Extra fonts
   fonts = {
