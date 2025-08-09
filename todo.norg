@@ -1,13 +1,13 @@
 * Gemini CLI
 
-  Select theme:
-  https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/themes.md
-  ANSI Light seems ok.
-
   Learn how to automatically commit the conversation history:
   https://github.com/google-gemini/gemini-cli/blob/main/docs/checkpointing.md
 
-  Learn how to use GEMINI.md files:
+  (done) Select theme:
+  https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/themes.md
+  ANSI Light seems ok.
+
+  (done) Learn how to use GEMINI.md files:
   https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/configuration.md#context-files-hierarchical-instructional-context
 
 * Move neovim configuration to nixvim
