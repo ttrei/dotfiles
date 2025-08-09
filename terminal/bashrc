@@ -157,6 +157,12 @@ if [ -x "$(command -v zoxide)" ]; then
     eval "$(zoxide init bash)"
 fi
 
+export NVM_DIR="$HOME/.nvm"
+if [ -d "$NVM_DIR" ]; then
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
 # Toggle between emacs and vi modes with Alt-e or 'Esc e'
 # https://stackoverflow.com/a/2641535
 set -o vi
