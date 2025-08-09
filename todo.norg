@@ -1,5 +1,9 @@
 * Gemini CLI
 
+  Select theme:
+  https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/themes.md
+  ANSI Light seems ok.
+
   Learn how to automatically commit the conversation history:
   https://github.com/google-gemini/gemini-cli/blob/main/docs/checkpointing.md
 
