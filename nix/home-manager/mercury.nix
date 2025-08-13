@@ -13,6 +13,13 @@
 
   home.packages = with pkgs; [
     dbeaver-bin
+    # https://github.com/NixOS/nixpkgs/issues/182856#issuecomment-3009621304
+    (google-cloud-sdk.withExtraComponents (
+      with google-cloud-sdk.components;
+      [
+        gke-gcloud-auth-plugin
+      ]
+    ))
     jetbrains.idea-community-bin
     jetbrains.pycharm-community-bin
     kubectl
