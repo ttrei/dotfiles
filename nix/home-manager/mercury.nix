@@ -24,6 +24,7 @@
     jetbrains.pycharm-community-bin
     kubectl
     kubelogin-oidc
+    kube-capacity
     k9s
     postgresql
     python310Packages.pgsanity
