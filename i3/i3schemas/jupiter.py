@@ -34,6 +34,25 @@ I3SCHEMAS = {
             ),
         ),
     ],
+    "networking": [
+        Workspace("230:algorithms-doc").with_programs(
+            Program(
+                "zathura /media/storage-new/books/networking/TCP_IP-Illustrated-Volume1-The_Protocols-Richard_Stevens.pdf",
+                commands=["move left"],
+            ),
+            Program(
+                "zathura /media/storage-new/books/networking/TCP_IP-Network_Administration-Craig_Hunt.epub",
+                commands=["move right", "layout tabbed"],
+            ),
+        ),
+        Workspace("231:algorithms-dev").with_programs(
+            Program(f"exec-in-dir {HOME}/dev/notes ghostty", commands=["move left"]),
+            Program(
+                f"exec-in-dir {HOME}/dev/notes ghostty -e nvim networking.norg",
+                commands=["split vertical", "layout stacking", "resize set width 70 ppt"],
+            ),
+        ),
+    ],
     "home.taukulis.lv": [
         Workspace("200:home.taukulis.lv-dev").with_programs(
             Program(f"exec-in-dir {HOME}/dev/projects/home.taukulis.lv ghostty", commands=["move left"]),
@@ -72,21 +91,6 @@ I3SCHEMAS = {
             Program(
                 f"exec-in-dir {HOME}/dev/learn/zig/handmade_pool ghostty",
                 commands=["move right", "move left", "resize set width 70 ppt"],
-            ),
-        ),
-    ],
-    "networking": [
-        Workspace("230:algorithms-doc").with_programs(
-            Program(
-                "zathura /media/storage-new/books/networking/TCP_IP-Illustrated-Volume1-The_Protocols-Richard_Stevens.pdf"
-            ),
-            Program("zathura /media/storage-new/books/networking/TCP_IP-Network_Administration-Craig_Hunt.epub"),
-        ),
-        Workspace("231:algorithms-dev").with_programs(
-            Program(f"exec-in-dir {HOME}/dev/notes ghostty", commands=["move left"]),
-            Program(
-                f"exec-in-dir {HOME}/dev/notes ghostty",
-                commands=["split vertical", "layout stacking", "resize set width 70 ppt"],
             ),
         ),
     ],
