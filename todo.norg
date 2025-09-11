@@ -23,6 +23,15 @@
 
 * Annoyances
 
+** (zathura pdf reader) Handling of different page sizes
+
+   As of version 0.5.11 zathura shows a lot of empty space around pages if there's some large page in the document.
+   There's a bug:
+   https://github.com/pwmt/zathura/issues/706
+
+   I will try to use pdf.js in qutebrowser insead.
+   But zathura might still be ok for reading ebooks.
+
 ** (neorg) Indentation jumps around
 
    ~ Create new heading
