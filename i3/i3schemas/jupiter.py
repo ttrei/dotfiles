@@ -36,7 +36,7 @@ I3SCHEMAS = {
     ],
     "networking": [
         Workspace("230:networking-doc").with_programs(
-            Program(f"qutebrowser --config-py {HOME}/.config/qutebrowser/config-learn-networking.py"),
+            Program(f"qutebrowser --config-py {HOME}/.config/qutebrowser/config_learn_networking.py"),
             # Program(
             #     "zathura /media/storage-new/books/networking/TCP_IP-Illustrated-Volume1-The_Protocols-Richard_Stevens.pdf",
             #     commands=["move left"],
@@ -63,7 +63,7 @@ I3SCHEMAS = {
             ),
         ),
         # Workspace("201:home.taukulis.lv-browser").with_programs(
-        #     Program(f"qutebrowser --config-py {HOME}/.config/qutebrowser/config-dev-home-site.py"),
+        #     Program(f"qutebrowser --config-py {HOME}/.config/qutebrowser/config_dev_home_site.py"),
         # ),
     ],
     "algorithms": [
