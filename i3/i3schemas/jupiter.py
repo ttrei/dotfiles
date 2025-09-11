@@ -35,17 +35,18 @@ I3SCHEMAS = {
         ),
     ],
     "networking": [
-        Workspace("230:algorithms-doc").with_programs(
-            Program(
-                "zathura /media/storage-new/books/networking/TCP_IP-Illustrated-Volume1-The_Protocols-Richard_Stevens.pdf",
-                commands=["move left"],
-            ),
-            Program(
-                "zathura /media/storage-new/books/networking/TCP_IP-Network_Administration-Craig_Hunt.epub",
-                commands=["move right", "layout tabbed"],
-            ),
+        Workspace("230:networking-doc").with_programs(
+            Program(f"qutebrowser --config-py {HOME}/.config/qutebrowser/config-learn-networking.py"),
+            # Program(
+            #     "zathura /media/storage-new/books/networking/TCP_IP-Illustrated-Volume1-The_Protocols-Richard_Stevens.pdf",
+            #     commands=["move left"],
+            # ),
+            # Program(
+            #     "zathura /media/storage-new/books/networking/TCP_IP-Network_Administration-Craig_Hunt.epub",
+            #     commands=["move right", "layout tabbed"],
+            # ),
         ),
-        Workspace("231:algorithms-dev").with_programs(
+        Workspace("231:networking-dev").with_programs(
             Program(f"exec-in-dir {HOME}/dev/notes ghostty", commands=["move left"]),
             Program(
                 f"exec-in-dir {HOME}/dev/notes ghostty -e nvim networking.norg",

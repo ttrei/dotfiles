@@ -2,7 +2,7 @@
 
 config.load_autoconfig(False)
 
-c.session.default_name = "dev-home-site"
 c.auto_save.session = True
-
+c.content.pdfjs = True
+c.session.default_name = "learn-networking"
 c.tabs.position = "left"
