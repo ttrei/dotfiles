@@ -94,8 +94,8 @@ let g:vim_markdown_folding_style_pythonic = 1
 let g:asciidoc_fold_style = 'nested'
 
 " vim-table-mode
-let g:table_mode_corner_corner = '+'
-let g:table_mode_header_fillchar = '='
+let g:table_mode_corner_corner = '|'
+let g:table_mode_header_fillchar = '-'
 
 " Disable matching of parenthesis
 let g:loaded_matchparen = 1
