@@ -84,6 +84,14 @@
 
   How to run hyprland?
   Tried to run it from the still running x session, got a crash.
+  Restarted the machine.
+  Hyprland seemed to start up but i couldn't spawn a terminal, mouse was not visible.
+  Oh, maybe it was on the other display?
+  Indeed.
+
+  @code
+  sudo nixos-rebuild boot --flake $HOME/dotfiles#$(hostname) --profile-name omarchy
+  @end
 
 * Gemini CLI
 
