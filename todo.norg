@@ -194,3 +194,100 @@
 
    I attempted it before, unsuccessfully, see attic/0001-wip-printing-no-luck-yet.patch
 
+* (skip) Try out omarchy-nix
+
+  https://github.com/henrysipp/omarchy-nix
+
+  First attempt - 4411f7de70aac2cf5bc56bfaa09dc32c4c09c823.
+  Seems the system rebuild mostly worked:
+  @code
+  --> dotfiles omarchy-nix X apply-system.sh
+  sudo nixos-rebuild switch --flake /home/reinis/dotfiles#jupiter
+  [sudo] password for reinis:
+  warning: Git tree '/home/reinis/dotfiles' is dirty
+  building the system configuration...
+  warning: Git tree '/home/reinis/dotfiles' is dirty
+  updating GRUB 2 menu...
+  Warning: os-prober will be executed to detect other bootable partitions.
+  Its output will be used to detect bootable binaries on them and create new boot entries.
+  lsblk: /dev/mapper/no*[0-9]: not a block device
+  lsblk: /dev/mapper/raid*[0-9]: not a block device
+  lsblk: /dev/mapper/disks*[0-9]: not a block device
+  Found Windows Boot Manager on /dev/sdb2@/EFI/Microsoft/Boot/bootmgfw.efi
+  Found Debian GNU/Linux bookworm/sid on /dev/sdb3
+  Found Debian GNU/Linux trixie/sid on /dev/sdb4
+  Found Debian GNU/Linux trixie/sid on /dev/sdb6
+  activating the configuration...
+  setting up /etc...
+  reloading user units for reinis...
+  restarting sysinit-reactivation.target
+  the following new units were started: fstrim.service, NetworkManager-dispatcher.service
+  warning: the following units failed: avahi-daemon.service
+  × avahi-daemon.service - Avahi mDNS/DNS-SD Stack
+       Loaded: loaded (/etc/systemd/system/avahi-daemon.service; enabled; preset: ignored)
+       Active: failed (Result: exit-code) since Mon 2025-09-22 00:19:37 EEST; 360ms ago
+   Invocation: 5e22bc2895b04804a7281055fdc3aa42
+  TriggeredBy: ● avahi-daemon.socket
+         Docs: man:avahi-daemon(8)
+               man:avahi-daemon.conf(5)
+               man:avahi.hosts(5)
+               man:avahi.service(5)
+      Process: 49206 ExecStart=/nix/store/xzzabbac24rfwzn0nyr4psyxr9kmnza8-avahi-0.8/sbin/avahi-daemon --syslog -f /nix/store/lgd6rnp205bgwp5pji3ysia4n0bd2a7l-avahi-daemon.conf (code=exited, status=255/EXCEPTION)
+     Main PID: 49206 (code=exited, status=255/EXCEPTION)
+           IP: 0B in, 0B out
+           IO: 0B read, 0B written
+     Mem peak: 2.2M
+          CPU: 20ms
+
+  Sep 22 00:19:37 jupiter systemd[1]: Starting Avahi mDNS/DNS-SD Stack...
+  Sep 22 00:19:37 jupiter avahi-daemon[49206]: Process 882 died: No such process; trying to remove PID file. (/run/avahi-daemon//pid)
+  Sep 22 00:19:37 jupiter avahi-daemon[49206]: Found user 'avahi' (UID 994) and group 'avahi' (GID 993).
+  Sep 22 00:19:37 jupiter avahi-daemon[49206]: Successfully dropped root privileges.
+  Sep 22 00:19:37 jupiter avahi-daemon[49206]: open(/run/avahi-daemon//pid): File exists
+  Sep 22 00:19:37 jupiter avahi-daemon[49206]: Failed to create PID file: File exists
+  Sep 22 00:19:37 jupiter systemd[1]: avahi-daemon.service: Main process exited, code=exited, status=255/EXCEPTION
+  Sep 22 00:19:37 jupiter systemd[1]: avahi-daemon.service: Failed with result 'exit-code'.
+  Sep 22 00:19:37 jupiter systemd[1]: Failed to start Avahi mDNS/DNS-SD Stack.
+  warning: error(s) occurred while switching to the new configuration
+  @end
+
+  home-manager switch didn't work:
+  @code
+  --> dotfiles omarchy-nix X apply-users.sh
+  home-manager switch --flake /home/reinis/dotfiles#reinis@jupiter
+  warning: Git tree '/home/reinis/dotfiles' is dirty
+  error:
+         … while evaluating a branch condition
+           at /nix/store/x06djk7jw02qb6y8fxd0mjgaksw2kd9n-source/lib/lists.nix:142:18:
+            141|       len = length list;
+            142|       fold' = n: if n == len then nul else op (elemAt list n) (fold' (n + 1));
+               |                  ^
+            143|     in
+
+         … while calling the 'length' builtin
+           at /nix/store/x06djk7jw02qb6y8fxd0mjgaksw2kd9n-source/lib/lists.nix:141:13:
+            140|     let
+            141|       len = length list;
+               |             ^
+            142|       fold' = n: if n == len then nul else op (elemAt list n) (fold' (n + 1));
+
+         … while evaluating the option `omarchy.theme':
+
+         (stack trace truncated; use '--show-trace' to show the full, detailed trace)
+
+         error: expected a set but found null: null
+  @end
+
+  How to run hyprland?
+  Tried to run it from the still running x session, got a crash.
+  Restarted the machine.
+  Hyprland seemed to start up but i couldn't spawn a terminal, mouse was not visible.
+  Oh, maybe it was on the other display?
+  Indeed.
+
+  @code
+  sudo nixos-rebuild boot --flake $HOME/dotfiles#$(hostname) --profile-name omarchy
+  @end
+
+  Let's try out niri, seems simpler than hyprland and i want to try out the scrolling tiling wm concept.
+

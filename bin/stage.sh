@@ -152,6 +152,10 @@ ln -s "$STAGINGDIR/.Xresources" "$STAGINGDIR/.Xdefaults"
 ln -s "$DOTFILES/xdg/user-dirs.conf" "$STAGINGDIR/.config/user-dirs.conf"
 ln -s "$DOTFILES/xdg/user-dirs.dirs" "$STAGINGDIR/.config/user-dirs.dirs"
 
+# NIRI
+mkdir -p "$STAGINGDIR/.config/niri"
+cp "$DOTFILES/niri/config.kdl" "$STAGINGDIR/.config/niri/config.kdl"
+
 # I3/SWAY
 mkdir -p "$STAGINGDIR/.config/i3"
 mkdir -p "$STAGINGDIR/.config/i3blocks"
