@@ -47,6 +47,9 @@
       ]
     ))
 
+    # for omarchy-nix
+    wofi
+
   ];
 
   virtualisation.docker.enable = true;
