@@ -1,0 +1,3 @@
+[submodule "omarchy-nix"]
+	path = omarchy-nix
+	url = https://github.com/henrysipp/omarchy-nix.git
