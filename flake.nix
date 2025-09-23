@@ -36,12 +36,6 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
-
-    omarchy-nix = {
-        url = "github:henrysipp/omarchy-nix";
-        inputs.nixpkgs.follows = "nixpkgs";
-        inputs.home-manager.follows = "home-manager";
-    };
   };
 
   outputs =
@@ -50,7 +44,6 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
-      omarchy-nix,
       ...
     }@inputs:
     let
@@ -136,15 +129,6 @@
         jupiter = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            omarchy-nix.nixosModules.default
-            home-manager.nixosModules.home-manager
-            {
-              omarchy = {
-                full_name = "Reinis Taukulis";
-                email_address = "reinis.taukulis@gmail.com";
-                theme = "tokyo-night";
-              };
-            }
             ./nix/nixos/jupiter.nix
           ];
         };

@@ -47,7 +47,6 @@
       ]
     ))
 
-    # for omarchy-nix
     wofi
 
   ];

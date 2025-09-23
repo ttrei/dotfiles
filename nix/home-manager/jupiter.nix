@@ -9,7 +9,6 @@
 {
   imports = [
     ./with-nixos.nix
-    inputs.omarchy-nix.homeManagerModules.default
   ];
 
   home.packages = with pkgs; [
