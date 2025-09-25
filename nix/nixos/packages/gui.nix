@@ -47,38 +47,38 @@
     enableWideVine = true;
   };
 
-  services.xserver = {
-    enable = false;
-    xkb.layout = "lv";
-    xkb.variant = "apostrophe";
+  # services.xserver = {
+  #   enable = true;
+  #   xkb.layout = "lv";
+  #   xkb.variant = "apostrophe";
 
-    displayManager = {
-      lightdm.enable = true;
-    };
+  #   displayManager = {
+  #     lightdm.enable = true;
+  #   };
 
-    windowManager.i3.enable = true;
-    # windowManager.i3.package = pkgs.unstable.i3;
-  };
+  #   windowManager.i3.enable = true;
+  #   # windowManager.i3.package = pkgs.unstable.i3;
+  # };
 
   programs.hyprland.enable = true;
 
-  services.displayManager = {
-    defaultSession = "none+i3";
-    autoLogin.enable = true;
-    autoLogin.user = "reinis";
-  };
+  # services.displayManager = {
+  #   defaultSession = "none+i3";
+  #   autoLogin.enable = true;
+  #   autoLogin.user = "reinis";
+  # };
 
-  services.xserver.config = ''
-    Section "InputClass"
-      Identifier "evdev pointer catchall"
-      MatchIsPointer "on"
-      MatchDevicePath "/dev/input/event*"
-      Driver "evdev"
-      Option "AccelerationScheme" "none"
-    EndSection
-  '';
-  # Enable touchpad support
-  services.libinput.enable = true;
+  # services.xserver.config = ''
+  #   Section "InputClass"
+  #     Identifier "evdev pointer catchall"
+  #     MatchIsPointer "on"
+  #     MatchDevicePath "/dev/input/event*"
+  #     Driver "evdev"
+  #     Option "AccelerationScheme" "none"
+  #   EndSection
+  # '';
+  # # Enable touchpad support
+  # services.libinput.enable = true;
 
   # Extra fonts
   fonts = {
