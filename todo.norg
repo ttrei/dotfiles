@@ -93,6 +93,8 @@
   sudo nixos-rebuild boot --flake $HOME/dotfiles#$(hostname) --profile-name omarchy
   @end
 
+  Let's try out niri, seems simpler than hyprland and i want to try out the scrolling tiling wm concept.
+
 * Gemini CLI
 
   Learn how to automatically commit the conversation history:
