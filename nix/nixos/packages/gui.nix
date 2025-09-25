@@ -48,7 +48,7 @@
   };
 
   services.xserver = {
-    enable = true;
+    enable = false;
     xkb.layout = "lv";
     xkb.variant = "apostrophe";
 
@@ -59,6 +59,8 @@
     windowManager.i3.enable = true;
     # windowManager.i3.package = pkgs.unstable.i3;
   };
+
+  programs.hyprland.enable = true;
 
   services.displayManager = {
     defaultSession = "none+i3";
