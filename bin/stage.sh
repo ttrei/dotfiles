@@ -152,6 +152,10 @@ ln -s "$STAGINGDIR/.Xresources" "$STAGINGDIR/.Xdefaults"
 ln -s "$DOTFILES/xdg/user-dirs.conf" "$STAGINGDIR/.config/user-dirs.conf"
 ln -s "$DOTFILES/xdg/user-dirs.dirs" "$STAGINGDIR/.config/user-dirs.dirs"
 
+# HYPRLAND
+mkdir -p "$STAGINGDIR/.config/hypr"
+cp "$DOTFILES/hyprland/hyprland.conf" "$STAGINGDIR/.config/hypr/hyprland.conf"
+
 # I3/SWAY
 mkdir -p "$STAGINGDIR/.config/i3"
 mkdir -p "$STAGINGDIR/.config/i3blocks"
