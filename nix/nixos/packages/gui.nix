@@ -39,6 +39,7 @@
     xorg.xmodmap
     xorg.xwininfo
     xsel
+    waybar
     zathura
     zutty
   ];
