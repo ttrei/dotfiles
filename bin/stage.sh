@@ -156,6 +156,10 @@ ln -s "$DOTFILES/xdg/user-dirs.dirs" "$STAGINGDIR/.config/user-dirs.dirs"
 mkdir -p "$STAGINGDIR/.config/hypr"
 cp "$DOTFILES/hyprland/hyprland.conf" "$STAGINGDIR/.config/hypr/hyprland.conf"
 
+# NIRI
+mkdir -p "$STAGINGDIR/.config/niri"
+cp "$DOTFILES/niri/config.kdl" "$STAGINGDIR/.config/niri/config.kdl"
+
 # I3/SWAY
 mkdir -p "$STAGINGDIR/.config/i3"
 mkdir -p "$STAGINGDIR/.config/i3blocks"
