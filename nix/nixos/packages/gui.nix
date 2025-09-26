@@ -6,6 +6,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    alacritty
     unstable.anki
     chromium
     dbeaver-bin
@@ -61,7 +62,9 @@
   #   # windowManager.i3.package = pkgs.unstable.i3;
   # };
 
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
+
+  programs.niri.enable = true;
 
   # services.displayManager = {
   #   defaultSession = "none+i3";
