@@ -14,7 +14,8 @@
     ./packages/cli.nix
     ./packages/gamedev.nix
     ./packages/games.nix
-    ./packages/gui-niri.nix
+    ./packages/gui.nix
+    ./wayland.nix
     ./users/reinis.nix
   ];
 
@@ -46,8 +47,6 @@
         jellyfin
       ]
     ))
-
-    wofi
 
   ];
 

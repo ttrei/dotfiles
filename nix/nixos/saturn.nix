@@ -13,6 +13,7 @@
     ./packages/cli.nix
     ./packages/games.nix
     ./packages/gui.nix
+    ./x11.nix
     ./packages/saturn.nix
     ./users/reinis.nix
   ];

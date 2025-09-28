@@ -11,6 +11,7 @@
     ./hardware-configurations/qemu.nix
     ./packages/cli.nix
     ./packages/gui.nix
+    ./x11.nix
     ./users/reinis.nix
   ];
 
