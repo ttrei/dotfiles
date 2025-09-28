@@ -156,6 +156,10 @@ ln -s "$DOTFILES/xdg/user-dirs.dirs" "$STAGINGDIR/.config/user-dirs.dirs"
 mkdir -p "$STAGINGDIR/.config/niri"
 cp "$DOTFILES/niri/config.kdl" "$STAGINGDIR/.config/niri/config.kdl"
 
+# WAYBAR
+mkdir -p "$STAGINGDIR/.config/waybar"
+cp "$DOTFILES/waybar/config.jsonc" "$STAGINGDIR/.config/waybar/config.jsonc"
+
 # I3/SWAY
 mkdir -p "$STAGINGDIR/.config/i3"
 mkdir -p "$STAGINGDIR/.config/i3blocks"
