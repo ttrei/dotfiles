@@ -6,6 +6,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    mako
     waybar
     wl-clipboard
     wofi
