@@ -7,6 +7,7 @@
 {
   environment.systemPackages = with pkgs; [
     waybar
+    wl-clipboard
     wofi
   ];
 
