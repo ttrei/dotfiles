@@ -30,6 +30,10 @@
 
 * Annoyances
 
+** (neovim) Learn to use nvim-surround
+
+   https://github.com/kylechui/nvim-surround?tab=readme-ov-file#rocket-usage
+
 ** (zathura pdf reader) Handling of different page sizes
 
    As of version 0.5.11 zathura shows a lot of empty space around pages if there's some large page in the document.
