@@ -152,6 +152,10 @@
    - pgAdmin
    - MySQL Workbench
 
+** (python) Try out ty
+
+   https://github.com/astral-sh/ty
+
 ** (pre-commit) Exclude some python files from the ruff hooks
 
    I'm using https://github.com/cachix/git-hooks.nix to get pre-commit hooks.
