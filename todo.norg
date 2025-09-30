@@ -30,10 +30,6 @@
 
 * Annoyances
 
-** (neovim) Learn to use nvim-surround
-
-   https://github.com/kylechui/nvim-surround?tab=readme-ov-file#rocket-usage
-
 ** (zathura pdf reader) Handling of different page sizes
 
    As of version 0.5.11 zathura shows a lot of empty space around pages if there's some large page in the document.
@@ -174,6 +170,10 @@
    TODO: Try to create a custom hook or modify the one from git-hooks.nix - add the --force-exclude option.
    If it works as expected, create a PR in git-hooks.nix repo.
 
+** (shell) Try out nushell
+
+   https://github.com/nushell/nushell
+
 ** (git) Try out mergiraf
 
    https://mergiraf.org/introduction.html
@@ -183,6 +183,10 @@
 
    https://difftastic.wilfred.me.uk/
    https://github.com/Wilfred/difftastic
+
+** (neovim) Learn to use nvim-surround
+
+   https://github.com/kylechui/nvim-surround?tab=readme-ov-file#rocket-usage
 
 ** (neovim) One shortcut to navigate many kinds of lists
 
