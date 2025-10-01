@@ -225,6 +225,13 @@
 
    https://github.com/cachix/git-hooks.nix
 
+** Tracy profiler
+
+   A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other
+   applications.
+
+   https://github.com/wolfpld/tracy
+
 * Other
 
 ** Printing on NixOS
