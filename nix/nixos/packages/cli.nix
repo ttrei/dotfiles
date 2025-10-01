@@ -11,7 +11,7 @@
     beancount
     unstable.beets
     clang-tools
-    diffoscope
+    # diffoscope
     diffstat
     emacs
     encfs
