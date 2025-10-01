@@ -138,6 +138,12 @@
   - When using a tool, figure out how the authors *meant* it to be used, see if it works for you
   - For writing useful little scripts for yourself, the main enemy is *activation energy*
 
+** ast-grep(sg) - CLI tool for code structural search, lint, and rewriting.
+
+   https://github.com/ast-grep/ast-grep
+
+   https://news.ycombinator.com/item?id=38590984
+
 ** Try out other database clients than dbeaver
 
    This was prompted by inability to find the dbeaver.ini settings file.
