@@ -180,6 +180,16 @@
 
    https://github.com/astral-sh/ty
 
+** (python) Choose ruff rules with help from AI
+
+   https://x.com/bantg/status/1895315010294870312
+   > ruff is the best python linter, but it has so many rules.
+   > luckily you can analyze your project and find the best non-conflicting rules with claude.
+   > i used this prompt:
+   > run `ruff check src --select ALL --statistics` and then read the explanations for rules with `ruff rule XYZ` and then
+   > decide which classes or rules or individual rules we keep and which we exclude (like UP017). present me your findings
+   > before updating the ruff config in pyproject.toml
+
 ** (pre-commit) Exclude some python files from the ruff hooks
 
    I'm using https://github.com/cachix/git-hooks.nix to get pre-commit hooks.
