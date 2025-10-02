@@ -212,6 +212,13 @@
 
    https://github.com/nushell/nushell
 
+** (git) Choose a good cli git interface
+
+   https://github.com/tpope/vim-fugitive
+   https://github.com/NeogitOrg/neogit
+   https://github.com/jesseduffield/lazygit?tab=readme-ov-file#bisect
+   https://github.com/kdheepak/lazygit.nvim
+
 ** (git) Try out mergiraf
 
    https://mergiraf.org/introduction.html
