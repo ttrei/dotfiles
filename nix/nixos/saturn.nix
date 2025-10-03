@@ -27,7 +27,7 @@
       # https://mullvad.net/en/account/wireguard-config
       # Put the private key in a file at the privateKeyFile path.
       # Put the "wireguard key" in publicKey.
-      autostart = true;
+      autostart = false;
       address = [ "10.73.249.174/32" ];
       dns = [ "10.64.0.1" ];
       privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
@@ -55,7 +55,7 @@
     );
   };
 
-  services.transmission.enable = true;
+  services.transmission.enable = false;
   services.transmission.package = pkgs.transmission_4;
   services.transmission.settings = {
     # https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
