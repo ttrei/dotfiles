@@ -31,6 +31,10 @@
 
    https://docs.determinate.systems/guides/advanced-installation/#nixos
 
+* Secrets management
+
+  https://secretspec.dev/
+
 * Annoyances
 
 ** (zathura pdf reader) Handling of different page sizes
