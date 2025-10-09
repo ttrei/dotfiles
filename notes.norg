@@ -1,3 +1,28 @@
+* Example flake.nix
+
+  @code
+  {
+    description = "Example";
+
+    inputs = {
+      dotfiles.url = "github:ttrei/dotfiles";
+    };
+
+    outputs = { self, dotfiles, ... }:
+    let
+      system = "x86_64-linux";
+      pkgs = dotfiles.nixpkgs.legacyPackages.${system};
+    in
+    {
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          cowsay
+        ];
+      };
+    };
+  }
+  @end
+
 * Patch an in-tree kernel module
 
   Slightly adapted from
