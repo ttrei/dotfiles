@@ -17,6 +17,9 @@
 
 * Gemini CLI
 
+  Try out "Beads - A memory upgrade for your coding agent"
+  https://github.com/steveyegge/beads
+
   Learn how to automatically commit the conversation history:
   https://github.com/google-gemini/gemini-cli/blob/main/docs/checkpointing.md
 
