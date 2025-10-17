@@ -20,6 +20,23 @@
   Try out "Beads - A memory upgrade for your coding agent"
   https://github.com/steveyegge/beads
 
+  Try to run in docker:
+  https://geminicli.com/docs/get-started/installation/#2-run-in-a-sandbox-dockerpodman
+  How to authenticate?
+  Generated key here
+  https://aistudio.google.com/app/api-keys
+  Grok suggested how to run it
+  https://grok.com/c/c2f8560d-3b05-4c5d-8ef5-ed564acd2d70
+  @code
+  sudo docker run --rm -it \
+      -v $HOME/.gemini:/home/node/.gemini \
+      -v ./.env:/home/node/.gemini/.env \
+      us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.10.0-preview.1
+  @end
+  Check latest tag here
+  https://console.cloud.google.com/artifacts/docker/gemini-code-dev/us/gemini-cli/sandbox
+  TODO: manage the api key like all the others
+
   Learn how to automatically commit the conversation history:
   https://github.com/google-gemini/gemini-cli/blob/main/docs/checkpointing.md
 
