@@ -7,6 +7,4 @@
   # st = pkgs.callPackage ./st-lukesmith { };
   zutty = pkgs.callPackage ./zutty { };
   arcanPackages = pkgs.recurseIntoAttrs (pkgs.callPackage ./arcan { });
-
-  gemini-cli = pkgs.recurseIntoAttrs (pkgs.callPackage ./gemini-cli { });
 }
