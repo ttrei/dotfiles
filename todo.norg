@@ -1,6 +1,8 @@
 * Gemini CLI
 
-  Try out "Beads - A memory upgrade for your coding agent"
+  Add uv to gemini docker image.
+
+  (done) Try out "Beads - A memory upgrade for your coding agent"
   https://github.com/steveyegge/beads
 
   (done) Try to run gemini-cli in docker:
