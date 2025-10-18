@@ -1,8 +1,21 @@
 {
-  "theme": "ANSI Light",
-  "usageStatisticsEnabled": true,
-  "hideTips": false,
-  "hideBanner": false,
-  "sandbox": false,
-  "maxSessionTurns": 10
+  "ui": {
+    "hideTips": false,
+    "hideBanner": false,
+    "theme": "ANSI Light"
+  },
+  "model": {
+    "maxSessionTurns": 10
+  },
+  "tools": {
+    "sandbox": false
+  },
+  "privacy": {
+    "usageStatisticsEnabled": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
+  }
 }

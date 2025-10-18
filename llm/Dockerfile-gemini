@@ -1,0 +1,24 @@
+# https://console.cloud.google.com/artifacts/docker/gemini-code-dev/us/gemini-cli/sandbox
+FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.10.0-preview.2
+
+USER root
+
+RUN apt-get update && \
+    apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl -LO https://go.dev/dl/go1.24.0.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz && \
+    rm go1.24.0.linux-amd64.tar.gz
+
+ENV PATH=$PATH:/usr/local/go/bin
+
+RUN git clone https://github.com/steveyegge/beads /tmp/beads && \
+    cd /tmp/beads && \
+    go build -o /usr/local/bin/bd ./cmd/bd && \
+    cd / && \
+    rm -rf /tmp/beads
+
+RUN bd version
+
+WORKDIR /home/node/code
