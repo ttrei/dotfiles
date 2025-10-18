@@ -1,8 +1,8 @@
 {
   "theme": "ANSI Light",
   "usageStatisticsEnabled": true,
-  "hideTips": true,
-  "hideBanner": true,
+  "hideTips": false,
+  "hideBanner": false,
   "sandbox": false,
   "maxSessionTurns": 10
 }
