@@ -11,13 +11,13 @@ RUN curl -LO https://go.dev/dl/go1.24.0.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz && \
     rm go1.24.0.linux-amd64.tar.gz
 
-ENV PATH=$PATH:/usr/local/go/bin
-
 RUN git clone https://github.com/steveyegge/beads /tmp/beads && \
     cd /tmp/beads && \
-    go build -o /usr/local/bin/bd ./cmd/bd && \
+    /usr/local/go/bin/go build -o /usr/local/bin/bd ./cmd/bd && \
     cd / && \
     rm -rf /tmp/beads
+
+USER 1000
 
 RUN bd version
 
