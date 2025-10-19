@@ -4,8 +4,9 @@ FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.10.0-preview.2
 USER root
 
 RUN apt-get update && \
-    apt-get install -y git && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN curl -LO https://go.dev/dl/go1.24.0.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz && \
