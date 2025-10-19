@@ -25,4 +25,4 @@ USER 1000
 
 RUN bd version
 
-WORKDIR /home/node/code
+WORKDIR /home/node/dev
