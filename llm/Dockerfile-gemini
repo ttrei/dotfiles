@@ -11,6 +11,9 @@ RUN curl -LO https://go.dev/dl/go1.24.0.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go1.24.0.linux-amd64.tar.gz && \
     rm go1.24.0.linux-amd64.tar.gz
 
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
+    mv /root/.local/bin/uv /usr/local/bin/uv
+
 RUN git clone https://github.com/steveyegge/beads /tmp/beads && \
     cd /tmp/beads && \
     /usr/local/go/bin/go build -o /usr/local/bin/bd ./cmd/bd && \

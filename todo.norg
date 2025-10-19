@@ -1,6 +1,9 @@
 * Gemini CLI
 
-  Add uv to gemini docker image.
+  Learn how to automatically commit the conversation history:
+  https://github.com/google-gemini/gemini-cli/blob/main/docs/checkpointing.md
+
+  (done) Add uv to gemini docker image.
 
   (done) Try out "Beads - A memory upgrade for your coding agent"
   https://github.com/steveyegge/beads
@@ -21,9 +24,6 @@
       /bin/bash -c "cd /home/node/code && gemini"
   @end
   Created script gemini-docker.sh
-
-  Learn how to automatically commit the conversation history:
-  https://github.com/google-gemini/gemini-cli/blob/main/docs/checkpointing.md
 
   (done) Select theme:
   https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/themes.md
