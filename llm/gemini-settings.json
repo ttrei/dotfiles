@@ -5,7 +5,7 @@
     "theme": "ANSI Light"
   },
   "model": {
-    "maxSessionTurns": 10
+    "maxSessionTurns": 50
   },
   "tools": {
     "sandbox": false
