@@ -12,5 +12,3 @@ uv tool install --upgrade files-to-prompt
 
 # https://llm.datasette.io/en/stable/plugins/directory.html
 # llm install --force-reinstall llm-cmd llm-deepseek llm-claude-3
-
-sudo docker build -f "$DOTFILES/llm/Dockerfile-gemini" -t gemini ./llm
