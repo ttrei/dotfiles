@@ -16,6 +16,12 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     mv /root/.local/bin/uv /usr/local/bin/uv
 
 ARG CACHEBUST
+
+# COPY ./beads /tmp/beads
+# RUN cd /tmp/beads && \
+#     /usr/local/go/bin/go build -o /usr/local/bin/bd ./cmd/bd && \
+#     rm -rf /tmp/beads
+
 RUN git clone https://github.com/steveyegge/beads /tmp/beads && \
     cd /tmp/beads && \
     /usr/local/go/bin/go build -o /usr/local/bin/bd ./cmd/bd && \
