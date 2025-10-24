@@ -1,5 +1,5 @@
 # https://console.cloud.google.com/artifacts/docker/gemini-code-dev/us/gemini-cli/sandbox
-FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.10.0-preview.2
+FROM us-docker.pkg.dev/gemini-code-dev/gemini-cli/sandbox:0.12.0-nightly.20251023.c4c0c0d1
 
 USER root
 
@@ -28,8 +28,11 @@ RUN git clone https://github.com/steveyegge/beads /tmp/beads && \
     cd / && \
     rm -rf /tmp/beads
 
+RUN mv /usr/local/bin/bd /usr/local/bin/bd-original && \
+    echo '#!/bin/sh\nbd-original --no-daemon "$@"' > /usr/local/bin/bd && \
+    chmod +x /usr/local/bin/bd
+
 USER 1000
-RUN echo "alias bd='bd --no-daemon'" >> ~/.bashrc
 
 RUN bd version
 
