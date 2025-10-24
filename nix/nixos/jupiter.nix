@@ -13,7 +13,7 @@
     ./packages/audio.nix
     ./packages/cli.nix
     ./packages/gamedev.nix
-    ./packages/games.nix
+    # ./packages/games.nix
     ./packages/gui.nix
     ./wayland.nix
     ./users/reinis.nix
