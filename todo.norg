@@ -18,6 +18,9 @@
   claude
   @end
 
+  TODO: fix permissions - all files in /workspace are owned by root
+  https://claude.ai/chat/a49314b3-24f7-40a2-9369-e66c20ed3692
+
 * Gemini CLI
 
   Learn how to automatically commit the conversation history:
