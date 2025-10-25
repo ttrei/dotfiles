@@ -9,6 +9,13 @@
 
   https://github.com/anthropics/claude-code/tree/main/.devcontainer
 
+  @code
+  git clone https://github.com/anthropics/claude-code
+  cd claude-code
+  devcontainer up --workspace-folder .
+  devcontainer exec --workspace-folder . claude
+  @end
+
 * Gemini CLI
 
   Learn how to automatically commit the conversation history:
