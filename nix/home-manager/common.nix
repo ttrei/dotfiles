@@ -61,6 +61,7 @@
     unstable.difftastic
     unstable.devenv
     # diffoscope
+    devcontainer
     direnv
     emacs
     eza
