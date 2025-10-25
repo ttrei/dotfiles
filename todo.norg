@@ -7,6 +7,8 @@
 
   https://console.anthropic.com/settings/keys
 
+  https://github.com/anthropics/claude-code/tree/main/.devcontainer
+
 * Gemini CLI
 
   Learn how to automatically commit the conversation history:
