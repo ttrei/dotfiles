@@ -13,6 +13,7 @@
   git clone https://github.com/anthropics/claude-code
   cd claude-code
   devcontainer up --workspace-folder .
+  # devcontainer up --workspace-folder . --remove-existing-container
   devcontainer exec --workspace-folder . bash
   claude
   @end
