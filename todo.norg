@@ -18,8 +18,10 @@
   claude
   @end
 
-  TODO: fix permissions - all files in /workspace are owned by root
+  Neet to fix permissions - all files in /workspace are owned by root
   https://claude.ai/chat/a49314b3-24f7-40a2-9369-e66c20ed3692
+  Tried some of the suggested fixes to no avail.
+  Switching away from rootless docker fixed it.
 
 * Gemini CLI
 

@@ -50,6 +50,16 @@
   ];
 
   virtualisation.docker.enable = true;
+  # # Not using rottless docker -  had a problem where devcontainer bind mounted
+  # # files had root:root permissions in the container.
+  # # Apparently that's a pain point in rootless docker.
+  # virtualisation.docker = {
+  #   enable = false;
+  #   rootless = {
+  #     enable = true;
+  #     setSocketVariable = true;
+  #   };
+  # };
 
   services.pulseaudio.enable = false;
 
