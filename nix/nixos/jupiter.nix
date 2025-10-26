@@ -49,13 +49,7 @@
 
   ];
 
-  virtualisation.docker = {
-    enable = false;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
+  virtualisation.docker.enable = true;
 
   services.pulseaudio.enable = false;
 
