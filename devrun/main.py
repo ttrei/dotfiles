@@ -53,16 +53,23 @@ def cli():
 @cli.command()
 @click.option("-w", "--workspace-folder", default=None, help="Workspace folder path")
 @click.option("-r", "--remove-existing-container", is_flag=True, help="Remove existing container")
-def up(workspace_folder, remove_existing_container):
+@click.option("--no-cache", is_flag=True, help="Force Docker to skip layer cache")
+def up(workspace_folder, remove_existing_container, no_cache):
     """Start a devcontainer."""
     config = get_host_config()
     workspace = get_workspace(workspace_folder, config)
     cmd = []
     if config.use_sudo:
         cmd.extend(["sudo", "-E"])
-    cmd.extend(["devcontainer", "up", "--workspace-folder", workspace])
-    if remove_existing_container:
-        cmd.append("--remove-existing-container")
+    if no_cache:
+        cmd0 = cmd.copy()
+        cmd0.extend(["devcontainer", "build", "--workspace-folder", workspace, "--no-cache"])
+        cmd.extend(["devcontainer", "up", "--workspace-folder", workspace])
+        run_command(cmd0)
+    else:
+        cmd.extend(["devcontainer", "up", "--workspace-folder", workspace])
+        if remove_existing_container:
+            cmd.append("--remove-existing-container")
     return run_command(cmd)
 
 
