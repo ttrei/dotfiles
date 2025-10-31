@@ -1,0 +1,12 @@
+[project]
+name = "devrun"
+version = "0.1.0"
+description = "Entry point for frequently used dev tools/actions"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click",
+]
+
+[project.scripts]
+devrun = "main:main"

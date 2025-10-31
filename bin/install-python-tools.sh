@@ -5,6 +5,7 @@ set -o nounset
 
 DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
 
+uv tool install --editable ~/dotfiles/devrun
 uv tool install --reinstall ~/dotfiles/i3/i3init
 uv tool install --upgrade yt-dlp
 uv tool install --upgrade llm
