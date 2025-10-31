@@ -44,7 +44,7 @@ def run_command(cmd):
         return 1
 
 
-@click.group()
+@click.group(context_settings={"help_option_names": ["-h", "--help"]})
 def cli():
     """DevContainer management tool with host-specific defaults."""
     pass
