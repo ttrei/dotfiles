@@ -49,7 +49,16 @@
 
   ];
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      # sudo mkdir -p /media/storage-new/docker-cache
+      # sudo chown root:root /media/storage-new/docker-cache
+      # sudo chmod 710 /media/storage-new/docker-cache
+      data-root = "/media/storage-new/docker-cache";
+    };
+  };
+
   # # Not using rottless docker -  had a problem where devcontainer bind mounted
   # # files had root:root permissions in the container.
   # # Apparently that's a pain point in rootless docker.
