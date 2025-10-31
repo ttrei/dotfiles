@@ -9,4 +9,4 @@ dependencies = [
 ]
 
 [project.scripts]
-devrun = "main:main"
+devrun = "main:cli"
