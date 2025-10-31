@@ -5,86 +5,102 @@ from dataclasses import dataclass
 
 import click
 
-hostname = socket.gethostname()
-
 
 @dataclass
-class HostConfig:
+class Config:
     default_workspace: str
     use_sudo: bool
 
 
+hostname = socket.gethostname()
+click.echo(f"Detected {hostname=}")
+DEFAULT_CONFIG = Config(default_workspace="~/dev", use_sudo=False)
 HOST_CONFIGS = {
-    "default": HostConfig(default_workspace="~/dev", use_sudo=False),
-    "jupiter": HostConfig(default_workspace="~/dev", use_sudo=True),
-    "mercury": HostConfig(default_workspace="~/home-dev", use_sudo=False),
+    "jupiter": Config(default_workspace="~/dev", use_sudo=True),
+    "mercury": Config(default_workspace="~/home-dev", use_sudo=False),
 }
+g_config = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
+g_workspace = None
 
 
-def get_host_config() -> HostConfig:
-    return HOST_CONFIGS.get(hostname, HOST_CONFIGS["default"])
-
-
-def get_workspace(workspace_folder, config: HostConfig):
-    return os.path.expanduser(workspace_folder or config.default_workspace)
-
-
-def run_command(cmd):
-    """Execute a command and stream output."""
-    click.echo(f"Detected {hostname=}")
-    click.echo(f"{' '.join(cmd)}")
+def run_command(cmd, capture_output=False):
+    click.echo(f"$ {' '.join(cmd)}")
     try:
-        result = subprocess.run(cmd, shell=False, check=True)
-        return result.returncode
+        if capture_output:
+            result = subprocess.run(cmd, shell=False, capture_output=True, text=True, check=True)
+        else:
+            result = subprocess.run(cmd, shell=False, check=True)
+        return result
     except subprocess.CalledProcessError as e:
         click.echo(f"Error: Command failed with exit code {e.returncode}", err=True)
-        return e.returncode
-    except FileNotFoundError:
-        click.echo("Error: devcontainer command not found", err=True)
-        return 1
+        return e
 
 
 @click.group(context_settings={"help_option_names": ["-h", "--help"]})
-def cli():
+@click.option("-w", "--workspace-folder", default=None, help="Workspace folder path")
+def cli(workspace_folder):
     """DevContainer management tool with host-specific defaults."""
-    pass
+    global g_workspace
+    g_workspace = os.path.abspath(os.path.expanduser(workspace_folder or g_config.default_workspace))
 
 
 @cli.command()
-@click.option("-w", "--workspace-folder", default=None, help="Workspace folder path")
 @click.option("-r", "--remove-existing-container", is_flag=True, help="Remove existing container")
 @click.option("--no-cache", is_flag=True, help="Force Docker to skip layer cache")
-def up(workspace_folder, remove_existing_container, no_cache):
+def up(remove_existing_container, no_cache):
     """Start a devcontainer."""
-    config = get_host_config()
-    workspace = get_workspace(workspace_folder, config)
     cmd = []
-    if config.use_sudo:
+    if g_config.use_sudo:
         cmd.extend(["sudo", "-E"])
     if no_cache:
         cmd0 = cmd.copy()
-        cmd0.extend(["devcontainer", "build", "--workspace-folder", workspace, "--no-cache"])
-        cmd.extend(["devcontainer", "up", "--workspace-folder", workspace])
+        cmd0.extend(["devcontainer", "build", "--workspace-folder", g_workspace, "--no-cache"])
+        cmd.extend(["devcontainer", "up", "--workspace-folder", g_workspace])
         run_command(cmd0)
     else:
-        cmd.extend(["devcontainer", "up", "--workspace-folder", workspace])
+        cmd.extend(["devcontainer", "up", "--workspace-folder", g_workspace])
         if remove_existing_container:
             cmd.append("--remove-existing-container")
-    return run_command(cmd)
+    run_command(cmd)
 
 
 @cli.command()
-@click.option("-w", "--workspace-folder", default=None, help="Workspace folder path")
+def down():
+    """Stop a devcontainer."""
+    click.echo(f"Looking for container with workspace: {g_workspace}")
+    cmd_list_containers = []
+    if g_config.use_sudo:
+        cmd_list_containers.append("sudo")
+    cmd_list_containers.extend(["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"])
+    result = run_command(cmd_list_containers, capture_output=True)
+    container_ids = result.stdout.strip().split("\n")
+    container_ids = [cid for cid in container_ids if cid]  # Remove empty strings
+
+    if container_ids:
+        click.echo(f"Found {len(container_ids)} container(s): {', '.join(container_ids)}")
+        for container_id in container_ids:
+            cmd_stop = []
+            if g_config.use_sudo:
+                cmd_stop.append("sudo")
+            cmd_stop.extend(["docker", "stop", container_id])
+            run_command(cmd_stop)
+    else:
+        click.echo("No running devcontainer found for this workspace")
+
+
+@cli.command()
 @click.argument("command", nargs=-1)
-def exec(workspace_folder, command):
+def exec(command):
     """Execute a command in the devcontainer."""
-    config = get_host_config()
-    workspace = get_workspace(workspace_folder, config)
     cmd = []
-    if config.use_sudo:
+    if g_config.use_sudo:
         cmd.append("sudo")
-    cmd.extend(["devcontainer", "exec", "--workspace-folder", workspace])
+    cmd.extend(["devcontainer", "exec", "--workspace-folder", g_workspace])
     if not command:
         command = ("bash",)
     cmd.extend(command)
-    return run_command(cmd)
+    run_command(cmd)
+
+
+if __name__ == "__main__":
+    cli()
