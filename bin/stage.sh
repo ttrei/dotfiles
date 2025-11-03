@@ -282,7 +282,6 @@ mkdir -p "$STAGINGDIR/.gemini"
 ln -s "$DOTFILES/llm/io.datasette.llm/default_model.txt" "$STAGINGDIR/.config/io.datasette.llm/default_model.txt"
 ln -s "$DOTFILES/llm/io.datasette.llm/aliases.json" "$STAGINGDIR/.config/io.datasette.llm/aliases.json"
 ln -s "$DOTFILES/llm/gemini-settings.json" "$STAGINGDIR/.gemini/settings.json"
-ln -s "$DOTFILES/llm/gemini-docker.sh" "$STAGINGDIR/bin/gemini-docker.sh"
 
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
