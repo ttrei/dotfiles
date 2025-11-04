@@ -47,9 +47,17 @@ rm -rf ~/.config/home-manager
 nix/bin/apply-users.sh
 ```
 
+### Set up password store
+
+```shell
+GNUPGHOME=<other-partition>/home/reinis/.gnupg gpg --export-secret-keys reinis > key.asc
+gpg --import key.asc
+shred key.asc && rm key.asc
+```
+
 ### Set up shell history
 
-``` shell
+```shell
 pass other/atuin.sh
 atuin login
 atuin sync
