@@ -132,6 +132,12 @@
             ./nix/nixos/jupiter.nix
           ];
         };
+        jupiter-work = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/nixos/jupiter-work.nix
+          ];
+        };
         saturn = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [

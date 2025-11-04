@@ -40,8 +40,8 @@
   # The following entry is copy-pasted and adjusted from the main nixos entry in /boot/grub/grub.cfg.
   boot.loader.grub.extraEntries = ''
     menuentry "NixOS jupiter-work" {
-    search --set=drive1 --fs-uuid 20951e80-cc0a-4312-9654-3a43eb0156a0
-    search --set=drive2 --fs-uuid 20951e80-cc0a-4312-9654-3a43eb0156a0
+    search --set=drive1 --fs-uuid c2be14ff-91b7-41b3-9d1a-d0b5b743aa0e
+    search --set=drive2 --fs-uuid c2be14ff-91b7-41b3-9d1a-d0b5b743aa0e
       linux ($drive2)/nix/var/nix/profiles/system/kernel init=/nix/var/nix/profiles/system/init loglevel=4 lsm=landlock,yama,bpf
       initrd ($drive2)/nix/var/nix/profiles/system/initrd
     }
@@ -72,7 +72,7 @@
       ];
     };
     "/media/jupiter-work" = {
-      device = "/dev/disk/by-uuid/20951e80-cc0a-4312-9654-3a43eb0156a0";
+      device = "/dev/disk/by-uuid/c2be14ff-91b7-41b3-9d1a-d0b5b743aa0e";
       fsType = "ext4";
       options = [
         "noauto"

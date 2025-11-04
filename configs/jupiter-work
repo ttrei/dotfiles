@@ -1,4 +1,4 @@
-export DISTRO=debian
+export DISTRO=nixos
 export CONTEXT=work
 export MACHINE=jupiter
 export EXECUTION_ENV=baremetal
