@@ -82,7 +82,7 @@ EXECUTION_ENV
 charon: Android phone (the actual hostname is different, didn't try to change it)
 eris: Raspberry Pi 1 (CA server), (static dhcp ip 192.168.8.42, mac B8:27:EB:CB:3A:E6)
 jupiter: Desktop workstation (NixOS)
-jupiter-work: Desktop workstation (Ubuntu)
+jupiter-work: Desktop workstation (NixOS)
 mercury: Work laptop (Debian WSL)
 neptune: Digitalocean VPS, taukulis.lv, 142.93.226.85 (previously 159.65.84.88)
 pluto: Raspberry Pi 4, (static dhcp ip 192.168.8.201, mac D8:3A:DD:AF:8F:B9)
