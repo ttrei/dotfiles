@@ -19,6 +19,21 @@
 
   networking.hostName = "jupiter-work";
 
+  networking.wireguard.interfaces.wg0 = {
+    ips = [ "192.168.50.1/32" ];
+    listenPort = 51820;
+    privateKeyFile = "/root/wireguard-keys/mercury.key";
+    peers = [
+      {
+        # jupiter-work publickey: q5H5OzrAQ7K6AI+mu88JRKffMvyqYLFF4UCHm0ObCQY=
+        publicKey = "TODO";
+        allowedIPs = [ "192.168.50.2/32" ];
+        endpoint = "mercury:51820";
+        persistentKeepalive = 25;
+      }
+    ];
+  };
+
   virtualisation.docker.enable = true;
 
   services.pulseaudio.enable = false;
@@ -40,17 +55,6 @@
     # Sigulda
     latitude = 57.15;
     longitude = 24.86;
-  };
-
-  # Printing (Brother HL-L2340DW)
-  # http://localhost:631/admin -> Find New Printers -> Add This Printer -> Continue -> Make = Generic -> Continue ->
-  # Model = IPP Everywhere -> Add Printer
-  # 2024-09-26: Disabled to avoid https://www.evilsocket.net/2024/09/26/Attacking-UNIX-systems-via-CUPS-Part-I/
-  # services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
   };
 
   # This value determines the NixOS release from which the default
