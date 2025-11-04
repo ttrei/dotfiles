@@ -46,3 +46,5 @@ theme = Gruvbox Light Hard
 font-size = 11
 gtk-titlebar = false
 window-decoration = server
+
+keybind = performable:ctrl+c=copy_to_clipboard
