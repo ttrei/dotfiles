@@ -25,8 +25,7 @@
     privateKeyFile = "/root/wireguard-keys/mercury.key";
     peers = [
       {
-        # jupiter-work publickey: q5H5OzrAQ7K6AI+mu88JRKffMvyqYLFF4UCHm0ObCQY=
-        publicKey = "TODO";
+        publicKey = "8BoqwfxDDRXROjpkdt595bV6urQw1VrltrvOAUuO2lA=";
         allowedIPs = [ "192.168.50.2/32" ];
         endpoint = "mercury:51820";
         persistentKeepalive = 25;
