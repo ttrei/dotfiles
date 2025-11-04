@@ -29,9 +29,22 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
+    useOSProber = true;
+  };
+
+  boot.loader.grub.extraEntries = ''
+    menuentry "NixOS jupiter-work" {
+      search --set=root --fs-uuid 20951e80-cc0a-4312-9654-3a43eb0156a0
+      linux ($root)/nix/var/nix/profiles/system/kernel \
+            init=($root)/nix/var/nix/profiles/system/init \
+            systemConfig=($root)/nix/var/nix/profiles/system
+      initrd ($root)/nix/var/nix/profiles/system/initrd
+    }
+  '';
 
   boot.supportedFilesystems = [ "nfs" ];
 
@@ -49,14 +62,6 @@
       fsType = "ext4";
       options = [ "nofail" ];
     };
-    "/media/external-madara" = {
-      device = "/dev/disk/by-uuid/D2B0FEEBB0FED547";
-      fsType = "ntfs";
-      options = [
-        "noauto"
-        "nofail"
-      ];
-    };
     "/media/external-aija" = {
       device = "/dev/disk/by-uuid/F292D98392D94CAB";
       fsType = "ntfs";
@@ -65,15 +70,9 @@
         "nofail"
       ];
     };
-    "/media/debian-work" = {
-      device = "/dev/disk/by-uuid/3d855ec1-722c-48a1-b273-cd934d321527";
-      options = [
-        "noauto"
-        "nofail"
-      ];
-    };
-    "/media/linux-main" = {
-      device = "/dev/disk/by-uuid/56b3dbfe-a167-4d92-a4e3-826ba53c2a47";
+    "/media/jupiter-work" = {
+      device = "/dev/disk/by-uuid/20951e80-cc0a-4312-9654-3a43eb0156a0";
+      fsType = "ext4";
       options = [
         "noauto"
         "nofail"
