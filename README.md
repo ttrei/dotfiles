@@ -14,9 +14,9 @@ It is my intention to gradually migrate all configuration to
    The config file will be copied to `$HOME/.dotfiles-env`.
 2. Execute `bin/deploy.sh`.
 
-### Install home-manager
+### Install home-manager on non-NixOS distro
 
-On non-NixOS, first install nix in multi-user mode:
+Install nix in multi-user mode:
 ``` shell
 sh <(curl -L https://nixos.org/nix/install) --daemon
 # sh <(curl -L https://nixos.org/nix/install) < /dev/null --daemon # unattended
@@ -36,10 +36,19 @@ sudo systemctl restart nix-daemon.service
 mkdir -p ~/.local/state/nix/profiles
 nix run home-manager/master -- init --switch
 rm -rf ~/.config/home-manager
-apply-users.sh
+nix/bin/apply-users.sh
 ```
 
-Set up shell history:
+### Install home-manager on NixOS
+
+```
+nix run home-manager/master -- init --switch
+rm -rf ~/.config/home-manager
+nix/bin/apply-users.sh
+```
+
+### Set up shell history
+
 ``` shell
 pass other/atuin.sh
 atuin login

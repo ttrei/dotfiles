@@ -167,6 +167,13 @@
             ./nix/home-manager/jupiter.nix
           ];
         };
+        "reinis@jupiter-work" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/home-manager/jupiter-work.nix
+          ];
+        };
         "reinis@mercury" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
