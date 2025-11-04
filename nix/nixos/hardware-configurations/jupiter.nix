@@ -36,13 +36,14 @@
     useOSProber = true;
   };
 
+  # os-prober detected jupiter-work but didn't write it to grub for some reason.
+  # The following entry is copy-pasted and adjusted from the main nixos entry in /boot/grub/grub.cfg.
   boot.loader.grub.extraEntries = ''
     menuentry "NixOS jupiter-work" {
-      search --set=root --fs-uuid 20951e80-cc0a-4312-9654-3a43eb0156a0
-      linux ($root)/nix/var/nix/profiles/system/kernel \
-            init=($root)/nix/var/nix/profiles/system/init \
-            systemConfig=($root)/nix/var/nix/profiles/system
-      initrd ($root)/nix/var/nix/profiles/system/initrd
+    search --set=drive1 --fs-uuid 20951e80-cc0a-4312-9654-3a43eb0156a0
+    search --set=drive2 --fs-uuid 20951e80-cc0a-4312-9654-3a43eb0156a0
+      linux ($drive2)/nix/var/nix/profiles/system/kernel init=/nix/var/nix/profiles/system/init loglevel=4 lsm=landlock,yama,bpf
+      initrd ($drive2)/nix/var/nix/profiles/system/initrd
     }
   '';
 
