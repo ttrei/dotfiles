@@ -155,6 +155,13 @@ ln -s "$DOTFILES/xdg/user-dirs.dirs" "$STAGINGDIR/.config/user-dirs.dirs"
 # NIRI
 mkdir -p "$STAGINGDIR/.config/niri"
 cp "$DOTFILES/niri/config.kdl" "$STAGINGDIR/.config/niri/config.kdl"
+if [ "$MACHINE" = "jupiter" ]; then
+    if [ "$CONTEXT" = "home" ]; then
+        cat "$DOTFILES/niri/outputs-home.kdl" >> "$STAGINGDIR/.config/niri/config.kdl"
+    elif [ "$CONTEXT" = "work" ]; then
+        cat "$DOTFILES/niri/outputs-work.kdl" >> "$STAGINGDIR/.config/niri/config.kdl"
+    fi
+fi
 
 # WAYBAR
 mkdir -p "$STAGINGDIR/.config/waybar"
