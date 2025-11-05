@@ -19,6 +19,10 @@
 
   networking.hostName = "jupiter-work";
 
+  networking.extraHosts = ''
+    127.0.0.1   mock.mcb mock.ips
+  '';
+
   # Forward corporate ip ranges via wireguard to the OpenVPN tunnel on mercury.
   networking.wg-quick.interfaces.wg0 = {
     autostart = true;
