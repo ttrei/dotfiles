@@ -16,8 +16,8 @@ click.echo(f"Detected {hostname=}")
 DEFAULT_CONFIG = Config(default_workspace="~/dev")
 HOST_CONFIGS = {
     "jupiter": Config(default_workspace="~/dev"),
-    "jupiter-work": Config(default_workspace="~/home-dev"),
-    "mercury": Config(default_workspace="~/home-dev"),
+    "jupiter-work": Config(default_workspace="~/dev"),
+    "mercury": Config(default_workspace="~/dev"),
 }
 g_config = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
 g_workspace = None
