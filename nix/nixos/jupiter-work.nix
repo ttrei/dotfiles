@@ -76,7 +76,20 @@
     ];
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      registry-mirrors = [ "http://docker.konts.lv:8080" ];
+      insecure-registries = [
+        "docker.konts.lv"
+        "extregistry.konts.lv"
+      ];
+      debug = false;
+      experimental = false;
+      tls = false;
+      dns = [ "10.57.6.3" ];
+    };
+  };
 
   services.pulseaudio.enable = false;
 
