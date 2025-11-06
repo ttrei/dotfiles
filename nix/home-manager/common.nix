@@ -59,7 +59,6 @@
     comma
     unstable.delta
     unstable.difftastic
-    unstable.devenv
     # diffoscope
     devcontainer
     direnv
