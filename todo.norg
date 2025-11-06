@@ -312,6 +312,15 @@
    https://ptrtojoel.dev/posts/so-you-want-to-write-java-in-neovim/
    https://news.ycombinator.com/item?id=42530991
 
+** (done) (pre-commit) How does pre-commit interact with submodules?
+
+   If a submodule has a pre-commit config, will the hooks work?
+
+   Did an experiment, with a git repo and a submodule.
+   Both had flake.nix with different git-hooks configs (https://github.com/cachix/git-hooks.nix).
+   git-hooks installed all hooks in the correct places.
+   parent repository hooks didn't affect the submodule.
+
 ** (done) Add some pre-commit hooks
 
    https://github.com/cachix/git-hooks.nix
