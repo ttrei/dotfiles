@@ -2,8 +2,22 @@
 
   https://agents.md/
 
-  Tell the agent to "land the plane":
+  (done) Tell the agent to "land the plane":
   https://steve-yegge.medium.com/beads-blows-up-a0a61bb889b4
+  @code
+  after a development session i want you to
+    Make sure tests and other quality gates pass
+    Remove debugging code and temp artifacts
+    Check for leftover git stashes
+    Check for unmerged git branches
+    Update and close GH and Beads
+    Update documentation
+    Perform git operations
+    Deal with untracked files and edge cases
+    Choose work and create a prompt for next session
+  I want to be able to tell you, 'land the plane', and have all this stuff happen
+  Pleaes generate detailed instructions for this in AGENTS.md
+  @end
 
 * Claude Code
 
