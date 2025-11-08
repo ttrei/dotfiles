@@ -294,6 +294,15 @@
 
    https://github.com/nushell/nushell
 
+** (git) Configure git to work better with submodules
+
+   See the recommended options here:
+   https://git-scm.com/book/en/v2/Git-Tools-Submodules
+
+   - better git log - show submodule commits
+   - better push - avoid pushing parent repo if recorded submodule changes not pushed
+   - others?
+
 ** (git) Choose a good cli git interface
 
    https://github.com/tpope/vim-fugitive
