@@ -141,14 +141,6 @@ if [ -f "$HOME/.bash_nixos" ]; then
     source "$HOME/.bash_nixos"
 fi
 
-# https://github.com/direnv/direnv/issues/106#issuecomment-1027330218
-if [ -n "$TMUX" ] && [ -n "$DIRENV_DIR" ]; then
-    unset "${!DIRENV_@}"  # unset env vars starting with DIRENV_
-fi
-if [ -x "$(command -v direnv)" ]; then
-    eval "$(direnv hook bash)"
-fi
-
 if [ -x "$(command -v starship)" ]; then
     eval "$(starship init bash)"
 fi
