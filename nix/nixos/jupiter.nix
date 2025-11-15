@@ -27,7 +27,7 @@
 
   environment.systemPackages = with pkgs; [
     qemu_kvm
-    # jetbrains.idea-community-bin
+    jetbrains.idea-community-bin
 
     kdePackages.kdenlive
 
