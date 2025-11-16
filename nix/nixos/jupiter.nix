@@ -27,7 +27,8 @@
 
   environment.systemPackages = with pkgs; [
     qemu_kvm
-    jetbrains.idea-community-bin
+    # jetbrains.idea-community-bin # failed to start on wayland
+    jetbrains.idea-community
 
     kdePackages.kdenlive
 

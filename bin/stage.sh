@@ -290,6 +290,9 @@ ln -s "$DOTFILES/llm/io.datasette.llm/default_model.txt" "$STAGINGDIR/.config/io
 ln -s "$DOTFILES/llm/io.datasette.llm/aliases.json" "$STAGINGDIR/.config/io.datasette.llm/aliases.json"
 ln -s "$DOTFILES/llm/gemini-settings.json" "$STAGINGDIR/.gemini/settings.json"
 
+# JETBRAINS
+ln -s "$DOTFILES/intellij/bin/idea-on-wayland" "$STAGINGDIR/bin/idea-on-wayland"
+
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"
 ln -s "$DOTFILES/other/bin/get_remote_stats.py" "$STAGINGDIR/bin/get_remote_stats.py"

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+WAYLAND_OPTION="-Dawt.toolkit.name=WLToolkit"
+
+idea-community "$WAYLAND_OPTION" "$@"
