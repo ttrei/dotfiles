@@ -81,8 +81,18 @@
     };
 
     # NFS
-    "/mnt/movies" = {
-      device = "pluto:/movies";
+    # "/mnt/movies" = {
+    #   device = "pluto:/movies";
+    #   fsType = "nfs";
+    #   options = [
+    #     "x-systemd.automount"
+    #     "x-systemd.idle-timeout=600"
+    #     "noauto"
+    #     "nofail"
+    #   ];
+    # };
+    "/mnt/music" = {
+      device = "pluto:/music";
       fsType = "nfs";
       options = [
         "x-systemd.automount"
