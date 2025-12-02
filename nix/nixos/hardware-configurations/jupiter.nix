@@ -81,7 +81,7 @@
     };
 
     # NFS
-    # "/mnt/movies" = {
+    # "/mnt/pluto/movies" = {
     #   device = "pluto:/movies";
     #   fsType = "nfs";
     #   options = [
@@ -91,8 +91,28 @@
     #     "nofail"
     #   ];
     # };
-    "/mnt/music" = {
+    "/mnt/pluto/music" = {
       device = "pluto:/music";
+      fsType = "nfs";
+      options = [
+        "x-systemd.automount"
+        "x-systemd.idle-timeout=600"
+        "noauto"
+        "nofail"
+      ];
+    };
+    "/mnt/pluto/music-from-saturn" = {
+      device = "pluto:/music-from-saturn";
+      fsType = "nfs";
+      options = [
+        "x-systemd.automount"
+        "x-systemd.idle-timeout=600"
+        "noauto"
+        "nofail"
+      ];
+    };
+    "/mnt/pluto/torrents-complete" = {
+      device = "pluto:/torrents-complete";
       fsType = "nfs";
       options = [
         "x-systemd.automount"
