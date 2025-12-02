@@ -19,6 +19,9 @@ alias tree='tree -C'
 alias trez='eza --tree --group-directories-first'
 alias trezg='eza --tree --git-ignore --group-directories-first'
 
+# Beets
+alias beet='beet --config ~/.beets-secrets.yaml'
+
 # Python
 alias pip='echo -e "Use \"python -m pip\" instead (see https://snarky.ca/why-you-should-use-python-m-pip/)"'
 alias pyactivate='. ~/.virtualenvs/misc/bin/activate'

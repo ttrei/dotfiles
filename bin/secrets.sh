@@ -13,6 +13,8 @@ pass os-secrets/deepseek-api-key > "$HOME"/.deepseek-api-key
 pass os-secrets/gemini-api-key > "$HOME"/.gemini-api-key
 pass os-secrets/openexchangerates-app-id > "$HOME"/.openexchangerates-app-id
 
+pass os-secrets/beets-secrets.yaml > "$HOME"/.beets-secrets.yaml
+
 mkdir -p "$HOME"/.config/io.datasette.llm
 pass other/llm-keys.json > "$HOME"/.config/io.datasette.llm/keys.json
 

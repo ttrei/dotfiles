@@ -26,6 +26,8 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    beets
+
     qemu_kvm
     # jetbrains.idea-community-bin # failed to start on wayland
     jetbrains.idea-community
