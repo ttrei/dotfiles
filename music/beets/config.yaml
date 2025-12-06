@@ -34,7 +34,7 @@ aunique:
 
 paths:
   default: $albumartist/$album%aunique{}/%if{$multidisc,Disc $disc/}$track $title
-  albumtype:soundtrack: Soundtracks/$album%aunique{}/%if{$multidisc,Disc $disc/}$track $title
+  albumtype:soundtrack: Soundtracks/$album [$year]/%if{$multidisc,Disc $disc/}$track $title
   comp: Compilations/$album%aunique{}/%if{$multidisc,Disc $disc/}$track $title
   singleton: Non-Album/$artist/$title
 
