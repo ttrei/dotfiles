@@ -13,7 +13,6 @@
 
   home.packages = with pkgs; [
     dbeaver-bin
-    drawio
     # https://github.com/NixOS/nixpkgs/issues/182856#issuecomment-3009621304
     (google-cloud-sdk.withExtraComponents (
       with google-cloud-sdk.components;
