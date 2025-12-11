@@ -52,9 +52,9 @@
 
   home.packages = with pkgs; [
     alejandra
-    # https://github.com/debauchee/barrier
     # In the future I should use input-leap instead: https://github.com/input-leap/input-leap
-    barrier
+    # error: 'barrier' has been removed as it is unmaintained. Consider 'deskflow' or 'input-leap' instead.
+    # barrier
     bat
     comma
     unstable.delta
