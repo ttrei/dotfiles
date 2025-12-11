@@ -19,6 +19,11 @@
 
   networking.hostName = "jupiter-work";
 
+  environment.systemPackages = with pkgs; [
+    # android-studio-full
+    android-studio
+  ];
+
   networking.extraHosts = ''
     127.0.0.1   mock.mcb mock.ips
   '';
