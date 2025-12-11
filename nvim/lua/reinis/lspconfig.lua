@@ -1,18 +1,20 @@
 -- https://github.com/neovim/nvim-lspconfig
 -- https://github.com/hrsh7th/cmp-nvim-lsp/#setup
 --
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig").clangd.setup({ capabilities = capabilities })
-require("lspconfig").pylsp.setup({ capabilities = capabilities })
--- require("lspconfig").pyright.setup({ capabilities = capabilities })
-require("lspconfig").superhtml.setup({ capabilities = capabilities })
-require("lspconfig").ts_ls.setup({ capabilities = capabilities })
-require("lspconfig").zls.setup({ capabilities = capabilities })
-require("lspconfig").zls.setup({ capabilities = capabilities })
+-- 2025-12:
+-- https://gpanders.com/blog/whats-new-in-neovim-0-11/#simpler-lsp-setup-and-configuration
 
--- require'lspconfig'.rust_analyzer.setup{
---     -- Server-specific settings...
---     settings = {
---       ["rust-analyzer"] = {}
---     }
--- }
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- vim.lsp.config('clangd', { capabilities = capabilities })
+vim.lsp.config('pylsp', { capabilities = capabilities })
+-- vim.lsp.config('pyright', { capabilities = capabilities })
+vim.lsp.config('superhtml', { capabilities = capabilities })
+vim.lsp.config('ts_ls', { capabilities = capabilities })
+vim.lsp.config('zls', { capabilities = capabilities })
+
+-- vim.lsp.enable({'clangd'})
+vim.lsp.enable({'pylsp'})
+vim.lsp.enable({'superhtml'})
+vim.lsp.enable({'ts_ls'})
+vim.lsp.enable({'zls'})
