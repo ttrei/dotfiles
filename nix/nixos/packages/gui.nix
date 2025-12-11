@@ -34,7 +34,7 @@
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
-      vistafonts
+      vista-fonts
       source-code-pro
     ];
   };
