@@ -18,7 +18,7 @@
     eza
     feh
     ffmpeg
-    gitAndTools.gitFull
+    gitFull
     git-crypt
     gron
     htop
