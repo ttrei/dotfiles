@@ -2,10 +2,6 @@
 {
   description = "NixOS and home-manager configuration";
 
-  # TODO: Fix warning "evaluation warning: 'system' has been renamed to/replaced by 'stdenv.hostPlatform.system'"
-  # https://discourse.nixos.org/t/how-to-fix-evaluation-warning-system-has-been-renamed-to-replaced-by-stdenv-hostplatform-system/72120/6
-  # Also this (linked from the thread): https://isabelroses.com/blog/im-not-mad-im-disappointed/
-
   # TODO: See if I can improve my configuration by following advice in this post:
   #       "Flakes aren't real and cannot hurt you: a guide to using Nix flakes the non-flake way"
   #       https://jade.fyi/blog/flakes-arent-real/

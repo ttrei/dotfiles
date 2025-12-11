@@ -102,15 +102,20 @@
   Check out this config for useful things:
   https://github.com/LGUG2Z/JeezyVim
 
-* Try out Determinate Nix
-
-   https://docs.determinate.systems/guides/advanced-installation/#nixos
-
 * Secrets management
 
   https://secretspec.dev/
 
 * Annoyances
+
+** (nix) evaluation warning: 'system' has been renamed to/replaced by 'stdenv.hostPlatform.system'
+
+   How to fix the warning in different contexts:
+   https://discourse.nixos.org/t/how-to-fix-evaluation-warning-system-has-been-renamed-to-replaced-by-stdenv-hostplatform-system/72120
+   This seems to be my case:
+   https://discourse.nixos.org/t/how-to-fix-evaluation-warning-system-has-been-renamed-to-replaced-by-stdenv-hostplatform-system/72120/6
+   Also this (linked from the thread):
+   https://isabelroses.com/blog/im-not-mad-im-disappointed/
 
 ** (neorg) Yanking and pasting inside code block adds newline
 
