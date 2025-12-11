@@ -21,8 +21,14 @@
 
   environment.systemPackages = with pkgs; [
     # NOTE(2025-12):
-    # Android Studio worked, i was able to create an emulator device but unable to run it.
-    # Tried this:
+    # Android Studio worked, i was also able to create an emulator device
+    # But the device didn't start up.
+    # Tried also with steam-run:
+    # steam-run ~/Android/Sdk/emulator/emulator -avd "Pixel_9"
+    # /home/reinis/Android/Sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64: error while loading shared libraries: libnss3.so: cannot open shared object file: No such file or directory
+    # The reason i wanted to run android studio on jupiter-work was to get a faster emulator.
+    # Won't waste more time on this.
+    # Further reading:
     # https://nixos.wiki/wiki/Android
     # android-studio
   ];
