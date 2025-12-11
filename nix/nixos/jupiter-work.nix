@@ -20,8 +20,11 @@
   networking.hostName = "jupiter-work";
 
   environment.systemPackages = with pkgs; [
-    # android-studio-full
-    android-studio
+    # NOTE(2025-12):
+    # Android Studio worked, i was able to create an emulator device but unable to run it.
+    # Tried this:
+    # https://nixos.wiki/wiki/Android
+    # android-studio
   ];
 
   networking.extraHosts = ''
