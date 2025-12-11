@@ -35,6 +35,7 @@
     python3Packages.mutagen
     python3Packages.ipython
     ruff
+    steam-run
     stow
     universal-ctags
     unzip
