@@ -19,6 +19,10 @@
 
   networking.hostName = "jupiter-work";
 
+  networking.firewall.allowedTCPPorts = [
+    9090 # accounts-perftest actuators
+  ];
+
   environment.systemPackages = with pkgs; [
     # NOTE(2025-12):
     # Android Studio worked, i was also able to create an emulator device
