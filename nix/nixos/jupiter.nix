@@ -28,8 +28,8 @@
     # unstable.aider-chat-full
 
     qemu_kvm
-    # jetbrains.idea-community-bin # failed to start on wayland
-    jetbrains.idea-community
+    # jetbrains.idea # failed to start on wayland
+    jetbrains.idea-oss
 
     # kdePackages.kdenlive
 

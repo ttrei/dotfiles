@@ -20,8 +20,8 @@
         gke-gcloud-auth-plugin
       ]
     ))
-    jetbrains.idea-community-bin
-    jetbrains.pycharm-community-bin
+    jetbrains.idea
+    jetbrains.pycharm
     kubectl
     kubelogin-oidc
     kube-capacity
