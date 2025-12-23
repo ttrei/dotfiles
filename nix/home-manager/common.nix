@@ -62,7 +62,7 @@
     # diffoscope
     devcontainer
     direnv
-    emacs
+    # emacs
     eza
     fd
     feh
@@ -70,7 +70,7 @@
     fzf
     gron
     htop
-    i3
+    # i3
     moreutils
     ncdu
     nethogs
@@ -80,7 +80,7 @@
     git
     git-crypt
     git-when-merged
-    i3pyblocks
+    # i3pyblocks
     openjdk
     pass
     pyright
@@ -96,7 +96,6 @@
     unstable.uv
     xclip
     zathura
-    zed-editor
     zoxide
     # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
   ];

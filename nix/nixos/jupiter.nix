@@ -24,27 +24,30 @@
   environment.systemPackages = with pkgs; [
     beets
 
+    # zed-editor
+    # unstable.aider-chat-full
+
     qemu_kvm
     # jetbrains.idea-community-bin # failed to start on wayland
     jetbrains.idea-community
 
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
 
-    (wrapOBS {
-      plugins = with obs-studio-plugins; [
-        advanced-scene-switcher
-      ];
-    })
+    # (wrapOBS {
+    #   plugins = with obs-studio-plugins; [
+    #     advanced-scene-switcher
+    #   ];
+    # })
 
-    (kodi.withPackages (
-      kodiPackages: with kodiPackages; [
-        inputstream-adaptive
-        inputstream-ffmpegdirect
-        inputstreamhelper
-        inputstream-rtmp
-        jellyfin
-      ]
-    ))
+    # (kodi.withPackages (
+    #   kodiPackages: with kodiPackages; [
+    #     inputstream-adaptive
+    #     inputstream-ffmpegdirect
+    #     inputstreamhelper
+    #     inputstream-rtmp
+    #     jellyfin
+    #   ]
+    # ))
 
   ];
 
