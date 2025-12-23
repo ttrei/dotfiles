@@ -28,7 +28,7 @@
     # unstable.aider-chat-full
 
     qemu_kvm
-    # jetbrains.idea # failed to start on wayland
+    # jetbrains.idea # failed to start on wayland # TODO: check again, i did some workarounds for running on wayland
     jetbrains.idea-oss
 
     # kdePackages.kdenlive
