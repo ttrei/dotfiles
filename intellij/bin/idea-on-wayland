@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-idea-community -Dawt.toolkit.name=WLToolkit -Dide.browser.jcef.enabled=false "$@"
+idea -Dawt.toolkit.name=WLToolkit -Dide.browser.jcef.enabled=false "$@"

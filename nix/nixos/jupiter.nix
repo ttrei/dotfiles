@@ -12,7 +12,7 @@
     ./hardware-configurations/jupiter.nix
     ./packages/audio.nix
     ./packages/cli.nix
-    ./packages/gamedev.nix
+    # ./packages/gamedev.nix
     # ./packages/games.nix
     ./packages/gui.nix
     ./wayland.nix
@@ -28,8 +28,8 @@
     # unstable.aider-chat-full
 
     qemu_kvm
-    # jetbrains.idea # failed to start on wayland # TODO: check again, i did some workarounds for running on wayland
-    jetbrains.idea-oss
+    jetbrains.idea
+    jetbrains.pycharm
 
     # kdePackages.kdenlive
 
