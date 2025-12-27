@@ -292,6 +292,7 @@ ln -s "$DOTFILES/llm/gemini-settings.json" "$STAGINGDIR/.gemini/settings.json"
 
 # JETBRAINS
 ln -s "$DOTFILES/intellij/bin/idea-on-wayland" "$STAGINGDIR/bin/idea-on-wayland"
+ln -s "$DOTFILES/intellij/bin/pycharm-on-wayland" "$STAGINGDIR/bin/pycharm-on-wayland"
 
 # OTHER
 ln -s "$DOTFILES/other/bin/exec-in-dir" "$STAGINGDIR/bin/exec-in-dir"

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+pycharm -Dawt.toolkit.name=WLToolkit -Dide.browser.jcef.enabled=false "$@"
