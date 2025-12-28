@@ -1,0 +1,5 @@
+<application>
+  <component name="MLServerCompletionSettings">
+    <option name="enable" value="false" />
+  </component>
+</application>
