@@ -1,3 +1,2 @@
 IdeaVIM
-com.github.copilot
-com.koxudaxi.ruff
+com.github.lonre.gruvbox-intellij-theme

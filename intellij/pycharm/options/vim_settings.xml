@@ -71,6 +71,8 @@
     <notifications>
       <idea-join enabled="true" />
       <idea-put enabled="false" />
+      <was-automatically-subscribed-to-eap enabled="false" />
+      <first-ideavim-version value="2.27.2" />
     </notifications>
   </component>
 </application>
