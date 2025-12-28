@@ -2,6 +2,7 @@
   <component name="Trusted.Paths">
     <option name="TRUSTED_PROJECT_PATHS">
       <map>
+        <entry key="$USER_HOME$/dev/projects/home.taukulis.lv/java/tb-client" value="true" />
         <entry key="C:\dev\repos\ips\digital-bank" value="true" />
         <entry key="C:\dev\repos\ips\ips-core" value="true" />
         <entry key="C:\dev\repos\saturn\mpb-main" value="true" />

@@ -1,6 +1,18 @@
-Lombook Plugin
-com.intellij.plugin.adernov.powershell
-Docker
-PlantUML integration
+com.intellij.microservices.ui
+com.intellij.copyright
+org.jetbrains.security.package-checker
+com.intellij.notebooks.core
+intellij.jupyter
 IdeaVIM
-com.github.copilot
+Subversion
+com.github.lonre.gruvbox-intellij-theme
+org.jetbrains.plugins.gitlab
+org.jetbrains.plugins.github
+Docker
+com.jetbrains.restClient
+com.intellij.mcpServer
+org.editorconfig.editorconfigjetbrains
+org.jetbrains.plugins.yaml
+com.intellij.swagger
+org.toml.lang
+com.intellij.properties
