@@ -97,6 +97,7 @@
   # http://localhost:631/admin -> Find New Printers -> Add This Printer -> Continue -> Make = Generic -> Continue ->
   # Model = IPP Everywhere -> Add Printer
   # 2024-09-26: Disabled to avoid https://www.evilsocket.net/2024/09/26/Attacking-UNIX-systems-via-CUPS-Part-I/
+  # 2025-12-30: Enabled to print some documents, didn't work - printing from firefox hanged firefox.
   # services.printing.enable = true;
   services.avahi = {
     enable = true;
