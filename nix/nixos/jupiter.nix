@@ -31,6 +31,8 @@
     jetbrains.idea
     jetbrains.pycharm
 
+    libreoffice
+
     # kdePackages.kdenlive
 
     # (wrapOBS {
