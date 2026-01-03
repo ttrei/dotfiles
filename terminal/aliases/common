@@ -15,6 +15,9 @@ alias ls='ls -h --color=auto --group-directories-first'
 alias grep='grep --color=auto'
 alias tree='tree -C'
 
+# Force utf-8 support in tmux
+alias tmux='tmux -u'
+
 # Fancy tree
 alias trez='eza --tree --group-directories-first'
 alias trezg='eza --tree --git-ignore --group-directories-first'
