@@ -53,7 +53,7 @@ def up(remove_existing_container, no_cache):
     if no_cache:
         cmd0 = ["devcontainer", "build", "--workspace-folder", g_workspace, "--no-cache"]
         run_command(cmd0)
-        cmd.extend(["devcontainer", "up", "--workspace-folder", g_workspace])
+        cmd.extend(["devcontainer", "up", "--workspace-folder", g_workspace, "--remove-existing-container"])
     else:
         cmd.extend(["devcontainer", "up", "--workspace-folder", g_workspace])
         if remove_existing_container:
