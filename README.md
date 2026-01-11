@@ -97,6 +97,9 @@ pluto: Raspberry Pi 4, (static dhcp ip 192.168.8.201, mac D8:3A:DD:AF:8F:B9)
 saturn: HTPC (NixOS), (static dhcp ip 192.168.8.205, mac 90:DE:80:02:B4:07)
 
 printer-brother (static dhcp ip 192.168.8.215, mac A8:6B:AD:18:5A:5D)
+airgradient1 (kitchen) (static dhcp ip 192.168.8.110, mac D8:3B:DA:1F:99:44)
+TODO
+airgradient2 (bedroom) (static dhcp ip 192.168.8.111, mac ???)
 
 ### Available hostnames
 
