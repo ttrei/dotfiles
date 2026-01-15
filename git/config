@@ -11,6 +11,10 @@
     rebase = true
 [merge]
     conflictstyle = diff3
+    tool = intellij
+[mergetool "intellij"]
+    cmd = idea merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+    trustExitCode = true
 [rerere]
     enabled = true
     autoUpdate = true
