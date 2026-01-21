@@ -20,6 +20,7 @@
     autoUpdate = true
 [push]
     default = upstream
+    recurseSubmodules = check
 [diff]
     noprefix = true
     submodule = log
