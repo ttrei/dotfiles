@@ -231,7 +231,7 @@
    See the recommended options here:
    https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
-   - better git log - show submodule commits
+   - [done] better git log - show submodule commits
    - better push - avoid pushing parent repo if recorded submodule changes not pushed
    - others?
 

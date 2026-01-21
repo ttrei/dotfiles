@@ -22,6 +22,7 @@
     default = upstream
 [diff]
     noprefix = true
+    submodule = log
 
 [blame]
     ## Sadly, git blame fails if the revs file is not present
