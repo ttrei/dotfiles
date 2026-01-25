@@ -22,6 +22,7 @@
     pavucontrol
     # picard
     unstable.qbittorrent
+    quickemu
     qutebrowser
     signal-desktop
     st
