@@ -5,7 +5,21 @@
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
 
+output "HDMI-A-2" {
+    off
+    scale 1
+    transform "normal"
+    position x=0 y=0
+}
+
 output "HDMI-A-1" {
+    // off
+    scale 1
+    transform "normal"
+    position x=1920 y=0
+}
+
+/-output "example" {
     // Uncomment this line to disable this output.
     // off
 
@@ -34,8 +48,4 @@ output "HDMI-A-1" {
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
     position x=0 y=0
-}
-
-output "HDMI-A-2" {
-    off
 }
