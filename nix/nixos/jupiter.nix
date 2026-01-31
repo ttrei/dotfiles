@@ -21,6 +21,10 @@
 
   networking.hostName = "jupiter";
 
+  networking.firewall.allowedTCPPorts = [
+    4096 # opencode
+  ];
+
   environment.systemPackages = with pkgs; [
     beets
 
