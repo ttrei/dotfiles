@@ -23,6 +23,7 @@
 
   networking.firewall.allowedTCPPorts = [
     4096 # opencode
+    2223 # manjaro vm ssh
   ];
 
   environment.systemPackages = with pkgs; [
