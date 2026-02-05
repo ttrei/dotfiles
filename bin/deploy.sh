@@ -3,7 +3,7 @@
 set -o errexit
 set -o nounset
 
-DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
+DOTFILES="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
 STAGINGDIR=${DOTFILES_STAGINGDIR:-"$DOTFILES/.staging"}
 TARGETDIR=${DOTFILES_TARGETDIR:-"$HOME"}
 ENVFILE=${DOTFILES_ENVFILE:-"$HOME/.dotfiles-env"}
@@ -23,6 +23,11 @@ rm -rf "$TARGETDIR/.vim"
 rm -rf "$TARGETDIR/bin/i3/workspace-scripts"
 
 cp --recursive --dereference --remove-destination "$STAGINGDIR/." "$TARGETDIR"
+
+ln -sf "$DOTFILES/bin/apply-users.sh" "$TARGETDIR/bin/apply-users.sh"
+if [ "$DISTRO" = "nixos" ]; then
+    ln -sf "$DOTFILES/bin/apply-system.sh" "$TARGETDIR/bin/apply-system.sh"
+fi
 
 if [ -d "$TARGETDIR/.ssh" ]; then
     chmod 700 "$TARGETDIR/.ssh"

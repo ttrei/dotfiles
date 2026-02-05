@@ -3,7 +3,7 @@
 set -o errexit
 set -o nounset
 
-DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
+DOTFILES="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
 STAGINGDIR=${DOTFILES_STAGINGDIR:-"$DOTFILES/.staging"}
 ENVFILE=${DOTFILES_ENVFILE:-"$HOME/.dotfiles-env"}
 
@@ -236,11 +236,8 @@ ln -s "$DOTFILES/python/ruff.toml" "$STAGINGDIR/.config/ruff/ruff.toml"
 # NIX
 mkdir -p "$STAGINGDIR/.config/nix"
 mkdir -p "$STAGINGDIR/.config/nixpkgs"
-ln -s "$DOTFILES/nix/bin/apply-users.sh" "$STAGINGDIR/bin/apply-users.sh"
 ln -s "$DOTFILES/nix/bin/expire-users-generations.sh" "$STAGINGDIR/bin/expire-users-generations.sh"
-
 if [ "$DISTRO" = "nixos" ]; then
-    ln -s "$DOTFILES/nix/bin/apply-system.sh" "$STAGINGDIR/bin/apply-system.sh"
     ln -s "$DOTFILES/nix/bin/cleanup-system.sh" "$STAGINGDIR/bin/cleanup-system.sh"
 fi
 ln -s "$DOTFILES/nix/nix.conf" "$STAGINGDIR/.config/nix/nix.conf"
