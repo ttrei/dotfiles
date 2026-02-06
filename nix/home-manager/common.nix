@@ -80,8 +80,6 @@
     git
     git-crypt
     git-when-merged
-    # i3pyblocks
-    openjdk
     pass
     pyright
     python3Packages.python-lsp-server
