@@ -57,8 +57,8 @@
     # barrier
     bat
     comma
-    unstable.delta
-    unstable.difftastic
+    delta
+    difftastic
     # diffoscope
     devcontainer
     direnv
@@ -85,13 +85,13 @@
     python3Packages.python-lsp-server
     python3Packages.pylsp-rope
     ripgrep
-    unstable.ripgrep-all
+    ripgrep-all
     sd
     shellcheck
     starship
     stylua
-    unstable.superhtml
-    unstable.uv
+    superhtml
+    uv
     xclip
     zathura
     zoxide
