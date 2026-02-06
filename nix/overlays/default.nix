@@ -33,7 +33,7 @@
     # Get ghostty from its flake
     ghostty = inputs.ghostty.packages."x86_64-linux".default;
 
-    jetbrains = final.unstable.jetbrains;
+    # jetbrains = final.unstable.jetbrains;
 
     # neovim-unwrapped = final.unstable.neovim-unwrapped;
     # vimPlugins = final.unstable.vimPlugins;
