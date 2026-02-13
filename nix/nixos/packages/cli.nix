@@ -9,7 +9,6 @@
   environment.systemPackages = with pkgs; [
     alejandra
     beancount
-    unstable.beets
     clang-tools
     # diffoscope
     diffstat
