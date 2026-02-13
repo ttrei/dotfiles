@@ -4,21 +4,28 @@
   ...
 }:
 {
-  imports = [ ./cli-base.nix ];
-
   environment.systemPackages = with pkgs; [
     alejandra
     beancount
     clang-tools
+    delta
     # diffoscope
     diffstat
+    direnv
     emacs
     encfs
     eza
+    fd
     feh
     ffmpeg
+    file
+    fzf
+    git
     gitFull
     git-crypt
+    gnupg
+    gnupg1compat
+    gnutar
     gron
     htop
     imagemagick
@@ -28,17 +35,35 @@
     # 2024-09-22: build failed
     # linuxPackages_latest.perf
     lua
+    lynx
+    moreutils
+    nethogs
+    nix-bash-completions
     nodePackages.typescript-language-server
+    p7zip
     pandoc
+    pass
     pyright
-    python3Packages.mutagen
+    python3
     python3Packages.ipython
+    python3Packages.mutagen
+    pwgen
+    ripgrep
+    rsync
     ruff
+    shellcheck
+    sshfs-fuse
+    starship
     steam-run
     stow
+    tmux
+    traceroute
+    tree
     universal-ctags
     unzip
+    usbutils
     vim
+    wget
     zip
   ];
 }
