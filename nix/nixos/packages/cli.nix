@@ -6,10 +6,8 @@
 {
   environment.systemPackages = with pkgs; [
     alejandra
-    beancount
     clang-tools
     delta
-    # diffoscope
     diffstat
     direnv
     emacs
