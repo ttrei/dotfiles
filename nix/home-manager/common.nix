@@ -77,7 +77,7 @@
     nload
     nodejs-slim
     nodePackages.typescript-language-server
-    git
+    gitFull
     git-crypt
     git-when-merged
     pass

@@ -5,27 +5,15 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    alejandra
     clang-tools
-    delta
     diffstat
-    direnv
     emacs
     encfs
-    eza
-    fd
-    feh
     ffmpeg
     file
-    fzf
-    git
-    gitFull
-    git-crypt
     gnupg
     gnupg1compat
     gnutar
-    gron
-    htop
     imagemagick
     jmtpfs
     jq
@@ -34,24 +22,16 @@
     # linuxPackages_latest.perf
     lua
     lynx
-    moreutils
-    nethogs
     nix-bash-completions
-    nodePackages.typescript-language-server
     p7zip
     pandoc
-    pass
-    pyright
     python3
     python3Packages.ipython
     python3Packages.mutagen
     pwgen
-    ripgrep
     rsync
     ruff
-    shellcheck
     sshfs-fuse
-    starship
     steam-run
     stow
     tmux

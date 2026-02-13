@@ -13,7 +13,6 @@
     dmenu
     evince
     firefox
-    font-awesome
     ghostty
     gnumeric
     # inkscape
@@ -28,7 +27,6 @@
     st
     vlc
     # whatsapp-for-linux
-    zathura
   ];
 
   # Extra fonts
