@@ -31,7 +31,7 @@
     comma = final.unstable.comma;
 
     # Get ghostty from its flake
-    ghostty = inputs.ghostty.packages."x86_64-linux".default;
+    ghostty = inputs.ghostty.packages.${final.system}.default;
 
     # jetbrains = final.unstable.jetbrains;
 
