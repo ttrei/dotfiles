@@ -65,7 +65,7 @@
   # be accessible through 'pkgs.unstable'
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
 
       # https://github.com/NixOS/nixpkgs/issues/360592#issuecomment-2513490613
