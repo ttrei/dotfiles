@@ -10,7 +10,7 @@
   imports = [
     ./common.nix
     ./hardware-configurations/qemu.nix
-    ./packages/cli-base.nix
+    ./packages/cli-barebones.nix
     ./users/reinis.nix
   ];
 
