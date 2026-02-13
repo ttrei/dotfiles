@@ -59,10 +59,8 @@
     comma
     delta
     difftastic
-    # diffoscope
     devcontainer
     direnv
-    # emacs
     eza
     fd
     feh
@@ -70,7 +68,6 @@
     fzf
     gron
     htop
-    # i3
     moreutils
     ncdu
     nethogs
@@ -95,7 +92,6 @@
     xclip
     zathura
     zoxide
-    # zutty # fails to start: "E [main.cc:1310] Error: eglGetDisplay() failed"
   ];
 
   fonts.fontconfig.enable = true;
