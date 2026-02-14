@@ -132,6 +132,7 @@
 
         img-clip-nvim
         avante-nvim
+        diffview-nvim
       ];
   };
 
