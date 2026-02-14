@@ -15,6 +15,7 @@
     # inputs.nix-colors.homeManagerModules.default
 
     ./config/neovim.nix
+    ./config/zellij.nix
   ];
 
   nixpkgs = {

@@ -36,7 +36,7 @@ sudo systemctl restart nix-daemon.service
 mkdir -p ~/.local/state/nix/profiles
 nix run home-manager/master -- init --switch
 rm -rf ~/.config/home-manager
-nix/bin/apply-users.sh
+bin/apply-users.sh
 ```
 
 ### Install home-manager on NixOS

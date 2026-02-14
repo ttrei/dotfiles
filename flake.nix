@@ -181,6 +181,13 @@
             ./nix/home-manager/mercury.nix
           ];
         };
+        "reinis@reinis-manjaro-qemu" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/home-manager/arch.nix
+          ];
+        };
       };
 
       templates = {
