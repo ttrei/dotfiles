@@ -1,4 +1,0 @@
-export DISTRO=debian
-export CONTEXT=NONE
-export MACHINE=taukulis.lv
-export EXECUTION_ENV=digitalocean

@@ -44,12 +44,11 @@ mkdir -p "$STAGINGDIR/.config"
 
 # TERMINAL
 mkdir -p "$STAGINGDIR/.config/htop"
-mkdir -p "$STAGINGDIR/.config/htop"
 mkdir -p "$STAGINGDIR/.config/xfce4/terminal"
 mkdir -p "$STAGINGDIR/.config/ncdu"
 mkdir -p "$STAGINGDIR/.config/ghostty"
 mkdir -p "$STAGINGDIR/.config/atuin"
-if [ "$DISTRO" = "nixos" ] || [ "$MACHINE" == "mercury" ]; then
+if [ "$HAS_NIX" = "true" ]; then
     ln -s "$DOTFILES/terminal/bashrc" "$STAGINGDIR/.bashrc.legacy"
     ln -s "$DOTFILES/terminal/bash_nixos" "$STAGINGDIR/.bash_nixos"
     ln -s "$DOTFILES/terminal/profile" "$STAGINGDIR/.profile.legacy"

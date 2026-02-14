@@ -2,3 +2,4 @@ export DISTRO=debian
 export CONTEXT=home
 export MACHINE=jupiter
 export EXECUTION_ENV=docker
+export HAS_NIX=false

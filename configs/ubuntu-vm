@@ -2,3 +2,4 @@ export DISTRO=ubuntu
 export CONTEXT=home
 export MACHINE=jupiter
 export EXECUTION_ENV=qemu
+export HAS_NIX=true

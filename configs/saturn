@@ -2,3 +2,4 @@ export DISTRO=nixos
 export CONTEXT=home
 export MACHINE=saturn
 export EXECUTION_ENV=baremetal
+export HAS_NIX=true

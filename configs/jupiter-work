@@ -2,3 +2,4 @@ export DISTRO=nixos
 export CONTEXT=work
 export MACHINE=jupiter
 export EXECUTION_ENV=baremetal
+export HAS_NIX=true
