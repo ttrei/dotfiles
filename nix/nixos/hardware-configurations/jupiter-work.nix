@@ -52,10 +52,4 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   hardware.bluetooth.enable = true;
-
-  services.udev.extraRules = ''
-    # Disable USB autosuspend for Moergo Glove80
-    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="16c0", ATTR{idProduct}=="27db", ATTR{power/autosuspend}="-1"
-  '';
-
 }
