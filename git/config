@@ -60,6 +60,23 @@
     # list aliases
     alias = "!git config --get-regexp ^alias\\. | sort | sed -e 's/^alias\\.//' -e 's/\\ /\\ =\\ /' | grep -v ^'alias '"
 
+    # Latest activity in branches
+    activity = "!f() { \
+        scope=\"${1:-origin}\"; \
+        case \"$scope\" in \
+            local) \
+                refspec='refs/heads' ;; \
+            all) \
+                refspec='refs/heads refs/remotes' ;; \
+            *) \
+                refspec=\"refs/remotes/$scope\" ;; \
+        esac; \
+        git for-each-ref \
+            --sort=committerdate \
+            --format='%(committerdate:iso8601) %(refname:short) -- %(committeremail)' \
+            $refspec; \
+    }; f"
+
     # Show root dir of git repo
     root = rev-parse --show-toplevel
     # Show root dir of the parent. Returns nothing if this repo is not a submodule.
