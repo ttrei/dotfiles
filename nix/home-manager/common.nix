@@ -69,6 +69,7 @@
     fzf
     gron
     htop
+    jujutsu
     moreutils
     ncdu
     nethogs
