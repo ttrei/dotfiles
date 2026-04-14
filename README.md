@@ -63,6 +63,18 @@ atuin login
 atuin sync
 ```
 
+## Show what will be deployed / figure out why nix pulls some package
+
+```shell
+sudo nixos-rebuild dry-build --flake ~/dotfiles#jupiter 2> system.txt
+home-manager build --flake ~/dotfiles#reinis@jupiter --dry-run 2> home-manager.txt
+
+# EVERYONE!!
+nix derivation show ~/dotfiles#nixosConfigurations.jupiter.config.system.build.toplevel --recursive | jq > /tmp/system.json
+nix derivation show ~/dotfiles#homeConfigurations."reinis@jupiter".activationPackage --recursive | jq > /tmp/home-manager.json
+nvim -u NONE -p /tmp/system.json /tmp/home-manager.json
+```
+
 ## Deployment target configuration variables
 
 DISTRO
