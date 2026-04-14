@@ -131,7 +131,7 @@
         nvim-surround
 
         img-clip-nvim
-        avante-nvim
+        # avante-nvim
         diffview-nvim
       ];
   };
