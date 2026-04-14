@@ -36,8 +36,8 @@
     # unstable.aider-chat-full
 
     qemu_kvm
-    jetbrains.idea
-    jetbrains.pycharm
+    # jetbrains.idea
+    # jetbrains.pycharm
 
     libreoffice
 
