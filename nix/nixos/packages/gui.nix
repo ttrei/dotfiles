@@ -11,7 +11,6 @@
     dbeaver-bin
     djview
     dmenu
-    evince
     firefox
     ghostty
     gnumeric
