@@ -126,6 +126,10 @@ if [ "$DISTRO" = "nixos" ]; then
     ln -sf "$DOTFILES/git/gitk-nixos" "$STAGINGDIR/.config/git/gitk"
 fi
 
+# JUJUTSU
+mkdir -p "$STAGINGDIR/.config/jj"
+ln -s "$DOTFILES/jj/config.toml" "$STAGINGDIR/.config/jj/config.toml"
+
 # XORG
 # TODO: $DOTFILES/xorg/Xresources-lenovo is unused
 ln -s "$DOTFILES/xorg/bin/manage-desktop-displays.sh" "$STAGINGDIR/bin/manage-desktop-displays.sh"
