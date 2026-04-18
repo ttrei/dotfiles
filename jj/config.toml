@@ -2,3 +2,7 @@
 
 [ui]
 paginate = "never"
+
+[user]
+name = "Reinis Taukulis"
+email = "reinis.taukulis@gmail.com"
