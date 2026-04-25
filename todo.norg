@@ -243,6 +243,9 @@
    https://difftastic.wilfred.me.uk/
    https://github.com/Wilfred/difftastic
 
+   Someone researched structural diffing options in 2026:
+   https://kevinlynagh.com/newsletter/2026_04_overthinking/#structural-diffing
+
 ** (neovim) Learn to use nvim-surround
 
    https://github.com/kylechui/nvim-surround?tab=readme-ov-file#rocket-usage
