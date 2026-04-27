@@ -217,7 +217,7 @@ def status():
     mounts = info.get("Mounts", [])
     if mounts:
         click.echo("\nMounts:")
-        for m in mounts:
+        for m in sorted(mounts, key=lambda m: m["Destination"]):
             src = m.get("Source") or m.get("Name", "")
             dst = m["Destination"]
             mtype = m["Type"]
