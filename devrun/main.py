@@ -30,7 +30,7 @@ CONTAINER_WORKSPACE = "/workspace"
 
 
 def run_command(cmd, capture_output=False):
-    click.echo(f"$ {' '.join(cmd)}")
+    click.echo(f"+ {' '.join(cmd)}")
     try:
         if capture_output:
             result = subprocess.run(cmd, shell=False, capture_output=True, text=True, check=True)
@@ -203,7 +203,6 @@ def status():
     """Show devcontainer status."""
     click.echo(f"Workspace: {g_workspace}")
 
-    # Find container
     result = run_command(
         ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"],
         capture_output=True,
@@ -219,7 +218,6 @@ def status():
 
     container_id = container_ids[0]
 
-    # Inspect container
     result = run_command(["docker", "inspect", container_id], capture_output=True)
     if isinstance(result, subprocess.CalledProcessError):
         click.echo("Container: error inspecting container")
@@ -235,10 +233,9 @@ def status():
     click.echo(f"Container: {container_id[:12]} ({status_str}, started {ago})")
     click.echo(f"Image:     {image}")
 
-    # Show mounts
     mounts = info.get("Mounts", [])
     if mounts:
-        click.echo("\nMounts:")
+        click.echo("Mounts:")
         for m in sorted(mounts, key=lambda m: m.get("Source") or m.get("Name", "")):
             src = m.get("Source") or m.get("Name", "")
             dst = m["Destination"]
