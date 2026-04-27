@@ -58,17 +58,13 @@ def load_default_mounts(workspace):
 def resolve_mounts(workspace, mount_paths):
     """Resolve mount paths to devcontainer mount strings.
 
-    Relative paths are resolved against the workspace and mounted at the
-    same relative location under /workspace.  Absolute paths (or paths
-    that escape the workspace via '..') are mounted under /workspace
-    using their basename.
+    Relative paths are resolved against the current working directory.
+    Paths that fall inside the workspace keep their relative structure
+    under /workspace.  Paths outside the workspace are mounted under
+    /workspace using their basename.
     """
     mounts = []
     for path in mount_paths:
-        # https://docs.python.org/3/library/os.path.html#os.path.join
-        # quote: If a segment is an absolute path, then all previous segments are ignored and joining continues from the
-        # absolute path segment.
-        # I.e., if `path` is absolute, it's not joined with `workspace`.
         host_path = os.path.abspath(path)
         if not os.path.exists(host_path):
             click.echo(f"Warning: mount path does not exist: {host_path}", err=True)
@@ -100,7 +96,7 @@ def cli(workspace_folder):
 @click.option("-r", "--remove-existing-container", is_flag=True, help="Remove existing container")
 @click.option("--no-cache", is_flag=True, help="Force Docker to skip layer cache")
 @click.option(
-    "-m", "--mount", "extra_mounts", multiple=True, help="Additional path to mount (relative to workspace, repeatable)"
+    "-m", "--mount", "extra_mounts", multiple=True, help="Additional path to mount (relative to cwd, repeatable)"
 )
 @click.option("--no-defaults", is_flag=True, help="Skip default mounts from .devcontainer/mounts.list")
 def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
