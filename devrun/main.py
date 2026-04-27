@@ -167,6 +167,55 @@ def down():
 
 
 @cli.command()
+def status():
+    """Show devcontainer status."""
+    click.echo(f"Workspace: {g_workspace}")
+
+    # Find container
+    result = subprocess.run(
+        ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"],
+        capture_output=True,
+        text=True,
+    )
+    container_ids = [cid for cid in result.stdout.strip().split("\n") if cid]
+
+    if not container_ids:
+        click.echo("Container: not running")
+        return
+
+    container_id = container_ids[0]
+
+    # Inspect container
+    result = subprocess.run(
+        ["docker", "inspect", container_id],
+        capture_output=True,
+        text=True,
+    )
+    info = json.loads(result.stdout)[0]
+    state = info["State"]
+    status_str = state.get("Status", "unknown")
+    started_at = state.get("StartedAt", "")
+    image = info["Config"].get("Image", "unknown")
+
+    click.echo(f"Container: {container_id[:12]} ({status_str}, started {started_at})")
+    click.echo(f"Image:     {image}")
+
+    # Show mounts
+    mounts = info.get("Mounts", [])
+    if mounts:
+        click.echo("\nMounts:")
+        for m in mounts:
+            src = m.get("Source") or m.get("Name", "")
+            dst = m["Destination"]
+            mtype = m["Type"]
+            rw = "rw" if m.get("RW", True) else "ro"
+            if mtype == "volume":
+                click.echo(f"  {src:<40s} → {dst:<30s} ({mtype})")
+            else:
+                click.echo(f"  {src:<40s} → {dst:<30s} ({mtype}, {rw})")
+
+
+@cli.command()
 @click.argument("command", nargs=-1)
 def exec(command):
     """Execute a command in the devcontainer."""
