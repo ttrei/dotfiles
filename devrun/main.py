@@ -111,11 +111,13 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     else:
         click.echo("Warning: no mounts configured, container will have no workspace files")
 
-    # Generate override config with selective mounts.
-    # Include the bash history volume mount from the base config since
-    # --override-config replaces (not merges) the mounts array.
+    # Generate override config: load the base devcontainer.json and patch
+    # the mounts array, since --override-config replaces the entire config.
     mount_strings.append("source=devcontainer-bashhistory,target=/commandhistory,type=volume")
-    override = {"mounts": mount_strings}
+    base_config_path = os.path.join(g_workspace, ".devcontainer", "devcontainer.json")
+    with open(base_config_path) as f:
+        override = json.load(f)
+    override["mounts"] = mount_strings
     override_file = tempfile.NamedTemporaryFile(mode="w", suffix=".json", prefix="devrun-mounts-", delete=False)
     try:
         json.dump(override, override_file)
