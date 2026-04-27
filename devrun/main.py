@@ -172,11 +172,13 @@ def status():
     click.echo(f"Workspace: {g_workspace}")
 
     # Find container
-    result = subprocess.run(
+    result = run_command(
         ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"],
         capture_output=True,
-        text=True,
     )
+    if isinstance(result, subprocess.CalledProcessError):
+        click.echo("Container: error querying docker")
+        return
     container_ids = [cid for cid in result.stdout.strip().split("\n") if cid]
 
     if not container_ids:
@@ -186,11 +188,10 @@ def status():
     container_id = container_ids[0]
 
     # Inspect container
-    result = subprocess.run(
-        ["docker", "inspect", container_id],
-        capture_output=True,
-        text=True,
-    )
+    result = run_command(["docker", "inspect", container_id], capture_output=True)
+    if isinstance(result, subprocess.CalledProcessError):
+        click.echo("Container: error inspecting container")
+        return
     info = json.loads(result.stdout)[0]
     state = info["State"]
     status_str = state.get("Status", "unknown")
