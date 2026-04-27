@@ -69,7 +69,7 @@ def resolve_mounts(workspace, mount_paths):
         # quote: If a segment is an absolute path, then all previous segments are ignored and joining continues from the
         # absolute path segment.
         # I.e., if `path` is absolute, it's not joined with `workspace`.
-        host_path = os.path.abspath(os.path.join(workspace, path))
+        host_path = os.path.abspath(path)
         if not os.path.exists(host_path):
             click.echo(f"Warning: mount path does not exist: {host_path}", err=True)
             continue
