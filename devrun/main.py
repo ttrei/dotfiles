@@ -56,16 +56,29 @@ def load_default_mounts(workspace):
 
 
 def resolve_mounts(workspace, mount_paths):
-    """Resolve mount paths to devcontainer mount strings."""
+    """Resolve mount paths to devcontainer mount strings.
+
+    Relative paths are resolved against the workspace and mounted at the
+    same relative location under /workspace.  Absolute paths (or paths
+    that escape the workspace via '..') are mounted under /workspace
+    using their basename.
+    """
     mounts = []
     for path in mount_paths:
-        # Resolve relative to workspace
         host_path = os.path.abspath(os.path.join(workspace, path))
         if not os.path.exists(host_path):
             click.echo(f"Warning: mount path does not exist: {host_path}", err=True)
             continue
-        # Use the relative path (or basename) as the container target
-        container_path = f"{CONTAINER_WORKSPACE}/{path}"
+        # Determine container target: keep the relative structure for paths
+        # inside the workspace, use basename for everything else.
+        try:
+            rel = os.path.relpath(host_path, workspace)
+        except ValueError:
+            rel = None
+        if rel and not rel.startswith(".."):
+            container_path = f"{CONTAINER_WORKSPACE}/{rel}"
+        else:
+            container_path = f"{CONTAINER_WORKSPACE}/{os.path.basename(host_path)}"
         mount_str = f"source={host_path},target={container_path},type=bind"
         mounts.append(mount_str)
     return mounts
