@@ -101,6 +101,18 @@ def cli(workspace_folder):
 @click.option("--no-defaults", is_flag=True, help="Skip default mounts from .devcontainer/mounts.list")
 def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     """Start a devcontainer with selective mounts."""
+    # Check if a container is already running
+    if not remove_existing_container:
+        result = run_command(
+            ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"],
+            capture_output=True,
+        )
+        if not isinstance(result, subprocess.CalledProcessError):
+            container_ids = [cid for cid in result.stdout.strip().split("\n") if cid]
+            if container_ids:
+                click.echo(f"Error: container already running ({container_ids[0][:12]}). Use -r to recreate.", err=True)
+                raise SystemExit(1)
+
     # Collect mount paths
     mount_paths = []
     if not no_defaults:
