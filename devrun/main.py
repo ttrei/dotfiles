@@ -4,6 +4,7 @@ import socket
 import subprocess
 import tempfile
 from dataclasses import dataclass
+from datetime import datetime, timezone
 
 import click
 
@@ -210,7 +211,26 @@ def status():
     started_at = state.get("StartedAt", "")
     image = info["Config"].get("Image", "unknown")
 
-    click.echo(f"Container: {container_id[:12]} ({status_str}, started {started_at})")
+    ago = ""
+    if started_at:
+        try:
+            dt = datetime.fromisoformat(started_at.replace("Z", "+00:00"))
+            delta = datetime.now(timezone.utc) - dt
+            secs = int(delta.total_seconds())
+            if secs < 60:
+                ago = f"{secs}s ago"
+            elif secs < 3600:
+                ago = f"{secs // 60}m ago"
+            elif secs < 86400:
+                h, m = secs // 3600, (secs % 3600) // 60
+                ago = f"{h}h{m}m ago" if m else f"{h}h ago"
+            else:
+                d, h = secs // 86400, (secs % 86400) // 3600
+                ago = f"{d}d{h}h ago" if h else f"{d}d ago"
+        except (ValueError, TypeError):
+            ago = started_at
+
+    click.echo(f"Container: {container_id[:12]} ({status_str}, started {ago})")
     click.echo(f"Image:     {image}")
 
     # Show mounts
