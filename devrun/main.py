@@ -1,6 +1,8 @@
+import json
 import os
 import socket
 import subprocess
+import tempfile
 from dataclasses import dataclass
 
 import click
@@ -22,6 +24,9 @@ HOST_CONFIGS = {
 g_config = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
 g_workspace = None
 
+MOUNTS_LIST = ".devcontainer/mounts.list"
+CONTAINER_WORKSPACE = "/workspace"
+
 
 def run_command(cmd, capture_output=False):
     click.echo(f"$ {' '.join(cmd)}")
@@ -36,6 +41,36 @@ def run_command(cmd, capture_output=False):
         return e
 
 
+def load_default_mounts(workspace):
+    """Load mount paths from .devcontainer/mounts.list."""
+    mounts_file = os.path.join(workspace, MOUNTS_LIST)
+    if not os.path.exists(mounts_file):
+        return []
+    paths = []
+    with open(mounts_file) as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                paths.append(line)
+    return paths
+
+
+def resolve_mounts(workspace, mount_paths):
+    """Resolve mount paths to devcontainer mount strings."""
+    mounts = []
+    for path in mount_paths:
+        # Resolve relative to workspace
+        host_path = os.path.abspath(os.path.join(workspace, path))
+        if not os.path.exists(host_path):
+            click.echo(f"Warning: mount path does not exist: {host_path}", err=True)
+            continue
+        # Use the relative path (or basename) as the container target
+        container_path = f"{CONTAINER_WORKSPACE}/{path}"
+        mount_str = f"source={host_path},target={container_path},type=bind"
+        mounts.append(mount_str)
+    return mounts
+
+
 @click.group(context_settings={"help_option_names": ["-h", "--help"]})
 @click.option("-w", "--workspace-folder", default=None, help="Workspace folder path")
 def cli(workspace_folder):
@@ -47,18 +82,55 @@ def cli(workspace_folder):
 @cli.command()
 @click.option("-r", "--remove-existing-container", is_flag=True, help="Remove existing container")
 @click.option("--no-cache", is_flag=True, help="Force Docker to skip layer cache")
-def up(remove_existing_container, no_cache):
-    """Start a devcontainer."""
-    cmd = []
-    if no_cache:
-        cmd0 = ["devcontainer", "build", "--workspace-folder", g_workspace, "--no-cache"]
-        run_command(cmd0)
-        cmd.extend(["devcontainer", "up", "--workspace-folder", g_workspace, "--remove-existing-container"])
+@click.option(
+    "-m", "--mount", "extra_mounts", multiple=True, help="Additional path to mount (relative to workspace, repeatable)"
+)
+@click.option("--no-defaults", is_flag=True, help="Skip default mounts from .devcontainer/mounts.list")
+def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
+    """Start a devcontainer with selective mounts."""
+    # Collect mount paths
+    mount_paths = []
+    if not no_defaults:
+        mount_paths.extend(load_default_mounts(g_workspace))
+    mount_paths.extend(extra_mounts)
+
+    # Deduplicate while preserving order
+    seen = set()
+    unique_paths = []
+    for p in mount_paths:
+        if p not in seen:
+            seen.add(p)
+            unique_paths.append(p)
+
+    mount_strings = resolve_mounts(g_workspace, unique_paths)
+
+    if mount_strings:
+        click.echo("Mounts:")
+        for m in mount_strings:
+            click.echo(f"  {m}")
     else:
-        cmd.extend(["devcontainer", "up", "--workspace-folder", g_workspace])
-        if remove_existing_container:
+        click.echo("Warning: no mounts configured, container will have no workspace files")
+
+    # Generate override config with selective mounts.
+    # Include the bash history volume mount from the base config since
+    # --override-config replaces (not merges) the mounts array.
+    mount_strings.append("source=devcontainer-bashhistory,target=/commandhistory,type=volume")
+    override = {"mounts": mount_strings}
+    override_file = tempfile.NamedTemporaryFile(mode="w", suffix=".json", prefix="devrun-mounts-", delete=False)
+    try:
+        json.dump(override, override_file)
+        override_file.close()
+
+        if no_cache:
+            cmd0 = ["devcontainer", "build", "--workspace-folder", g_workspace, "--no-cache"]
+            run_command(cmd0)
+
+        cmd = ["devcontainer", "up", "--workspace-folder", g_workspace, "--override-config", override_file.name]
+        if no_cache or remove_existing_container:
             cmd.append("--remove-existing-container")
-    run_command(cmd)
+        run_command(cmd)
+    finally:
+        os.unlink(override_file.name)
 
 
 @cli.command()
