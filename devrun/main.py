@@ -43,7 +43,6 @@ def run_command(cmd, capture_output=False):
 
 
 def load_default_mounts(workspace):
-    """Load mount paths from .devcontainer/mounts.list."""
     mounts_file = os.path.join(workspace, MOUNTS_LIST)
     if not os.path.exists(mounts_file):
         return []
@@ -56,25 +55,6 @@ def load_default_mounts(workspace):
     return paths
 
 
-def relative_time(iso_timestamp):
-    """Convert an ISO timestamp to a human-readable relative time string."""
-    try:
-        dt = datetime.fromisoformat(iso_timestamp.replace("Z", "+00:00"))
-        secs = int((datetime.now(timezone.utc) - dt).total_seconds())
-        if secs < 60:
-            return f"{secs}s ago"
-        elif secs < 3600:
-            return f"{secs // 60}m ago"
-        elif secs < 86400:
-            h, m = secs // 3600, (secs % 3600) // 60
-            return f"{h}h{m}m ago" if m else f"{h}h ago"
-        else:
-            d, h = secs // 86400, (secs % 86400) // 3600
-            return f"{d}d{h}h ago" if h else f"{d}d ago"
-    except (ValueError, TypeError):
-        return iso_timestamp
-
-
 def resolve_mounts(workspace, mount_paths):
     """Resolve mount paths to devcontainer mount strings.
 
@@ -85,6 +65,10 @@ def resolve_mounts(workspace, mount_paths):
     """
     mounts = []
     for path in mount_paths:
+        # https://docs.python.org/3/library/os.path.html#os.path.join
+        # quote: If a segment is an absolute path, then all previous segments are ignored and joining continues from the
+        # absolute path segment.
+        # I.e., if `path` is absolute, it's not joined with `workspace`.
         host_path = os.path.abspath(os.path.join(workspace, path))
         if not os.path.exists(host_path):
             click.echo(f"Warning: mount path does not exist: {host_path}", err=True)
@@ -260,3 +244,22 @@ def exec(command):
 
 if __name__ == "__main__":
     cli()
+
+
+def relative_time(iso_timestamp):
+    """Convert an ISO timestamp to a human-readable relative time string."""
+    try:
+        dt = datetime.fromisoformat(iso_timestamp.replace("Z", "+00:00"))
+        secs = int((datetime.now(timezone.utc) - dt).total_seconds())
+        if secs < 60:
+            return f"{secs}s ago"
+        elif secs < 3600:
+            return f"{secs // 60}m ago"
+        elif secs < 86400:
+            h, m = secs // 3600, (secs % 3600) // 60
+            return f"{h}h{m}m ago" if m else f"{h}h ago"
+        else:
+            d, h = secs // 86400, (secs % 86400) // 3600
+            return f"{d}d{h}h ago" if h else f"{d}d ago"
+    except (ValueError, TypeError):
+        return iso_timestamp
