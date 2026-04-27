@@ -56,6 +56,25 @@ def load_default_mounts(workspace):
     return paths
 
 
+def relative_time(iso_timestamp):
+    """Convert an ISO timestamp to a human-readable relative time string."""
+    try:
+        dt = datetime.fromisoformat(iso_timestamp.replace("Z", "+00:00"))
+        secs = int((datetime.now(timezone.utc) - dt).total_seconds())
+        if secs < 60:
+            return f"{secs}s ago"
+        elif secs < 3600:
+            return f"{secs // 60}m ago"
+        elif secs < 86400:
+            h, m = secs // 3600, (secs % 3600) // 60
+            return f"{h}h{m}m ago" if m else f"{h}h ago"
+        else:
+            d, h = secs // 86400, (secs % 86400) // 3600
+            return f"{d}d{h}h ago" if h else f"{d}d ago"
+    except (ValueError, TypeError):
+        return iso_timestamp
+
+
 def resolve_mounts(workspace, mount_paths):
     """Resolve mount paths to devcontainer mount strings.
 
@@ -211,24 +230,7 @@ def status():
     started_at = state.get("StartedAt", "")
     image = info["Config"].get("Image", "unknown")
 
-    ago = ""
-    if started_at:
-        try:
-            dt = datetime.fromisoformat(started_at.replace("Z", "+00:00"))
-            delta = datetime.now(timezone.utc) - dt
-            secs = int(delta.total_seconds())
-            if secs < 60:
-                ago = f"{secs}s ago"
-            elif secs < 3600:
-                ago = f"{secs // 60}m ago"
-            elif secs < 86400:
-                h, m = secs // 3600, (secs % 3600) // 60
-                ago = f"{h}h{m}m ago" if m else f"{h}h ago"
-            else:
-                d, h = secs // 86400, (secs % 86400) // 3600
-                ago = f"{d}d{h}h ago" if h else f"{d}d ago"
-        except (ValueError, TypeError):
-            ago = started_at
+    ago = relative_time(started_at) if started_at else ""
 
     click.echo(f"Container: {container_id[:12]} ({status_str}, started {ago})")
     click.echo(f"Image:     {image}")
