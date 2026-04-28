@@ -12,6 +12,7 @@ pass os-secrets/openrouter-api-key > "$HOME"/.openrouter-api-key
 pass os-secrets/deepseek-api-key > "$HOME"/.deepseek-api-key
 pass os-secrets/gemini-api-key > "$HOME"/.gemini-api-key
 pass os-secrets/openexchangerates-app-id > "$HOME"/.openexchangerates-app-id
+pass os-secrets/pi-coding-agent > "$HOME"/.pi/agent/auth.json
 
 pass os-secrets/beets-secrets.yaml > "$HOME"/.beets-secrets.yaml
 
