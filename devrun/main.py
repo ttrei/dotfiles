@@ -1,5 +1,7 @@
 import json
 import os
+import shlex
+import shutil
 import socket
 import subprocess
 import tempfile
@@ -15,7 +17,7 @@ class Config:
 
 
 hostname = socket.gethostname()
-click.echo(f"Detected {hostname=}")
+click.echo(f"Detected {hostname=}", err=True)
 DEFAULT_CONFIG = Config(default_workspace="~/dev")
 HOST_CONFIGS = {
     "jupiter": Config(default_workspace="~/dev"),
@@ -60,8 +62,8 @@ def resolve_mounts(workspace, mount_paths):
 
     Relative paths are resolved against the current working directory.
     Paths that fall inside the workspace keep their relative structure
-    under /workspace.  Paths outside the workspace are mounted under
-    /workspace using their basename.
+    in container /workspace. Paths outside the workspace are mounted under
+    container /workspace using their basename.
     """
     mounts = []
     for path in mount_paths:
@@ -69,8 +71,6 @@ def resolve_mounts(workspace, mount_paths):
         if not os.path.exists(host_path):
             click.echo(f"Warning: mount path does not exist: {host_path}", err=True)
             continue
-        # Determine container target: keep the relative structure for paths
-        # inside the workspace, use basename for everything else.
         try:
             rel = os.path.relpath(host_path, workspace)
         except ValueError:
@@ -82,6 +82,32 @@ def resolve_mounts(workspace, mount_paths):
         mount_str = f"source={host_path},target={container_path},type=bind"
         mounts.append(mount_str)
     return mounts
+
+
+def fd_paths(search_root, depth, path_type):
+    """Return fd results relative to search_root."""
+    cmd = [
+        "fd",
+        "--hidden",
+        "--follow",
+        "--exclude",
+        ".git",
+        "--exclude",
+        "node_modules",
+        "--exclude",
+        ".venv",
+        "--exclude",
+        "__pycache__",
+        "--max-depth",
+        str(depth),
+        "--type",
+        path_type,
+        ".",
+    ]
+    result = subprocess.run(cmd, cwd=search_root, capture_output=True, text=True)
+    if result.returncode != 0:
+        raise click.ClickException(result.stderr.strip() or f"fd failed with exit code {result.returncode}")
+    return [line for line in result.stdout.splitlines() if line]
 
 
 @click.group(context_settings={"help_option_names": ["-h", "--help"]})
@@ -116,7 +142,7 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     # Collect mount paths
     mount_paths = []
     if not no_defaults:
-        mount_paths.extend(load_default_mounts(g_workspace))
+        mount_paths.extend(os.path.join(g_workspace, path) for path in load_default_mounts(g_workspace))
     mount_paths.extend(extra_mounts)
 
     # Deduplicate while preserving order
@@ -158,6 +184,43 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
         run_command(cmd)
     finally:
         os.unlink(override_file.name)
+
+
+@cli.command()
+@click.option("-d", "--depth", default=2, show_default=True, type=click.IntRange(min=0))
+def pick(depth):
+    """Interactively pick mount paths and print a devrun up command."""
+    missing = [name for name in ("fd", "fzf") if shutil.which(name) is None]
+    if missing:
+        raise click.ClickException(f"Missing required commands: {', '.join(missing)}")
+
+    search_root = os.getcwd()
+    dir_paths = ["."] + fd_paths(search_root, depth, "d")
+    file_paths = fd_paths(search_root, depth, "f")
+    candidates = dir_paths + file_paths
+    if not candidates:
+        raise click.ClickException(f"No files or directories found under {search_root}")
+
+    result = subprocess.run(
+        ["fzf", "--multi", "--prompt", "mount> ", "--header", f"select mount paths under {search_root}"],
+        input="\n".join(candidates) + "\n",
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode in (1, 130):
+        raise SystemExit(result.returncode)
+    if result.returncode != 0:
+        raise click.ClickException(result.stderr.strip() or f"fzf failed with exit code {result.returncode}")
+
+    selected = [line for line in result.stdout.splitlines() if line]
+    if not selected:
+        raise SystemExit(1)
+
+    cmd = ["devrun", "-w", g_workspace, "up"]
+    for path in selected:
+        abs_path = os.path.abspath(os.path.join(search_root, path))
+        cmd.extend(["-m", abs_path])
+    click.echo(shlex.join(cmd))
 
 
 @cli.command()
