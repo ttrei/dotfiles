@@ -128,7 +128,7 @@ def cli(workspace_folder):
 def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     """Start a devcontainer with selective mounts."""
     # Check if a container is already running
-    if not remove_existing_container:
+    if not remove_existing_container and not no_cache:
         result = run_command(
             ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"],
             capture_output=True,
