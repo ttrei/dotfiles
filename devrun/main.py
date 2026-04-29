@@ -17,7 +17,6 @@ class Config:
 
 
 hostname = socket.gethostname()
-click.echo(f"Detected {hostname=}", err=True)
 DEFAULT_CONFIG = Config(default_workspace="~/dev")
 HOST_CONFIGS = {
     "jupiter": Config(default_workspace="~/dev"),
@@ -26,25 +25,60 @@ HOST_CONFIGS = {
 }
 
 CONFIG = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
-HOST_WORKSPACE: Path | None = None
-
 CONTAINER_WORKSPACE = Path("/workspace")
 
 
+def get_workspace(ctx: click.Context) -> Path:
+    workspace = ctx.obj.get("workspace") if isinstance(ctx.obj, dict) else None
+    if not isinstance(workspace, Path):
+        raise click.ClickException("Workspace is not configured")
+    return workspace
+
+
 def run_command(cmd, capture_output=False):
-    click.echo(f"+ {' '.join(cmd)}")
+    click.echo(f"+ {shlex.join(str(part) for part in cmd)}")
     try:
-        if capture_output:
-            result = subprocess.run(cmd, shell=False, capture_output=True, text=True, check=True)
-        else:
-            result = subprocess.run(cmd, shell=False, check=True)
-        return result
+        return subprocess.run(cmd, shell=False, capture_output=capture_output, text=True, check=True)
     except subprocess.CalledProcessError as e:
-        click.echo(f"Error: Command failed with exit code {e.returncode}", err=True)
-        return e
+        message = f"Command failed with exit code {e.returncode}: {shlex.join(str(part) for part in cmd)}"
+        stderr = (e.stderr or "").strip()
+        if stderr:
+            message = f"{message}\n{stderr}"
+        raise click.ClickException(message) from e
 
 
-def resolve_mounts(workspace, mount_paths):
+def get_running_container_ids(workspace: Path) -> list[str]:
+    result = run_command(
+        ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={workspace}"],
+        capture_output=True,
+    )
+    return [cid for cid in result.stdout.splitlines() if cid]
+
+
+def deduplicate_paths(paths) -> list[Path]:
+    seen = set()
+    unique_paths = []
+    for path in paths:
+        path = Path(path).expanduser()
+        if not path.is_absolute():
+            path = Path.cwd() / path
+        path = path.resolve(strict=False)
+        if path not in seen:
+            seen.add(path)
+            unique_paths.append(path)
+    return unique_paths
+
+
+def collect_mount_paths(workspace: Path, extra_mounts, include_workspace: bool) -> list[Path]:
+    mount_paths = []
+    if include_workspace:
+        mount_paths.append(workspace)
+    mount_paths.append(Path.home() / ".pi")
+    mount_paths.extend(Path(path) for path in extra_mounts)
+    return deduplicate_paths(mount_paths)
+
+
+def resolve_mounts(mount_paths):
     mounts = []
     for path in mount_paths:
         host_path = Path(path).expanduser()
@@ -101,10 +135,12 @@ def fd_paths(search_root, depth, path_type):
 
 @click.group(context_settings={"help_option_names": ["-h", "--help"]})
 @click.option("-w", "--workspace-folder", default=None, help="Workspace folder path")
-def cli(workspace_folder):
+@click.pass_context
+def cli(ctx, workspace_folder):
     """DevContainer management tool with host-specific defaults."""
-    global HOST_WORKSPACE
-    HOST_WORKSPACE = Path(workspace_folder or CONFIG.default_workspace).expanduser().resolve(strict=False)
+    click.echo(f"Detected {hostname=}", err=True)
+    obj = ctx.ensure_object(dict)
+    obj["workspace"] = Path(workspace_folder or CONFIG.default_workspace).expanduser().resolve(strict=False)
 
 
 @cli.command()
@@ -113,38 +149,21 @@ def cli(workspace_folder):
 @click.option(
     "-m", "--mount", "extra_mounts", multiple=True, help="Additional path to mount (relative to cwd, repeatable)"
 )
-@click.option("--no-defaults", is_flag=True, help="Skip default mounts from .devcontainer/mounts.list")
-def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
+@click.option("--no-defaults", is_flag=True, help="Skip mounting the workspace automatically")
+@click.pass_context
+def up(ctx, remove_existing_container, no_cache, extra_mounts, no_defaults):
     """Start a devcontainer with selective mounts."""
+    workspace = get_workspace(ctx)
+
     # Check if a container is already running
     if not remove_existing_container and not no_cache:
-        result = run_command(
-            ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={HOST_WORKSPACE}"],
-            capture_output=True,
-        )
-        if not isinstance(result, subprocess.CalledProcessError):
-            container_ids = [cid for cid in result.stdout.strip().split("\n") if cid]
-            if container_ids:
-                click.echo(f"Error: container already running ({container_ids[0][:12]}). Use -r to recreate.", err=True)
-                raise SystemExit(1)
+        container_ids = get_running_container_ids(workspace)
+        if container_ids:
+            click.echo(f"Error: container already running ({container_ids[0][:12]}). Use -r to recreate.", err=True)
+            raise SystemExit(1)
 
-    # Collect mount paths
-    mount_paths = []
-    if not no_defaults:
-        mount_paths.append(HOST_WORKSPACE)
-    mount_paths.append(Path.home() / ".pi")
-    mount_paths.extend(Path(path) for path in extra_mounts)
-
-    # Deduplicate while preserving order
-    seen = set()
-    unique_paths = []
-    for p in mount_paths:
-        p = p.expanduser().resolve(strict=False)
-        if p not in seen:
-            seen.add(p)
-            unique_paths.append(p)
-
-    mount_strings = resolve_mounts(HOST_WORKSPACE, unique_paths)
+    mount_paths = collect_mount_paths(workspace, extra_mounts, include_workspace=not no_defaults)
+    mount_strings = resolve_mounts(mount_paths)
 
     if mount_strings:
         click.echo("Mounts:")
@@ -157,7 +176,7 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     # the mounts array, since --override-config replaces the entire config.
     mount_strings.append("source=devcontainer-bashhistory,target=/commandhistory,type=volume")
 
-    base_config_path = HOST_WORKSPACE / ".devcontainer" / "devcontainer.json"
+    base_config_path = workspace / ".devcontainer" / "devcontainer.json"
     with base_config_path.open() as f:
         override = json.load(f)
     override["mounts"] = mount_strings
@@ -167,10 +186,10 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
         override_file.close()
 
         if no_cache:
-            cmd0 = ["devcontainer", "build", "--workspace-folder", str(HOST_WORKSPACE), "--no-cache"]
+            cmd0 = ["devcontainer", "build", "--workspace-folder", str(workspace), "--no-cache"]
             run_command(cmd0)
 
-        cmd = ["devcontainer", "up", "--workspace-folder", str(HOST_WORKSPACE), "--override-config", override_file.name]
+        cmd = ["devcontainer", "up", "--workspace-folder", str(workspace), "--override-config", override_file.name]
         if no_cache or remove_existing_container:
             cmd.append("--remove-existing-container")
         run_command(cmd)
@@ -180,8 +199,10 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
 
 @cli.command()
 @click.option("-d", "--depth", default=2, show_default=True, type=click.IntRange(min=0))
-def pick(depth):
+@click.pass_context
+def pick(ctx, depth):
     """Interactively pick mount paths and print a devrun up command."""
+    workspace = get_workspace(ctx)
     missing = [name for name in ("fd", "fzf") if shutil.which(name) is None]
     if missing:
         raise click.ClickException(f"Missing required commands: {', '.join(missing)}")
@@ -208,7 +229,7 @@ def pick(depth):
     if not selected:
         raise SystemExit(1)
 
-    cmd = ["devrun", "-w", str(HOST_WORKSPACE), "up"]
+    cmd = ["devrun", "-w", str(workspace), "up"]
     for path in selected:
         abs_path = (search_root / path).resolve(strict=False)
         cmd.extend(["-m", str(abs_path)])
@@ -216,13 +237,12 @@ def pick(depth):
 
 
 @cli.command()
-def down():
+@click.pass_context
+def down(ctx):
     """Stop a devcontainer."""
-    click.echo(f"Looking for container with workspace: {HOST_WORKSPACE}")
-    cmd_list_containers = ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={HOST_WORKSPACE}"]
-    result = run_command(cmd_list_containers, capture_output=True)
-    container_ids = result.stdout.strip().split("\n")
-    container_ids = [cid for cid in container_ids if cid]  # Remove empty strings
+    workspace = get_workspace(ctx)
+    click.echo(f"Looking for container with workspace: {workspace}")
+    container_ids = get_running_container_ids(workspace)
 
     if container_ids:
         click.echo(f"Found {len(container_ids)} container(s): {', '.join(container_ids)}")
@@ -234,18 +254,13 @@ def down():
 
 
 @cli.command()
-def status():
+@click.pass_context
+def status(ctx):
     """Show devcontainer status."""
-    click.echo(f"Workspace: {HOST_WORKSPACE}")
+    workspace = get_workspace(ctx)
+    click.echo(f"Workspace: {workspace}")
 
-    result = run_command(
-        ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={HOST_WORKSPACE}"],
-        capture_output=True,
-    )
-    if isinstance(result, subprocess.CalledProcessError):
-        click.echo("Container: error querying docker")
-        return
-    container_ids = [cid for cid in result.stdout.strip().split("\n") if cid]
+    container_ids = get_running_container_ids(workspace)
 
     if not container_ids:
         click.echo("Container: not running")
@@ -254,9 +269,6 @@ def status():
     container_id = container_ids[0]
 
     result = run_command(["docker", "inspect", container_id], capture_output=True)
-    if isinstance(result, subprocess.CalledProcessError):
-        click.echo("Container: error inspecting container")
-        return
     info = json.loads(result.stdout)[0]
     state = info["State"]
     status_str = state.get("Status", "unknown")
@@ -282,19 +294,17 @@ def status():
                 click.echo(f"  {src:<40s} → {dst:<30s} ({mtype}, {rw})")
 
 
-@cli.command()
+@cli.command("exec")
 @click.argument("command", nargs=-1)
-def exec(command):
+@click.pass_context
+def exec_cmd(ctx, command):
     """Execute a command in the devcontainer."""
-    cmd = ["devcontainer", "exec", "--workspace-folder", str(HOST_WORKSPACE)]
+    workspace = get_workspace(ctx)
+    cmd = ["devcontainer", "exec", "--workspace-folder", str(workspace)]
     if not command:
         command = ("bash",)
     cmd.extend(command)
     run_command(cmd)
-
-
-if __name__ == "__main__":
-    cli()
 
 
 def relative_time(iso_timestamp):
@@ -314,3 +324,7 @@ def relative_time(iso_timestamp):
             return f"{d}d{h}h ago" if h else f"{d}d ago"
     except (ValueError, TypeError):
         return iso_timestamp
+
+
+if __name__ == "__main__":
+    cli()
