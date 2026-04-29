@@ -7,6 +7,7 @@ import subprocess
 import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from pathlib import Path
 
 import click
 
@@ -27,7 +28,6 @@ HOST_CONFIGS = {
 g_config = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
 g_workspace = None
 
-MOUNTS_LIST = ".devcontainer/mounts.list"
 CONTAINER_WORKSPACE = "/workspace"
 
 
@@ -44,44 +44,28 @@ def run_command(cmd, capture_output=False):
         return e
 
 
-def load_default_mounts(workspace):
-    mounts_file = os.path.join(workspace, MOUNTS_LIST)
-    if not os.path.exists(mounts_file):
-        return []
-    paths = []
-    with open(mounts_file) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith("#"):
-                paths.append(line)
-    return paths
-
-
 def resolve_mounts(workspace, mount_paths):
-    """Resolve mount paths to devcontainer mount strings.
-
-    Relative paths are resolved against the current working directory.
-    Paths that fall inside the workspace keep their relative structure
-    in container /workspace. Paths outside the workspace are mounted under
-    container /workspace using their basename.
-    """
     mounts = []
     for path in mount_paths:
         host_path = os.path.abspath(path)
         if not os.path.exists(host_path):
             click.echo(f"Warning: mount path does not exist: {host_path}", err=True)
             continue
-        try:
-            rel = os.path.relpath(host_path, workspace)
-        except ValueError:
-            rel = None
-        if rel and not rel.startswith(".."):
-            container_path = f"{CONTAINER_WORKSPACE}/{rel}"
-        else:
-            container_path = f"{CONTAINER_WORKSPACE}/{os.path.basename(host_path)}"
-        mount_str = f"source={host_path},target={container_path},type=bind"
-        mounts.append(mount_str)
+        mounts.append(build_mount_string(host_path))
     return mounts
+
+
+def build_mount_string(host_path: str):
+    container_path = Path(host_path).expanduser().resolve()
+    home = Path.home().resolve()
+    if not container_path.is_absolute():
+        raise ValueError(f"{host_path} is not absolute")
+    try:
+        container_path = container_path.relative_to(home)
+    except ValueError:
+        # not inside home
+        pass
+    return f"source={host_path},target={CONTAINER_WORKSPACE}/{container_path},type=bind"
 
 
 def fd_paths(search_root, depth, path_type):
@@ -142,7 +126,8 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     # Collect mount paths
     mount_paths = []
     if not no_defaults:
-        mount_paths.extend(os.path.join(g_workspace, path) for path in load_default_mounts(g_workspace))
+        mount_paths.append(g_workspace)
+    mount_paths.append(Path.home() / ".pi")
     mount_paths.extend(extra_mounts)
 
     # Deduplicate while preserving order
@@ -165,6 +150,7 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     # Generate override config: load the base devcontainer.json and patch
     # the mounts array, since --override-config replaces the entire config.
     mount_strings.append("source=devcontainer-bashhistory,target=/commandhistory,type=volume")
+
     base_config_path = os.path.join(g_workspace, ".devcontainer", "devcontainer.json")
     with open(base_config_path) as f:
         override = json.load(f)
