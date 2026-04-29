@@ -1,5 +1,4 @@
 import json
-import os
 import shlex
 import shutil
 import socket
@@ -25,10 +24,11 @@ HOST_CONFIGS = {
     "jupiter-work": Config(default_workspace="~/dev"),
     "mercury": Config(default_workspace="~/dev"),
 }
-g_config = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
-g_workspace = None
 
-CONTAINER_WORKSPACE = "/workspace"
+CONFIG = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
+HOST_WORKSPACE: Path | None = None
+
+CONTAINER_WORKSPACE = Path("/workspace")
 
 
 def run_command(cmd, capture_output=False):
@@ -47,25 +47,30 @@ def run_command(cmd, capture_output=False):
 def resolve_mounts(workspace, mount_paths):
     mounts = []
     for path in mount_paths:
-        host_path = os.path.abspath(path)
-        if not os.path.exists(host_path):
+        host_path = Path(path).expanduser()
+        if not host_path.is_absolute():
+            host_path = Path.cwd() / host_path
+        host_path = host_path.resolve(strict=False)
+        if not host_path.exists():
             click.echo(f"Warning: mount path does not exist: {host_path}", err=True)
             continue
         mounts.append(build_mount_string(host_path))
     return mounts
 
 
-def build_mount_string(host_path: str):
-    container_path = Path(host_path).expanduser().resolve()
+def build_mount_string(host_path: Path):
+    host_path = host_path.expanduser().resolve(strict=False)
     home = Path.home().resolve()
-    if not container_path.is_absolute():
+    if not host_path.is_absolute():
         raise ValueError(f"{host_path} is not absolute")
     try:
-        container_path = container_path.relative_to(home)
+        container_path = host_path.relative_to(home)
     except ValueError:
-        # not inside home
-        pass
-    return f"source={host_path},target={CONTAINER_WORKSPACE}/{container_path},type=bind"
+        # not inside home; keep the absolute path under /workspace without
+        # allowing an absolute Path to discard CONTAINER_WORKSPACE.
+        container_path = Path(*host_path.parts[1:])
+    target_path = CONTAINER_WORKSPACE / container_path
+    return f"source={host_path},target={target_path.as_posix()},type=bind"
 
 
 def fd_paths(search_root, depth, path_type):
@@ -98,8 +103,8 @@ def fd_paths(search_root, depth, path_type):
 @click.option("-w", "--workspace-folder", default=None, help="Workspace folder path")
 def cli(workspace_folder):
     """DevContainer management tool with host-specific defaults."""
-    global g_workspace
-    g_workspace = os.path.abspath(os.path.expanduser(workspace_folder or g_config.default_workspace))
+    global HOST_WORKSPACE
+    HOST_WORKSPACE = Path(workspace_folder or CONFIG.default_workspace).expanduser().resolve(strict=False)
 
 
 @cli.command()
@@ -114,7 +119,7 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     # Check if a container is already running
     if not remove_existing_container and not no_cache:
         result = run_command(
-            ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"],
+            ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={HOST_WORKSPACE}"],
             capture_output=True,
         )
         if not isinstance(result, subprocess.CalledProcessError):
@@ -126,19 +131,20 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     # Collect mount paths
     mount_paths = []
     if not no_defaults:
-        mount_paths.append(g_workspace)
+        mount_paths.append(HOST_WORKSPACE)
     mount_paths.append(Path.home() / ".pi")
-    mount_paths.extend(extra_mounts)
+    mount_paths.extend(Path(path) for path in extra_mounts)
 
     # Deduplicate while preserving order
     seen = set()
     unique_paths = []
     for p in mount_paths:
+        p = p.expanduser().resolve(strict=False)
         if p not in seen:
             seen.add(p)
             unique_paths.append(p)
 
-    mount_strings = resolve_mounts(g_workspace, unique_paths)
+    mount_strings = resolve_mounts(HOST_WORKSPACE, unique_paths)
 
     if mount_strings:
         click.echo("Mounts:")
@@ -151,8 +157,8 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
     # the mounts array, since --override-config replaces the entire config.
     mount_strings.append("source=devcontainer-bashhistory,target=/commandhistory,type=volume")
 
-    base_config_path = os.path.join(g_workspace, ".devcontainer", "devcontainer.json")
-    with open(base_config_path) as f:
+    base_config_path = HOST_WORKSPACE / ".devcontainer" / "devcontainer.json"
+    with base_config_path.open() as f:
         override = json.load(f)
     override["mounts"] = mount_strings
     override_file = tempfile.NamedTemporaryFile(mode="w", suffix=".json", prefix="devrun-mounts-", delete=False)
@@ -161,15 +167,15 @@ def up(remove_existing_container, no_cache, extra_mounts, no_defaults):
         override_file.close()
 
         if no_cache:
-            cmd0 = ["devcontainer", "build", "--workspace-folder", g_workspace, "--no-cache"]
+            cmd0 = ["devcontainer", "build", "--workspace-folder", str(HOST_WORKSPACE), "--no-cache"]
             run_command(cmd0)
 
-        cmd = ["devcontainer", "up", "--workspace-folder", g_workspace, "--override-config", override_file.name]
+        cmd = ["devcontainer", "up", "--workspace-folder", str(HOST_WORKSPACE), "--override-config", override_file.name]
         if no_cache or remove_existing_container:
             cmd.append("--remove-existing-container")
         run_command(cmd)
     finally:
-        os.unlink(override_file.name)
+        Path(override_file.name).unlink()
 
 
 @cli.command()
@@ -180,7 +186,7 @@ def pick(depth):
     if missing:
         raise click.ClickException(f"Missing required commands: {', '.join(missing)}")
 
-    search_root = os.getcwd()
+    search_root = Path.cwd()
     dir_paths = ["."] + fd_paths(search_root, depth, "d")
     file_paths = fd_paths(search_root, depth, "f")
     candidates = dir_paths + file_paths
@@ -202,18 +208,18 @@ def pick(depth):
     if not selected:
         raise SystemExit(1)
 
-    cmd = ["devrun", "-w", g_workspace, "up"]
+    cmd = ["devrun", "-w", str(HOST_WORKSPACE), "up"]
     for path in selected:
-        abs_path = os.path.abspath(os.path.join(search_root, path))
-        cmd.extend(["-m", abs_path])
+        abs_path = (search_root / path).resolve(strict=False)
+        cmd.extend(["-m", str(abs_path)])
     click.echo(shlex.join(cmd))
 
 
 @cli.command()
 def down():
     """Stop a devcontainer."""
-    click.echo(f"Looking for container with workspace: {g_workspace}")
-    cmd_list_containers = ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"]
+    click.echo(f"Looking for container with workspace: {HOST_WORKSPACE}")
+    cmd_list_containers = ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={HOST_WORKSPACE}"]
     result = run_command(cmd_list_containers, capture_output=True)
     container_ids = result.stdout.strip().split("\n")
     container_ids = [cid for cid in container_ids if cid]  # Remove empty strings
@@ -230,10 +236,10 @@ def down():
 @cli.command()
 def status():
     """Show devcontainer status."""
-    click.echo(f"Workspace: {g_workspace}")
+    click.echo(f"Workspace: {HOST_WORKSPACE}")
 
     result = run_command(
-        ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={g_workspace}"],
+        ["docker", "ps", "-q", "--filter", f"label=devcontainer.local_folder={HOST_WORKSPACE}"],
         capture_output=True,
     )
     if isinstance(result, subprocess.CalledProcessError):
@@ -280,7 +286,7 @@ def status():
 @click.argument("command", nargs=-1)
 def exec(command):
     """Execute a command in the devcontainer."""
-    cmd = ["devcontainer", "exec", "--workspace-folder", g_workspace]
+    cmd = ["devcontainer", "exec", "--workspace-folder", str(HOST_WORKSPACE)]
     if not command:
         command = ("bash",)
     cmd.extend(command)
