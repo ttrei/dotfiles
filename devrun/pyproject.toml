@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "click",
+    "json5>=0.14.0",
 ]
 
 [project.scripts]
