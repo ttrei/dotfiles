@@ -25,6 +25,7 @@ HOST_CONFIGS = {
 }
 
 CONFIG = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
+CONTAINER_HOME = Path("/home/node")
 CONTAINER_WORKSPACE = Path("/workspace")
 
 
@@ -69,10 +70,12 @@ def deduplicate_paths(paths) -> list[Path]:
     return unique_paths
 
 
-def collect_mount_paths(workspace: Path, extra_mounts, include_workspace: bool) -> list[Path]:
+def collect_mount_paths(workspace: Path, extra_mounts, include_workspace: bool, include_ssh: bool) -> list[Path]:
     mount_paths = []
     if include_workspace:
         mount_paths.append(workspace)
+    if include_ssh:
+        mount_paths.append(Path.home() / ".ssh")
     mount_paths.append(Path.home() / ".pi")
     mount_paths.extend(Path(path) for path in extra_mounts)
     return deduplicate_paths(mount_paths)
@@ -97,13 +100,17 @@ def build_mount_string(host_path: Path):
     home = Path.home().resolve()
     if not host_path.is_absolute():
         raise ValueError(f"{host_path} is not absolute")
-    try:
-        container_path = host_path.relative_to(home)
-    except ValueError:
-        # not inside home; keep the absolute path under /workspace without
-        # allowing an absolute Path to discard CONTAINER_WORKSPACE.
-        container_path = Path(*host_path.parts[1:])
-    target_path = CONTAINER_WORKSPACE / container_path
+    ssh_dir = (home / ".ssh").resolve(strict=False)
+    if host_path == ssh_dir:
+        target_path = CONTAINER_HOME / ".ssh"
+    else:
+        try:
+            container_path = host_path.relative_to(home)
+        except ValueError:
+            # not inside home; keep the absolute path under /workspace without
+            # allowing an absolute Path to discard CONTAINER_WORKSPACE.
+            container_path = Path(*host_path.parts[1:])
+        target_path = CONTAINER_WORKSPACE / container_path
     return f"source={host_path},target={target_path.as_posix()},type=bind"
 
 
@@ -150,8 +157,9 @@ def cli(ctx, workspace_folder):
     "-m", "--mount", "extra_mounts", multiple=True, help="Additional path to mount (relative to cwd, repeatable)"
 )
 @click.option("--no-defaults", is_flag=True, help="Skip mounting the workspace automatically")
+@click.option("--ssh", "mount_ssh", is_flag=True, help="Mount host ~/.ssh and configure Git to use it")
 @click.pass_context
-def up(ctx, remove_existing_container, no_cache, extra_mounts, no_defaults):
+def up(ctx, remove_existing_container, no_cache, extra_mounts, no_defaults, mount_ssh):
     """Start a devcontainer with selective mounts."""
     workspace = get_workspace(ctx)
 
@@ -162,7 +170,12 @@ def up(ctx, remove_existing_container, no_cache, extra_mounts, no_defaults):
             click.echo(f"Error: container already running ({container_ids[0][:12]}). Use -r to recreate.", err=True)
             raise SystemExit(1)
 
-    mount_paths = collect_mount_paths(workspace, extra_mounts, include_workspace=not no_defaults)
+    mount_paths = collect_mount_paths(
+        workspace,
+        extra_mounts,
+        include_workspace=not no_defaults,
+        include_ssh=mount_ssh,
+    )
     mount_strings = resolve_mounts(mount_paths)
 
     if mount_strings:
@@ -180,6 +193,10 @@ def up(ctx, remove_existing_container, no_cache, extra_mounts, no_defaults):
     with base_config_path.open() as f:
         override = json.load(f)
     override["mounts"] = mount_strings
+    if mount_ssh:
+        override.setdefault("containerEnv", {})["GIT_SSH_COMMAND"] = (
+            "ssh -o UserKnownHostsFile=/home/node/.ssh/known_hosts"
+        )
     override_file = tempfile.NamedTemporaryFile(mode="w", suffix=".json", prefix="devrun-mounts-", delete=False)
     try:
         json.dump(override, override_file)
