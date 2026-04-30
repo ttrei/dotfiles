@@ -9,7 +9,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import click
-import json5
 
 
 @dataclass
@@ -186,51 +185,33 @@ def up(ctx, remove_existing_container, no_cache, extra_mounts, no_defaults, moun
     else:
         click.echo("Warning: no mounts configured, container will have no workspace files")
 
-    # Generate a config file: load the base devcontainer.json5 and write
-    # regular JSON for the devcontainer CLI.
+    # Generate override config: load the base devcontainer.json and patch
+    # the mounts array, since --override-config replaces the entire config.
     mount_strings.append("source=devcontainer-bashhistory,target=/commandhistory,type=volume")
 
-    base_config_path = workspace / ".devcontainer" / "devcontainer.json5"
-    try:
-        config = json5.loads(base_config_path.read_text())
-    except ValueError as e:
-        raise click.ClickException(f"Invalid JSON5 in {base_config_path}: {e}") from e
-
-    config["mounts"] = mount_strings
+    base_config_path = workspace / ".devcontainer" / "devcontainer.json"
+    with base_config_path.open() as f:
+        override = json.load(f)
+    override["mounts"] = mount_strings
     if mount_ssh:
-        config.setdefault("containerEnv", {})["GIT_SSH_COMMAND"] = (
+        override.setdefault("containerEnv", {})["GIT_SSH_COMMAND"] = (
             "ssh -o UserKnownHostsFile=/home/node/.ssh/known_hosts"
         )
-    config_file = tempfile.NamedTemporaryFile(
-        mode="w",
-        suffix=".json",
-        prefix="devrun-config-",
-        dir=base_config_path.parent,
-        delete=False,
-    )
+    override_file = tempfile.NamedTemporaryFile(mode="w", suffix=".json", prefix="devrun-mounts-", delete=False)
     try:
-        json.dump(config, config_file, indent=2)
-        config_file.write("\n")
-        config_file.close()
+        json.dump(override, override_file)
+        override_file.close()
 
         if no_cache:
-            cmd0 = [
-                "devcontainer",
-                "build",
-                "--workspace-folder",
-                str(workspace),
-                "--config",
-                config_file.name,
-                "--no-cache",
-            ]
+            cmd0 = ["devcontainer", "build", "--workspace-folder", str(workspace), "--no-cache"]
             run_command(cmd0)
 
-        cmd = ["devcontainer", "up", "--workspace-folder", str(workspace), "--config", config_file.name]
+        cmd = ["devcontainer", "up", "--workspace-folder", str(workspace), "--override-config", override_file.name]
         if no_cache or remove_existing_container:
             cmd.append("--remove-existing-container")
         run_command(cmd)
     finally:
-        Path(config_file.name).unlink()
+        Path(override_file.name).unlink()
 
 
 @cli.command()
