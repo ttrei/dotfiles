@@ -16,15 +16,17 @@ class Config:
     default_workspace: str
 
 
-hostname = socket.gethostname()
-DEFAULT_CONFIG = Config(default_workspace="~/dev")
 HOST_CONFIGS = {
     "jupiter": Config(default_workspace="~/dev"),
-    "jupiter-work": Config(default_workspace="~/dev"),
-    "mercury": Config(default_workspace="~/dev"),
+    "jupiter-work": Config(default_workspace="~/home-dev"),
+    "mercury": Config(default_workspace="~/home-dev"),
 }
 
-CONFIG = HOST_CONFIGS.get(hostname, DEFAULT_CONFIG)
+hostname = socket.gethostname()
+if hostname not in HOST_CONFIGS:
+    raise ValueError(f"No config for host {hostname}")
+
+CONFIG = HOST_CONFIGS.get(hostname)
 CONTAINER_HOME = Path("/home/node")
 CONTAINER_WORKSPACE = Path("/workspace")
 
