@@ -10,6 +10,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # for deploy-rs deployments to pluto
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
