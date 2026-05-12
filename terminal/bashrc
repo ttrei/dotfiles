@@ -177,3 +177,10 @@ function x509_decode() {
         echo "$1" | openssl x509 -noout -text
     fi
 }
+
+ruff-commit() {
+  # Format all python files touched by a git commit
+  local commit="$1"
+  git diff-tree --no-commit-id --name-only -r "$commit" -- '*.py' \
+    | xargs -r sh -c 'ruff format "$@" && ruff check --fix "$@"' sh
+}
