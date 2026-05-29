@@ -30,7 +30,9 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    beets
+    # Disable due to https://github.com/NixOS/nixpkgs/issues/517172
+    # It's fixed in unstable but i think unstable.beets pulls in too much other packages.
+    # beets
 
     # zed-editor
     # unstable.aider-chat-full
