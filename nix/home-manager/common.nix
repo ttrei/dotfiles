@@ -59,7 +59,7 @@
     bat
     comma
     delta
-    devenv
+    unstable.devenv
     difftastic
     devcontainer
     direnv
