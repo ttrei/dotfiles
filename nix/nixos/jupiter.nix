@@ -21,6 +21,10 @@
 
   networking.hostName = "jupiter";
 
+  # For Proton VPN
+  # https://discourse.nixos.org/t/how-to-configure-and-use-proton-vpn-on-nixos/65837
+  networking.firewall.checkReversePath = false;
+
   networking.firewall.allowedTCPPorts = [
     4096 # opencode
     2223 # manjaro vm ssh
@@ -30,6 +34,10 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    # Proton VPN
+    wireguard-tools
+    protonvpn-gui
+
     # Disable due to https://github.com/NixOS/nixpkgs/issues/517172
     # It's fixed in unstable but i think unstable.beets pulls in too much other packages.
     # beets
