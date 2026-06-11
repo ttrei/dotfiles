@@ -4,8 +4,9 @@ set -o errexit
 set -o nounset
 
 DOTFILES="$( cd "$(dirname "$0")/.." || exit >/dev/null 2>&1 ; pwd -P )"
+DEV_ROOT="$( cd "$DOTFILES/.." || exit >/dev/null 2>&1 ; pwd -P )"
 
-uv tool install --editable "$DOTFILES"/devrun
+uv tool install --reinstall --editable "$DEV_ROOT"/devrun
 uv tool install --reinstall "$DOTFILES"/i3/i3init
 uv tool install --upgrade yt-dlp
 uv tool install --upgrade llm
