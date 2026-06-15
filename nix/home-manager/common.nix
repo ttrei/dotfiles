@@ -74,8 +74,6 @@
     ncdu
     nethogs
     nload
-    nodejs-slim
-    nodePackages.typescript-language-server
     gitFull
     git-crypt
     git-when-merged
