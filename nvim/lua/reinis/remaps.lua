@@ -15,7 +15,7 @@ vim.keymap.set("n", "<leader>cr", ":set runtimepath-=~/dotfiles/nvim<cr>:ReloadC
 vim.keymap.set(
   "n",
   "<leader>crd",
-  ":set runtimepath^=~/dotfiles/nvim<cr>:ReloadConfig<cr>:source ~/dotfiles/nvim/init.vim<cr>"
+  ":set runtimepath^=~/dotfiles/nvim<cr>:ReloadConfig<cr>:lua require('reinis')<cr>"
 )
 
 vim.keymap.set("n", "<leader>bd", ":bdelete<cr>")
@@ -27,6 +27,26 @@ vim.keymap.set("n", "<leader>u", ":UndotreeToggle<cr>")
 vim.keymap.set("n", "<leader>w", function()
   vim_opt_toggle("wrap", true, false)
 end)
+
+-- Disable C-c in Insert mode. Learn to use Esc - it will help in Doom Emacs
+-- where C-c doesn't work.
+vim.keymap.set("i", "<C-c>", "<Nop>")
+
+-- Start syntax parsing from the start of the file (useful to fix broken syntax highlighting)
+vim.keymap.set("n", "<F9>", "<Esc>:syntax sync fromstart<CR>")
+-- Revert back to the default `sync` value (`fromstart` is likely to be slow)
+vim.keymap.set("n", "<F10>", "<Esc>:syntax sync minlines=200<CR>")
+
+-- Remove trailing whitespace
+vim.keymap.set("n", "<Leader>ss", [[:%s/\s\+$//<CR>]])
+-- Remove carriage return at end of line
+vim.keymap.set("n", "<Leader>rr", [[:%s/\r$//<CR>]])
+
+-- Execute linter
+vim.keymap.set("n", "<F5>", ":Neomake<CR>")
+
+-- no numbers --> absolute line numbers --> relative line numbers + absolute for current line
+vim.keymap.set("n", "<C-n>", ":NumberToggle<CR>", { silent = true })
 
 vim.keymap.set("n", "<c-p>", function() require('fzf-lua').files({ git_icons = false }) end, { desc = "Find files using fzf" })
 

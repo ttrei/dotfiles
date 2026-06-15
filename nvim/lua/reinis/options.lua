@@ -71,3 +71,58 @@ vim.opt.cursorline = true
 -- vim.opt.signcolumn = 'yes'
 
 vim.g.mapleader = " "
+
+-- Migrated from vimrc_legacy
+vim.opt.guifont = "Consolas 13"
+vim.opt.encoding = "utf-8"
+
+-- Do not create .netrwhist
+vim.g.netrw_dirhistmax = 0
+
+vim.opt.clipboard:append("unnamedplus")
+
+-- Enable backspace in Insert mode (sometimes disabled by default)
+vim.opt.backspace = { "indent", "eol", "start" }
+
+-- Better tab-autocomplete
+vim.opt.wildmode = { "longest", "list", "full" }
+vim.opt.wildmenu = true
+
+-- Disable modelines
+vim.opt.modeline = false
+vim.opt.modelines = 0
+
+-- Reload file automatically if it has been modified externally
+vim.opt.autoread = true
+
+-- Treat all numbers as decimal
+vim.opt.nrformats = {}
+
+vim.opt.textwidth = 120
+
+vim.cmd("filetype plugin indent on")
+vim.cmd.syntax("on")
+
+-- Disable automatic wrapping while typing
+vim.opt.formatoptions:remove({ "t", "c" })
+
+-- Disable automatic re-formatting when joining comment lines.
+-- https://github.com/neovim/neovim/issues/16017
+-- Use a whitelist approach - enable for specific filetypes.
+vim.opt.formatoptions:remove("j")
+
+-- Try to fix vim-markdown plugin folding behavior
+vim.g.vim_markdown_folding_style_pythonic = 1
+
+-- asciidoc folding
+vim.g.asciidoc_fold_style = "nested"
+
+-- vim-table-mode
+vim.g.table_mode_corner_corner = "|"
+vim.g.table_mode_header_fillchar = "-"
+
+-- Disable matching of parenthesis
+vim.g.loaded_matchparen = 1
+
+vim.opt.relativenumber = true
+vim.opt.number = true

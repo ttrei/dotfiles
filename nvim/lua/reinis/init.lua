@@ -1,5 +1,5 @@
-require("reinis.editing")
 require("reinis.options")
+require("reinis.editing")
 require("reinis.colors")
 require("reinis.filetype")
 require("reinis.commands")
