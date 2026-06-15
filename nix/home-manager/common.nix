@@ -61,7 +61,6 @@
     delta
     unstable.devenv
     difftastic
-    devcontainer
     direnv
     eza
     fd
