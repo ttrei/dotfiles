@@ -9,13 +9,13 @@ require("reinis.utils")
 -- vim.keymap.set("n", "<c-P>", function() require('fzf-lua').files({ ... }) end, { desc = "Fzf Files" })
 
 -- Reload configuration from the default location.
-vim.keymap.set("n", "<leader>cr", ":set runtimepath-=~/dotfiles/nvim<cr>:ReloadConfig<cr>:source $MYVIMRC<cr>")
+vim.keymap.set("n", "<leader>cr", ":set runtimepath-=~/dotfiles/nvim<cr>:ReloadConfig<cr>:source $MYVIMRC<cr>:lua require('reinis.plugins')<cr>")
 -- Reload configuration straight from the dotfiles directory.
 -- This allows for faster iteration when trying out configuration changes.
 vim.keymap.set(
   "n",
   "<leader>crd",
-  ":set runtimepath^=~/dotfiles/nvim<cr>:ReloadConfig<cr>:lua require('reinis')<cr>"
+  ":set runtimepath^=~/dotfiles/nvim<cr>:ReloadConfig<cr>:lua require('reinis'); require('reinis.plugins')<cr>"
 )
 
 vim.keymap.set("n", "<leader>bd", ":bdelete<cr>")
@@ -63,8 +63,8 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-vim.keymap.set("n", "<leader>,", require("fzf-lua").buffers)
-vim.keymap.set("n", "<leader>fh", require("fzf-lua").command_history)
+vim.keymap.set("n", "<leader>,", function() require("fzf-lua").buffers() end)
+vim.keymap.set("n", "<leader>fh", function() require("fzf-lua").command_history() end)
 
 -- List loaded plugins
 vim.keymap.set('n', '<Leader>p', "[[:new<CR>:put =execute('scriptnames')<CR>]]", { noremap = true, silent = true })

@@ -15,8 +15,11 @@
 
   programs.neovim = {
     enable = true;
-    # Home Manager creates ~/.config/nvim/init.lua; the rest of the config lives in lua/reinis.
-    extraLuaConfig = ''
+    # Keep the pre-26.05 defaults explicit and silence Home Manager warnings.
+    withRuby = true;
+    withPython3 = true;
+    # Home Manager creates ~/.config/nvim/init.lua; plugin-dependent config is loaded from after/plugin.
+    initLua = ''
       require("reinis")
     '';
     # Manage Neovim plugins (and more!) with Nix and Home Manager
