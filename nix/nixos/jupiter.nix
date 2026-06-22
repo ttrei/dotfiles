@@ -38,9 +38,7 @@
     wireguard-tools
     protonvpn-gui
 
-    # Disable due to https://github.com/NixOS/nixpkgs/issues/517172
-    # It's fixed in unstable but i think unstable.beets pulls in too much other packages.
-    # beets
+    beets
 
     # zed-editor
     # unstable.aider-chat-full
@@ -104,6 +102,9 @@
     jack.enable = true;
     pulse.enable = true;
   };
+
+  # For exposing cd images to musicbrainz picard in order to calculate disc id
+  programs.cdemu.enable = true;
 
   services.redshift.enable = true;
   location = {
