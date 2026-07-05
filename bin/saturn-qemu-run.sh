@@ -7,7 +7,7 @@ DOTFILES="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)"
 
 cd "$DOTFILES" || exit 1
 
-# More RAM/CPUs
-# QEMU_OPTS="-m 4096 -smp 4" ./result/bin/run-saturn-qemu-vm
+export QEMU_OPTS="-m 4096 -smp 4"
+export NIX_DISK_IMAGE=/media/storage-new/qemu/saturn-qemu.qcow2
 
-NIX_DISK_IMAGE=/tmp/saturn-qemu.qcow2 ./result/bin/run-saturn-qemu-vm
+./result/bin/run-saturn-qemu-vm

@@ -22,6 +22,65 @@
 
   networking.hostName = "saturn-qemu";
 
+  virtualisation = {
+    diskSize = 30 * 1024; # 10 GiB
+    vmVariant.virtualisation = {
+      writableStore = true;
+      writableStoreUseTmpfs = false;
+      forwardPorts = [
+        {
+          from = "host";
+          host.port = 2255;
+          guest.port = 22;
+        }
+      ];
+    };
+  };
+  users.users.reinis = {
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5SV9eWOEcf37wKPqz0G/2kwtd7Xpi/JkkjP8sZR324+J7ItxIxlD7Q9KHBS5VgVQZm0sIm/mmJfUHs5L4bWxgXLDBOGOojm2jpq16FFG3GIFd+8w3oPZ7KX1ivczAzZsm/ehrKxkApTTaicD5iZppNErppZXhwvehpcuqlh5rMgHLU0uphnAR/3euc7GRa2es97mHSHukBMe1zxoa+sZF4aWnMDVeRFmi04xE5dr2235vnL++16ObRUXmTLKfK/JnnkHY9neRdq56WcG28swa2w60wo8Y5ebAyt3l9FVY1yn1FmgI4alDpXzkE/rNkqKY4Uim6tYoMooCAXtaNVmkkmOpuD7Y96oPV9qiVez61OazXW3tcwsV9OMI9FSr4smVo9TQsnzQXDWpoRPSqmLFoFDvEd7Mdl34EzmZs61Kt99CKgUEKk1UfN7DTdlbjKb+qMSM1zHLWqdHkM5z2GVgfuFAJjW+MUyjbvlL4eZlTr4+FcT2qMjpHJY82CCB4RE= reinis@home-desktop-nixos"
+    ];
+  };
+
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    hostKeys = lib.mkForce [
+      {
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      }
+    ];
+    settings = {
+      PasswordAuthentication = lib.mkForce true;
+      PermitRootLogin = lib.mkForce "no";
+    };
+    extraConfig = lib.mkForce "";
+  };
+
+  # keys generated with
+  # ssh-keygen -t ed25519 -N '' -C root@saturn-qemu -f ssh_host_ed25519_key
+  environment.etc = {
+    "ssh/ssh_host_ed25519_key" = {
+      text = ''
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+        QyNTUxOQAAACCX++dTmhmS5gRvZccYhaDFxUN2mhzY74AuhwrUEA0kJwAAAJja7Dw72uw8
+        OwAAAAtzc2gtZWQyNTUxOQAAACCX++dTmhmS5gRvZccYhaDFxUN2mhzY74AuhwrUEA0kJw
+        AAAEB/AVSZ3C1iiJtody0fa0MOHqYMlfFAC0/ATfcJG3nKOZf751OaGZLmBG9lxxiFoMXF
+        Q3aaHNjvgC6HCtQQDSQnAAAAEHJvb3RAc2F0dXJuLXFlbXUBAgMEBQ==
+        -----END OPENSSH PRIVATE KEY-----
+      '';
+      mode = "0600";
+    };
+    "ssh/ssh_host_ed25519_key.pub" = {
+      text = ''
+        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJf751OaGZLmBG9lxxiFoMXFQ3aaHNjvgC6HCtQQDSQn root@saturn-qemu
+      '';
+      mode = "0644";
+    };
+  };
+
   networking.firewall.allowedTCPPorts = [
     4533 # navidrome
     8080 # kodi
