@@ -20,27 +20,6 @@
 
   networking.hostName = "saturn";
 
-  networking.wg-quick.interfaces = {
-    # Mullvad device "robust tiger"
-    wg-mullvad = {
-      # Generate config here:
-      # https://mullvad.net/en/account/wireguard-config
-      # Put the private key in a file at the privateKeyFile path.
-      # Put the "wireguard key" in publicKey.
-      autostart = false;
-      address = [ "10.73.249.174/32" ];
-      dns = [ "10.64.0.1" ];
-      privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
-      peers = [
-        {
-          publicKey = "94qIvXgF0OXZ4IcquoS7AO57OV6JswUFgdONgGiq+jo=";
-          allowedIPs = [ "0.0.0.0/0" ];
-          endpoint = "185.65.135.69:51820";
-        }
-      ];
-    };
-  };
-
   services.xserver.desktopManager.kodi = {
     enable = true;
     package = pkgs.kodi.withPackages (
@@ -53,40 +32,6 @@
         youtube
       ]
     );
-  };
-
-  services.transmission.enable = false;
-  services.transmission.package = pkgs.transmission_4;
-  services.transmission.settings = {
-    # https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
-    dht-enabled = true;
-    download-queue-enabled = true;
-    download-queue-size = 20;
-    download-dir = "/media/Storage/torrents";
-    incomplete-dir = "/media/Storage/torrents/.incomplete";
-    incomplete-dir-enabled = true;
-    encryption = 0;
-    peer-limit-global = 500;
-    peer-limit-per-torrent = 50;
-    peer-port = 56322;
-    pex-enabled = true;
-    port-forwarding-enabled = true;
-    preallocation = 1;
-    prefetch-enabled = true;
-    ratio-limit = 3;
-    ratio-limit-enabled = true;
-    rename-partial-files = true;
-    rpc-authentication-required = true;
-    rpc-bind-address = "0.0.0.0";
-    rpc-enabled = true;
-    rpc-host-whitelist = "";
-    rpc-host-whitelist-enabled = true;
-    rpc-password = "{828146cc3a506cfd5b9beb8c8e3a4cb92b17813bT22fz9tj";
-    rpc-port = 9091;
-    rpc-url = "/transmission/";
-    rpc-username = "user";
-    rpc-whitelist = "192.168.*.* 127.0.0.1";
-    rpc-whitelist-enabled = true;
   };
 
   services.sonarr = {
@@ -121,57 +66,11 @@
     listenPort = 6767;
   };
 
-  # services.navidrome = {
-  #   enable = true;
-  #   settings = {
-  #     # https://www.navidrome.org/docs/usage/configuration-options/
-  #     Address = "0.0.0.0";
-  #     Port = 4533;
-  #     MusicFolder = "/media/Storage/music";
-  #   };
-  # };
-
   networking.firewall.allowedTCPPorts = [
     4533 # navidrome
     8080 # kodi
     9091 # transmission UI
     56322 # transmission peer port
-  ];
-
-  security.sudo.extraRules = [
-    {
-      users = [ "reinis" ];
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/systemctl start wg-quick-wg-mullvad.service";
-          options = [
-            "SETENV"
-            "NOPASSWD"
-          ];
-        }
-        {
-          command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg-mullvad.service";
-          options = [
-            "SETENV"
-            "NOPASSWD"
-          ];
-        }
-        {
-          command = "/run/current-system/sw/bin/systemctl start transmission.service";
-          options = [
-            "SETENV"
-            "NOPASSWD"
-          ];
-        }
-        {
-          command = "/run/current-system/sw/bin/systemctl stop transmission.service";
-          options = [
-            "SETENV"
-            "NOPASSWD"
-          ];
-        }
-      ];
-    }
   ];
 
   services.samba = {

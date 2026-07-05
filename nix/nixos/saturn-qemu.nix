@@ -22,141 +22,11 @@
 
   networking.hostName = "saturn-qemu";
 
-  networking.wg-quick.interfaces = {
-    # Mullvad device ??? (deleted)
-    wg-mullvad = {
-      # Generate config here:
-      # https://mullvad.net/en/account/wireguard-config
-      # Put the private key in a file at the privateKeyFile path.
-      # Put the "wireguard key" in publicKey.
-      autostart = true;
-      address = [ "10.66.33.143/32" ];
-      dns = [ "10.64.0.1" ];
-      privateKeyFile = "/root/wireguard-keys/mullvad/wg-mullvad.key";
-      peers = [
-        {
-          publicKey = "XscA5gebj51nmhAr6o+aUCnMHWGjbS1Gvvd0tuLRiFE=";
-          allowedIPs = [ "0.0.0.0/0" ];
-          endpoint = "45.83.220.70:51820";
-        }
-      ];
-    };
-  };
-
-  services.transmission.enable = true;
-  services.transmission.package = pkgs.transmission_4;
-  services.transmission.settings = {
-    # https://github.com/transmission/transmission/blob/main/docs/Editing-Configuration-Files.md
-    dht-enabled = true;
-    download-queue-enabled = true;
-    download-queue-size = 20;
-    encryption = 0;
-    peer-limit-global = 500;
-    peer-limit-per-torrent = 50;
-    peer-port = 56393;
-    pex-enabled = true;
-    port-forwarding-enabled = true;
-    preallocation = 1;
-    prefetch-enabled = true;
-    ratio-limit = 3;
-    ratio-limit-enabled = true;
-    rename-partial-files = true;
-    rpc-authentication-required = true;
-    rpc-bind-address = "0.0.0.0";
-    rpc-enabled = true;
-    rpc-host-whitelist = "";
-    rpc-host-whitelist-enabled = true;
-    rpc-password = "{828146cc3a506cfd5b9beb8c8e3a4cb92b17813bT22fz9tj";
-    rpc-port = 9091;
-    rpc-url = "/transmission/";
-    rpc-username = "user";
-    rpc-whitelist = "192.168.*.* 127.0.0.1";
-    rpc-whitelist-enabled = true;
-  };
-
-  services.sonarr = {
-    enable = true;
-    group = "users";
-    user = "reinis";
-    dataDir = "/home/reinis/.local/share/Sonarr";
-    openFirewall = true; # port: 8989
-  };
-
-  services.radarr = {
-    enable = true;
-    group = "users";
-    user = "reinis";
-    dataDir = "/home/reinis/.local/share/Radarr";
-    openFirewall = true; # port: 7878
-  };
-
-  services.jackett = {
-    enable = true;
-    group = "users";
-    user = "reinis";
-    dataDir = "/home/reinis/.local/share/Jackett";
-    openFirewall = true; # port: 9117
-  };
-
-  services.bazarr = {
-    enable = true;
-    group = "users";
-    user = "reinis";
-    openFirewall = true;
-    listenPort = 6767;
-  };
-
-  # services.navidrome = {
-  #   enable = true;
-  #   settings = {
-  #     # https://www.navidrome.org/docs/usage/configuration-options/
-  #     Address = "0.0.0.0";
-  #     Port = 4533;
-  #     MusicFolder = "/home/reinis/music";
-  #   };
-  # };
-
   networking.firewall.allowedTCPPorts = [
     4533 # navidrome
     8080 # kodi
     9091 # transmission UI
     56393 # transmission peer port
-  ];
-
-  security.sudo.extraRules = [
-    {
-      users = [ "reinis" ];
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/systemctl start wg-quick-wg-mullvad.service";
-          options = [
-            "SETENV"
-            "NOPASSWD"
-          ];
-        }
-        {
-          command = "/run/current-system/sw/bin/systemctl stop wg-quick-wg-mullvad.service";
-          options = [
-            "SETENV"
-            "NOPASSWD"
-          ];
-        }
-        {
-          command = "/run/current-system/sw/bin/systemctl start transmission.service";
-          options = [
-            "SETENV"
-            "NOPASSWD"
-          ];
-        }
-        {
-          command = "/run/current-system/sw/bin/systemctl stop transmission.service";
-          options = [
-            "SETENV"
-            "NOPASSWD"
-          ];
-        }
-      ];
-    }
   ];
 
   services.samba = {
@@ -227,6 +97,7 @@
   networking.firewall.allowPing = true;
 
   # i3-volume-control expects pulseaudio
+  services.pulseaudio.enable = true;
   services.pipewire.enable = false;
 
   # This value determines the NixOS release from which the default
@@ -235,5 +106,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "26.05"; # Did you read the comment?
 }
