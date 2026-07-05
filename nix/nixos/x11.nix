@@ -12,11 +12,11 @@
     rofi
     xbindkeys
     xdotool
-    xfce.thunar
-    xfce.xfce4-terminal
-    xorg.xev
-    xorg.xmodmap
-    xorg.xwininfo
+    thunar
+    xfce4-terminal
+    xev
+    xmodmap
+    xwininfo
     xsel
   ];
 
