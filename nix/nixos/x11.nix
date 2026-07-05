@@ -7,7 +7,7 @@
 {
   environment.systemPackages = with pkgs; [
     i3pyblocks
-    glxinfo
+    mesa-demos
     python3Packages.i3ipc
     rofi
     xbindkeys
