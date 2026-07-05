@@ -39,10 +39,12 @@
 
   fileSystems."/media/Lielais" = {
     device = "/dev/disk/by-uuid/779a0988-5573-4161-9b41-f963f9a96f2d";
+    fsType = "ext4";
   };
 
   fileSystems."/media/Storage" = {
     device = "/dev/disk/by-uuid/4784089f-fdf3-4777-8822-d3b3c5a25c76";
+    fsType = "ext4";
   };
 
   fileSystems."/boot/efi" = {
