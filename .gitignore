@@ -10,3 +10,5 @@ xfce4terminal/terminal/accels.scm
 
 # pre-commit
 .pre-commit-config.yaml
+
+result
