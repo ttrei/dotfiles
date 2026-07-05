@@ -174,6 +174,20 @@
             ./nix/home-manager/jupiter-work.nix
           ];
         };
+        "reinis@saturn" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/home-manager/saturn.nix
+          ];
+        };
+        "reinis@saturn-qemu" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./nix/home-manager/saturn.nix
+          ];
+        };
         "reinis@mercury" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
