@@ -158,6 +158,8 @@ ln -s "$DOTFILES/xdg/user-dirs.dirs" "$STAGINGDIR/.config/user-dirs.dirs"
 # NIRI
 mkdir -p "$STAGINGDIR/.config/niri"
 cp "$DOTFILES/niri/config.kdl" "$STAGINGDIR/.config/niri/config.kdl"
+cp "$DOTFILES/niri/bin/niri-switch-displays.sh" "$STAGINGDIR/bin/niri-switch-displays.sh"
+cp "$DOTFILES/niri/bin/niri-toggle-secondary-display.sh" "$STAGINGDIR/bin/niri-toggle-secondary-display.sh"
 if [ "$MACHINE" = "jupiter" ]; then
     if [ "$CONTEXT" = "home" ]; then
         cat "$DOTFILES/niri/outputs-home.kdl" >> "$STAGINGDIR/.config/niri/config.kdl"
