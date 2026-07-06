@@ -15,6 +15,7 @@
     ./packages/gui.nix
     ./x11.nix
     ./packages/saturn.nix
+    ./services/volume-control.nix
     ./users/reinis.nix
   ];
 
@@ -41,6 +42,11 @@
           from = "host";
           host.port = 2255;
           guest.port = 22;
+        }
+        {
+          from = "host";
+          host.port = 8899;
+          guest.port = 8899;
         }
       ];
     };
@@ -164,7 +170,7 @@
   };
   networking.firewall.allowPing = true;
 
-  # i3-volume-control expects pulseaudio
+  # saturn-volume and i3blocks use PulseAudio.
   services.pulseaudio.enable = true;
   services.pipewire.enable = false;
 
