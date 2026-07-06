@@ -410,6 +410,7 @@ binds {
 
     // And you can also move a whole workspace to another monitor:
     Mod+Shift+Ctrl+M  { move-workspace-to-monitor-next; }
+    Mod+Ctrl+M  { focus-monitor-next; }
     // ...
 
     Mod+Page_Down      { focus-workspace-down; }
