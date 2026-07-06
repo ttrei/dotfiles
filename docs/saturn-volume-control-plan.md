@@ -132,29 +132,13 @@ Design notes:
 - **Low** → `set 25`
 - **Mid** → `set 50`
 - **High** → `set 75`
-- Granular **+ / −** → `up` / `down` (**2% step**, kept from the old script;
-  configurable via the `step` option).
+- Granular **+ / −** → `up` / `down` (**1% step**, for fine trim; the slider
+  handles coarse jumps. Configurable via the `step` option).
 
 ---
 
-## 3. Server implementation choice
+## 3. Server implementation
 
-Two viable options; **Option A recommended.**
-
-### Option A — Bash + `socat`/`bash`-native HTTP
-A ~40-line shell script; the request router is a `case` on the request path.
-Serve via one of:
-- `socat TCP-LISTEN:PORT,reuseaddr,fork EXEC:handler.sh` (socat handles the
-  socket + forking; script reads the request line from stdin, writes an HTTP
-  response to stdout), or
-- `python3 -m http.server` is **not** enough (no POST logic) — skip.
-
-Pros: zero language runtime beyond coreutils + `pactl` + `xob` + `socat`;
-matches the repo's shell-centric tooling; nothing for ruff to police.
-Cons: hand-rolling minimal HTTP parsing (request line + a couple of headers) is
-fiddly; keep-alive support is more work in raw shell.
-
-### Option B — Single Python file (`stdlib http.server`, no deps)
 A ~90-line `volume_server.py` using `http.server.ThreadingHTTPServer` +
 `BaseHTTPRequestHandler`, calling `pactl` via `subprocess`. Checked into the
 repo as a real `.py` (so **ruff/ruff-format apply** — consistent with the
@@ -166,12 +150,7 @@ to also shell out to the OSD + i3blocks refresh in one place.
 Cons: pulls `python3` into the closure (already present on saturn anyway via
 i3pyblocks/i3ipc, so effectively free).
 
-**Recommendation: Option B.** Keep-alive matters for the stated latency goal,
-JSON is cleaner, and Python is already in this system's world and its lint
-pipeline. The file lives at `nix/nixos/services/volume/volume_server.py` and is
-wrapped by the NixOS module.
-
-> Whichever option: the service **must** run in reinis' audio **and** X context
+> the service **must** run in reinis' audio **and** X context
 > (for `pactl` and the OSD). Because autologin guarantees a uid-1000 X session,
 > running the unit as user `reinis` with `XDG_RUNTIME_DIR=/run/user/1000` and
 > `DISPLAY=:0` is the clean path (see §4).
@@ -184,7 +163,7 @@ New file: `nix/nixos/services/volume-control.nix`, imported from
 `nix/nixos/saturn.nix`'s `imports = [ ... ]`.
 
 Responsibilities:
-1. **Package the server.** For Option B, wrap the checked-in `.py` with
+1. **Package the server.** wrap the checked-in `.py` with
    `pkgs.writers.writePython3Bin` (or `writeShellApplication`), with
    `runtimeInputs = [ pkgs.pulseaudio pkgs.xob pkgs.procps ]` so `pactl`,
    `xob`, and `pkill` are on PATH. (Reference the standalone `.py` file so ruff
@@ -227,20 +206,14 @@ Responsibilities:
    services.saturnVolume = {
      enable = true;
      port   = 8899;
-     step   = 2;      # relative step %
-     sink   = "@DEFAULT_AUDIO_SINK@";
+     step   = 1;      # relative step % (fine trim; slider does coarse moves)
      presets = { low = 25; mid = 50; high = 75; };
      osd = {
        enable = true;
        timeoutMs = 1000;   # how long the bar stays before fading
      };
-     refreshI3Blocks = true;   # pkill -RTMIN+10 i3blocks after change
    };
    ```
-   If that's more ceremony than wanted, inline the values — but `step`, the
-   presets, and `osd.timeoutMs` are the likely-tweaked knobs, so an options block
-   earns its keep.
-
 ### Volume operations (server internals, via `pactl`)
 - **read %**: `pactl get-sink-volume @DEFAULT_AUDIO_SINK@` → parse the first
   `NN%`. (Or use `pactl --format=json` on new enough Pulse for robust parsing.)
@@ -343,29 +316,88 @@ feeds xob's `-t`; disabling skips the FIFO write (useful for headless testing).
 
 ## 7. Web page (`index.html`)
 
-One self-contained file served at `/`. No framework, no build.
+One self-contained file served at `/`. No framework, no build. Vanilla HTML +
+inline CSS + a small `<script>`.
 
 ### Layout (top → bottom, thumb-friendly)
-1. **Big current-volume readout** — e.g. `24%`, updated from every response.
-   Also a muted indicator.
-2. **Presets row**: `Low` `Mid` `High` (big buttons; each POSTs `/volume/set?v=`).
-3. **Granular row**: large `−` and `+` buttons (POST `/volume/down` / `/up`).
-   Optionally allow press-and-hold to repeat (see latency notes).
-4. **Mute** toggle button.
-5. (Optional) a range **slider** bound to `/volume/set?v=` on release — nice for
-   fine control, but buttons are the priority.
 
-### Behaviour
-- On load: `GET /volume` → render current value + muted state.
-- Each tap: `fetch(..., {method:'POST', keepalive:true})` → on response, update
-  the readout from the returned JSON. **Never** optimistically guess the number;
-  show what the server returns (keeps it honest, and the round-trip is <100ms).
+```
+┌───────────────────────────────────────┐
+│                                        │
+│     50 %                    [ 🔊 ]      │  ← big readout  +  mute button (right)
+│                                        │
+├───────────────────────────────────────┤
+│  ▁▁▁▁▁▁▁▁▁▁●▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁     │  ← horizontal slider, full width, 0–100
+├───────────────────────────────────────┤
+│    [   Low   ] [   Mid   ] [   High  ]  │  ← presets (absolute set 25/50/75)
+├───────────────────────────────────────┤
+│        [     −     ]  [     +     ]     │  ← granular ±1%, large
+└───────────────────────────────────────┘
+```
+
+1. **Header row**: big current-volume **readout** (e.g. `50%`) on the left, a
+   **mute button** on the right, next to it.
+2. **Slider**: full-width **horizontal** `range` input, `0..100`, directly under
+   the readout so the number and the bar are visually coupled.
+3. **Presets row**: `Low` `Mid` `High` → POST `/volume/set?v=25|50|75`.
+4. **Granular row**: large `−` / `+` → POST `/volume/down` / `/up` (**1% step**).
+
+### Mute is orthogonal to the volume number
+Per requirement: **while muted, the volume level stays visible** so you can see
+how loud it'll be when unmuted.
+- The **readout always shows the volume %** (e.g. `50%`), muted or not.
+- The **mute state is a separate visual**: the mute button toggles its
+  icon/label (`🔊` ↔ `🔇`), and when muted the readout + slider are rendered
+  **dimmed** (e.g. reduced opacity) with a small `🔇` marker — so an unattended
+  glance reads "50%, but silenced".
+- **Muting never moves the slider thumb or changes the number.** `mute` =
+  `pactl ... toggle`; the response's `volume` is unchanged, only `muted` flips.
+
+### Slider behaviour — throttled-live, with drag ownership
+A slider streams values, which conflicts with (a) latency and (b) our
+"always show the server's real value" rule. Resolution:
+
+- **Throttled-live send.** On the `input` event (fires continuously while
+  dragging), send `POST /volume/set?v=<thumb>` **at most every ~60ms**
+  (throttle), so volume audibly tracks the thumb without flooding the network.
+  **Always send a final** `set` on `change` (release) so the end position is
+  exact even if the last throttle tick was skipped.
+- **Drag ownership (the key rule).** While the user is **actively dragging**,
+  the **slider owns the thumb position** — do **not** write server responses back
+  into the thumb. Otherwise a stale in-flight response ("48") yanks the thumb
+  backward while you've already moved on (classic slider jitter). Only sync the
+  thumb **from** the server when **not** dragging (initial load, preset/±
+  presses, idle).
+- **Coalesce in-flight.** Keep at most **one** `set` request in flight; if the
+  throttle fires while one is pending, **replace** the pending value rather than
+  queueing. Prevents backlog on a Wi-Fi hiccup.
+- **Readout during drag** follows the thumb **optimistically** (updates from the
+  slider immediately). This is the one deliberate exception to "never guess" —
+  the alternative (readout lagging the thumb) feels broken. The **TV OSD still
+  shows ground truth** regardless, and on release the authoritative value lands.
+
+### How the three controls stay coherent
+| Control | Sends | Updates readout | Updates slider thumb |
+| --- | --- | --- | --- |
+| **Slider drag** | `set` (throttled + final) | yes, optimistic from thumb | owns it (drag); synced from server only when idle |
+| **Preset button** | `set 25\|50\|75` | from response (authoritative) | **yes**, from response |
+| **± button** | `up` / `down` | from response | **yes**, from response (thumb visibly nudges) |
+| **Mute button** | `mute` | unchanged (dim toggles) | unchanged |
+| **`GET /volume`** (load / idle refresh) | — | from response | from response |
+
+So: **± buttons and presets both move the thumb** (they update from the
+authoritative response); only an *active drag* suppresses server→thumb writes.
+
+### Behaviour (general)
+- On load: `GET /volume` → render volume %, slider thumb, muted state.
+- Each **button** tap: `fetch(..., {method:'POST', keepalive:true})` → update
+  readout **and** thumb from the returned JSON (ground truth).
 - Range is a plain `0..100`; disable `+`/`High` at 100, `−`/`Low` at 0.
-- Minimal styling: large hit targets (min ~64px), high contrast, dark theme
-  (HTPC-in-a-dark-room friendly), `viewport` meta for mobile,
-  `user-scalable=no` to avoid accidental zoom on double-tap.
-- Note: the phone page does **not** need its own volume bar animation — the OSD
-  on the TV is the shared visual feedback. The page just shows the number.
+- Minimal styling: large hit targets (min ~64px), high contrast, **dark theme**
+  (HTPC-in-a-dark-room friendly), `viewport` meta, `user-scalable=no` to avoid
+  accidental double-tap zoom. Enlarge the slider thumb/track for touch.
+- The phone page needs **no volume-bar animation of its own** — the TV **OSD**
+  is the shared visual feedback; the page just shows number + thumb.
 - PWA niceties (optional, tiny): `apple-mobile-web-app-capable`, a
   `theme-color`, maybe a 1-file `manifest.json` so "Add to Home Screen" gives a
   clean icon + standalone chrome. Not required for function.
@@ -379,9 +411,9 @@ One self-contained file served at `/`. No framework, no build.
   ~50–300ms browsers add waiting to disambiguate taps/double-taps. Guard against
   double-firing.
 - **`touch-action: manipulation`** on buttons → disables double-tap-zoom delay.
-- **Debounce/serialise** rapid taps: keep at most one in-flight request per
-  control; coalesce so holding `+` doesn't queue 30 requests. Either send on an
-  interval while held, or send-next-after-response.
+- **Serialise requests**: keep at most **one in-flight request** (per the slider
+  coalescing in §7 above), so rapid taps / drag ticks can't queue a backlog;
+  replace a pending value rather than appending.
 - Expect **Wi-Fi radio wake** to dominate after idle (10–200ms) — unavoidable
   from the page; keep-alive + a periodic tiny `GET /volume` heartbeat (say every
   10–20s while the page is open) can keep the socket/radio warm if it proves
@@ -475,7 +507,7 @@ nix/nixos/
    - `curl http://localhost:8899/volume` → sane JSON `{"volume":N,"muted":…}`.
    - `curl -X POST 'http://localhost:8899/volume/set?v=50'` → audibly 50%, JSON
      shows 50, i3blocks bar updates, **OSD bar appears on the TV and fades**.
-   - `curl -X POST http://localhost:8899/volume/up` / `.../down` → ±2%.
+   - `curl -X POST http://localhost:8899/volume/up` / `.../down` → ±1%.
    - `curl -X POST 'http://localhost:8899/volume/set?v=150'` → clamped to 100.
    - `curl -X POST http://localhost:8899/volume/mute` → toggles + OSD reflects it.
    - `systemctl status saturn-volume`, `journalctl -u saturn-volume` clean.
