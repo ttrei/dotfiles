@@ -1,27 +1,37 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-case "$1" in
+# i3-volume-control — thin client for the saturn volume HTTP API.
+default_base="http://127.0.0.1:8899"
+base="${SATURN_VOLUME_BASE:-$default_base}"
+
+usage() {
+    echo "Usage: $0 [up|down|mute|set PERCENTAGE]" >&2
+}
+
+post() {
+    curl -fsS --connect-timeout 1 --max-time 2 -X POST "$1" >/dev/null
+}
+
+case "${1:-}" in
     "up")
-        vol=$(amixer get Master | grep -Po "[0-9]+(?=%)" | head -n1)
-        if [ "$vol" -lt 39 ]; then
-            amixer -q sset Master 2%+
-        fi
+        post "$base/volume/up"
         ;;
     "down")
-        amixer -q sset Master 2%-
+        post "$base/volume/down"
         ;;
     "mute")
-        amixer -q sset Master toggle
+        post "$base/volume/mute"
         ;;
     "set")
-        if [ -n "$2" ]; then
-            amixer -q sset Master "$2"%
+        if [ -z "${2:-}" ]; then
+            usage
+            exit 1
         fi
+        post "$base/volume/set?v=${2}"
         ;;
     *)
-        echo "Usage: $0 [up|down|mute|set PERCENTAGE]"
+        usage
         exit 1
         ;;
 esac
-
-pkill -RTMIN+10 i3blocks

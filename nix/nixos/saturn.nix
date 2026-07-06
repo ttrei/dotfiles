@@ -15,6 +15,7 @@
     ./packages/gui.nix
     ./x11.nix
     ./packages/saturn.nix
+    ./services/volume-control.nix
     ./users/reinis.nix
   ];
 
@@ -135,7 +136,9 @@
   };
   networking.firewall.allowPing = true;
 
-  # i3-volume-control expects pulseaudio
+  services.saturnVolume.enable = true;
+
+  # saturn-volume uses pactl against the PulseAudio session.
   services.pulseaudio.enable = true;
   services.pipewire.enable = false;
 

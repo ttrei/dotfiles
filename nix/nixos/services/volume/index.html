@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#111318" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Saturn Volume" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Saturn Volume</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #111318;
+        --panel: #1b1f2a;
+        --panel-strong: #242a38;
+        --text: #f4f7fb;
+        --muted: #8c96a8;
+        --accent: #7dd3fc;
+        --accent-strong: #38bdf8;
+        --danger: #fb7185;
+        --shadow: rgb(0 0 0 / 35%);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top left, rgb(56 189 248 / 18%), transparent 30rem),
+          linear-gradient(180deg, #151924 0%, var(--bg) 100%);
+        color: var(--text);
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      main {
+        width: min(100%, 34rem);
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: clamp(1rem, 4vw, 2rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .card {
+        padding: clamp(1rem, 4vw, 1.5rem);
+        border: 1px solid rgb(255 255 255 / 8%);
+        border-radius: 1.25rem;
+        background: rgb(27 31 42 / 88%);
+        box-shadow: 0 1.5rem 4rem var(--shadow);
+        backdrop-filter: blur(0.8rem);
+      }
+
+      .top-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .volume-readout {
+        display: flex;
+        align-items: baseline;
+        gap: 0.55rem;
+        min-width: 0;
+        transition: opacity 120ms ease;
+      }
+
+      .volume-number {
+        font-size: clamp(4rem, 18vw, 7rem);
+        font-weight: 800;
+        letter-spacing: -0.08em;
+        line-height: 0.95;
+      }
+
+      .muted-marker {
+        display: none;
+        color: var(--danger);
+        font-size: clamp(1.4rem, 7vw, 2.4rem);
+      }
+
+      .is-muted .volume-readout,
+      .is-muted .slider-wrap {
+        opacity: 0.48;
+      }
+
+      .is-muted .muted-marker {
+        display: inline;
+      }
+
+      button {
+        min-height: 4rem;
+        border: 0;
+        border-radius: 1rem;
+        background: var(--panel-strong);
+        color: var(--text);
+        font: inherit;
+        font-weight: 750;
+        touch-action: manipulation;
+        box-shadow: inset 0 0 0 1px rgb(255 255 255 / 7%);
+      }
+
+      button:active:not(:disabled) {
+        transform: translateY(1px) scale(0.99);
+        background: #30384a;
+      }
+
+      button:disabled {
+        color: var(--muted);
+        opacity: 0.48;
+      }
+
+      .mute-button {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        font-size: 2.25rem;
+        background: linear-gradient(180deg, #334155, #1f2937);
+      }
+
+      .is-muted .mute-button {
+        color: #fecdd3;
+        background: linear-gradient(180deg, #7f1d1d, #451a1a);
+      }
+
+      .slider-wrap {
+        padding: 1.2rem 0 0.6rem;
+        transition: opacity 120ms ease;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        height: 3.6rem;
+        margin: 0;
+        appearance: none;
+        background: transparent;
+        touch-action: pan-y;
+      }
+
+      input[type="range"]::-webkit-slider-runnable-track {
+        height: 1rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+        box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+      }
+
+      input[type="range"]::-moz-range-track {
+        height: 1rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+        box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        width: 2.8rem;
+        height: 2.8rem;
+        margin-top: -0.9rem;
+        border: 0.28rem solid var(--text);
+        border-radius: 50%;
+        appearance: none;
+        background: #0f172a;
+        box-shadow: 0 0.4rem 1.4rem rgb(0 0 0 / 45%);
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 2.35rem;
+        height: 2.35rem;
+        border: 0.28rem solid var(--text);
+        border-radius: 50%;
+        background: #0f172a;
+        box-shadow: 0 0.4rem 1.4rem rgb(0 0 0 / 45%);
+      }
+
+      .button-row {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .presets {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .nudges {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nudge-button {
+        min-height: 5.25rem;
+        font-size: 3rem;
+        line-height: 1;
+      }
+
+      .status {
+        min-height: 1.4rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+        text-align: center;
+      }
+
+      .status.error {
+        color: var(--danger);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="card" aria-label="Saturn volume control">
+        <div class="top-row">
+          <div class="volume-readout" aria-live="polite">
+            <span id="volume-number" class="volume-number">--%</span>
+            <span class="muted-marker" aria-hidden="true">🔇</span>
+          </div>
+          <button id="mute-button" class="mute-button" type="button" aria-label="Mute" aria-pressed="false">🔊</button>
+        </div>
+
+        <div class="slider-wrap">
+          <input id="volume-slider" type="range" min="0" max="100" step="1" value="0" aria-label="Volume" disabled />
+        </div>
+
+        <div class="button-row presets" aria-label="Volume presets">
+          <button id="preset-low" type="button">Low</button>
+          <button id="preset-mid" type="button">Mid</button>
+          <button id="preset-high" type="button">High</button>
+        </div>
+
+        <div class="button-row nudges" aria-label="Fine volume control" style="margin-top: 0.75rem">
+          <button id="down-button" class="nudge-button" type="button" aria-label="Volume down">−</button>
+          <button id="up-button" class="nudge-button" type="button" aria-label="Volume up">+</button>
+        </div>
+      </section>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </main>
+
+    <script>
+      (() => {
+        "use strict";
+
+        const config = {
+          fallbackBaseUrl: __SATURN_VOLUME_FALLBACK_BASE_URL__,
+          step: __SATURN_VOLUME_STEP__,
+          presets: {
+            low: __SATURN_VOLUME_PRESET_LOW__,
+            mid: __SATURN_VOLUME_PRESET_MID__,
+            high: __SATURN_VOLUME_PRESET_HIGH__,
+          },
+        };
+
+        const baseUrl = /^https?:$/.test(window.location.protocol) ? window.location.origin : config.fallbackBaseUrl;
+        const sliderThrottleMs = 60;
+
+        const volumeNumber = document.getElementById("volume-number");
+        const slider = document.getElementById("volume-slider");
+        const muteButton = document.getElementById("mute-button");
+        const lowButton = document.getElementById("preset-low");
+        const midButton = document.getElementById("preset-mid");
+        const highButton = document.getElementById("preset-high");
+        const downButton = document.getElementById("down-button");
+        const upButton = document.getElementById("up-button");
+        const status = document.getElementById("status");
+
+        const state = {
+          loaded: false,
+          muted: false,
+          volume: 0,
+        };
+
+        let dragging = false;
+        let queuedSliderValue = null;
+        let sliderInFlight = false;
+        let sliderTimer = null;
+        let lastSliderSend = 0;
+
+        function clampVolume(value) {
+          return Math.max(0, Math.min(100, Number.parseInt(value, 10) || 0));
+        }
+
+        function setStatus(message, isError = false) {
+          status.textContent = message;
+          status.classList.toggle("error", isError);
+        }
+
+        function render({ syncSlider = !dragging } = {}) {
+          const volume = Number(state.volume);
+          volumeNumber.textContent = state.loaded ? `${volume}%` : "--%";
+          document.body.classList.toggle("is-muted", state.muted);
+
+          muteButton.textContent = state.muted ? "🔇" : "🔊";
+          muteButton.setAttribute("aria-label", state.muted ? "Unmute" : "Mute");
+          muteButton.setAttribute("aria-pressed", String(state.muted));
+
+          slider.disabled = !state.loaded;
+          slider.setAttribute("aria-valuetext", `${volume}%${state.muted ? ", muted" : ""}`);
+          if (syncSlider) {
+            slider.value = String(clampVolume(volume));
+          }
+
+          muteButton.disabled = !state.loaded;
+          downButton.disabled = !state.loaded || volume <= 0;
+          upButton.disabled = !state.loaded || volume >= 100;
+          lowButton.disabled = !state.loaded || volume === config.presets.low;
+          midButton.disabled = !state.loaded || volume === config.presets.mid;
+          highButton.disabled = !state.loaded || volume === config.presets.high;
+        }
+
+        async function request(path, method = "GET") {
+          const response = await fetch(`${baseUrl}${path}`, {
+            method,
+            cache: "no-store",
+            keepalive: method === "POST",
+          });
+
+          if (!response.ok) {
+            let detail = response.statusText || `HTTP ${response.status}`;
+            try {
+              const body = await response.json();
+              if (body.error) {
+                detail = body.error;
+              }
+            } catch {
+              // Keep the HTTP status text.
+            }
+            throw new Error(detail);
+          }
+
+          return response.json();
+        }
+
+        function applyServerState(data, { syncSlider = !dragging } = {}) {
+          state.loaded = true;
+          state.volume = Number(data.volume);
+          state.muted = Boolean(data.muted);
+          render({ syncSlider });
+          setStatus("");
+        }
+
+        function applySliderResponse(data, moreQueued) {
+          state.loaded = true;
+          state.muted = Boolean(data.muted);
+
+          if (!dragging && !moreQueued) {
+            state.volume = Number(data.volume);
+            render({ syncSlider: true });
+          } else {
+            render({ syncSlider: false });
+          }
+          setStatus("");
+        }
+
+        async function postButton(path) {
+          try {
+            const data = await request(path, "POST");
+            applyServerState(data, { syncSlider: !dragging });
+          } catch (error) {
+            setStatus(error.message, true);
+          }
+        }
+
+        async function flushSliderQueue() {
+          if (sliderInFlight) {
+            return;
+          }
+
+          sliderInFlight = true;
+          try {
+            while (queuedSliderValue !== null) {
+              const value = queuedSliderValue;
+              queuedSliderValue = null;
+
+              try {
+                const data = await request(`/volume/set?v=${encodeURIComponent(value)}`, "POST");
+                applySliderResponse(data, queuedSliderValue !== null);
+              } catch (error) {
+                setStatus(error.message, true);
+                queuedSliderValue = null;
+              }
+            }
+          } finally {
+            sliderInFlight = false;
+            if (queuedSliderValue !== null) {
+              lastSliderSend = performance.now();
+              void flushSliderQueue();
+            }
+          }
+        }
+
+        function scheduleSliderSet(value, force = false) {
+          queuedSliderValue = clampVolume(value);
+
+          if (force) {
+            window.clearTimeout(sliderTimer);
+            sliderTimer = null;
+            lastSliderSend = performance.now();
+            void flushSliderQueue();
+            return;
+          }
+
+          const elapsed = performance.now() - lastSliderSend;
+          if (elapsed >= sliderThrottleMs) {
+            lastSliderSend = performance.now();
+            void flushSliderQueue();
+            return;
+          }
+
+          window.clearTimeout(sliderTimer);
+          sliderTimer = window.setTimeout(() => {
+            lastSliderSend = performance.now();
+            void flushSliderQueue();
+          }, sliderThrottleMs - elapsed);
+        }
+
+        function optimisticSliderUpdate() {
+          state.loaded = true;
+          state.volume = clampVolume(slider.value);
+          render({ syncSlider: false });
+        }
+
+        function bindInstantButton(button, handler) {
+          let pointerHandled = false;
+
+          button.addEventListener("pointerdown", (event) => {
+            if (button.disabled || (event.pointerType === "mouse" && event.button !== 0)) {
+              return;
+            }
+            pointerHandled = true;
+            event.preventDefault();
+            handler();
+          });
+
+          button.addEventListener("click", (event) => {
+            if (pointerHandled) {
+              pointerHandled = false;
+              event.preventDefault();
+              return;
+            }
+            if (!button.disabled) {
+              handler();
+            }
+          });
+        }
+
+        slider.addEventListener("pointerdown", () => {
+          dragging = true;
+        });
+
+        slider.addEventListener("pointercancel", () => {
+          dragging = false;
+        });
+
+        slider.addEventListener("input", () => {
+          dragging = true;
+          optimisticSliderUpdate();
+          scheduleSliderSet(slider.value);
+        });
+
+        slider.addEventListener("change", () => {
+          optimisticSliderUpdate();
+          dragging = false;
+          scheduleSliderSet(slider.value, true);
+        });
+
+        bindInstantButton(lowButton, () => postButton(`/volume/set?v=${config.presets.low}`));
+        bindInstantButton(midButton, () => postButton(`/volume/set?v=${config.presets.mid}`));
+        bindInstantButton(highButton, () => postButton(`/volume/set?v=${config.presets.high}`));
+        bindInstantButton(downButton, () => postButton("/volume/down"));
+        bindInstantButton(upButton, () => postButton("/volume/up"));
+        bindInstantButton(muteButton, () => postButton("/volume/mute"));
+
+        async function refresh() {
+          if (dragging || sliderInFlight) {
+            return;
+          }
+
+          try {
+            const data = await request("/volume");
+            applyServerState(data);
+          } catch (error) {
+            setStatus(error.message, true);
+          }
+        }
+
+        document.addEventListener("visibilitychange", () => {
+          if (!document.hidden) {
+            void refresh();
+          }
+        });
+
+        window.setInterval(() => {
+          if (!document.hidden) {
+            void refresh();
+          }
+        }, 15000);
+
+        render();
+        void refresh();
+      })();
+    </script>
+  </body>
+</html>

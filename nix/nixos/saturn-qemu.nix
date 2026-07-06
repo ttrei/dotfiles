@@ -15,6 +15,7 @@
     ./packages/gui.nix
     ./x11.nix
     ./packages/saturn.nix
+    ./services/volume-control.nix
     ./users/reinis.nix
   ];
 
@@ -164,7 +165,13 @@
   };
   networking.firewall.allowPing = true;
 
-  # i3-volume-control expects pulseaudio
+  services.saturnVolume = {
+    enable = true;
+    lanAddress = "127.0.0.1";
+    osd.enable = false;
+  };
+
+  # saturn-volume and i3blocks use PulseAudio.
   services.pulseaudio.enable = true;
   services.pipewire.enable = false;
 
