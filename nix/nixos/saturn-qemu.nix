@@ -43,6 +43,11 @@
           host.port = 2255;
           guest.port = 22;
         }
+        {
+          from = "host";
+          host.port = 8899;
+          guest.port = 8899;
+        }
       ];
     };
   };
@@ -168,6 +173,8 @@
   services.saturnVolume = {
     enable = true;
     lanAddress = "127.0.0.1";
+    # QEMU user networking forwards host connections from 10.0.2.2.
+    lanSubnet = "10.0.2.0/24";
     osd.enable = false;
   };
 
