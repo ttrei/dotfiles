@@ -175,7 +175,6 @@
     lanAddress = "127.0.0.1";
     # QEMU user networking forwards host connections from 10.0.2.2.
     lanSubnet = "10.0.2.0/24";
-    osd.enable = false;
   };
 
   # saturn-volume and i3blocks use PulseAudio.
