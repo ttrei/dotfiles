@@ -27,7 +27,6 @@
     kube-capacity
     k9s
     postgresql
-    python310Packages.pgsanity
     stern
   ];
 
