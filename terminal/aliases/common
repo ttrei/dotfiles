@@ -41,9 +41,8 @@ alias fcount='find . -xdev -type f | cut -d "/" -f 2 | sort | uniq -c | sort -n'
 
 # git
 alias go='git checkout'
-alias gof='git-checkout-fzf.sh'
-alias gofl='git-checkout-fzf.sh --local'
-alias gofr='git-checkout-fzf.sh --remote'
+alias gof='git-checkout-fzf.py'
+alias gofl='git-checkout-fzf.py --local'
 
 alias groot='cd $(git root)'
 

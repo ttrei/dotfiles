@@ -113,7 +113,7 @@ fi
 
 # GIT
 mkdir -p "$STAGINGDIR/.config/git"
-ln -s "$DOTFILES/git/bin/git-checkout-fzf.sh" "$STAGINGDIR/bin/git-checkout-fzf.sh"
+ln -s "$DOTFILES/git/bin/git-checkout-fzf.py" "$STAGINGDIR/bin/git-checkout-fzf.py"
 ln -s "$DOTFILES/git/bin/git-commit-jira.sh" "$STAGINGDIR/bin/git-commit-jira.sh"
 ln -s "$DOTFILES/git/bin/git-set-upstream.sh" "$STAGINGDIR/bin/git-set-upstream.sh"
 ln -s "$DOTFILES/git/bin/rerere-train.sh" "$STAGINGDIR/bin/rerere-train.sh"
