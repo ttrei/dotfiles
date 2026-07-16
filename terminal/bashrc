@@ -179,8 +179,31 @@ function x509_decode() {
 }
 
 ruff-commit() {
-  # Format all python files touched by a git commit
-  local commit="$1"
-  git diff-tree --no-commit-id --name-only -r "$commit" -- '*.py' \
-    | xargs -r sh -c 'ruff format "$@" && ruff check --fix "$@"' sh
+  # Format and lint all Python files touched by a Git commit.
+  local commit="${1:?Usage: ruff-commit COMMIT [RUFF_OPTIONS...]}"
+  shift
+
+  local -a ruff_options=("$@")
+  local -a files=()
+
+  mapfile -d '' -t files < <(
+    git diff-tree \
+      --no-commit-id \
+      --name-only \
+      -r \
+      -z \
+      "$commit" \
+      -- '*.py'
+  )
+
+  ((${#files[@]})) || return 0
+
+  ruff format "${ruff_options[@]}" -- "${files[@]}" &&
+    ruff check --fix "${ruff_options[@]}" -- "${files[@]}"
+}
+
+ruff-commit-compact() {
+  ruff-commit "$@" \
+    --config 'format.skip-magic-trailing-comma = true' \
+    --config 'lint.isort.split-on-trailing-comma = false'
 }
