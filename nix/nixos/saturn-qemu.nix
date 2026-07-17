@@ -18,9 +18,18 @@
     ./users/reinis.nix
   ];
 
+  networking.hostName = "saturn-qemu";
+
   services.displayManager.autoLogin.enable = lib.mkForce false;
 
-  networking.hostName = "saturn-qemu";
+  services.xserver.desktopManager.kodi = {
+    enable = true;
+    package = pkgs.kodi.withPackages (
+      pkgs: with pkgs; [
+        jellyfin
+      ]
+    );
+  };
 
   virtualisation = {
     diskSize = 30 * 1024; # 10 GiB

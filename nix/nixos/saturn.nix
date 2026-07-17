@@ -24,12 +24,7 @@
     enable = true;
     package = pkgs.kodi.withPackages (
       pkgs: with pkgs; [
-        inputstream-adaptive
-        inputstream-ffmpegdirect
-        inputstreamhelper
-        inputstream-rtmp
-        trakt
-        youtube
+        jellyfin
       ]
     );
   };
