@@ -3,6 +3,8 @@
 set -o errexit
 set -o nounset
 
+umask 077
+
 # shellcheck source=/dev/null
 . "$HOME/.dotfiles-env"
 
@@ -12,7 +14,10 @@ pass os-secrets/openrouter-api-key > "$HOME"/.openrouter-api-key
 pass os-secrets/deepseek-api-key > "$HOME"/.deepseek-api-key
 pass os-secrets/gemini-api-key > "$HOME"/.gemini-api-key
 pass os-secrets/openexchangerates-app-id > "$HOME"/.openexchangerates-app-id
-pass os-secrets/pi-coding-agent > "$HOME"/.pi/agent/auth.json
+
+mkdir -p "$HOME"/.pi/agent-home "$HOME"/.pi/agent-work
+pass os-secrets/pi-coding-agent-home > "$HOME"/.pi/agent-home/auth.json
+pass os-secrets/pi-coding-agent-work > "$HOME"/.pi/agent-work/auth.json
 
 pass os-secrets/beets-secrets.yaml > "$HOME"/.beets-secrets.yaml
 

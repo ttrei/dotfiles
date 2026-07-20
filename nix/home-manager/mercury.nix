@@ -9,6 +9,7 @@
 {
   imports = [
     ./without-nixos.nix
+    ./work.nix
   ];
 
   home.packages = with pkgs; [

@@ -9,10 +9,7 @@
 {
   imports = [
     ./with-nixos.nix
-  ];
-
-  home.packages = with pkgs; [
-    # unstable.aider-chat-full
+    ./work.nix
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

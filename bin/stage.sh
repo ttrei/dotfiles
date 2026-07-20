@@ -289,10 +289,13 @@ ln -s "$DOTFILES/texmacs/my-init-texmacs.scm" "$STAGINGDIR/.config/texmacs/progs
 mkdir -p "$STAGINGDIR/.config/io.datasette.llm"
 mkdir -p "$STAGINGDIR/.gemini"
 mkdir -p "$STAGINGDIR/.pi/agent"
+mkdir -p "$STAGINGDIR/.pi/agent-home"
+mkdir -p "$STAGINGDIR/.pi/agent-work"
 ln -s "$DOTFILES/llm/io.datasette.llm/default_model.txt" "$STAGINGDIR/.config/io.datasette.llm/default_model.txt"
 ln -s "$DOTFILES/llm/io.datasette.llm/aliases.json" "$STAGINGDIR/.config/io.datasette.llm/aliases.json"
 ln -s "$DOTFILES/llm/gemini-settings.json" "$STAGINGDIR/.gemini/settings.json"
-ln -s "$DOTFILES/llm/pi-settings.json" "$STAGINGDIR/.pi/agent/settings.json"
+ln -s "$DOTFILES/llm/pi-settings.json" "$STAGINGDIR/.pi/agent-home/settings.json"
+ln -s "$DOTFILES/llm/pi-settings.json" "$STAGINGDIR/.pi/agent-work/settings.json"
 
 # JETBRAINS
 ln -s "$DOTFILES/intellij/bin/idea-on-wayland" "$STAGINGDIR/bin/idea-on-wayland"

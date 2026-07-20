@@ -8,6 +8,7 @@
 }:
 {
   imports = [
+    ./home.nix
     ./without-nixos.nix
   ];
 

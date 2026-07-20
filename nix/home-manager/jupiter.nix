@@ -8,6 +8,7 @@
 }:
 {
   imports = [
+    ./home.nix
     ./with-nixos.nix
   ];
 
