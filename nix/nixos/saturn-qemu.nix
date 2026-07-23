@@ -45,6 +45,7 @@
         }
         {
           from = "host";
+          host.address = "0.0.0.0";
           host.port = 8899;
           guest.port = 8899;
         }
@@ -172,9 +173,12 @@
 
   services.saturnVolume = {
     enable = true;
-    lanAddress = "127.0.0.1";
-    # QEMU user networking forwards host connections from 10.0.2.2.
-    lanSubnet = "10.0.2.0/24";
+    # Clients reach the forwarded VM service through jupiter.
+    lanAddress = "192.168.8.151";
+    # The VM is behind QEMU SLiRP. Accept forwarded connections in the guest;
+    # jupiter's firewall is the LAN-facing boundary and restricts this port to
+    # 192.168.8.0/24.
+    lanSubnet = "0.0.0.0/0";
   };
 
   # saturn-volume and i3blocks use PulseAudio.

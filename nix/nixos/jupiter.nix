@@ -33,6 +33,29 @@
     3000
   ];
 
+  # Expose QEMU's saturn volume-control port only to the home LAN. QEMU binds
+  # this port when saturn-qemu is running and forwards it to guest port 8899.
+  networking.firewall.extraCommands = lib.mkAfter ''
+    ${pkgs.iptables}/bin/iptables -C nixos-fw \
+      -p tcp \
+      -s 192.168.8.0/24 \
+      --dport 8899 \
+      -j nixos-fw-accept 2>/dev/null || \
+      ${pkgs.iptables}/bin/iptables -A nixos-fw \
+        -p tcp \
+        -s 192.168.8.0/24 \
+        --dport 8899 \
+        -j nixos-fw-accept
+  '';
+
+  networking.firewall.extraStopCommands = lib.mkAfter ''
+    ${pkgs.iptables}/bin/iptables -D nixos-fw \
+      -p tcp \
+      -s 192.168.8.0/24 \
+      --dport 8899 \
+      -j nixos-fw-accept 2>/dev/null || true
+  '';
+
   environment.systemPackages = with pkgs; [
     # Proton VPN
     wireguard-tools
