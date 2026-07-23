@@ -9,6 +9,7 @@ import re
 import subprocess
 import sys
 import threading
+import time
 from collections.abc import Callable
 from dataclasses import dataclass
 from http import HTTPStatus
@@ -19,6 +20,8 @@ from urllib.parse import parse_qs, urlparse
 VOLUME_RE = re.compile(r"(\d+)%")
 MUTE_RE = re.compile(r"\b(yes|no)\b", re.IGNORECASE)
 VOLUME_LOCK = threading.Lock()
+OSD_MIN_INTERVAL_SECONDS = 0.12
+OSD_LAST_WRITE = 0.0
 
 
 @dataclass(frozen=True)
@@ -110,7 +113,12 @@ class VolumeRequestHandler(BaseHTTPRequestHandler):
         try:
             if parsed.path == "/volume/set":
                 volume = parse_volume_query(parsed.query)
-                state = mutate_and_read(config, lambda: set_volume(config, volume))
+                streaming = parse_qs(parsed.query).get("stream") == ["1"]
+                state = mutate_and_read(
+                    config,
+                    lambda: set_volume(config, volume),
+                    throttle_osd=streaming,
+                )
             elif parsed.path == "/volume/up":
                 state = mutate_and_read(config, lambda: change_volume(config, config.step))
             elif parsed.path == "/volume/down":
@@ -220,17 +228,28 @@ def toggle_mute(config: ServerConfig) -> None:
     pactl(config, "set-sink-mute", config.sink, "toggle")
 
 
-def mutate_and_read(config: ServerConfig, mutate: Callable[[], None]) -> VolumeState:
+def mutate_and_read(
+    config: ServerConfig,
+    mutate: Callable[[], None],
+    *,
+    throttle_osd: bool = False,
+) -> VolumeState:
     with VOLUME_LOCK:
         mutate()
         state = read_state(config)
-        trigger_osd(config, state.volume)
+        trigger_osd(config, state.volume, throttle=throttle_osd)
         refresh_i3blocks(config)
         return state
 
 
-def trigger_osd(config: ServerConfig, volume: int) -> None:
+def trigger_osd(config: ServerConfig, volume: int, *, throttle: bool = False) -> None:
+    global OSD_LAST_WRITE
+
     if config.osd_fifo is None:
+        return
+
+    now = time.monotonic()
+    if throttle and now - OSD_LAST_WRITE < OSD_MIN_INTERVAL_SECONDS:
         return
 
     try:
@@ -243,6 +262,7 @@ def trigger_osd(config: ServerConfig, volume: int) -> None:
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as fifo:
             fifo.write(f"{clamp_volume(volume)}\n")
+        OSD_LAST_WRITE = now
     except OSError as exc:
         print(f"could not write OSD FIFO {config.osd_fifo}: {exc}", file=sys.stderr)
 

@@ -283,6 +283,7 @@
 
         let dragging = false;
         let queuedSliderValue = null;
+        let queuedSliderFinal = false;
         let sliderInFlight = false;
         let sliderTimer = null;
         let lastSliderSend = 0;
@@ -381,14 +382,18 @@
           try {
             while (queuedSliderValue !== null) {
               const value = queuedSliderValue;
+              const final = queuedSliderFinal;
               queuedSliderValue = null;
+              queuedSliderFinal = false;
 
               try {
-                const data = await request(`/volume/set?v=${encodeURIComponent(value)}`, "POST");
+                const stream = final ? "" : "&stream=1";
+                const data = await request(`/volume/set?v=${encodeURIComponent(value)}${stream}`, "POST");
                 applySliderResponse(data, queuedSliderValue !== null);
               } catch (error) {
                 setStatus(error.message, true);
                 queuedSliderValue = null;
+                queuedSliderFinal = false;
               }
             }
           } finally {
@@ -402,6 +407,7 @@
 
         function scheduleSliderSet(value, force = false) {
           queuedSliderValue = clampVolume(value);
+          queuedSliderFinal = force;
 
           if (force) {
             window.clearTimeout(sliderTimer);
