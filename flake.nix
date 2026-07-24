@@ -188,7 +188,7 @@
             ./nix/home-manager/saturn.nix
           ];
         };
-        "reinis@mercury" = home-manager.lib.homeManagerConfiguration {
+        "reinis@L996L2R2" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
