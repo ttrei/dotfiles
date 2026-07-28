@@ -27,6 +27,17 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
   group = filetype_settings,
+  pattern = "diff",
+  callback = function()
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "v:lua.require('reinis.folds').diff()"
+    vim.opt_local.foldenable = true
+    vim.opt_local.foldlevel = 99
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = filetype_settings,
   pattern = "gitcommit",
   callback = function()
     vim.opt_local.foldmethod = "syntax"
