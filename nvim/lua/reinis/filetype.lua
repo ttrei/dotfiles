@@ -84,7 +84,8 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "nix",
   callback = function()
     vim.opt_local.shiftwidth = 2
-    vim.opt_local.foldmethod = "syntax"
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     vim.opt_local.tabstop = 2
   end,
 })
