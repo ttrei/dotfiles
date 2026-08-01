@@ -2,6 +2,11 @@
 #    RemoteForward 127.0.0.1:3333 127.0.0.1:3333
 #
 
+Host saturn-qemu
+  HostName localhost
+  User reinis
+  Port 2255
+
 # Fix ghostty
 # https://ghostty.org/docs/help/terminfo#configure-ssh-to-fall-back-to-a-known-terminfo-entry
 Host *
