@@ -89,7 +89,7 @@
     showtool = "!showci () { rev=${1:-HEAD}; git difftool -d $rev~1 $rev; }; showci $1"
 
     # pretty log
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cd%Cblue %an%Creset' --abbrev-commit --date=format:%Y-%m-%d
+    lg = log --graph --pretty=format:'%Cred%h%Creset %Cgreen%cd%Creset %Cblue%an%Creset:%C(yellow)%d%Creset %s' --abbrev-commit --date=format:%Y-%m-%d
     # don't show merges
     lgm = lg --first-parent -i --grep=merge --invert-grep
 
