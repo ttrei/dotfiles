@@ -126,3 +126,6 @@
 
 [includeIf "hasconfig:remote.*.url:**/*bitbucket.irpc.int.tietoevry.com*/**"]
     path = ~/.config/git/config-work
+
+[includeIf "hasconfig:remote.*.url:**/*git.irpc.int.tietoevry.com*/**"]
+    path = ~/.config/git/config-work
