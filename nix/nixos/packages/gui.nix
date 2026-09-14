@@ -15,6 +15,7 @@
     ghostty
     gnumeric
     # inkscape
+    loupe
     kdiff3
     meld
     pavucontrol
