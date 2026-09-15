@@ -41,9 +41,10 @@
   environment.systemPackages = with pkgs; [
     # Proton VPN
     wireguard-tools
-    protonvpn-gui
+    proton-vpn
 
     beets
+    gparted
 
     # zed-editor
     # unstable.aider-chat-full

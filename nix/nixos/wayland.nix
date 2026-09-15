@@ -36,6 +36,7 @@ in
     waybar
     wl-clipboard
     wofi
+    xwayland-satellite # Started on demand by niri for X11 applications.
 
     (makeScreenshotCommand {
       name = "screenshot";
