@@ -21,6 +21,11 @@
 
   networking.hostName = "jupiter";
 
+  # udiskie in Home Manager handles automounting; Thunar handles browsing/ejecting.
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
+  programs.thunar.enable = true;
+
   # For Proton VPN
   # https://discourse.nixos.org/t/how-to-configure-and-use-proton-vpn-on-nixos/65837
   networking.firewall.checkReversePath = false;
