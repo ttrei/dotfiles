@@ -5,4 +5,4 @@
     ; Probably caused by IntelliJ IDEA messing with file timestamps.
     ; https://stackoverflow.com/a/5255710
     trustctime = false
-    sshCommand = /usr/bin/ssh
+    sshCommand = ssh
