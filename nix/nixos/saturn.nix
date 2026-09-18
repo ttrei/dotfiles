@@ -38,6 +38,9 @@
     openFirewall = true; # port: 8989
   };
 
+  # Sonarr stores its state under /home/reinis.
+  systemd.services.sonarr.serviceConfig.ProtectHome = lib.mkForce false;
+
   services.radarr = {
     enable = true;
     group = "users";
@@ -45,6 +48,9 @@
     dataDir = "/home/reinis/.local/share/Radarr";
     openFirewall = true; # port: 7878
   };
+
+  # Radarr stores its state under /home/reinis.
+  systemd.services.radarr.serviceConfig.ProtectHome = lib.mkForce false;
 
   services.jackett = {
     enable = true;
