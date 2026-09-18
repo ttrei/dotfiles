@@ -27,6 +27,7 @@
     kubelogin-oidc
     kube-capacity
     k9s
+    minikube
     postgresql
     stern
   ];
