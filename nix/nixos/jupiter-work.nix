@@ -39,6 +39,8 @@
 
   networking.extraHosts = ''
     127.0.0.1   mock.mcb mock.ips
+    # MMA OpenSearch Dashboards and Keycloak on pi-dev's Docker bridge.
+    172.19.0.2  mma-leeroy.local.test kibana.mma-leeroy.local.test
   '';
 
   # Forward corporate ip ranges via wireguard to the OpenVPN tunnel on mercury.
