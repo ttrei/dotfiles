@@ -281,10 +281,6 @@ if [ "$MACHINE" = "saturn" ]; then
     ln -s "$DOTFILES/net/bin/vpn-switch.sh" "$STAGINGDIR/bin/vpn-switch.sh"
 fi
 
-# TEXMACS
-mkdir -p "$STAGINGDIR/.config/texmacs/progs"
-ln -s "$DOTFILES/texmacs/my-init-texmacs.scm" "$STAGINGDIR/.config/texmacs/progs"
-
 # LLM
 mkdir -p "$STAGINGDIR/.config/io.datasette.llm"
 mkdir -p "$STAGINGDIR/.gemini"
