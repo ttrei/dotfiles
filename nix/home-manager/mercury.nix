@@ -12,25 +12,6 @@
     ./work.nix
   ];
 
-  home.packages = with pkgs; [
-    dbeaver-bin
-    # https://github.com/NixOS/nixpkgs/issues/182856#issuecomment-3009621304
-    (google-cloud-sdk.withExtraComponents (
-      with google-cloud-sdk.components;
-      [
-        gke-gcloud-auth-plugin
-      ]
-    ))
-    jetbrains.idea
-    jetbrains.pycharm
-    kubectl
-    kubelogin-oidc
-    kube-capacity
-    k9s
-    postgresql
-    stern
-  ];
-
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "22.11";
 }
