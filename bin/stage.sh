@@ -131,7 +131,6 @@ mkdir -p "$STAGINGDIR/.config/jj"
 ln -s "$DOTFILES/jj/config.toml" "$STAGINGDIR/.config/jj/config.toml"
 
 # XORG
-# TODO: $DOTFILES/xorg/Xresources-lenovo is unused
 ln -s "$DOTFILES/xorg/bin/manage-desktop-displays.sh" "$STAGINGDIR/bin/manage-desktop-displays.sh"
 ln -s "$DOTFILES/xorg/bin/detect_displays.sh" "$STAGINGDIR/bin/detect_displays.sh"
 ln -s "$DOTFILES/xorg/xbindkeysrc" "$STAGINGDIR/.xbindkeysrc"
@@ -193,7 +192,6 @@ if [ "$MACHINE" = "jupiter" ]; then
     if [ "$CONTEXT" = "home" ]; then
         ln -s "$DOTFILES/i3/workspaces/jupiter.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
         ln -s "$DOTFILES/i3/sway/config-home" "$STAGINGDIR/.config/sway/config-home"
-        cat "$DOTFILES/i3/config/config-home" >> "$STAGINGDIR/.config/i3/config"
     elif [ "$CONTEXT" = "work" ]; then
         ln -s "$DOTFILES/i3/workspaces/work.txt" "$STAGINGDIR/.config/i3/workspaces.txt"
     fi

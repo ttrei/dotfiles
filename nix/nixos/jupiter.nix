@@ -12,7 +12,6 @@
     ./hardware-configurations/jupiter.nix
     ./packages/audio.nix
     ./packages/cli.nix
-    # ./packages/gamedev.nix
     # ./packages/games.nix
     ./packages/gui.nix
     ./wayland.nix
